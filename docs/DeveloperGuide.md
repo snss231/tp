@@ -264,7 +264,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Easily organised large numbers of contacts and disseminate information.
+**Value proposition**: Easier to organised and handle large numbers of contacts and task. Able to disseminate information in a more organise manner
 
 
 ### User stories
