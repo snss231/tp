@@ -6,7 +6,7 @@ title: User Guide
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +24,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -80,12 +80,12 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person tags is limited to the following: Student, TA, Colleagues, Others.
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/UTOWN p/1234567 t/Student`
 
 ### Listing all persons : `list`
 
@@ -104,7 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -127,6 +127,26 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Tagging a task: `tagtask`
+
+Tag a task with the following tags:
+1) Critical
+2) Major
+3) Medium
+4) Minor
+
+Format: `tag [tn/TASKNAME] [tg/INDEX]`
+
+* The tagging `TASKNAME` is case-insensitive. e.g. `attend meeting` will match `Attend Meeting`
+* The `INDEX` can only range from 1 to 4 with each corresponding to the urgency of the task as seen above.
+* Adding a tag to a task which already has a tag will update the tag.
+
+Examples:
+* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
+  will tag the task as `Critical`.
+* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
+  followed by `tag tn/attend meeting @utown tg/2` will tag the task as `Major`
 
 ### Deleting a person : `delete`
 
@@ -189,4 +209,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Tag Task** | `tag [tn/TASKNAME] [tg/INDEX]` e.g., `tag tn/attend meeting @utown tg/1`
 **Help** | `help`
