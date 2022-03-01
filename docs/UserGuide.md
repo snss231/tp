@@ -30,7 +30,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-    * **`clear`** : Deletes all contacts.
+
+   * `remove` `tn/TA meeting cn/john`: Removes the TA meeting task from contact name john.
+
+   * **`clear`** : Deletes all contacts.
 
     * **`exit`** : Exits the app.
 
@@ -162,6 +165,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Removing a task: `remove` [coming soon]
+Removes the specified task from the specified contact.
+
+Format: `remove tn/TASKNAME cn/CONTACTNAME`
+
+Examples:
+* remove tn/task1 cn/john
+* remove tn/task2 cn/mary
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -206,6 +218,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Remove** | `remove tn/TASKNAME cn/CONTACTNAME`<br> e.g., `remove tn/taskname cn/john`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
