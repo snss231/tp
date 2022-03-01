@@ -29,31 +29,33 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Sean Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/snss231.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/snss231)] [[portfolio](team/snss231.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ong Jun Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junjunjieong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/junjunjieong)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/junjunjieong.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality + Deliverables and deadlines
+
+### Tan Jun Rong
+
+<img src="images/junrong98.png" width="200px">
+
+[[github](http://github.com/junrong98)]
+
+[[portfolio](team/junrong98.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality, In Charge of Tagging
