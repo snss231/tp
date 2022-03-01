@@ -27,8 +27,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `Add Tag to Task`
-        * Update documentation for the features `Add Contact`
+        * Added documentation for the features `Tagging a task`
+        * Update documentation for the features `Adding a person`
     * ReadMe:
       * Update ReadMe.
 
