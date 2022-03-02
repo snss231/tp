@@ -308,6 +308,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+###Use case: Update task for group
+
+**MSS**
+
+1. User requests to update task
+2. NUS Classes shows information for the new updated task including time in dd-mm-yyyy hhmm format.
+
+**Extensions**
+
+* 1a. The index is out of bounds/invalid
+    
+    NUS Classes shows an error message and ends.
+
+###Use case: Delete contact
+
+**MSS**
+
+1. User deletes contact
+2. NUS Classes shows message that contact has been deleted
+
+**Extensions**
+
+* 1a. The index is out of bounds/invalid
+
+    NUS Classes shows an error message and ends
+
 *{More to be added}*
 
 ### Non-Functional Requirements
