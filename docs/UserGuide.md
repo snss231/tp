@@ -72,20 +72,29 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a task: 'add task'
 
-### Adding a person: `add`
+Adds a task.
 
-Adds a person to the address book.
+Format: `add tn/TASKNAME cn/CONTACTNAME t/TIME`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The format for TIME is in dd-mm-yyyy hhmm.
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+There must be an existing contact with CONTACTNAME.
+</div>
+
+### Adding a person: `add contact`
+
+Adds a contact.
+
+Format: `add cn/CONTACTNAME`
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add cn/john`
+* `add cn/mary`
 
 ### Listing all persons : `list`
 
