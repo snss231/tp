@@ -145,6 +145,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Removing a task: `remove` [coming soon]
+
 Removes the specified task from the specified contact.
 
 Format: `remove tn/TASKNAME cn/CONTACTNAME`
@@ -152,6 +153,19 @@ Format: `remove tn/TASKNAME cn/CONTACTNAME`
 Examples:
 * remove tn/task1 cn/john
 * remove tn/task2 cn/mary
+
+### Updating a task: `update`
+Updates an existing task in the address book.
+
+* Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
+* `edit 2 n/Meeting with Prof Tan d/2022-12-01` Updates the name of the 2nd task to be `Meeting with TAs` and the date to be 1st Dec 2022.
+
+Format: `update INDEX [n/NAME] [d/DATE]`
 
 ### Clearing all entries : `clear`
 
