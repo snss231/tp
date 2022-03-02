@@ -64,7 +64,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/AdrianOngJJ.jpg" width="200px">
 
-[[github](http://github.com/AdrianOngJJ)] [[portfolio](team/AdrianOngJJ.md)]
+[[github](http://github.com/AdrianOngJJ)]
+
+[[portfolio](team/AdrianOngJJ.md)]
 
 * Role: Developer
 * Responsibilities: Glossary

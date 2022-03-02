@@ -332,11 +332,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. Should be able to download and use without installer.
 8. Should be able to work and store information without any third party database system.
 
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -388,4 +383,15 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+## **Glossary**
+<dl>
+  <dt>API</dt>
+  <dd>Application Programming Interface. Enables different systems to interact with each other programmatically.</dd>
+  <dt>Mainstream OS</dt>
+  <dd>Windows, Linux, Unix, OS-X</dd>
+  <dt>Private contact detail</dt>
+  <dd>A contact detail that is not meant to be shared with others.</dd>
+</dl>
