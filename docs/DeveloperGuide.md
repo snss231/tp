@@ -257,27 +257,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* NUS professors
 * has a need to manage a significant number of contacts
+* has a need to keep track the tasks with the respective contacts
 * prefer desktop apps over other types
-* can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Easier to organised and handle large numbers of contacts and task. Able to disseminate information in a more organise manner
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                      | I want to …​                            | So that I can…​                                                        |
+|----------|----------------------------------------------|-----------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                     | see usage instructions                  | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                         | add a new person                        |                                                                        |
+| `* * *`  | user                                         | add a new task                          | manage my schedule more efficiently                                    |
+| `* * *`  | user                                         | delete a person                         | remove entries that I no longer need                                   |
+| `* * *`  | user                                         | delete a task                           | remove the task I no longer need                                       |
+| `* * *`  | user                                         | find a person by name                   | locate details of persons without having to go through the entire list |
+| `* * *`  | user with different persons in address book  | tag my contacts                         | organize the contacts to look neater                                   |
+| `* * *`  | user                                         | view contact detail                     | know the information of the contact                                    |
+| `* * *`  | user                                         | tag the task                            | know which task is urgent                                              |
+| `* * *`  | user                                         | view task detail                        | know the information of the task                                       |
+| `* *`    | user                                         | get Github profile link from my contact | view their project profile                                             |
+| `* *`    | user                                         | customized my profile                   |                                                                        |
+| `* *`    | Professor                                    | group the students based on module      | know which student is under which module                               |
+| `*`      | user                                         | hide contacts                           | to keep my contact relevant without the need to delete                 |
+| `*`      | Professor                                    | add graded component of the module      | track students' performance of the module                              |
+| `*`      | user with many persons in the address book   | sort persons by name                    | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -307,6 +318,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Schedule a task with a group**
+
+**MSS**
+
+1. User requests to create a task
+2. AddressBook creates the task
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. 0 optional arguments are provided
+    * 1a1. NUS Classes shows an error message.
+
+      Use case ends.
+
+* 2a. Invalid group type/index is provided
+  * 2a1. NUS Classes shows an error message. 
+  * Use case ends.
+
+**Use case: See all scheduled tasks**
+
+1. User requests to see all tasks
+2. NUS Classes shows a list of scheduled tasks
+
+**Extensions**
+
+* 2a. The list is empty. 
+  * Use case ends.
 
 ###Use case: Update task for group
 
@@ -336,13 +377,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+
+  
+**
+  *{More to be added}*
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. App should not exit or shut down without user explicit command.
+5. App should display relevant information within 2 seconds after user enter command.
+6. The information stored should not change without user explicit command.
+7. Should be able to download and use without installer.
+8. Should be able to work and store information without any third party database system.
 
 ### Glossary
 
