@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Brian
+
+<img src="images/brian16600.png" width="200px">
+
+[[github](https://github.com/brian16600)]] [[portfolio](team/brian16600.md)]
+
+* Role: Developer
+* Responsibilites: Code Quality
+
 ### Sean Ng
 
 <img src="images/snss231.png" width="200px">
