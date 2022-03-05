@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+NUS Classes is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUS Classes can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `nusclasses.jar` from [here](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your NUS Classes manager.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,17 +24,18 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+
 
    * `remove` `tn/TA meeting cn/john`: Removes the TA meeting task from contact name john.
 
    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -74,20 +75,31 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a task: 'add task'
 
-### Adding a person: `add`
+Adds a task.
 
-Adds a person to the address book.
+Format: `add tn/TASKNAME cn/CONTACTNAME t/TIME`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The format for TIME is in dd-mm-yyyy hhmm.
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+There must be an existing contact with CONTACTNAME.
+
+</div>
+
+### Adding a person: `add contact`
+
+Adds a contact.
+
+Format: `add cn/CONTACTNAME`
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+* `add cn/john`
+* `add cn/mary`
 
 ### Listing all persons : `list`
 
@@ -106,7 +118,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -130,6 +142,26 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Tagging a task: `tagtask`
+
+Tag a task with the following tags:
+1) Critical
+2) Major
+3) Medium
+4) Minor
+
+Format: `tag [tn/TASKNAME] [tg/INDEX]`
+
+* The tagging `TASKNAME` is case-insensitive. e.g. `attend meeting` will match `Attend Meeting`
+* The `INDEX` can only range from 1 to 4 with each corresponding to the urgency of the task as seen above.
+* Adding a tag to a task which already has a tag will update the tag.
+
+Examples:
+* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
+  will tag the task as `Critical`.
+* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
+  followed by `tag tn/attend meeting @utown tg/2` will tag the task as `Major`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -145,6 +177,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Removing a task: `remove` [coming soon]
+
 Removes the specified task from the specified contact.
 
 Format: `remove tn/TASKNAME cn/CONTACTNAME`
@@ -152,6 +185,19 @@ Format: `remove tn/TASKNAME cn/CONTACTNAME`
 Examples:
 * remove tn/task1 cn/john
 * remove tn/task2 cn/mary
+
+### Updating a task: `update`
+Updates an existing task in the address book.
+
+* Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
+* `edit 2 n/Meeting with Prof Tan d/2022-12-01` Updates the name of the 2nd task to be `Meeting with TAs` and the date to be 1st Dec 2022.
+
+Format: `update INDEX [n/NAME] [d/DATE]`
 
 ### Clearing all entries : `clear`
 
@@ -201,4 +247,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Tag Task** | `tag [tn/TASKNAME] [tg/INDEX]` e.g., `tag tn/attend meeting @utown tg/1`
 **Help** | `help`

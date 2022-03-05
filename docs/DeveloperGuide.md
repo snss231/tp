@@ -318,8 +318,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Schedule a task with a group**
+
+**MSS**
+
+1. User requests to create a task
+2. AddressBook creates the task
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. 0 optional arguments are provided
+    * 1a1. NUS Classes shows an error message.
+
+      Use case ends.
+
+* 2a. Invalid group type/index is provided
+  * 2a1. NUS Classes shows an error message. 
+  * Use case ends.
+
+**Use case: See all scheduled tasks**
+
+1. User requests to see all tasks
+2. NUS Classes shows a list of scheduled tasks
+
+**Extensions**
+
+* 2a. The list is empty. 
+  * Use case ends.
+
+###Use case: Update task for group
+
+**MSS**
+
+1. User requests to update task
+2. NUS Classes shows information for the new updated task including time in dd-mm-yyyy hhmm format.
+
+**Extensions**
+
+* 1a. The index is out of bounds/invalid
+    
+    NUS Classes shows an error message and ends.
+
+###Use case: Delete contact
+
+**MSS**
+
+1. User deletes contact
+2. NUS Classes shows message that contact has been deleted
+
+**Extensions**
+
+* 1a. The index is out of bounds/invalid
+
+    NUS Classes shows an error message and ends
 
 *{More to be added}*
+
+
+  
+**
+  *{More to be added}*
 
 ### Non-Functional Requirements
 
