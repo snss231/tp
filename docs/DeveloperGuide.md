@@ -393,8 +393,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. Should be able to download and use without installer.
 8. Should be able to work and store information without any third party database system.
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
