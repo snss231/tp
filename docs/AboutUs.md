@@ -14,10 +14,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/brian16600.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/brian16600)]
+[[portfolio](team/brian16600.md)]
 
-* Role: 
+* Role:
 
 ### Jane Doe
 
@@ -33,7 +33,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Create Task, Code Quality
