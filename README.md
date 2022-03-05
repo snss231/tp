@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 # NUS Classes
-NUS Classes is an app that enables the professors to better manage contacts from large numbers of students and staff, 
+NUS Classes is an app that enables the professors to better manage contacts from large numbers of students and staff,
 and allow the professor to document the task that he/she needs to do.
 
 ## Features
