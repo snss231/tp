@@ -318,7 +318,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-    
+
 **Use case: Schedule a task with a group**
 
 **MSS**
@@ -336,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 2a. Invalid group type/index is provided
-  * 2a1. NUS Classes shows an error message. 
+  * 2a1. NUS Classes shows an error message.
   * Use case ends.
 
 **Use case: See all scheduled tasks**
@@ -346,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty. 
+* 2a. The list is empty.
   * Use case ends.
 
 ###Use case: Update task for group
@@ -359,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The index is out of bounds/invalid
-    
+
     NUS Classes shows an error message and ends.
 
 ###Use case: Delete contact
@@ -378,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 
-  
+
 **
   *{More to be added}*
 
@@ -444,7 +444,6 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
---------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 <dl>
   <dt>API</dt>
