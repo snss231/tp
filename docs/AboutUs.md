@@ -13,47 +13,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/brian16600.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/brian16600)]
-[[portfolio](team/brian16600.md)]
-
-* Role:
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)][[portfolio](team/johndoe.md)]
+[[github](https://github.com/brian16600)]] [[portfolio](team/brian16600.md)]
 
 * Role: Developer
-* Responsibilities: Create Task, Code Quality
+* Responsibilites: Code Quality
 
-### Jean Doe
+### Sean Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/snss231.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/snss231)]] [[portfolio](team/snss231.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Data
+
+### Ong Jun Jie
+
+<img src="images/junjunjieong.png" width="200px">
+
+[[github](http://github.com/junjunjieong)]] [[portfolio](team/junjunjieong.md)]
+
+* Role: Developer
+* Responsibilities: Code quality + Deliverables and deadlines
+
+### Tan Jun Rong
+
+<img src="images/junrong98.png" width="200px">
+
+[[github](http://github.com/junrong98)]] [[portfolio](team/junrong98.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality, In Charge of Tagging
+
+### Adrian Ong
+
+<img src="images/AdrianOngJJ.jpg" width="200px">
+
+[[github](http://github.com/AdrianOngJJ)]] [[portfolio](team/AdrianOngJJ.md)]
+
+* Role: Developer
+* Responsibilities: Glossary
