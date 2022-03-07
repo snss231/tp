@@ -29,13 +29,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Will be updated
+    * Will be updated soon
   * Developer Guide:
-    * Will be updated
+    * Updated Glossary [\#22](../DeveloperGuide.md)
 
 * **Community**:
   * to be added soon
 
 * **Tools**:
   * to be added soon
-  
