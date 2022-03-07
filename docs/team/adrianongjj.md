@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Will be updated
+    * Will be updated soon
   * Developer Guide:
     * Updated Glossary [\#22](../DeveloperGuide.md)
 
