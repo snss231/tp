@@ -47,9 +47,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Adrian Ong
 
-<img src="images/adrianongjj.png" width="200px">
+<img src="images/adrianongjj.jpg" width="200px">
 
-[[github](http://github.com/AdrianOngJJ)]] [[portfolio](team/AdrianOngJJ.md)]
+[[github](http://github.com/AdrianOngJJ)]] [[portfolio](team/adrianongjj.md)]
 
 * Role: Developer
 * Responsibilities: Glossary
