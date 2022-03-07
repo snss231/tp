@@ -31,11 +31,10 @@ Given below are my contributions to the project.
   * User Guide:
     * Will be updated
   * Developer Guide:
-    * Will be updated
+    * Updated Glossary [\#22](../DeveloperGuide.md)
 
 * **Community**:
   * to be added soon
 
 * **Tools**:
   * to be added soon
-  
