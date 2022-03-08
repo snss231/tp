@@ -10,8 +10,13 @@ import java.time.LocalDateTime;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+
+/**
+ * Represents an AddTaskCommand.
+ */
 public class AddTaskCommand extends Command {
 
+    /* Message printed if wrong usage */
     public static final String MESSAGE_USAGE = "add task" + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_TASKNAME + "TASKNAME "
@@ -26,6 +31,12 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add task";
     public static final String ADD_TASK_SUCCESS = "Task added!";
 
+    /**
+     * Constructor for AddTaskCommand. Takes in 2 parameters, taskName and dateTime
+     *
+     * @param taskName Name of Task
+     * @param dateTime LocalDateTime object to represent date time of Task
+     */
     public AddTaskCommand(String taskName, LocalDateTime dateTime) {
         requireNonNull(taskName);
         requireNonNull(dateTime);
