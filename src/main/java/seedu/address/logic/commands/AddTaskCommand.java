@@ -24,7 +24,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_TASKNAME + "John Doe "
             + PREFIX_DATETIME + "2022-12-25 1800";
 
-    public static final String COMMAND_WORD = "add task";
+    public static final String COMMAND_WORD = "addt";
     public static final String ADD_TASK_SUCCESS = "Task added!";
 
     private final String taskName;

@@ -176,15 +176,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Removing a task: `remove` [coming soon]
+### Delete a task: `deletet` 
 
-Removes the specified task from the specified contact.
+Deletes the specified task from the task list.
 
-Format: `remove tn/TASKNAME cn/CONTACTNAME`
+Format: `deletet 1`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* remove tn/task1 cn/john
-* remove tn/task2 cn/mary
+* deletet 1
+* deletet 2
 
 ### Updating a task: `update`
 Updates an existing task in the address book.

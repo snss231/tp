@@ -166,4 +166,15 @@ public class ModelManager implements Model {
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        taskList.deleteCurrTask(target);
+    }
 }

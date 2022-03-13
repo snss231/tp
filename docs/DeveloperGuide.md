@@ -271,24 +271,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                      | I want to …​                            | So that I can…​                                                        |
-|----------|----------------------------------------------|-----------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                     | see usage instructions                  | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                         | add a new person                        |                                                                        |
-| `* * *`  | user                                         | add a new task                          | manage my schedule more efficiently                                    |
-| `* * *`  | user                                         | delete a person                         | remove entries that I no longer need                                   |
-| `* * *`  | user                                         | delete a task                           | remove the task I no longer need                                       |
-| `* * *`  | user                                         | find a person by name                   | locate details of persons without having to go through the entire list |
-| `* * *`  | user with different persons in address book  | tag my contacts                         | organize the contacts to look neater                                   |
-| `* * *`  | user                                         | view contact detail                     | know the information of the contact                                    |
-| `* * *`  | user                                         | tag the task                            | know which task is urgent                                              |
-| `* * *`  | user                                         | view task detail                        | know the information of the task                                       |
-| `* *`    | user                                         | get Github profile link from my contact | view their project profile                                             |
-| `* *`    | user                                         | customized my profile                   |                                                                        |
-| `* *`    | Professor                                    | group the students based on module      | know which student is under which module                               |
-| `*`      | user                                         | hide contacts                           | to keep my contact relevant without the need to delete                 |
-| `*`      | Professor                                    | add graded component of the module      | track students' performance of the module                              |
-| `*`      | user with many persons in the address book   | sort persons by name                    | locate a person easily                                                 |
+| Priority | As a …​                                     | I want to …​                                   | So that I can…​                                               |
+|----------|---------------------------------------------|------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                    | see usage instructions                         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                        | add a new person                               |                                                                        |
+| `* * *`  | user                                        | add a new task                                 | manage my schedule more efficiently                                    |
+| `* * *`  | user                                        | delete a person                                | remove entries that I no longer need                                   |
+| `* * *`  | user                                        | delete a task                                  | remove the task I no longer need                                       |
+| `* * *`  | user                                        | find a person by name                          | locate details of persons without having to go through the entire list |
+| `* * *`  | user with different persons in address book | tag my contacts                                | organize the contacts to look neater                                   |
+| `* * *`  | user                                        | filter my tasks by name                        | locate details of tasks without having to go through the entire list   |
+| `* * *`  | user                                        | view contact detail                            | know the information of the contact                                    |
+| `* * *`  | user                                        | tag the task                                   | know which task is urgent                                              |
+| `* * *`  | user                                        | assign and remove the task to/from my contacts | allocate my tasks to the specific contact as needed                    |
+| `* * *`  | user                                        | view task detail                               | know the information of the task                                       |
+| `* *`    | user                                        | get Github profile link from my contact        | view their project profile                                             |
+| `* *`    | user                                        | customized my profile                          |                                                                        |
+| `* *`    | Professor                                   | group the students based on module             | know which student is under which module                               |
+| `*`      | user                                        | hide contacts                                  | to keep my contact relevant without the need to delete                 |
+| `*`      | Professor                                   | add graded component of the module             | track students' performance of the module                              |
+| `*`      | user with many persons in the address book  | sort persons by name                           | locate a person easily                                                 |
 
 *{More to be added}*
 

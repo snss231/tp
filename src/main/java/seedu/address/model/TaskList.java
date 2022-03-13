@@ -77,4 +77,14 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     public Iterator<Task> iterator() {
         return internalList.iterator();
     }
+
+    /**
+     * Deletes a Task to the list.
+     *
+     * @param taskToDelete Task to be deleted.
+     */
+    public void deleteCurrTask(Task taskToDelete) {
+        requireNonNull(taskToDelete);
+        this.internalList.remove(taskToDelete);
+    }
 }
