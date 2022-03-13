@@ -1,17 +1,21 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -40,6 +44,7 @@ public class SampleDataUtil {
         };
     }
 
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -55,6 +60,23 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Task("Brush my teeth", LocalDateTime.of(2022, 12, 15, 21, 0)),
+            new Task("Do the laundry", LocalDateTime.of(2022, 6, 2, 15, 0)),
+            new Task("Consultation with students", LocalDateTime.of(2022, 8, 3, 14, 0)),
+            new Task("Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30))
+        };
+    }
+
+    public static ReadOnlyTaskList getSampleTaskList() {
+        TaskList sampleTl = new TaskList();
+        for (Task sampleTask : getSampleTasks()) {
+            sampleTl.addTask(sampleTask);
+        }
+        return sampleTl;
     }
 
 }
