@@ -64,10 +64,10 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task("Brush my teeth", LocalDateTime.of(2022, 12, 15, 21, 0)),
-                new Task("Do the laundry", LocalDateTime.of(2022, 6, 2, 15, 0)),
-                new Task("Consultation with students", LocalDateTime.of(2022, 8, 3, 14, 0)),
-                new Task("Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30))
+            new Task("Brush my teeth", LocalDateTime.of(2022, 12, 15, 21, 0)),
+            new Task("Do the laundry", LocalDateTime.of(2022, 6, 2, 15, 0)),
+            new Task("Consultation with students", LocalDateTime.of(2022, 8, 3, 14, 0)),
+            new Task("Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30))
         };
     }
 
