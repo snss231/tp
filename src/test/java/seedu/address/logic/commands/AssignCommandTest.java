@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
@@ -24,15 +26,16 @@ class AssignCommandTest {
         Person personToAdd = model.getFilteredPersonList().get(0);
         Task taskToEdit = model.getFilteredTaskList().get(0);
         Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(), taskToEdit.getPeople());
+
         updatedTask.addPerson(personToAdd);
-
-        AssignCommand assignCommand =
-                new AssignCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
-
         Model expectedModel = new ModelManager(
                 new AddressBook(model.getAddressBook()), new UserPrefs(), new TaskList(model.getTaskList()));
         expectedModel.setTask(taskToEdit, updatedTask);
 
+        AssignCommand assignCommand =
+                new AssignCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
+
+        assertFalse(taskToEdit.getPeople().contains(personToAdd));
         String expectedMessage = String.format(
                 AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
@@ -53,7 +56,7 @@ class AssignCommandTest {
         expectedModel.setTask(taskToEdit, updatedTask);
 
         String expectedMessage = String.format(
-                AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
-        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
+                AssignCommand.MESSAGE_DUPLICATE_PERSON, personToAdd, updatedTask);
+        assertCommandFailure(assignCommand, expectedModel, expectedMessage);
     }
 }

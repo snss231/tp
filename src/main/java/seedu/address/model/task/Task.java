@@ -36,7 +36,7 @@ public class Task {
      */
     public Task(String name, LocalDateTime dateTime, List<Person> people) {
         this(name, dateTime);
-        this.people = people;
+        this.people = new ArrayList<>(people);
     }
 
     /**
@@ -85,5 +85,21 @@ public class Task {
 
     public List<Person> getPeople() {
         return this.people;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Task)) {
+            return false;
+        }
+
+        Task otherTask = (Task) other;
+        return otherTask.getName().equals(this.getName())
+                && otherTask.getDateTime().equals(this.getDateTime())
+                && otherTask.getPeople().equals(this.getPeople());
     }
 }
