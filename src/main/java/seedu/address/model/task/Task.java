@@ -1,6 +1,10 @@
 package seedu.address.model.task;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Task in NUSClasses.
@@ -9,6 +13,7 @@ import java.time.LocalDateTime;
 public class Task {
     private String name;
     private LocalDateTime dateTime;
+    private List<Person> people;
 
     /**
      * Constructor for Task.
@@ -19,6 +24,19 @@ public class Task {
     public Task(String name, LocalDateTime dateTime) {
         this.name = name;
         this.dateTime = dateTime;
+        this.people = new ArrayList<>();
+    }
+
+    /**
+     * Constructor for Task with a list of people already provided.
+     *
+     * @param name Name of task
+     * @param people People to be added to the list
+     * @param dateTime LocalDateTime object representing Date and Time for Task
+     */
+    public Task(String name, LocalDateTime dateTime, List<Person> people) {
+        this(name, dateTime);
+        this.people = people;
     }
 
     /**
@@ -28,6 +46,19 @@ public class Task {
      */
     public void changeName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Add a person to the list of people associated with the task.
+     *
+     * @param person Person to add
+     */
+    public void addPerson(Person person) {
+        people.add(person);
+    }
+
+    public void removePerson(Person person) {
+        people.remove(person);
     }
 
     /**
@@ -50,5 +81,9 @@ public class Task {
 
     public String getName() {
         return this.name;
+    }
+
+    public List<Person> getPeople() {
+        return this.people;
     }
 }

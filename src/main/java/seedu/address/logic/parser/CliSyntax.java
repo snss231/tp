@@ -15,4 +15,5 @@ public class CliSyntax {
     /* Added prefix definitions */
     public static final Prefix PREFIX_TASKNAME = new Prefix("/tn");
     public static final Prefix PREFIX_DATETIME = new Prefix("/t");
+    public static final Prefix PREFIX_PERSON = new Prefix("p/");
 }
