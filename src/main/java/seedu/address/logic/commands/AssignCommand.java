@@ -14,9 +14,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 
-public class AddPersonToTaskCommand extends Command {
+public class AssignCommand extends Command {
 
-    public static final String COMMAND_WORD = "addPersonToTask";
+    public static final String COMMAND_WORD = "assign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add the person identified by the index number"
             + "used in the diaplayed person list "
@@ -34,7 +34,7 @@ public class AddPersonToTaskCommand extends Command {
      * @param taskIndex of the task in the filtered task list to be added to
      * @param personIndex of the person in the filtered person list to add
      */
-    public AddPersonToTaskCommand(Index taskIndex, Index personIndex) {
+    public AssignCommand(Index taskIndex, Index personIndex) {
         requireNonNull(taskIndex);
         requireNonNull(personIndex);
 

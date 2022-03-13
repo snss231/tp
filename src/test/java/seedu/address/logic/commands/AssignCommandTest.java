@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-class AddPersonToTaskCommandTest {
+class AssignCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
 
@@ -26,16 +26,16 @@ class AddPersonToTaskCommandTest {
         Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(), taskToEdit.getPeople());
         updatedTask.addPerson(personToAdd);
 
-        AddPersonToTaskCommand addPersonToTaskCommand =
-                new AddPersonToTaskCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
+        AssignCommand assignCommand =
+                new AssignCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
 
         Model expectedModel = new ModelManager(
                 new AddressBook(model.getAddressBook()), new UserPrefs(), new TaskList(model.getTaskList()));
         expectedModel.setTask(taskToEdit, updatedTask);
 
         String expectedMessage = String.format(
-                AddPersonToTaskCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
-        assertCommandSuccess(addPersonToTaskCommand, model, expectedMessage, expectedModel);
+                AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
+        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -45,15 +45,15 @@ class AddPersonToTaskCommandTest {
         Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(), taskToEdit.getPeople());
         updatedTask.addPerson(personToAdd);
 
-        AddPersonToTaskCommand addPersonToTaskCommand =
-                new AddPersonToTaskCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
+        AssignCommand assignCommand =
+                new AssignCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
 
         Model expectedModel = new ModelManager(
                 new AddressBook(model.getAddressBook()), new UserPrefs(), new TaskList(model.getTaskList()));
         expectedModel.setTask(taskToEdit, updatedTask);
 
         String expectedMessage = String.format(
-                AddPersonToTaskCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
-        assertCommandSuccess(addPersonToTaskCommand, model, expectedMessage, expectedModel);
+                AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
+        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
 }
