@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
     private final TaskList taskList;
 
     /**
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.taskList = new TaskList(taskList);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.taskList.getTaskList());
     }
 
     public ModelManager() {
@@ -153,5 +156,14 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
     }
 }
