@@ -90,4 +90,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
+    void setTask(Task taskToEdit, Task editedTask);
 }
