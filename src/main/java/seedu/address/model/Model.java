@@ -88,6 +88,6 @@ public interface Model {
 
     ReadOnlyTaskList getTaskList();
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 }
