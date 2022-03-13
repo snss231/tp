@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Contains a list of Tasks
@@ -86,5 +87,23 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     public void deleteCurrTask(Task taskToDelete) {
         requireNonNull(taskToDelete);
         this.internalList.remove(taskToDelete);
+
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        internalList.set(index, editedTask);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskList // instanceof handles nulls
+                && internalList.equals(((TaskList) other).internalList));
+
     }
 }

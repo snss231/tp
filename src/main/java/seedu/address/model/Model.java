@@ -102,4 +102,7 @@ public interface Model {
      * The task must exist in the task list.
      */
     void deleteTask(Task target);
+
+    void setTask(Task taskToEdit, Task editedTask);
+
 }

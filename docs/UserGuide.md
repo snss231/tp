@@ -75,11 +75,11 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a task: 'add task'
+### Adding a task: `addt`
 
 Adds a task.
 
-Format: `add tn/TASKNAME cn/CONTACTNAME t/TIME`
+Format: `addt n/TASKNAME cn/CONTACTNAME t/TIME`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The format for TIME is in dd-mm-yyyy hhmm.
@@ -90,16 +90,16 @@ There must be an existing contact with CONTACTNAME.
 
 </div>
 
-### Adding a person: `add contact`
+### Adding a person: `addc`
 
 Adds a contact.
 
-Format: `add cn/CONTACTNAME`
+Format: `addc n/CONTACTNAME`
 
 Examples:
 
-* `add cn/john`
-* `add cn/mary`
+* `addc n/john`
+* `addc n/mary`
 
 ### Listing all persons : `list`
 
@@ -141,6 +141,23 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Filtering tasks by name: `filter`
+
+Filters out tasks whose task names contain any of the given keywords.
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `eat` will match `Eat`
+* The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
+* Only the name is searched.
+* Only full words will be matched e.g. `Apples` will not match `Apple`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
+
+Examples:
+* `filter apple` returns `Buy apple` and `Make apple juice`
+* `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
 ### Tagging a task: `tagtask`
 
