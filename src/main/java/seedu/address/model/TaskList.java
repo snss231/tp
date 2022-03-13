@@ -87,6 +87,7 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     public void deleteCurrTask(Task taskToDelete) {
         requireNonNull(taskToDelete);
         this.internalList.remove(taskToDelete);
+    }
 
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
