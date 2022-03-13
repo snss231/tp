@@ -25,7 +25,6 @@ class UnassignCommandTest {
     void execute_unassignExistingContact_success() {
         Person person = model.getFilteredPersonList().get(0);
         Task taskToEdit = model.getFilteredTaskList().get(0);
-        taskToEdit.addPerson(person);
 
         Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(), taskToEdit.getPeople());
         updatedTask.addPerson(person);

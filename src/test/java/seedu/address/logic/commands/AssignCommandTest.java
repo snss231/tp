@@ -34,8 +34,8 @@ class AssignCommandTest {
 
         AssignCommand assignCommand =
                 new AssignCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
-
         assertFalse(taskToEdit.getPeople().contains(personToAdd));
+
         String expectedMessage = String.format(
                 AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);

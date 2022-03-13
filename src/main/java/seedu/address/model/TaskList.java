@@ -89,4 +89,11 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
 
         internalList.set(index, editedTask);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskList // instanceof handles nulls
+                && internalList.equals(((TaskList) other).internalList));
+    }
 }
