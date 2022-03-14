@@ -9,9 +9,6 @@ import seedu.address.model.TaskList;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-/**
- * Adapted from {}
- */
 public class TypicalAssignedTasks {
     public static final List<Person> GROUP_ONE = Arrays.asList(TypicalPersons.AMY, TypicalPersons.ALICE);
     public static final List<Person> GROUP_TWO =
