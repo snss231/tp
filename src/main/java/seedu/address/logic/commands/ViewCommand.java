@@ -15,7 +15,7 @@ import seedu.address.model.task.Task;
 /**
  * Finds and lists all persons in address book who were assigned to a given task.
  */
-public class ViewTaskCommand extends Command {
+public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all relevant contacts under a task "
@@ -33,7 +33,7 @@ public class ViewTaskCommand extends Command {
      *
      * @param targetIndex The index of the task to be targeted.
      */
-    public ViewTaskCommand(Index targetIndex) {
+    public ViewCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }

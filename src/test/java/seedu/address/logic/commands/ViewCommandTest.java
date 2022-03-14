@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainInTask;
 import seedu.address.model.task.Task;
 
-public class ViewTaskCommandTest {
+public class ViewCommandTest {
 
     // Model with no people assigned to the tasks
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
@@ -37,7 +37,7 @@ public class ViewTaskCommandTest {
         Index targetIndex = ParserUtil.parseIndex("1");
 
         // Initializing command
-        ViewTaskCommand command = new ViewTaskCommand(targetIndex);
+        ViewCommand command = new ViewCommand(targetIndex);
 
         // Initializing predicate for expected model
         Task targetTask = expectedModel.getFilteredTaskList().get(targetIndex.getZeroBased());
@@ -55,11 +55,11 @@ public class ViewTaskCommandTest {
 
     @Test
     void execute_assigneesInTask_personFound() throws CommandException, ParseException {
-        String expectedMessage = String.format(ViewTaskCommand.DISPLAY_TASK_CONTACT_SUCCESS, 2);
+        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS, 2);
         Index targetIndex = ParserUtil.parseIndex("1");
 
         // Initializing command
-        ViewTaskCommand command = new ViewTaskCommand(targetIndex);
+        ViewCommand command = new ViewCommand(targetIndex);
 
         // Initializing predicate for expected model
         Task targetTask = expectedAssignedModel.getFilteredTaskList().get(targetIndex.getZeroBased());
