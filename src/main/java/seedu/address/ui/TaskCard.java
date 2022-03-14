@@ -40,7 +40,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName());
-        date.setText(task.getDateTime().toString());
+        date.setText("Due: " + task.getDateTime().toString());
     }
 
     @Override
