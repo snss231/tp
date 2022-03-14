@@ -159,26 +159,6 @@ Examples:
 * `filter apple` returns `Buy apple` and `Make apple juice`
 * `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
-### Tagging a task: `tagtask`
-
-Tag a task with the following tags:
-1) Critical
-2) Major
-3) Medium
-4) Minor
-
-Format: `tag [tn/TASKNAME] [tg/INDEX]`
-
-* The tagging `TASKNAME` is case-insensitive. e.g. `attend meeting` will match `Attend Meeting`
-* The `INDEX` can only range from 1 to 4 with each corresponding to the urgency of the task as seen above.
-* Adding a tag to a task which already has a tag will update the tag.
-
-Examples:
-* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
-  will tag the task as `Critical`.
-* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
-  followed by `tag tn/attend meeting @utown tg/2` will tag the task as `Major`
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -206,6 +186,19 @@ Format: `deletet 1`
 Examples:
 * deletet 1
 * deletet 2
+
+### Viewing contacts assigned to a task: `view`
+
+Display all contacts assigned to a given task.
+
+Format: `view INDEX`
+
+* View all the contact assigned to the task located the specified `INDEX`
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 1` will display all contacts assigned to the 1st task in the task list.
 
 ### Updating a task: `update`
 Updates an existing task in the address book.
