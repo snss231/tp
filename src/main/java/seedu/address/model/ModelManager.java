@@ -168,6 +168,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        taskList.deleteCurrTask(target);
+    }
+
+    @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
