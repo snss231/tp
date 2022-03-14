@@ -60,7 +60,6 @@ public class ViewTaskCommand extends Command {
 
         if (model.getFilteredPersonList().size() < 1) {
             return new CommandResult(NO_CONTACT_ASSIGN);
-
         }
 
         return new CommandResult(
