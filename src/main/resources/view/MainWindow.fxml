@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="NUS Classes" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="NUS Classes" minWidth="850" minHeight="710" maxHeight="715" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/nuslogo.jpg" />
   </icons>
@@ -25,7 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox VBox.vgrow="ALWAYS">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -48,18 +48,18 @@
           </padding>
         </StackPane>
 
-        <HBox fx:id="lists" styleClass="pane-with-no-border" minWidth="340" prefWidth="340">
+        <HBox fx:id="lists" styleClass="pane-with-no-border" minWidth="340" prefWidth="340" alignment="CENTER">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <VBox fx:id="taskList" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox fx:id="taskList" minWidth="340" prefWidth="1080" VBox.vgrow="ALWAYS">
             <Label>Tasks</Label>
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="personList" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" minWidth="340" prefWidth="1080" VBox.vgrow="ALWAYS">
             <Label>Contacts</Label>
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
@@ -67,7 +67,7 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder"/>
       </VBox>
     </Scene>
   </scene>
