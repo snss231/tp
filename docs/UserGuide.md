@@ -75,11 +75,11 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a task: 'add task'
+### Adding a task: `addt`
 
 Adds a task.
 
-Format: `add tn/TASKNAME cn/CONTACTNAME t/TIME`
+Format: `addt n/TASKNAME cn/CONTACTNAME t/TIME`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The format for TIME is in dd-mm-yyyy hhmm.
@@ -90,16 +90,16 @@ There must be an existing contact with CONTACTNAME.
 
 </div>
 
-### Adding a person: `add contact`
+### Adding a person: `addc`
 
 Adds a contact.
 
-Format: `add cn/CONTACTNAME`
+Format: `addc n/CONTACTNAME`
 
 Examples:
 
-* `add cn/john`
-* `add cn/mary`
+* `addc n/john`
+* `addc n/mary`
 
 ### Listing all persons : `list`
 
@@ -142,25 +142,22 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Tagging a task: `tagtask`
+### Filtering tasks by name: `filter`
 
-Tag a task with the following tags:
-1) Critical
-2) Major
-3) Medium
-4) Minor
+Filters out tasks whose task names contain any of the given keywords.
 
-Format: `tag [tn/TASKNAME] [tg/INDEX]`
+Format: `filter KEYWORD [MORE_KEYWORDS]`
 
-* The tagging `TASKNAME` is case-insensitive. e.g. `attend meeting` will match `Attend Meeting`
-* The `INDEX` can only range from 1 to 4 with each corresponding to the urgency of the task as seen above.
-* Adding a tag to a task which already has a tag will update the tag.
+* The search is case-insensitive. e.g `eat` will match `Eat`
+* The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
+* Only the name is searched.
+* Only full words will be matched e.g. `Apples` will not match `Apple`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
 
 Examples:
-* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
-  will tag the task as `Critical`.
-* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
-  followed by `tag tn/attend meeting @utown tg/2` will tag the task as `Major`
+* `filter apple` returns `Buy apple` and `Make apple juice`
+* `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
 ### Deleting a person : `delete`
 
@@ -176,15 +173,32 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Removing a task: `remove` [coming soon]
+### Delete a task: `deletet` 
 
-Removes the specified task from the specified contact.
+Deletes the specified task from the task list.
 
-Format: `remove tn/TASKNAME cn/CONTACTNAME`
+Format: `deletet 1`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* remove tn/task1 cn/john
-* remove tn/task2 cn/mary
+* deletet 1
+* deletet 2
+
+### Viewing contacts assigned to a task: `view`
+
+Display all contacts assigned to a given task.
+
+Format: `view INDEX`
+
+* View all the contact assigned to the task located the specified `INDEX`
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 1` will display all contacts assigned to the 1st task in the task list.
 
 ### Updating a task: `update`
 Updates an existing task in the address book.
