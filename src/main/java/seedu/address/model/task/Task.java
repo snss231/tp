@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Task in NUSClasses.
@@ -14,6 +15,7 @@ public class Task {
     private String name;
     private LocalDateTime dateTime;
     private List<Person> people;
+    private Tag tag;
 
     /**
      * Constructor for Task.
@@ -21,10 +23,11 @@ public class Task {
      * @param name Name of task
      * @param dateTime LocalDateTime object representing Date and Time for Task
      */
-    public Task(String name, LocalDateTime dateTime) {
+    public Task(String name, LocalDateTime dateTime, Tag tag) {
         this.name = name;
         this.dateTime = dateTime;
         this.people = new ArrayList<>();
+        this.tag = tag;
     }
 
     /**
@@ -34,8 +37,8 @@ public class Task {
      * @param people People to be added to the list
      * @param dateTime LocalDateTime object representing Date and Time for Task
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people) {
-        this(name, dateTime);
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Tag tag) {
+        this(name, dateTime, tag);
         this.people = new ArrayList<>(people);
     }
 
@@ -75,14 +78,38 @@ public class Task {
         return this.name + " " + this.dateTime;
     }
 
+    /**
+     * Returns DateTime of Task.
+     *
+     * @return DateTime object of Task.
+     */
     public LocalDateTime getDateTime() {
         return this.dateTime;
     }
 
+    /**
+     * Returns name of Task.
+     *
+     * @return Name of Task.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Returns Tag of Task.
+     *
+     * @return Tag of Task.
+     */
+    public Tag getTag() {
+        return this.tag;
+    }
+
+    /**
+     * Returns list of People assigned to Task.
+     *
+     * @return List of People.
+     */
     public List<Person> getPeople() {
         return this.people;
     }
