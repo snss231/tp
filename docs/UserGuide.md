@@ -200,18 +200,18 @@ Format: `view INDEX`
 Examples:
 * `view 1` will display all contacts assigned to the 1st task in the task list.
 
-### Updating a task: `update`
-Updates an existing task in the address book.
+### Editing a task: `editt`
+Edit and updates an existing task in the task list.
 
 * Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-* `update 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
-* `update 2 n/Meeting with Prof Tan d/2022-12-01` Updates the name of the 2nd task to be `Meeting with TAs` and the date to be 1st Dec 2022.
+* `editt 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
+* `editt 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
 
-Format: `update INDEX [n/NAME] [d/DATE]`
+Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME] [t/TAG]`
 
 ### Assigning a contact to a task: `assign`
 Assigns a person in the contact list to a task.

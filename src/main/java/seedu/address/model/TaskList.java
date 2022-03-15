@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -104,6 +105,14 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         }
 
         internalList.set(index, editedTask);
+    }
+
+    /**
+     * Returns true if a task with the same description as {@code task} exists in the task list.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return internalList.contains(task);
     }
 
     @Override

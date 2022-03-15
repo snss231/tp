@@ -167,21 +167,39 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteTask(Task target) {
         taskList.deleteCurrTask(target);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
         taskList.setTask(target, editedTask);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.hasTask(task);
     }
 }

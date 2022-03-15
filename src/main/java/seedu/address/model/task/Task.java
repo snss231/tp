@@ -120,6 +120,18 @@ public class Task {
         return this.people;
     }
 
+    /**
+     * Returns true if both tasks have the same name.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getName().equals(getName());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
