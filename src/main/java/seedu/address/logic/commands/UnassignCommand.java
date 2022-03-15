@@ -19,7 +19,7 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove the person identified by the index number"
             + "used in the displayed person list "
             + "to the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: TASK_INDEX + [" + PREFIX_PERSON + "PERSON_INDEX]\n"
+            + "Parameters: TASK_INDEX + " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
     public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS =
@@ -74,5 +74,13 @@ public class UnassignCommand extends Command {
         }
         Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), updatedList);
         return editedTask;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof UnassignCommand
+                && personIndex.equals(((UnassignCommand) other).personIndex)
+                && taskIndex.equals(((UnassignCommand) other).taskIndex));
     }
 }

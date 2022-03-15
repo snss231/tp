@@ -21,7 +21,7 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add the person identified by the index number "
             + "used in the displayed person list "
             + "to the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: TASK_INDEX [" + PREFIX_PERSON + "PERSON_INDEX]\n"
+            + "Parameters: TASK_INDEX " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
     public static final String MESSAGE_ADD_PERSON_TO_TASK_SUCCESS = "Added %1$s, Number: %2$s to the task: `%3$s`";
@@ -77,5 +77,13 @@ public class AssignCommand extends Command {
         updatedList.add(personToAdd);
         Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), updatedList);
         return editedTask;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof AssignCommand
+                && personIndex.equals(((AssignCommand) other).personIndex)
+                && taskIndex.equals(((AssignCommand) other).taskIndex));
     }
 }

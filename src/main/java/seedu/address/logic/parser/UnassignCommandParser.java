@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnassignCommand;
@@ -22,13 +23,12 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         Index taskIndex;
         Index personIndex;
 
-        try {
-            taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON).get());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE), pe);
+        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
+
+        taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON).get());
 
         return new UnassignCommand(taskIndex, personIndex);
     }
