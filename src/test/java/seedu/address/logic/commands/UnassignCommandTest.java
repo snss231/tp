@@ -38,7 +38,9 @@ class UnassignCommandTest {
                 new AddressBook(model.getAddressBook()), new UserPrefs(), updatedTasks);
 
         String expectedMessage = String.format(
-                UnassignCommand.MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS, person, updatedTask);
+                UnassignCommand.MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS,
+                person.getName(), person.getPhone(), updatedTask);
+
         assertCommandSuccess(unassignCommand, m, expectedMessage, model);
     }
 

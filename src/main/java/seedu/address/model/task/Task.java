@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import seedu.address.model.person.Person;
  * Task consists of a String object representing a name and a LocalDateTime object representing the date and time.
  */
 public class Task {
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private String name;
     private LocalDateTime dateTime;
     private List<Person> people;
@@ -72,7 +74,11 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.name + " " + this.dateTime;
+        return this.name + " " + this.dateTime.format(formatter);
+    }
+
+    public String getDateTimeString() {
+        return this.dateTime.format(formatter);
     }
 
     public LocalDateTime getDateTime() {

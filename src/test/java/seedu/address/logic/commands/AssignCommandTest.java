@@ -37,7 +37,9 @@ class AssignCommandTest {
         assertFalse(taskToEdit.getPeople().contains(personToAdd));
 
         String expectedMessage = String.format(
-                AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS, personToAdd, updatedTask);
+                AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS,
+                personToAdd.getName(), personToAdd.getPhone(), updatedTask);
+
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
 
@@ -56,7 +58,7 @@ class AssignCommandTest {
         expectedModel.setTask(taskToEdit, updatedTask);
 
         String expectedMessage = String.format(
-                AssignCommand.MESSAGE_DUPLICATE_PERSON, personToAdd, updatedTask);
+                AssignCommand.MESSAGE_DUPLICATE_PERSON, personToAdd.getName(), updatedTask);
         assertCommandFailure(assignCommand, expectedModel, expectedMessage);
     }
 }
