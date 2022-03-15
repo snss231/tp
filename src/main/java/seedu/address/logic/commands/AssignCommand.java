@@ -72,10 +72,20 @@ public class AssignCommand extends Command {
                         personToAdd.getName(), personToAdd.getPhone(), updatedTask));
     }
 
+
+    /**
+     * Obtains the updated task.
+     *
+     * @param personToAdd Person object to be added.
+     * @param taskToUpdate Task to be changed.
+     * @return New edited Task.
+     * @throws CommandException If command format is wrong.
+     */
     private Task getUpdatedTask(Person personToAdd, Task taskToUpdate) {
         List<Person> updatedList = new ArrayList<>(taskToUpdate.getPeople());
         updatedList.add(personToAdd);
-        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), updatedList);
+        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(),
+                updatedList, taskToUpdate.getTag());
         return editedTask;
     }
 
