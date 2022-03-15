@@ -26,7 +26,7 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         Index personIndex;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
         }
 
         taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());

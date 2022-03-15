@@ -72,4 +72,12 @@ public class UnassignCommand extends Command {
         Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), updatedList);
         return editedTask;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof UnassignCommand
+                && personIndex.equals(((UnassignCommand) other).personIndex)
+                && taskIndex.equals(((UnassignCommand) other).taskIndex));
+    }
 }

@@ -25,7 +25,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         Index personIndex;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
         taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
