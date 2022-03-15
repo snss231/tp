@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Task consists of a String object representing a name and a LocalDateTime object representing the date and time.
  */
 public class Task {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, h.mm a");
     private String name;
     private LocalDateTime dateTime;
     private List<Person> people;
