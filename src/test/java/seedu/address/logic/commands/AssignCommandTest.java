@@ -38,8 +38,8 @@ class AssignCommandTest {
         assertFalse(taskToEdit.getPeople().contains(personToAdd));
 
         String expectedMessage = String.format(
-                AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS,
-                personToAdd.getName(), personToAdd.getPhone(), updatedTask);
+                AssignCommand.MESSAGE_ADD_PERSON_TO_TASK_SUCCESS_SINGLE,
+                personToAdd.getName(), personToAdd.getPhone(), updatedTask, updatedTask.getNoOfPeople());
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }

@@ -24,7 +24,11 @@ public class AssignCommand extends Command {
             + "Parameters: TASK_INDEX " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
-    public static final String MESSAGE_ADD_PERSON_TO_TASK_SUCCESS = "Added %1$s, Number: %2$s to the task: `%3$s`";
+    public static final String MESSAGE_ADD_PERSON_TO_TASK_SUCCESS_MULTIPLE =
+            "Added %1$s, Number: %2$s to the task: `%3$s`\nThere are currently %4$s persons assigned to this task.";
+
+    public static final String MESSAGE_ADD_PERSON_TO_TASK_SUCCESS_SINGLE =
+            "Added %1$s, Number: %2$s to the task: `%3$s`\nThere are currently %4$s person assigned to this task.";
 
     public static final String MESSAGE_DUPLICATE_PERSON =
             "Failed: The person %1$s is already assigned to the task: `%2$s`";
@@ -67,9 +71,19 @@ public class AssignCommand extends Command {
         Task updatedTask = getUpdatedTask(personToAdd, taskToEdit);
 
         model.setTask(taskToEdit, updatedTask);
+
+        int numberOfPeople = updatedTask.getNoOfPeople();
+
+        if (numberOfPeople <= 1) {
+            return new CommandResult(
+                    String.format(MESSAGE_ADD_PERSON_TO_TASK_SUCCESS_SINGLE,
+                            personToAdd.getName(), personToAdd.getPhone(), updatedTask, numberOfPeople));
+        }
+
         return new CommandResult(
-                String.format(MESSAGE_ADD_PERSON_TO_TASK_SUCCESS,
-                        personToAdd.getName(), personToAdd.getPhone(), updatedTask));
+                String.format(MESSAGE_ADD_PERSON_TO_TASK_SUCCESS_MULTIPLE,
+                        personToAdd.getName(), personToAdd.getPhone(), updatedTask, numberOfPeople));
+
     }
 
 

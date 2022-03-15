@@ -120,6 +120,15 @@ public class Task {
         return this.people;
     }
 
+    /**
+     * Returns the number of people assigned to Task.
+     *
+     * @return Number of people.
+     */
+    public int getNoOfPeople() {
+        return this.people.size();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

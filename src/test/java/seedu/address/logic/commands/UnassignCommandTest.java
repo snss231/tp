@@ -22,7 +22,7 @@ class UnassignCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
 
     @Test
-    void execute_unassignExistingContact_success() {
+    void execute_unassignExistingContact_success() throws Exception {
         Person person = model.getFilteredPersonList().get(0);
         Task taskToEdit = model.getFilteredTaskList().get(0);
 
@@ -38,8 +38,7 @@ class UnassignCommandTest {
         Model m = new ModelManager(
                 new AddressBook(model.getAddressBook()), new UserPrefs(), updatedTasks);
 
-        String expectedMessage = String.format(
-                UnassignCommand.MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS,
+        String expectedMessage = String.format(UnassignCommand.NO_PERSON_ASSIGN,
                 person.getName(), person.getPhone(), updatedTask);
 
         assertCommandSuccess(unassignCommand, m, expectedMessage, model);
