@@ -208,10 +208,28 @@ Updates an existing task in the address book.
 * Existing values will be updated to the input values.
 
 Examples:
-* `edit 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
-* `edit 2 n/Meeting with Prof Tan d/2022-12-01` Updates the name of the 2nd task to be `Meeting with TAs` and the date to be 1st Dec 2022.
+* `update 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
+* `update 2 n/Meeting with Prof Tan d/2022-12-01` Updates the name of the 2nd task to be `Meeting with TAs` and the date to be 1st Dec 2022.
 
 Format: `update INDEX [n/NAME] [d/DATE]`
+
+### Assigning a contact to a task: `assign`
+Assigns a person in the contact list to a task.
+
+* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `assign 1 p/ 2` Assigns the 2nd person in the person list to the 1st task in the task list.
+
+### Unassigning a contact from a task: `assign`
+Unassigns a person in the contact list from a task.
+
+* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* If the person is not already assigned to the task, the operation will fail.
+* The `view` command can help you quickly identify which contacts are already assigned to a task.
+
+Examples:
+* `unassign 1 p/ 2` Unassigns the 2nd person in the person list from the 1st task in the task list.
 
 ### Clearing all entries : `clear`
 
