@@ -77,16 +77,16 @@ Format: `help`
 
 ### Adding a task: `addt`
 
-Adds a task.
+Adds a task for a datetime with a tag.
 
-Format: `addt n/TASKNAME cn/CONTACTNAME t/TIME`
+Format: `addt tn/TASKNAME dt/TIME t/TAG`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The format for TIME is in dd-mm-yyyy hhmm.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There must be an existing contact with CONTACTNAME.
+There cannot be an already existing tag with the same name; tags must be unique.
 
 </div>
 
@@ -270,14 +270,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Remove** | `remove tn/TASKNAME cn/CONTACTNAME`<br> e.g., `remove tn/taskname cn/john`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Tag Task** | `tag [tn/TASKNAME] [tg/INDEX]` e.g., `tag tn/attend meeting @utown tg/1`
-**Help** | `help`
+| Action       | Format, Examples                                                                                                                                                      |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                               |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Remove**   | `remove tn/TASKNAME cn/CONTACTNAME`<br> e.g., `remove tn/taskname cn/john`                                                                                            |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**     | `list`                                                                                                                                                                |
+| **Tag Task** | `tag [tn/TASKNAME] [tg/INDEX]` e.g., `tag tn/attend meeting @utown tg/1`                                                                                              |
+| **Help**     | `help`                                                                                                                                                                |
