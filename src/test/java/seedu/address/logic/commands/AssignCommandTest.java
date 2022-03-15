@@ -25,7 +25,8 @@ class AssignCommandTest {
     void execute_addFirstPersonToFirstTask_success() {
         Person personToAdd = model.getFilteredPersonList().get(0);
         Task taskToEdit = model.getFilteredTaskList().get(0);
-        Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(), taskToEdit.getPeople());
+        Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(),
+                taskToEdit.getPeople(), taskToEdit.getTag());
 
         updatedTask.addPerson(personToAdd);
         Model expectedModel = new ModelManager(
@@ -45,7 +46,8 @@ class AssignCommandTest {
     void execute_addDuplicatePersonToTask_failure() {
         Person personToAdd = model.getFilteredPersonList().get(0);
         Task taskToEdit = model.getFilteredTaskList().get(0);
-        Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(), taskToEdit.getPeople());
+        Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(),
+                taskToEdit.getPeople(), taskToEdit.getTag());
         updatedTask.addPerson(personToAdd);
 
         AssignCommand assignCommand =
