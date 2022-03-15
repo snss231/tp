@@ -77,16 +77,16 @@ Format: `help`
 
 ### Adding a task: `addt`
 
-Adds a task.
+Adds a task for a datetime with a tag.
 
-Format: `addt n/TASKNAME cn/CONTACTNAME t/TIME`
+Format: `addt tn/TASKNAME dt/TIME t/TAG`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The format for TIME is in dd-mm-yyyy hhmm.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There must be an existing contact with CONTACTNAME.
+There cannot be an already existing tag with the same name; tags must be unique.
 
 </div>
 
@@ -159,26 +159,6 @@ Examples:
 * `filter apple` returns `Buy apple` and `Make apple juice`
 * `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
-### Tagging a task: `tagtask`
-
-Tag a task with the following tags:
-1) Critical
-2) Major
-3) Medium
-4) Minor
-
-Format: `tag [tn/TASKNAME] [tg/INDEX]`
-
-* The tagging `TASKNAME` is case-insensitive. e.g. `attend meeting` will match `Attend Meeting`
-* The `INDEX` can only range from 1 to 4 with each corresponding to the urgency of the task as seen above.
-* Adding a tag to a task which already has a tag will update the tag.
-
-Examples:
-* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
-  will tag the task as `Critical`.
-* `add tn/attend meeting @utown cn/John t/1500` followed by `tag tn/attend meeting @utown tg/1`
-  followed by `tag tn/attend meeting @utown tg/2` will tag the task as `Major`
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -193,15 +173,32 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Removing a task: `remove` [coming soon]
+### Delete a task: `deletet` 
 
-Removes the specified task from the specified contact.
+Deletes the specified task from the task list.
 
-Format: `remove tn/TASKNAME cn/CONTACTNAME`
+Format: `deletet 1`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* remove tn/task1 cn/john
-* remove tn/task2 cn/mary
+* deletet 1
+* deletet 2
+
+### Viewing contacts assigned to a task: `view`
+
+Display all contacts assigned to a given task.
+
+Format: `view INDEX`
+
+* View all the contact assigned to the task located the specified `INDEX`
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 1` will display all contacts assigned to the 1st task in the task list.
 
 ### Updating a task: `update`
 Updates an existing task in the address book.
@@ -211,10 +208,28 @@ Updates an existing task in the address book.
 * Existing values will be updated to the input values.
 
 Examples:
-* `edit 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
-* `edit 2 n/Meeting with Prof Tan d/2022-12-01` Updates the name of the 2nd task to be `Meeting with TAs` and the date to be 1st Dec 2022.
+* `update 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
+* `update 2 n/Meeting with Prof Tan d/2022-12-01` Updates the name of the 2nd task to be `Meeting with TAs` and the date to be 1st Dec 2022.
 
 Format: `update INDEX [n/NAME] [d/DATE]`
+
+### Assigning a contact to a task: `assign`
+Assigns a person in the contact list to a task.
+
+* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `assign 1 p/ 2` Assigns the 2nd person in the person list to the 1st task in the task list.
+
+### Unassigning a contact from a task: `assign`
+Unassigns a person in the contact list from a task.
+
+* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* If the person is not already assigned to the task, the operation will fail.
+* The `view` command can help you quickly identify which contacts are already assigned to a task.
+
+Examples:
+* `unassign 1 p/ 2` Unassigns the 2nd person in the person list from the 1st task in the task list.
 
 ### Clearing all entries : `clear`
 
@@ -255,14 +270,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Remove** | `remove tn/TASKNAME cn/CONTACTNAME`<br> e.g., `remove tn/taskname cn/john`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Tag Task** | `tag [tn/TASKNAME] [tg/INDEX]` e.g., `tag tn/attend meeting @utown tg/1`
-**Help** | `help`
+| Action       | Format, Examples                                                                                                                                                      |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                               |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Remove**   | `remove tn/TASKNAME cn/CONTACTNAME`<br> e.g., `remove tn/taskname cn/john`                                                                                            |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**     | `list`                                                                                                                                                                |
+| **Tag Task** | `tag [tn/TASKNAME] [tg/INDEX]` e.g., `tag tn/attend meeting @utown tg/1`                                                                                              |
+| **Help**     | `help`                                                                                                                                                                |

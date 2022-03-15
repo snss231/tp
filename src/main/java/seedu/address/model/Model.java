@@ -90,4 +90,19 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the task list.
+     */
+    void deleteTask(Task target);
+
+    void setTask(Task taskToEdit, Task editedTask);
+
 }

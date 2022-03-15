@@ -101,9 +101,9 @@ public class MainApp extends Application {
         try {
             taskListOptional = storage.readTaskList();
             if (!taskListOptional.isPresent()) {
-                logger.info("TaskList data file not found. Will be starting with a sample TaskList"); //todo
+                logger.info("TaskList data file not found. Will be starting with a sample TaskList");
             }
-            initialTaskListData = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList); //todo
+            initialTaskListData = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
 
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");

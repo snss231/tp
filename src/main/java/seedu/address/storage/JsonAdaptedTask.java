@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 public class JsonAdaptedTask {
@@ -14,22 +15,26 @@ public class JsonAdaptedTask {
 
     private final String name;
     private final String dateTime;
+    private final String tag;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime) {
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime,
+                           @JsonProperty("tag") String tag) {
         this.name = name;
         this.dateTime = dateTime;
+        this.tag = tag;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName();
         dateTime = source.getDateTime().toString();
+        tag = source.getTag().toString();
     }
 
     /**
@@ -45,6 +50,7 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Name"));
         }
         LocalDateTime modelDateTime = LocalDateTime.parse(dateTime);
-        return new Task(name, modelDateTime);
+        Tag modelTag = new Tag(tag);
+        return new Task(name, modelDateTime, modelTag);
     }
 }

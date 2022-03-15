@@ -1,3 +1,4 @@
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -5,28 +6,28 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Roboto";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Roboto";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Roboto";
 }
 
 .tab-pane {
@@ -66,7 +67,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Roboto";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -79,12 +80,14 @@
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-box-border: transparent;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-box-border: transparent;
 }
 
 .list-view {
@@ -121,14 +124,14 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Roboto";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12px;
     -fx-text-fill: #010504;
 }
 
@@ -136,20 +139,31 @@
      -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.pane-with-only-top-border {
+     -fx-border-style: solid none none none;
+     -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.pane-with-no-border {
+     -fx-border-style: none;
+     -fx-background-color: derive(#1d1d1d, 20%);
+}
+
 .pane-with-border {
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
 }
 
 .status-bar {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 5pt;
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 10pt;
     -fx-text-fill: white;
 }
 
@@ -158,9 +172,9 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Roboto";
     -fx-text-fill: white;
-    -fx-padding: 4px;
+    -fx-padding: 10px;
     -fx-pref-height: 30px;
 }
 
@@ -197,8 +211,8 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 12pt;
+    -fx-font-family: "Roboto";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -218,7 +232,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Roboto", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -307,6 +321,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+.list-view {
+    -fx-background-radius: 20;
+}
+
+.list-cell, .list-cell::focused {
+    -fx-border-radius: 20;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -319,13 +341,21 @@
 
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
+    -fx-border-color: #383838 #383838 #D3D3D3 #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 11pt;
     -fx-text-fill: white;
+}
+
+.custom-text-field:hover {
+    -fx-border-color: #383838 #383838 #ffffff #383838;
+}
+
+.custom-text-field:focus {
+    -fx-border-color: #383838 #383838 #ffffff #383838;
 }
 
 #filterField, #personListPanel, #personWebpage {
