@@ -25,6 +25,11 @@ public class TypicalTasks {
             "Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30),
             new Tag("Meeting"));
 
+    /**
+     * Returns array of 4 test tasks.
+     *
+     * @return Array of 4 test tasks.
+     */
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(BRUSH_TEETH, LAUNDRY, CONSULTATION, INVIGILATOR_MEETING));
     }
