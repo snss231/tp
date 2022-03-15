@@ -24,13 +24,13 @@ public class UnassignCommand extends Command {
 
     public static final String MESSAGE_PREFIX = "Removed %1$s, Number: %2$s from the task `%3$s`\n";
 
-    public static final String NO_PERSON_ASSIGN = MESSAGE_PREFIX + "No more person assigned to this task.";
+    public static final String NO_PERSON_ASSIGN = MESSAGE_PREFIX + "There are currently no people assigned to this task.";
 
     public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS_MULTIPLE =
-            MESSAGE_PREFIX + "There are currently %4$s persons assigned to this task.";
+            MESSAGE_PREFIX + "There are currently %4$s people assigned to this task.";
 
     public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS_SINGLE =
-            MESSAGE_PREFIX + "There are currently %4$s person assigned to this task.";
+            MESSAGE_PREFIX + "There is currently %4$s person assigned to this task.";
 
     public static final String MESSAGE_PERSON_NOT_IN_TASK =
             "Failed: The person selected is not associated with the task";
