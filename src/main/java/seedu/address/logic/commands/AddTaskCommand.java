@@ -26,7 +26,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_TAG + "TAG \n"
             + "Example: " + "addt" + " "
             + PREFIX_TASKNAME + "John Doe "
-            + PREFIX_DATETIME + "2022-12-25 1800 "
+            + PREFIX_DATETIME + "25-12-2022 1800 "
             + PREFIX_TAG + "CS2103T";
 
     public static final String COMMAND_WORD = "addt";

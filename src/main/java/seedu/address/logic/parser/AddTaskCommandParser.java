@@ -42,8 +42,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         try {
             dateTime = convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString));
-            dateTime = LocalDateTime.of(dateTime.getYear(), dateTime.getMonth(),
-                    dateTime.getDayOfMonth(), dateTime.getHour(), dateTime.getMinute());
         } catch (java.text.ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
