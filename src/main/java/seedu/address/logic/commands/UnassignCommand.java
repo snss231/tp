@@ -22,7 +22,8 @@ public class UnassignCommand extends Command {
             + "Parameters: TASK_INDEX + " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
-    public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS = "Removed %1$s to the task %2$s";
+    public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS =
+            "Removed %1$s, Number: %2$s from the task `%3$s`";
 
     public static final String MESSAGE_PERSON_NOT_IN_TASK =
             "Failed: The person selected is not associated with the task";
@@ -61,7 +62,9 @@ public class UnassignCommand extends Command {
         Task updatedTask = getUpdatedTask(personToRemove, taskToEdit);
 
         model.setTask(taskToEdit, updatedTask);
-        return new CommandResult(String.format(MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS, personToRemove, updatedTask));
+        return new CommandResult(
+                String.format(MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS,
+                        personToRemove.getName(), personToRemove.getPhone(), updatedTask));
     }
 
     private Task getUpdatedTask(Person personToRemove, Task taskToUpdate) throws CommandException {
