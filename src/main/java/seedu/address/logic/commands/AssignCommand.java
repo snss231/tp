@@ -25,7 +25,7 @@ public class AssignCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
     public static final String MESSAGE_ADD_PERSON_TO_TASK_SUCCESS_MULTIPLE =
-            "Added %1$s, Number: %2$s to the task: `%3$s`\nThere are currently %4$s persons assigned to this task.";
+            "Added %1$s, Number: %2$s to the task: `%3$s`\nThere are currently %4$s people assigned to this task.";
 
     public static final String MESSAGE_ADD_PERSON_TO_TASK_SUCCESS_SINGLE =
             "Added %1$s, Number: %2$s to the task: `%3$s`\nThere is currently %4$s person assigned to this task.";
