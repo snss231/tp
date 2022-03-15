@@ -55,7 +55,7 @@ public class ViewCommandTest {
 
     @Test
     void execute_assigneesInTask_personFound() throws CommandException, ParseException {
-        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS, 2);
+        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, 2);
         Index targetIndex = ParserUtil.parseIndex("1");
 
         // Initializing command

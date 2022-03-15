@@ -24,7 +24,9 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String NO_CONTACT_ASSIGN = "There were no contact assigned to this task.";
-    public static final String DISPLAY_TASK_CONTACT_SUCCESS = "There were %1$d contacts assigned to this task";
+    public static final String DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE = "There were %1$d contacts assigned to this task";
+    public static final String DISPLAY_TASK_CONTACT_SUCCESS_SINGLE = "There was %1$d contact assigned to this task";
+
 
     private final Index targetIndex;
 
@@ -58,11 +60,17 @@ public class ViewCommand extends Command {
 
         model.updateFilteredPersonList(predicate);
 
-        if (model.getFilteredPersonList().size() < 1) {
+        int listSize = model.getFilteredPersonList().size();
+
+        if (listSize < 1) {
             return new CommandResult(NO_CONTACT_ASSIGN);
         }
 
+        if (listSize == 1) {
+            return new CommandResult(String.format(DISPLAY_TASK_CONTACT_SUCCESS_SINGLE, listSize));
+        }
+
         return new CommandResult(
-                String.format(DISPLAY_TASK_CONTACT_SUCCESS, model.getFilteredPersonList().size()));
+                String.format(DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, listSize));
     }
 }
