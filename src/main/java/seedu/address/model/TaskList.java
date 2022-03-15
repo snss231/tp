@@ -89,12 +89,6 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         this.internalList.remove(taskToDelete);
     }
 
-    /**
-     * Replaces Task at index target in TaskList with editedTask.
-     *
-     * @param target index of task to be changed.
-     * @param editedTask New task to replace the previous one.
-     */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
