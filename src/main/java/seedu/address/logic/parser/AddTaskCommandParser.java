@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -43,13 +44,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         return new AddTaskCommand(taskName, dateTime);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
     LocalDateTime convertToLocalDateTime(Date dateToConvert) {
         return new java.sql.Timestamp(
