@@ -9,10 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
-
-    //Format for valid tag name
-    public static final String VALIDATION_REGEX = "\\p{ASCII}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
 
@@ -28,10 +26,7 @@ public class Tag {
     }
 
     /**
-     * Returns true if a String is a valid tag name. Tag must be alphanumeric.
-     *
-     * @param test String to be tested.
-     * @return boolean true/false on whether tag name is valid.
+     * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -53,7 +48,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return tagName;
+        return '[' + tagName + ']';
     }
 
 }

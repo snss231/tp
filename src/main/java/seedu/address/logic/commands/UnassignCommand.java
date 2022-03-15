@@ -67,21 +67,12 @@ public class UnassignCommand extends Command {
                         personToRemove.getName(), personToRemove.getPhone(), updatedTask));
     }
 
-    /**
-     * Obtains the updated task.
-     *
-     * @param personToRemove Person object to be removed.
-     * @param taskToUpdate Task to be changed.
-     * @return New edited Task.
-     * @throws CommandException If command format is wrong.
-     */
     private Task getUpdatedTask(Person personToRemove, Task taskToUpdate) throws CommandException {
         List<Person> updatedList = new ArrayList<>(taskToUpdate.getPeople());
         if (!updatedList.remove(personToRemove)) {
             throw new CommandException(MESSAGE_PERSON_NOT_IN_TASK);
         }
-        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(),
-                updatedList, taskToUpdate.getTag());
+        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), updatedList);
         return editedTask;
     }
 
