@@ -22,8 +22,16 @@ public class UnassignCommand extends Command {
             + "Parameters: TASK_INDEX + " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
-    public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS =
-            "Removed %1$s, Number: %2$s from the task `%3$s`";
+    public static final String MESSAGE_PREFIX = "Removed %1$s, Number: %2$s from the task `%3$s`\n";
+
+    public static final String NO_PERSON_ASSIGN = MESSAGE_PREFIX
+            + "There are currently no people assigned to this task.";
+
+    public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS_MULTIPLE =
+            MESSAGE_PREFIX + "There are currently %4$s people assigned to this task.";
+
+    public static final String MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS_SINGLE =
+            MESSAGE_PREFIX + "There is currently %4$s person assigned to this task.";
 
     public static final String MESSAGE_PERSON_NOT_IN_TASK =
             "Failed: The person selected is not associated with the task";
@@ -62,9 +70,24 @@ public class UnassignCommand extends Command {
         Task updatedTask = getUpdatedTask(personToRemove, taskToEdit);
 
         model.setTask(taskToEdit, updatedTask);
+
+        int numberOfPeople = updatedTask.getNoOfPeople();
+
+        if (numberOfPeople == 0) {
+            return new CommandResult(
+                    String.format(NO_PERSON_ASSIGN,
+                            personToRemove.getName(), personToRemove.getPhone(), updatedTask));
+        }
+
+        if (numberOfPeople == 1) {
+            return new CommandResult(
+                    String.format(MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS_SINGLE,
+                            personToRemove.getName(), personToRemove.getPhone(), updatedTask, numberOfPeople));
+        }
+
         return new CommandResult(
-                String.format(MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS,
-                        personToRemove.getName(), personToRemove.getPhone(), updatedTask));
+                String.format(MESSAGE_REMOVE_PERSON_FROM_TASK_SUCCESS_MULTIPLE,
+                        personToRemove.getName(), personToRemove.getPhone(), updatedTask, numberOfPeople));
     }
 
     /**
