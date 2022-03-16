@@ -131,7 +131,8 @@ public class Task {
         return otherTask != null
                 && otherTask.getName().equals(getName());
     }
-  
+     
+    /** 
      * Returns the number of people assigned to Task.
      *
      * @return Number of people.
