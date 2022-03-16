@@ -3,12 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -63,6 +67,27 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    //------------------------ For task--------------------------------------------------------
+    public static final String VALID_NAME_TASKA = "Homework";
+    public static final String VALID_NAME_TASKB = "Brush my teeth";
+    public static final LocalDateTime VALID_DATETIME_TASKA =
+            LocalDateTime.of(2022, 12, 15, 21, 0);
+    public static final LocalDateTime VALID_DATETIME_TASKB =
+            LocalDateTime.of(2022, 02, 05, 13, 0);
+    public static final String VALID_TAG_TASKA = "Schoolwork";
+    public static final String VALID_TAG_TASKB = "Toilet";
+    public static final EditTaskCommand.EditTaskDescriptor TASK_A;
+    public static final EditTaskCommand.EditTaskDescriptor TASK_B;
+
+    public static final String NAME_DESC_TASKA = " " + PREFIX_TASKNAME + VALID_NAME_TASKA;
+    public static final String NAME_DESC_TASKB = " " + PREFIX_TASKNAME + VALID_NAME_TASKB;
+    public static final String DATETIME_DESC_TASKA = " " + PREFIX_DATETIME + "15-12-2022 2100";
+    public static final String DATETIME_DESC_TASKB = " " + PREFIX_DATETIME + "05-02-2022 1300";
+    public static final String TAG_DESC_TASKA = " " + PREFIX_TAG + VALID_TAG_TASKA;
+    public static final String TAG_DESC_TASKB = " " + PREFIX_TAG + VALID_TAG_TASKB;
+
+    public static final String INVALID_DATETIME_DESC = PREFIX_DATETIME + "22/11/2022 1220"; // Wrong format
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -70,6 +95,11 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        TASK_A = new EditTaskDescriptorBuilder().withTaskName(VALID_NAME_TASKA)
+                .withDateTime(VALID_DATETIME_TASKA).withTags(VALID_TAG_TASKA).build();
+        TASK_B = new EditTaskDescriptorBuilder().withTaskName(VALID_NAME_TASKB)
+                .withDateTime(VALID_DATETIME_TASKB).withTags(VALID_TAG_TASKB).build();
     }
 
     /**

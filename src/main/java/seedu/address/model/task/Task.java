@@ -121,6 +121,17 @@ public class Task {
     }
 
     /**
+     * Returns true if both tasks have the same name.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+        return otherTask != null
+                && otherTask.getName().equals(getName());
+    }
+
+    /**
      * Returns the number of people assigned to Task.
      *
      * @return Number of people.
