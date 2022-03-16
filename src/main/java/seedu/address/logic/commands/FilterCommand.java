@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all tasks in task storage whose name contains any of the argument keywords.
