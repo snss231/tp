@@ -91,6 +91,7 @@ Examples:
 You can add multiple tags to a contact. Just put t/ before every tag!
 
 </div>
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
