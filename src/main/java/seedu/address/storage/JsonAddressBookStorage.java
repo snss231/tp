@@ -36,6 +36,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         return readAddressBook(filePath);
     }
 
+
     /**
      * Similar to {@link #readAddressBook()}.
      *

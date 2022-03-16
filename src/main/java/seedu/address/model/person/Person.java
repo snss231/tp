@@ -24,8 +24,15 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+
     /**
-     * Every field must be present and not null.
+     * Constructs a Person object using 5 fields: name, Phone, Email, Address, and any number of tags.
+     *
+     * @param name Name of Person.
+     * @param phone Phone Number of Person.
+     * @param email Email address of Person.
+     * @param address Address of Person.
+     * @param tags Tags for Person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +41,15 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.tags.addAll(tags);
+        this.address = new Address("Test Address");
     }
 
     public Name getName() {
