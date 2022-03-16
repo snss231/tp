@@ -4,6 +4,7 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
@@ -28,7 +29,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FilterCommand(new TaskNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
 
@@ -19,9 +19,9 @@ public class FilterCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " apple orange pear";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TaskNameContainsKeywordsPredicate predicate;
 
-    public FilterCommand(NameContainsKeywordsPredicate predicate) {
+    public FilterCommand(TaskNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -30,7 +30,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
 
     @Override

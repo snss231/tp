@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import seedu.address.commons.util.StringUtil;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -18,7 +20,7 @@ public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
     public boolean test(Task task) {
         boolean isEqual = false;
         for (String str: keywords) {
-            if (str.trim().equals(task.getName())) {
+            if (StringUtil.containsWordIgnoreCase(task.getName(), str.trim())) {
                 isEqual = true;
                 break;
             }
