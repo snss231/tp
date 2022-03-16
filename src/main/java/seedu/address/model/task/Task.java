@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Task consists of a String object representing a name and a LocalDateTime object representing the date and time.
  */
 public class Task {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, h.mm a");
     private String name;
     private LocalDateTime dateTime;
     private List<Person> people;
@@ -130,6 +130,14 @@ public class Task {
 
         return otherTask != null
                 && otherTask.getName().equals(getName());
+    }
+  
+     * Returns the number of people assigned to Task.
+     *
+     * @return Number of people.
+     */
+    public int getNoOfPeople() {
+        return this.people.size();
     }
 
     @Override

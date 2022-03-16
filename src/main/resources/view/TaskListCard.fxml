@@ -27,8 +27,8 @@
         </Label>
         <Label fx:id="name" text="\$taskname" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+      <FlowPane fx:id="tags" />
     </VBox>
   </GridPane>
 </HBox>
