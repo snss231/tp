@@ -43,6 +43,14 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Constructor without email.
+     *
+     * @param name Name of Person.
+     * @param phone Phone Number of Person.
+     * @param email Email of Person.
+     * @param tags Tags of Person.
+     */
     public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;

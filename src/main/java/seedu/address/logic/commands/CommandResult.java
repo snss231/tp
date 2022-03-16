@@ -68,4 +68,8 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
+    public String toString() {
+        return getFeedbackToUser();
+    }
+
 }
