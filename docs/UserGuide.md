@@ -75,31 +75,22 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a task: `addt`
-
-Adds a task for a datetime with a tag.
-
-Format: `addt tn/TASKNAME dt/TIME t/TAG`
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The format for TIME is in dd-mm-yyyy hhmm.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There cannot be an already existing tag with the same name; tags must be unique.
-
-</div>
 
 ### Adding a person: `addc`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL t/TAGS`
 
 Examples:
 
-* `addc n/john`
-* `addc n/mary`
+* `addc n/john p/12345678 e/john@gmail.com t/Schoolmate`
+* `addc n/mary p/87654321 e/mary@gmail.com t/Teammate Classmate`
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip**
+You can add multiple tags to a contact. Just put t/ before every tag!
+
+</div>
 
 ### Listing all persons : `list`
 
@@ -111,7 +102,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -173,6 +164,24 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding a task: `addt`
+
+Adds a task for a datetime with a tag.
+
+Format: `addt tn/TASKNAME dt/TIME t/TAG`
+
+Examples:
+* `addt tn/Meeting dt 17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The format for TIME is in dd-mm-yyyy hhmm.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+There cannot be an already existing tag with the same name; tags must be unique.
+
+</div>
+
 ### Delete a task: `deletet` 
 
 Deletes the specified task from the task list.
@@ -184,21 +193,9 @@ Format: `deletet 1`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* deletet 1
-* deletet 2
+* `deletet 1` Deletes the task at index 1.
+* `deletet 2` Deletes the task at index 2.
 
-### Viewing contacts assigned to a task: `view`
-
-Display all contacts assigned to a given task.
-
-Format: `view INDEX`
-
-* View all the contact assigned to the task located the specified `INDEX`
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `view 1` will display all contacts assigned to the 1st task in the task list.
 
 ### Editing a task: `updatet`
 Edit and updates an existing task in the task list.
@@ -213,6 +210,11 @@ Examples:
 
 Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME] [t/TAG]`
 
+<div markdown="span" class="alert alert-warning">:bulb: **Tip**
+If there's no need to change a certain field you can leave it out!
+
+</div>
+
 ### Assigning a contact to a task: `assign`
 Assigns a person in the contact list to a task.
 
@@ -221,7 +223,7 @@ Assigns a person in the contact list to a task.
 Examples:
 * `assign 1 p/ 2` Assigns the 2nd person in the person list to the 1st task in the task list.
 
-### Unassigning a contact from a task: `assign`
+### Unassigning a contact from a task: `unassign`
 Unassigns a person in the contact list from a task.
 
 * Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
@@ -230,6 +232,20 @@ Unassigns a person in the contact list from a task.
 
 Examples:
 * `unassign 1 p/ 2` Unassigns the 2nd person in the person list from the 1st task in the task list.
+
+### Viewing contacts assigned to a task: `view`
+
+Display all contacts assigned to a given task.
+
+Format: `view INDEX`
+
+* View all the contact assigned to the task located the specified `INDEX`
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 1` will display all contacts assigned to the 1st task in the task list.
+
 
 ### Clearing all entries : `clear`
 
