@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Username;
 import seedu.address.model.task.Task;
 
 /**
@@ -61,6 +62,13 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    /**
+     * Returns true if a person with the same username as {@code username} exists in the address book.
+     *
+     * @param username
+     * @return
+     */
+    boolean hasUsername(Username username);
     /**
      * Deletes the given person.
      * The person must exist in the address book.

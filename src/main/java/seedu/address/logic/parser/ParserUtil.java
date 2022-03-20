@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,6 +95,15 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    public static Username parseUsername(String username) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!Username.isValidId(trimmedUsername)) {
+            throw new ParseException(Username.MESSAGE_CONSTRAINTS);
+        }
+        return new Username(trimmedUsername);
     }
 
     /**

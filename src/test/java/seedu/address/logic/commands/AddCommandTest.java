@@ -22,6 +22,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Username;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
@@ -178,6 +179,11 @@ public class AddCommandTest {
         @Override
         public boolean hasTask(Task task) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasUsername (Username username) {
+            throw new AssertionError("This method should not be called");
         }
 
     }

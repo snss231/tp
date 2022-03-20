@@ -37,7 +37,8 @@ public class AddTaskCommand extends Command {
     private final Tag tag;
 
     /**
-     * Constructor for AddTaskCommand. Takes in 3 parameters, taskName, dateTime and tag.
+     * Constructor for AddTaskCommand. Takes in 4 parameters, taskName, dateTime and tags.
+     * There can be multiple tags.
      *
      * @param taskName Name of Task.
      * @param dateTime LocalDateTime object to represent date time of Task.

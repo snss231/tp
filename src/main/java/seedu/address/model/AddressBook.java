@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.Username;
 
 /**
  * Wraps all data at the address-book level
@@ -64,6 +65,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if username already exists in the address book.
+     *
+     * @param username Github username to be checked
+     * @return true/false whether username already exists.
+     */
+    public boolean hasUsername(Username username) {
+        requireNonNull(username);
+        return persons.containsUsername(username);
     }
 
     /**
