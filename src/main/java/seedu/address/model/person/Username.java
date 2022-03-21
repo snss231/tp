@@ -4,11 +4,12 @@ package seedu.address.model.person;
  * Username represents the Github userID of a Person.
  */
 public class Username {
-    public String userid;
+
     public static final String MESSAGE_CONSTRAINTS = "Username should adhere to the following constraints:\n"
             + "1. AlphaNumeric";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
 
+    private String userid;
 
     /**
      * Constructs a Github Username for Person.
@@ -41,6 +42,15 @@ public class Username {
     @Override
     public String toString() {
         return this.userid;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Username)) {
+            return false;
+        }
+        Username otherUsername = (Username) other;
+        return this.userid.equals(otherUsername.userid);
     }
 
 }

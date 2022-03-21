@@ -97,6 +97,13 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses username
+     *
+     * @param username String input for username
+     * @return Username object created using user input
+     * @throws ParseException If username is not in alphanumeric format
+     */
     public static Username parseUsername(String username) throws ParseException {
         requireNonNull(username);
         String trimmedUsername = username.trim();
