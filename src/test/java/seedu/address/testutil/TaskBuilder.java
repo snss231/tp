@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,10 +15,12 @@ public class TaskBuilder {
     public static final LocalDateTime DEFAULT_DATETIME =
             LocalDateTime.of(2022, 12, 15, 21, 0);
     public static final String DEFAULT_TAG = "School";
+    public static final String DEFAULT_ZOOMLINK = "";
 
     private String name;
     private LocalDateTime dateTime;
     private Tag tag;
+    private Link link;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -26,6 +29,7 @@ public class TaskBuilder {
         name = DEFAULT_NAME;
         dateTime = DEFAULT_DATETIME;
         tag = new Tag(DEFAULT_TAG);
+        link = new Link(DEFAULT_ZOOMLINK);
     }
 
     /**
@@ -35,6 +39,7 @@ public class TaskBuilder {
         name = taskToCopy.getName();
         dateTime = taskToCopy.getDateTime();
         tag = taskToCopy.getTag();
+        link = taskToCopy.getLink();
     }
 
     /**
@@ -62,7 +67,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, dateTime, tag);
+        return new Task(name, dateTime, tag, link);
     }
 
 }

@@ -27,7 +27,7 @@ class UnassignCommandTest {
         Task taskToEdit = model.getFilteredTaskList().get(0);
 
         Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(),
-                taskToEdit.getPeople(), taskToEdit.getTag());
+                taskToEdit.getPeople(), taskToEdit.getTag(), taskToEdit.getLink());
         updatedTask.addPerson(person);
         TaskList updatedTasks = new TaskList(model.getTaskList());
         updatedTasks.setTask(taskToEdit, updatedTask);

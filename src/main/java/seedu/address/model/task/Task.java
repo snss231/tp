@@ -18,6 +18,7 @@ public class Task {
     private LocalDateTime dateTime;
     private List<Person> people;
     private Tag tag;
+    private Link link;
 
     /**
      * Constructor for Task.
@@ -25,11 +26,12 @@ public class Task {
      * @param name Name of task
      * @param dateTime LocalDateTime object representing Date and Time for Task
      */
-    public Task(String name, LocalDateTime dateTime, Tag tag) {
+    public Task(String name, LocalDateTime dateTime, Tag tag, Link link) {
         this.name = name;
         this.dateTime = dateTime;
         this.people = new ArrayList<>();
         this.tag = tag;
+        this.link = link;
     }
 
     /**
@@ -39,8 +41,8 @@ public class Task {
      * @param people People to be added to the list
      * @param dateTime LocalDateTime object representing Date and Time for Task
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people, Tag tag) {
-        this(name, dateTime, tag);
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Tag tag, Link link) {
+        this(name, dateTime, tag, link);
         this.people = new ArrayList<>(people);
     }
 
@@ -138,6 +140,15 @@ public class Task {
      */
     public int getNoOfPeople() {
         return this.people.size();
+    }
+
+    /**
+     * Returns the zoom link assigned to Task.
+     *
+     * @return A zoom link.
+     */
+    public Link getLink() {
+        return link;
     }
 
     @Override
