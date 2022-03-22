@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,16 +23,23 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_USERNAME + "USERNAME"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_USERNAME + "john123"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in NUS Classes!";
+    public static final String MESSAGE_DUPLICATE_USERNAME = "This Github username already exists in NUS Classes!\n"
+            + "Check again?";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck gain?";
+    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Clases!\n"
+            + "Check again?";
 
     private final Person toAdd;
 
@@ -49,6 +57,18 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (model.hasUsername(toAdd.getUsername())) {
+            throw new CommandException(MESSAGE_DUPLICATE_USERNAME);
+        }
+
+        if (model.hasEmail(toAdd.getEmail())) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        if (model.hasPhone(toAdd.getPhone())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
         }
 
         model.addPerson(toAdd);

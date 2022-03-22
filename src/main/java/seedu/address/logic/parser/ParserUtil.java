@@ -15,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
 
@@ -96,6 +97,22 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses username
+     *
+     * @param username String input for username
+     * @return Username object created using user input
+     * @throws ParseException If username is not in alphanumeric format
+     */
+    public static Username parseUsername(String username) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!Username.isValidId(trimmedUsername)) {
+            throw new ParseException(Username.MESSAGE_CONSTRAINTS);
+        }
+        return new Username(trimmedUsername);
     }
 
     /**

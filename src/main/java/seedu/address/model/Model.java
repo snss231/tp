@@ -5,7 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Username;
 import seedu.address.model.task.Task;
 
 /**
@@ -62,8 +65,33 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a person with the same username as {@code username} exists in the address book.
+     *
+     * @param username
+     * @return
+     */
+    boolean hasUsername(Username username);
+
+    /**
+     * Checks if Model has Email already existing.
+     *
+     * @param email Email to be checked.
+     * @return Whether email exists
+     */
+    boolean hasEmail(Email email);
+
+    /**
+     * Checks if Model has Phone already existing.
+     *
+     * @param phone Phone to be checked.
+     * @return Whether phone exists.
+     */
+    boolean hasPhone(Phone phone);
+
+    /**
+     * Deletes person.
+     *
+     * @param target Person to be deleted.
      */
     void deletePerson(Person target);
 
