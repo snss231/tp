@@ -26,6 +26,7 @@ public class Task {
      *
      * @param name Name of task
      * @param dateTime LocalDateTime object representing Date and Time for Task
+     * @param tags Tags for the tasks
      * @param link Link to be added to the task
      */
     public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link) {
@@ -42,6 +43,7 @@ public class Task {
      * @param name Name of task
      * @param people People to be added to the list
      * @param dateTime LocalDateTime object representing Date and Time for Task
+     * @param tags Tags for the tasks
      * @param link Link to be added to the task
      */
     public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link) {
