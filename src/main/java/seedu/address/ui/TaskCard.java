@@ -46,7 +46,12 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName());
-        date.setText("Due: " + task.getDateTimeString());
+        if (task.hasEndDateTime()) {
+            date.setText(String.format("From: %s - %s", task.getDateTimeString(), task.getEndDateTimeString()));
+        } else {
+            date.setText("Due: " + task.getDateTimeString());
+        }
+
         tags.getChildren().add(new Label(task.getTag().toString()));
         if (task.getLink().toString() != "") {
             link.setText(task.getLink().toString());

@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,6 +17,7 @@ public class JsonAdaptedTask {
 
     private final String name;
     private final String dateTime;
+    private final String endDateTime;
     private final String tag;
     private final String link;
 
@@ -24,9 +26,11 @@ public class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime,
+                           @JsonProperty("endDateTime") String endDateTime,
                            @JsonProperty("tag") String tag, @JsonProperty("link") String link) {
         this.name = name;
         this.dateTime = dateTime;
+        this.endDateTime = endDateTime;
         this.tag = tag;
         this.link = link;
     }
@@ -37,6 +41,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         name = source.getName();
         dateTime = source.getDateTime().toString();
+        endDateTime = String.valueOf(source.getEndDateTime());
         tag = source.getTag().toString();
         link = source.getLink().toString();
     }
@@ -51,11 +56,12 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Name"));
         }
         if (dateTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Name"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateTime"));
         }
         LocalDateTime modelDateTime = LocalDateTime.parse(dateTime);
+        LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
         Tag modelTag = new Tag(tag);
         Link modelLink = new Link(link);
-        return new Task(name, modelDateTime, modelTag, modelLink);
+        return new Task(name, modelDateTime, modelEndDateTime, modelTag, modelLink);
     }
 }

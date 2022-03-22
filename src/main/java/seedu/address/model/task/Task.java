@@ -16,6 +16,7 @@ public class Task {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, h.mm a");
     private String name;
     private LocalDateTime dateTime;
+    private LocalDateTime endDateTime;
     private List<Person> people;
     private Tag tag;
     private Link link;
@@ -46,6 +47,23 @@ public class Task {
     public Task(String name, LocalDateTime dateTime, List<Person> people, Tag tag, Link link) {
         this(name, dateTime, tag, link);
         this.people = new ArrayList<>(people);
+    }
+
+    /**
+     * Constructor for task with endDateTime but no people.
+     */
+    public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, Tag tag, Link link) {
+        this(name, dateTime, tag, link);
+        this.endDateTime = endDateTime;
+    }
+
+    /**
+     * Constructor for task with endDateTime and people.
+     */
+    public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime,
+                List<Person> people, Tag tag, Link link) {
+        this(name, dateTime, people, tag, link);
+        this.endDateTime = endDateTime;
     }
 
     /**
@@ -84,9 +102,28 @@ public class Task {
         return this.name + " " + this.dateTime.format(formatter);
     }
 
+    /**
+     * Checks if this task has an end date time or not.
+     * @return true if this task has an end date time, false otherwise.
+     */
+    public boolean hasEndDateTime() {
+        return this.endDateTime != null;
+    }
+
+    /**
+     * Returns a user-friendly representation of the dateTime.
+     */
     public String getDateTimeString() {
         return this.dateTime.format(formatter);
     }
+
+    /**
+     * Returns a user-friendly representation of the endDateTime.
+     */
+    public String getEndDateTimeString() {
+        return this.endDateTime.format(formatter);
+    }
+
 
     /**
      * Returns DateTime of Task.
@@ -95,6 +132,15 @@ public class Task {
      */
     public LocalDateTime getDateTime() {
         return this.dateTime;
+    }
+
+    /**
+     * Returns endDateTime of Task.
+     *
+     * @return endDateTime object of Task.
+     */
+    public LocalDateTime getEndDateTime() {
+        return this.endDateTime;
     }
 
     /**
@@ -176,5 +222,10 @@ public class Task {
         return otherTask.getName().equals(this.getName())
                 && otherTask.getDateTime().equals(this.getDateTime())
                 && otherTask.getPeople().equals(this.getPeople());
+    }
+
+
+    public boolean hasInvalidDateRange() {
+        return endDateTime != null && dateTime.compareTo(endDateTime) >= 0;
     }
 }
