@@ -80,7 +80,7 @@ Format: `help`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL t/TAGS`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/USERNAME t/TAGS`
 
 Examples:
 

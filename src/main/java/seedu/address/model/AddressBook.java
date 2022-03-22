@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Username;
 
@@ -76,6 +78,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasUsername(Username username) {
         requireNonNull(username);
         return persons.containsUsername(username);
+    }
+
+    /**
+     * Checks if AddressBook has Email already existing.
+     *
+     * @param email Email to be checked.
+     * @return Whether email exists.
+     */
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return persons.containsEmail(email);
+    }
+
+    /**
+     * Checks if AddressBook has Phone number already existing.
+     *
+     * @param phone Phone number to be checked.
+     * @return Whether phone number exists.
+     */
+    public boolean hasPhone(Phone phone) {
+        requireNonNull(phone);
+        return persons.containsPhone(phone);
     }
 
     /**
