@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -17,7 +18,7 @@ public class Task {
     private String name;
     private LocalDateTime dateTime;
     private List<Person> people;
-    private Tag tag;
+    private Set<Tag> tag;
     private Link link;
 
     /**
@@ -27,7 +28,7 @@ public class Task {
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, Tag tag, Link link) {
+    public Task(String name, LocalDateTime dateTime, Set<Tag> tag, Link link) {
         this.name = name;
         this.dateTime = dateTime;
         this.people = new ArrayList<>();
@@ -43,7 +44,7 @@ public class Task {
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people, Tag tag, Link link) {
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tag, Link link) {
         this(name, dateTime, tag, link);
         this.people = new ArrayList<>(people);
     }
@@ -111,7 +112,7 @@ public class Task {
      *
      * @return Tag of Task.
      */
-    public Tag getTag() {
+    public Set<Tag> getTags() {
         return this.tag;
     }
 

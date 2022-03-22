@@ -126,17 +126,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@Code Optional<String> option} into a {@code Tag}.
-     */
-    public static Tag parseTaskTag(Optional<String> option) {
-        if (option.isEmpty()) {
-            return new Tag("");
-        } else {
-            return new Tag(option.get());
-        }
-    }
-
-    /**
      * Parses {@Code Optional<String> option} into a {@code Link}.
      */
     public static Link parseLink(Optional<String> option) {

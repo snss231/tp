@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -39,7 +40,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         String taskName = argMultimap.getValue(PREFIX_TASKNAME).get();
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
         LocalDateTime dateTime;
-        Tag tag = ParserUtil.parseTaskTag(argMultimap.getValue(PREFIX_TAG));
+        Set<Tag> tag = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
