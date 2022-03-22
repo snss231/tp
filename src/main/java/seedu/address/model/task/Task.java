@@ -146,7 +146,7 @@ public class Task {
     /**
      * Returns the zoom link assigned to Task.
      *
-     * @return A zoom link.
+     * @return A link.
      */
     public Link getLink() {
         return link;
