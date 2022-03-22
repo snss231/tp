@@ -40,6 +40,7 @@ public class Task {
      * @param name Name of task
      * @param people People to be added to the list
      * @param dateTime LocalDateTime object representing Date and Time for Task
+     * @param link Link to be added to the task
      */
     public Task(String name, LocalDateTime dateTime, List<Person> people, Tag tag, Link link) {
         this(name, dateTime, tag, link);
