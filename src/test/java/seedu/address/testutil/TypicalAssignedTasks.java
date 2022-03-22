@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.model.TaskList;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
 public class TypicalAssignedTasks {
@@ -18,18 +19,19 @@ public class TypicalAssignedTasks {
 
     public static final Task BRUSH_TEETH = new Task(
             "Brush my teeth", LocalDateTime.of(2022, 12, 15, 21, 0),
-            GROUP_ONE, new Tag("Toilet"));
+            GROUP_ONE, new Tag("Toilet"), new Link(""));
     public static final Task LAUNDRY = new Task(
             "Do the laundry", LocalDateTime.of(2022, 6, 2, 15, 0),
-            GROUP_TWO, new Tag("Washing Machine"));
+            GROUP_TWO, new Tag("Washing Machine"), new Link(""));
     public static final Task CONSULTATION = new Task(
             "Consultation with students",
             LocalDateTime.of(2022, 8, 3, 14, 0),
-            GROUP_THREE, new Tag("Consult"));
+            GROUP_THREE, new Tag("Consult"),
+            new Link("https://nus-sg.zoom.us/j/86344685271?pwd=Uk5JZUJiRktJbURydHpGVXRNd0lPUT09#success"));
     public static final Task INVIGILATOR_MEETING = new Task(
             "Meeting with exam invigilators",
             LocalDateTime.of(2022, 2, 5, 14, 30),
-            new Tag("Meeting"));
+            new Tag("Meeting"), new Link(""));
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(BRUSH_TEETH, LAUNDRY, CONSULTATION, INVIGILATOR_MEETING));

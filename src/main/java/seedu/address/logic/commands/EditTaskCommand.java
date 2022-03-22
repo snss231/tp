@@ -17,6 +17,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
 /**
@@ -88,8 +89,9 @@ public class EditTaskCommand extends Command {
         String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
         Tag updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTag());
+        Link link = editTaskDescriptor.getLink().orElse(taskToEdit.getLink());
 
-        return new Task(updatedName, updatedDate, updatedTag);
+        return new Task(updatedName, updatedDate, updatedTag, link);
     }
 
     @Override
@@ -119,6 +121,7 @@ public class EditTaskCommand extends Command {
         private String name;
         private LocalDateTime dateTime;
         private Tag tag;
+        private Link link;
 
         public EditTaskDescriptor() {}
 
@@ -130,6 +133,7 @@ public class EditTaskCommand extends Command {
             setName(toCopy.name);
             setDate(toCopy.dateTime);
             setTags(toCopy.tag);
+            setLink(toCopy.link);
         }
 
         /**
@@ -151,10 +155,17 @@ public class EditTaskCommand extends Command {
             this.dateTime = dateTime;
         }
 
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
         public Optional<LocalDateTime> getDate() {
             return Optional.ofNullable(dateTime);
         }
 
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
+        }
         /**
          * Sets {@code tag} to this object's {@code tag}.
          * A defensive copy of {@code tags} is used internally.

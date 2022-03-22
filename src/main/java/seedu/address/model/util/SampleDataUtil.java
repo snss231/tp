@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
 /**
@@ -65,13 +66,14 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task("Brush my teeth",
-                    LocalDateTime.of(2022, 12, 15, 21, 0), new Tag("Toilet")),
+                    LocalDateTime.of(2022, 12, 15, 21, 0), new Tag("Toilet"), new Link("")),
             new Task("Do the laundry", LocalDateTime.of(2022, 6, 2, 15, 0),
-                    new Tag("Washing Machine")),
+                    new Tag("Washing Machine"), new Link("")),
             new Task("Consultation with students", LocalDateTime.of(2022, 8, 3, 14, 0),
-            new Tag("Consult")),
+            new Tag("Consult"),
+                    new Link("https://nus-sg.zoom.us/j/86344685271?pwd=Uk5JZUJiRktJbURydHpGVXRNd0lPUT09#success")),
             new Task("Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30) ,
-                    new Tag("Meeting"))
+                    new Tag("Meeting"), new Link(""))
         };
     }
 
