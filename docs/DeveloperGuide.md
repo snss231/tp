@@ -155,7 +155,9 @@ This section describes some noteworthy details on how certain features are imple
 
 In NUS Classes, `Task`s are entities that maintain a list of `People` that are associated with the task.
 When a contact is deleted from the `AddressBook`, it is essential that the `Task`s that contain that contact are updated to also remove the contact.
-To implement this, upon every `DeleteCommand` execution, we iterate through all the tasks and remove the relevant `Person` from the tasks if present.
+To implement this, upon every `DeleteCommand` execution, we call the `TaskList::removePerson` which iterate through all the tasks and remove the relevant `Person` from the tasks if present.
+
+<img src="images/DeleteModelSequenceDiagram.png" width="600" />
 
 Design considerations:
 
