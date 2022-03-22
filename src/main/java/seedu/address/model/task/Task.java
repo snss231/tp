@@ -145,6 +145,15 @@ public class Task {
     }
 
     /**
+     * Checks if this task contains the person.
+     * @param p the person to check for
+     * @return true if this task contains the person, false otherwise.
+     */
+    public boolean containsPerson(Person p) {
+        return this.people.contains(p);
+    }
+
+    /**
      * Returns the zoom link assigned to Task.
      *
      * @return A link.

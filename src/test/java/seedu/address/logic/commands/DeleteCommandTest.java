@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalAssignedTasks.getTypicalAssignedTaskList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -75,6 +76,26 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_personInTask_isRemovedFromTask() {
+        Model mod = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
+        Model expectedMod = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
+        Person personToDelete = mod.getFilteredPersonList().get(0);
+
+        DeleteCommand deleteCommand =
+                new DeleteCommand(Index.fromZeroBased((0)));
+
+        assertTrue(mod.getFilteredTaskList().stream().anyMatch(task -> task.containsPerson(personToDelete)));
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+
+        expectedMod.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, mod, expectedMessage, expectedMod);
+
+        assertTrue(expectedMod.getFilteredTaskList().stream().allMatch(task -> !task.containsPerson(personToDelete)));
     }
 
     @Test

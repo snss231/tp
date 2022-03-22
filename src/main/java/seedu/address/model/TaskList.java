@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -120,5 +121,13 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
                 || (other instanceof TaskList // instanceof handles nulls
                 && internalList.equals(((TaskList) other).internalList));
 
+    }
+
+    /**
+     * Removes the person from each task if the task contains the person.
+     * @param target the person to be removed.
+     */
+    public void removePerson(Person target) {
+        internalList.forEach(task -> task.removePerson(target));
     }
 }
