@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -47,7 +49,11 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(task.getName());
         date.setText("Due: " + task.getDateTimeString());
-        tags.getChildren().add(new Label(task.getTag().toString()));
+
+        task.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
         if (task.getLink().toString() != "") {
             link.setText(task.getLink().toString());
         } else {

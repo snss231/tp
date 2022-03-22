@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -37,7 +39,7 @@ public class AddTaskCommand extends Command {
 
     private final String taskName;
     private final LocalDateTime dateTime;
-    private final Tag tag;
+    private final Set<Tag> tags;
     private final Link link;
 
     /**
@@ -46,23 +48,22 @@ public class AddTaskCommand extends Command {
      *
      * @param taskName Name of Task.
      * @param dateTime LocalDateTime object to represent date time of Task.
-     * @param tag Name of tag of the Task.
+     * @param tags A set of tags link to the Task.
+     * @param link Link of a task.
      */
-    public AddTaskCommand(String taskName, LocalDateTime dateTime, Tag tag, Link link) {
-        requireNonNull(taskName);
-        requireNonNull(dateTime);
-        requireNonNull(tag);
+    public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link) {
+        requireAllNonNull(taskName, dateTime, tags, link);
 
         this.taskName = taskName;
         this.dateTime = dateTime;
-        this.tag = tag;
+        this.tags = tags;
         this.link = link;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Task taskToBeAdded = new Task(taskName, dateTime, tag, link);
+        Task taskToBeAdded = new Task(taskName, dateTime, tags, link);
         model.getTaskList().addTask(taskToBeAdded);
         return new CommandResult(ADD_TASK_SUCCESS);
     }
