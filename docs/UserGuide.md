@@ -210,11 +210,13 @@ Examples:
 * `updatet 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
 * `updatet 1 dt/2022-12-12 1200, 2022-12-12 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.`
 
-Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME[, ENDDATETIME]] [t/TAG]`
+Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
+
+
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
-If there's no need to change a certain field you can leave it out!
-
+If there's no need to change a certain field you can leave it out!<br>
+:bulb: **Tip** *[, ENDDATETIME] is optional.
 </div>
 
 ### Assigning a contact to a task: `assign`
