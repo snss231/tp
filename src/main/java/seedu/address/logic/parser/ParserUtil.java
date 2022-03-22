@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -16,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -138,6 +140,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@Code Optional<String> option} into a {@code Link}.
+     */
+    public static Link parseLink(Optional<String> option) {
+        if (option.isEmpty()) {
+            return new Link("");
+        } else {
+            return new Link(option.get());
+        }
     }
 
     /**

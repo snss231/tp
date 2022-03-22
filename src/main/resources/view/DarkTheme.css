@@ -135,6 +135,12 @@
     -fx-text-fill: #010504;
 }
 
+.cell_small_hyperlink {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12px;
+    -fx-text-fill: #010504;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
