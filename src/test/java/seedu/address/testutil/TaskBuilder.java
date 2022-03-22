@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
@@ -24,6 +27,7 @@ public class TaskBuilder {
     private LocalDateTime dateTime;
     private Set<Tag> tags;
     private Link link;
+    private List<Person> people;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -33,6 +37,7 @@ public class TaskBuilder {
         dateTime = DEFAULT_DATETIME;
         tags = new HashSet<>();
         link = new Link(DEFAULT_ZOOMLINK);
+        people = new ArrayList<Person>();
     }
 
     /**
@@ -43,6 +48,7 @@ public class TaskBuilder {
         dateTime = taskToCopy.getDateTime();
         tags = new HashSet<>(taskToCopy.getTags());
         link = taskToCopy.getLink();
+        people = taskToCopy.getPeople();
     }
 
     /**
@@ -70,16 +76,24 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code DateTime} of the {@code Task} that we are building.
+     * Sets the {@code link} of the {@code Task} that we are building.
      */
     public TaskBuilder withLink(String link) {
         this.link = new Link(link);
         return this;
     }
 
+    /**
+     * Sets the {@code people} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withPeople(List<Person> people) {
+        this.people = people;
+        return this;
+    }
+
 
     public Task build() {
-        return new Task(name, dateTime, tags, link);
+        return new Task(name, dateTime, people, tags, link);
     }
 
 }
