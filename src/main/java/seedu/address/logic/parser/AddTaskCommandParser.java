@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
@@ -13,6 +14,7 @@ import java.util.Date;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
@@ -29,7 +31,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG, PREFIX_LINK);
         if (!arePrefixesPresent(argMultimap, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
@@ -39,6 +41,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         String tagString = argMultimap.getValue(PREFIX_TAG).get();
         LocalDateTime dateTime;
         Tag tag = new Tag(tagString);
+        Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
             dateTime = convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString));
@@ -46,7 +49,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        return new AddTaskCommand(taskName, dateTime, tag);
+        return new AddTaskCommand(taskName, dateTime, tag, link);
     }
 
 
