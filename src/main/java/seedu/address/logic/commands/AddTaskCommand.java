@@ -47,14 +47,14 @@ public class AddTaskCommand extends Command {
      *
      * @param taskName Name of Task.
      * @param dateTime LocalDateTime object to represent date time of Task.
-     * @param tag Name of tag of the Task.
+     * @param tags A set of tags link to the Task,
      */
-    public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tag, Link link) {
-        requireAllNonNull(taskName, dateTime, tag, link);
+    public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link) {
+        requireAllNonNull(taskName, dateTime, tags, link);
 
         this.taskName = taskName;
         this.dateTime = dateTime;
-        this.tags = tag;
+        this.tags = tags;
         this.link = link;
     }
 

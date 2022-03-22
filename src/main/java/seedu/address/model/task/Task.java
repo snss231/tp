@@ -18,7 +18,7 @@ public class Task {
     private String name;
     private LocalDateTime dateTime;
     private List<Person> people;
-    private Set<Tag> tag;
+    private Set<Tag> tags;
     private Link link;
 
     /**
@@ -28,11 +28,11 @@ public class Task {
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, Set<Tag> tag, Link link) {
+    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link) {
         this.name = name;
         this.dateTime = dateTime;
         this.people = new ArrayList<>();
-        this.tag = tag;
+        this.tags = tags;
         this.link = link;
     }
 
@@ -44,8 +44,8 @@ public class Task {
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tag, Link link) {
-        this(name, dateTime, tag, link);
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link) {
+        this(name, dateTime, tags, link);
         this.people = new ArrayList<>(people);
     }
 
@@ -113,7 +113,7 @@ public class Task {
      * @return Tag of Task.
      */
     public Set<Tag> getTags() {
-        return this.tag;
+        return this.tags;
     }
 
     /**

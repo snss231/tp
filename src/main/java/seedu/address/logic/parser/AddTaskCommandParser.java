@@ -40,7 +40,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         String taskName = argMultimap.getValue(PREFIX_TASKNAME).get();
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
         LocalDateTime dateTime;
-        Set<Tag> tag = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
@@ -49,7 +49,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        return new AddTaskCommand(taskName, dateTime, tag, link);
+        return new AddTaskCommand(taskName, dateTime, tags, link);
     }
 
 
