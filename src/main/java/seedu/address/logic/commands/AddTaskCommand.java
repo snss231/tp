@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -12,7 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
-
 
 /**
  * Represents an AddTaskCommand.
