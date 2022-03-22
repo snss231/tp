@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -34,6 +35,8 @@ public class TaskCard extends UiPart<Region> {
     private Label date;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Hyperlink link;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -45,6 +48,11 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName());
         date.setText("Due: " + task.getDateTimeString());
         tags.getChildren().add(new Label(task.getTag().toString()));
+        if (task.getLink().toString() != "") {
+            link.setText(task.getLink().toString());
+        } else {
+            link.setVisible(false);
+        }
     }
 
     @Override
