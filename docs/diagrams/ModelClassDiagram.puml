@@ -22,6 +22,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Link
 
 }
 
@@ -50,8 +51,12 @@ Person *--> Email
 Person *--> Username
 Person *--> "*" Tag
 
+Task -> "*" Tag
+Task -down-> "1" Link
+
 Name -[hidden]right-> Phone
 Task -[hidden]left-----> Person
+
 
 ModelManager -->"~*" Person
 ModelManager -->"~*" Task
