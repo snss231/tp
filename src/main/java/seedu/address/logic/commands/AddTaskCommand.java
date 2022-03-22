@@ -35,7 +35,9 @@ public class AddTaskCommand extends Command {
             + PREFIX_DATETIME + "25-12-2022 1800 "
             + PREFIX_TAG + "CS2103T"
             + " [" + PREFIX_LINK + "https://...]"
-            + " [" + PREFIX_RECURRING + "Daily 5]";
+            + " [" + PREFIX_RECURRING + "5 5]\n"
+            + "Hint: for " + PREFIX_RECURRING + " you can use predefined values [annually, quarterly, monthly,"
+            + " weekly, daily] for the period field.";
 
     public static final String COMMAND_WORD = "addt";
     public static final String ADD_TASK_SUCCESS = "Task added!";

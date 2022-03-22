@@ -68,7 +68,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
             String[] periodMultipleArr = ParserUtil.parseRecurring(argMultimap.getValue(PREFIX_RECURRING));
 
-            String periodStr = periodMultipleArr[0];
+            String periodStr = periodMultipleArr[0].toLowerCase();
             String recurrenceStr = periodMultipleArr[1];
 
             Map<String, Integer> periodMapping = TranslatorUtil.getPeriodMapping();
