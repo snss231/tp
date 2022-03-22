@@ -25,6 +25,7 @@ public class Task {
      *
      * @param name Name of task
      * @param dateTime LocalDateTime object representing Date and Time for Task
+     * @param link Link to be added to the task
      */
     public Task(String name, LocalDateTime dateTime, Tag tag, Link link) {
         this.name = name;
