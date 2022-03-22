@@ -7,14 +7,17 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nReadOnlyTaskList" as ReadOnlyTaskList
 Class "<<interface>>\nModel" as Model
 Class AddressBook
 Class ModelManager
 Class UserPrefs
+Class TaskList
+Class Task
 
 Class UniquePersonList
 Class Person
-Class Address
+Class Username
 Class Email
 Class Name
 Class Phone
@@ -25,26 +28,31 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+AddressBook .up..|> ReadOnlyAddressBook
+TaskList .up..|> ReadOnlyTaskList
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlyAddressBook
+Model .down.> ReadOnlyTaskList
 ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+ModelManager -up-> "1" UserPrefs
+ModelManager -right-> "1" TaskList
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+TaskList --> "~* " Task
+
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList --> "~* " Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Username
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Task -[hidden]left-----> Person
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~*" Person
+ModelManager -->"~*" Task
 @enduml
