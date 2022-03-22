@@ -140,6 +140,15 @@ public class Task {
         return this.people.size();
     }
 
+    /**
+     * Checks if this task contains the person.
+     * @param p the person to check for
+     * @return true if this task contains the person, false otherwise.
+     */
+    public boolean containsPerson(Person p) {
+        return this.people.contains(p);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
