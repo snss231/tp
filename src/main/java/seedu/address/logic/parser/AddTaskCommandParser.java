@@ -40,25 +40,16 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
         String tagString = argMultimap.getValue(PREFIX_TAG).get();
         LocalDateTime dateTime;
-        LocalDateTime endDateTime;
         Tag tag = new Tag(tagString);
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
-            if (dateTimeString.contains(",")) {
-                String[] splits = dateTimeString.split(",");
-                dateTime = convertToLocalDateTime(dateTimeFormatter.parse(splits[0]));
-                endDateTime = convertToLocalDateTime(dateTimeFormatter.parse(splits[1]));
-            } else {
-                dateTime = convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString));
-                endDateTime = null;
-            }
+            dateTime = convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString));
         } catch (java.text.ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-
-        return new AddTaskCommand(taskName, dateTime, endDateTime, tag, link);
+        return new AddTaskCommand(taskName, dateTime, tag, link);
     }
 
 

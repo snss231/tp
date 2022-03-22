@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
@@ -29,12 +28,12 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "updatet";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task "
-            + "by the index number used in the displayed task list. \n"
+            + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TASKNAME + "TASK NAME] "
-            + "[" + PREFIX_DATETIME + "DATETIME[, END-DATETIME]] "
-            + "[" + PREFIX_TAG + "TAG]\n"
+            + "[" + PREFIX_DATETIME + "TIME(dd-mm-yyyy hhmm)] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASKNAME + "Do homework CS2103T "
             + PREFIX_DATETIME + "12-03-2022 1330 "
@@ -75,10 +74,6 @@ public class EditTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        if (editedTask.hasInvalidDateRange()) {
-            throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
-        }
-
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
@@ -93,11 +88,10 @@ public class EditTaskCommand extends Command {
 
         String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
-        LocalDateTime updatedEndDate = editTaskDescriptor.getEndDate();
         Tag updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTag());
         Link link = editTaskDescriptor.getLink().orElse(taskToEdit.getLink());
 
-        return new Task(updatedName, updatedDate, updatedEndDate, updatedTag, link);
+        return new Task(updatedName, updatedDate, updatedTag, link);
     }
 
     @Override
@@ -126,7 +120,6 @@ public class EditTaskCommand extends Command {
         private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         private String name;
         private LocalDateTime dateTime;
-        private LocalDateTime endDateTime;
         private Tag tag;
         private Link link;
 
@@ -139,12 +132,9 @@ public class EditTaskCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.dateTime);
-            setEndDate(toCopy.endDateTime);
             setTags(toCopy.tag);
             setLink(toCopy.link);
         }
-
-
 
         /**
          * Returns true if at least one field is edited.
@@ -161,24 +151,16 @@ public class EditTaskCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setLink(Link link) {
-            this.link = link;
-        }
-
         public void setDate(LocalDateTime dateTime) {
             this.dateTime = dateTime;
         }
 
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
         public Optional<LocalDateTime> getDate() {
             return Optional.ofNullable(dateTime);
-        }
-
-        public void setEndDate(LocalDateTime endDateTime) {
-            this.endDateTime = endDateTime;
-        }
-
-        public LocalDateTime getEndDate() {
-            return endDateTime;
         }
 
         public Optional<Link> getLink() {

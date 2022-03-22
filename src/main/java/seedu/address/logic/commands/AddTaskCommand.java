@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -26,11 +25,10 @@ public class AddTaskCommand extends Command {
             + "Parameters: "
             + PREFIX_TASKNAME + "TASKNAME "
             + PREFIX_DATETIME + "DATETIME "
-            + "[, END-DATETIME] "
             + PREFIX_TAG + "TAG \n"
             + "Example: " + "addt" + " "
-            + PREFIX_TASKNAME + "Consultation "
-            + PREFIX_DATETIME + "25-12-2022 1800, 25-12-2022 1900 "
+            + PREFIX_TASKNAME + "John Doe "
+            + PREFIX_DATETIME + "25-12-2022 1800 "
             + PREFIX_TAG + "CS2103T"
             + " [" + PREFIX_LINK + "https://...]";
 
@@ -39,7 +37,6 @@ public class AddTaskCommand extends Command {
 
     private final String taskName;
     private final LocalDateTime dateTime;
-    private final LocalDateTime endDateTime;
     private final Tag tag;
     private final Link link;
 
@@ -50,14 +47,13 @@ public class AddTaskCommand extends Command {
      * @param dateTime LocalDateTime object to represent date time of Task.
      * @param tag Name of tag of the Task.
      */
-    public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Tag tag, Link link) {
+    public AddTaskCommand(String taskName, LocalDateTime dateTime, Tag tag, Link link) {
         requireNonNull(taskName);
         requireNonNull(dateTime);
         requireNonNull(tag);
 
         this.taskName = taskName;
         this.dateTime = dateTime;
-        this.endDateTime = endDateTime;
         this.tag = tag;
         this.link = link;
     }
@@ -65,10 +61,7 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Task taskToBeAdded = new Task(taskName, dateTime, endDateTime, tag, link);
-        if (taskToBeAdded.hasInvalidDateRange()) {
-            throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
-        }
+        Task taskToBeAdded = new Task(taskName, dateTime, tag, link);
         model.getTaskList().addTask(taskToBeAdded);
         return new CommandResult(ADD_TASK_SUCCESS);
     }
