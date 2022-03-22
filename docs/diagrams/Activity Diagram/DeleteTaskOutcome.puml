@@ -1,0 +1,9 @@
+@startuml
+(*) --> "DeleteTask command executed"
+if "Delete task successful" then
+  -left->[true] "Message display: Deleted Task: Index"
+  -> (*)
+else
+  -right->[false] "throw CommandException"
+  -->(*)
+@enduml

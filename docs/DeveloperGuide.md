@@ -154,6 +154,77 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete Task feature
+Delete task feature implements the following operations:
+* `DeleteTaskCommandParser#parse()` — Parse the index number from user command to `DeleteTaskCommand` to get the task to be deleted.
+* `DeleteTaskCommand#execute()` — Execute `ModelManager#deleteTask()` by parsing in the task to be deleted.
+* `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTaskk()` by parsing in the task to be deleted.
+* `TaskList#deleteCurrTaskk()` — Deletes the task from the TaskList stored here.
+
+Step 1: User will enter the command `deletet 1` to delete the first task
+Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
+to create `DeleteTaskCommand` and execute to delete the task from the task list.
+
+The Sequence Diagram below illustrates the interactions of how the delete task feature work.
+![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Step 2: Outcome after executing `DeleteTaskCommand`
+* Outcome 1: Successfully delete task.
+* Outcome 2: Throw CommandException due to index out of range.
+
+![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
+
+#### Design considerations:
+**Aspect: How delete task executes:**
+
+* **Alternative 1 (current choice):** Delete task based on the index shown.
+    * Pros: Easy to implement.
+    * Cons: Have to scroll through task list to look for task index number.
+
+* **Alternative 2:** Delete task based on the task name.
+    * Pros: User just have to enter the task name.
+    * Cons: We must do check ensure that user enter the correct spelling and spacing of the task name
+
+### Edit Task feature
+Edit task feature implements the following operations:
+* `EditTaskCommandParser#parse()` — Parse the command such as index of the task to edit and which information to update.
+* `EditTaskCommand#execute()` — Execute `ModelManager#setTask()` by parsing in the task to be edited and the updated version of the task.
+* `EditTaskDescriptor#setName()` — Set the edited task name to `EditTaskDescriptor`
+* `EditTaskDescriptor#setDate()` — Set the edited datetime to `EditTaskDescriptor`
+* `EditTaskDescriptor#setTag()` — Set the edited tag to `EditTaskDescriptor`
+* `ParseUtil#parseIndex()` —  Parse to get the index number of the task
+* `ModelManager#setTask()` — Update the task information.
+* `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
+
+Step 1: User parse in command. For example, `updatet 1 tn/Teach CS2103T dt/12-03-2022 1330 t/Homework`
+Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
+![EditTaskSequenceDiagramstate0](images/EditTaskDiagram/EditTaskSequenceDiagramState0.png)
+
+Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
+Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
+task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field. 
+For each prefix in the command, it will be set the value to `editTaskDescriptor`, while tag will be parsed to `ParseUtil#parseTag()` then set the value to `editTaskDescriptor`.
+![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
+
+Step 3: `EditTaskCommandParser` will create `EditTaskCommand`, parse in `index` and `editTaskDescriptor`
+`EditTaskCommand` will start to execute and call `ModelManager#setTask` and `ModelManager#updateFilteredTaskList` to update
+the task and task list.
+![EditTaskSequenceDiagramstate2](images/EditTaskDiagram/EditTaskSequenceDiagramState2.png)
+
+Step 4: Lastly return the result.
+Possible outcome from the result.
+* Outcome 1: Successfully updated task.
+* Outcome 2: Throw CommandException due to index out of range or task is repeated.
+
+* ![EditTaskOutcomeActivityeDiagram](images/Activity Diagram/EditTaskOutcome.png)
+
+The Sequence Diagram below illustrates the overall interactions of how the edit task feature work.
+![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

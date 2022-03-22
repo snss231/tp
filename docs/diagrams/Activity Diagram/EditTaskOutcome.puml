@@ -1,0 +1,9 @@
+@startuml
+(*) --> "EditTask command executed"
+if "Edit task successful" then
+  -left->[true] "Message display: Update Task: 'Index'"
+  -> (*)
+else
+  -right->[false] "throw CommandException"
+  -->(*)
+@enduml
