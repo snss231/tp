@@ -168,10 +168,11 @@ Examples:
 
 Adds a task for a datetime with a tag.
 
-Format: `addt tn/TASKNAME dt/TIME t/TAG`
+Format: `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] t/TAG`
 
 Examples:
-* `addt tn/Meeting dt 17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
+* `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
+* `addt tn/Consultation dt/19-03-2022 1500, 19-03-2022 1600` Adds a task called Consultation taking place from `19th March 2022 3-4pm`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The format for TIME is in dd-mm-yyyy hhmm.
@@ -206,13 +207,16 @@ Edit and updates an existing task in the task list.
 
 Examples:
 * `updatet 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
-* `updatet 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
+* `updatet 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
+* `updatet 1 dt/2022-12-12 1200, 2022-12-12 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.`
 
-Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME] [t/TAG]`
+Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
+
+
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
-If there's no need to change a certain field you can leave it out!
-
+If there's no need to change a certain field you can leave it out!<br>
+:bulb: **Tip** *[, ENDDATETIME] is optional.
 </div>
 
 ### Assigning a contact to a task: `assign`
