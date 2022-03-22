@@ -42,7 +42,7 @@ StorageManager --> "1" TaskListStorage
 
 Storage -down-|> UserPrefsStorage
 Storage -down-|> AddressBookStorage
-Storage -up-|>TaskListStorage
+Storage -down-|>TaskListStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
