@@ -8,8 +8,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -88,7 +90,7 @@ public class EditTaskCommand extends Command {
 
         String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
-        Tag updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTag());
+        Set<Tag> updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         Link link = editTaskDescriptor.getLink().orElse(taskToEdit.getLink());
 
         return new Task(updatedName, updatedDate, updatedTag, link);
@@ -120,7 +122,7 @@ public class EditTaskCommand extends Command {
         private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         private String name;
         private LocalDateTime dateTime;
-        private Tag tag;
+        private Set<Tag> tags;
         private Link link;
 
         public EditTaskDescriptor() {}
@@ -132,7 +134,7 @@ public class EditTaskCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.dateTime);
-            setTags(toCopy.tag);
+            setTags(toCopy.tags);
             setLink(toCopy.link);
         }
 
@@ -140,7 +142,7 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, dateTime, tag);
+            return CollectionUtil.isAnyNonNull(name, dateTime, tags);
         }
 
         public void setName(String name) {
@@ -170,8 +172,8 @@ public class EditTaskCommand extends Command {
          * Sets {@code tag} to this object's {@code tag}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Tag tag) {
-            this.tag = tag;
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -179,8 +181,8 @@ public class EditTaskCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Tag> getTags() {
-            return Optional.ofNullable(tag);
+        public Optional<Set<Tag>> getTags() {
+            return Optional.ofNullable(tags);
         }
 
         @Override

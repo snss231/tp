@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,15 +33,14 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG, PREFIX_LINK);
-        if (!arePrefixesPresent(argMultimap, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TASKNAME, PREFIX_DATETIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
         String taskName = argMultimap.getValue(PREFIX_TASKNAME).get();
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
-        String tagString = argMultimap.getValue(PREFIX_TAG).get();
         LocalDateTime dateTime;
-        Tag tag = new Tag(tagString);
+        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
@@ -49,7 +49,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        return new AddTaskCommand(taskName, dateTime, tag, link);
+        return new AddTaskCommand(taskName, dateTime, tags, link);
     }
 
 
