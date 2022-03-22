@@ -66,14 +66,15 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task("Brush my teeth",
-                    LocalDateTime.of(2022, 12, 15, 21, 0), getTagSet("Toilet"), new Link("")),
+                    LocalDateTime.of(2022, 12, 15, 21, 0),
+                    getTagSet("Toilet"), new Link(""), 0),
             new Task("Do the laundry", LocalDateTime.of(2022, 6, 2, 15, 0),
-                    getTagSet("Chores"), new Link("")),
+                    getTagSet("Chores"), new Link(""), 1),
             new Task("Consultation with students", LocalDateTime.of(2022, 8, 3, 14, 0),
                     getTagSet("Consultation"),
-                    new Link("https://nus-sg.zoom.us/j/86344685271?pwd=Uk5JZUJiRktJbURydHpGVXRNd0lPUT09#success")),
+                    new Link("https://nus-sg.zoom.us/j/86344685271?pwd=Uk5JZUJiRktJbURydHpGVXRNd0lPUT09#success"), 2),
             new Task("Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30) ,
-                    getTagSet("Meeting"), new Link(""))
+                    getTagSet("Meeting"), new Link(""), 3)
         };
     }
 
