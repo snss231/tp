@@ -24,7 +24,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     private final String dateTimePattern = "dd-MM-yyyy HHmm";
     private final SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(dateTimePattern);
-    private final int maxNumber = 999999999;
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand for TASKNAME, DATETIME, TAG
