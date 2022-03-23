@@ -174,7 +174,7 @@ Step 2: Outcome after executing `DeleteTaskCommand`
 * Outcome 1: Successfully delete task.
 * Outcome 2: Throw CommandException due to index out of range.
 
-![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
+![DeleteTaskOutcomeActivityDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
 
 #### Design considerations:
 **Aspect: How delete task executes:**
