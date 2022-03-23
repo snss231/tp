@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 Delete task feature implements the following operations:
 * `DeleteTaskCommandParser#parse()` — Parse the index number from user command to `DeleteTaskCommand` to get the task to be deleted.
 * `DeleteTaskCommand#execute()` — Execute `ModelManager#deleteTask()` by parsing in the task to be deleted.
-* `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTaskk()` by parsing in the task to be deleted.
+* `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTask()` by parsing in the task to be deleted.
 * `TaskList#deleteCurrTaskk()` — Deletes the task from the TaskList stored here.
 
 Step 1: User will enter the command `deletet 1` to delete the first task.
