@@ -1,0 +1,111 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant "ParserUtil" as ParserUtil LOGIC_COLOR
+participant "editTaskDescriptor:EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
+participant ":EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+ -> LogicManager : parseCommand("updatet ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("updatet ...")
+activate AddressBookParser
+
+create EditTaskCommandParser
+AddressBookParser -> EditTaskCommandParser
+activate EditTaskCommandParser
+
+EditTaskCommandParser --> AddressBookParser
+deactivate EditTaskCommandParser
+
+AddressBookParser -> EditTaskCommandParser : parse(...)
+activate EditTaskCommandParser
+
+EditTaskCommandParser -> ParserUtil : parseIndex(...)
+activate ParserUtil
+
+ParserUtil -> EditTaskCommandParser : index
+deactivate ParserUtil
+
+create EditTaskDescriptor
+EditTaskCommandParser -> EditTaskDescriptor
+activate EditTaskDescriptor
+
+EditTaskDescriptor --> EditTaskCommandParser
+deactivate EditTaskDescriptor
+
+opt Task name present
+    EditTaskCommandParser -> EditTaskDescriptor : setName(...)
+    activate EditTaskDescriptor
+    EditTaskDescriptor --> EditTaskCommandParser
+    deactivate EditTaskDescriptor
+end
+
+opt DateTime present
+    EditTaskCommandParser -> EditTaskDescriptor : setDate(...)
+    activate EditTaskDescriptor
+    EditTaskDescriptor --> EditTaskCommandParser
+    deactivate EditTaskDescriptor
+end
+
+opt Tag present
+EditTaskCommandParser -> ParserUtil : parseTag(...)
+activate ParserUtil
+ParserUtil -> EditTaskCommandParser : newTag
+deactivate ParserUtil
+EditTaskCommandParser -> EditTaskDescriptor : setTags(...)
+activate EditTaskDescriptor
+EditTaskDescriptor --> EditTaskCommandParser
+deactivate EditTaskDescriptor
+end
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand : EditTaskCommand(index, editTaskDescriptor)
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommandParser
+deactivate EditTaskCommand
+
+EditTaskCommandParser --> AddressBookParser
+deactivate EditTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditTaskCommandParser -[hidden]-> AddressBookParser
+destroy EditTaskCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> EditTaskCommand : execute()
+activate EditTaskCommand
+
+EditTaskCommand -> Model : setTask(...)
+activate Model
+
+Model --> EditTaskCommand
+EditTaskCommand -> Model : updateFilteredTaskList(...)
+Model --> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand
+deactivate CommandResult
+
+EditTaskCommand --> LogicManager : result
+deactivate EditTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
