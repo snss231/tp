@@ -161,7 +161,7 @@ Delete task feature implements the following operations:
 * `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTaskk()` by parsing in the task to be deleted.
 * `TaskList#deleteCurrTaskk()` — Deletes the task from the TaskList stored here.
 
-Step 1: User will enter the command `deletet 1` to delete the first task
+Step 1: User will enter the command `deletet 1` to delete the first task.
 Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
 to create `DeleteTaskCommand` and execute to delete the task from the task list.
 
