@@ -52,7 +52,7 @@ Person *--> Username
 Person *--> "*" Tag
 
 Task -> "*" Tag
-Task -down-> "1" Link
+Task -down-> "0 .. 1" Link
 
 Name -[hidden]right-> Phone
 Task -[hidden]left-----> Person
