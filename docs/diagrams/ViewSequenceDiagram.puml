@@ -63,7 +63,6 @@ Task --> ViewCommand : x
 deactivate Task
 
 ViewCommand -> Model : updateFilteredPersonList(x)
-activate Model
 
 create CommandResult
 ViewCommand -> CommandResult
