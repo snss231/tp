@@ -50,8 +50,8 @@ public class AddTaskCommand extends Command {
     private final int period;
 
     /**
-     * Constructor for AddTaskCommand. Takes in 5 parameters, taskName, dateTime and tags.
-     * There can be multiple tags.
+     * Constructor for AddTaskCommand. Takes in 4 parameters, taskName, dateTime, tags
+     * and link. There can be multiple tags.
      *
      * @param taskName Name of Task.
      * @param dateTime LocalDateTime object to represent date time of Task.
@@ -70,8 +70,8 @@ public class AddTaskCommand extends Command {
     }
 
     /**
-     * Constructor for AddTaskCommand. Takes in 7 parameters, taskName, dateTime and tags.
-     * There can be multiple tags.
+     * Constructor for AddTaskCommand. Takes in 6 parameters, taskName, dateTime, tags, 
+     * link, recurrence, and period. There can be multiple tags.
      *
      * @param taskName Name of Task.
      * @param dateTime LocalDateTime object to represent date time of Task.
