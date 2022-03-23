@@ -58,6 +58,7 @@ public class AddTaskCommand extends Command {
      * @param dateTime LocalDateTime object to represent date time of Task.
      * @param tags A set of tags link to the Task.
      * @param link Link of a task.
+     * @param tid The task id of a task.
      */
     public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link, int tid) {
         requireAllNonNull(taskName, dateTime, tags, link);
@@ -79,6 +80,9 @@ public class AddTaskCommand extends Command {
      * @param dateTime LocalDateTime object to represent date time of Task.
      * @param tags A set of tags link to the Task.
      * @param link Link of a task.
+     * @param tid The task id of a task.
+     * @param recurrence The number of times the task should recur.
+     * @param period The number of days apart each task should be.
      */
     public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link,
                           int tid, int recurrence, int period) {
