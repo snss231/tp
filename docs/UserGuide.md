@@ -168,11 +168,13 @@ Examples:
 
 Adds a task for a datetime with a tag.
 
-Format: `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] t/TAG`
+Format: `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/PERIOD RECURRENCE]`
 
 Examples:
 * `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
 * `addt tn/Consultation dt/19-03-2022 1500, 19-03-2022 1600` Adds a task called Consultation taking place from `19th March 2022 3-4pm`
+* `addt tn/CS2103 Lecture dt/19-03-2022 1500, 19-03-2022 1600 z/https://nus-sg.zoom.us…​ r/weekly 12` 
+Adds a task called CS2103 Lecture taking place from `19th March 2022 3-4pm` that occurs `weekly` for the next `12 weeks` with the `meeting link`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The format for TIME is in dd-mm-yyyy hhmm.

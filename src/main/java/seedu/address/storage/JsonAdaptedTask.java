@@ -23,16 +23,19 @@ public class JsonAdaptedTask {
     private final String dateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String link;
+    private final String tid;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("link") String link) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("link") String link,
+                           @JsonProperty("tid") String tid) {
         this.name = name;
         this.dateTime = dateTime;
         this.link = link;
+        this.tid = tid;
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -49,6 +52,7 @@ public class JsonAdaptedTask {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        tid = String.valueOf(source.getTid());
     }
 
     /**
@@ -73,7 +77,8 @@ public class JsonAdaptedTask {
         Set<Tag> modelTag = new HashSet<>(taskTags);
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         Link modelLink = new Link(link);
+        int modelTid = Integer.parseInt(tid);
 
-        return new Task(name, modelDateTime, modelTag, modelLink);
+        return new Task(name, modelDateTime, modelTag, modelLink, modelTid);
     }
 }

@@ -92,8 +92,9 @@ public class EditTaskCommand extends Command {
         LocalDateTime updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
         Set<Tag> updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         Link link = editTaskDescriptor.getLink().orElse(taskToEdit.getLink());
+        int tid = editTaskDescriptor.getTid().orElse(taskToEdit.getTid());
 
-        return new Task(updatedName, updatedDate, updatedTag, link);
+        return new Task(updatedName, updatedDate, updatedTag, link, tid);
     }
 
     @Override
@@ -124,6 +125,7 @@ public class EditTaskCommand extends Command {
         private LocalDateTime dateTime;
         private Set<Tag> tags;
         private Link link;
+        private int tid;
 
         public EditTaskDescriptor() {}
 
@@ -136,6 +138,7 @@ public class EditTaskCommand extends Command {
             setDate(toCopy.dateTime);
             setTags(toCopy.tags);
             setLink(toCopy.link);
+            setTid(toCopy.tid);
         }
 
         /**
@@ -168,6 +171,7 @@ public class EditTaskCommand extends Command {
         public Optional<Link> getLink() {
             return Optional.ofNullable(link);
         }
+
         /**
          * Sets {@code tag} to this object's {@code tag}.
          * A defensive copy of {@code tags} is used internally.
@@ -183,6 +187,14 @@ public class EditTaskCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return Optional.ofNullable(tags);
+        }
+
+        public void setTid(int tid) {
+            this.tid = tid;
+        }
+
+        public Optional<Integer> getTid() {
+            return Optional.ofNullable(tid);
         }
 
         @Override
