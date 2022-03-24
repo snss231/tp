@@ -1,80 +1,59 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssignedTasks.getTypicalAssignedTaskList;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainInTask;
-import seedu.address.model.task.Task;
+
 
 public class ViewCommandTest {
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
+
+    private Model assignedModel =
+            new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
 
     @Test
-    void execute_zeroAssigneesInTask_noPersonFound() throws CommandException, ParseException {
-        // Model with no people assigned to the tasks
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
+    void execute_zeroAssigneesInTask_noPersonFound() {
+        Model expectedModel =
+                new ModelManager(model.getAddressBook(), new UserPrefs(), new TaskList(model.getTaskList()));
 
-        Index targetIndex = ParserUtil.parseIndex("1");
+        String expectedMessage = ViewCommand.NO_CONTACT_ASSIGN;
 
-        // Initializing command
-        ViewCommand command = new ViewCommand(targetIndex);
+        ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(0));
 
-        // Initializing predicate for expected model
-        Task targetTask = expectedModel.getFilteredTaskList().get(targetIndex.getZeroBased());
-        List<Person> listOfPeople = targetTask.getPeople();
-
-        // Get expected result from model
-        List<Person> lastShownPersonList = new ArrayList<>();
-        lastShownPersonList.addAll(expectedModel.getFilteredPersonList());
-        PersonContainInTask originalStatePred = new PersonContainInTask(lastShownPersonList);
-        expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        expectedModel.updateFilteredPersonList(originalStatePred);
-
-        // Get result from command execute
-        command.execute(model);
-
-        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
+        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
 
     @Test
-    void execute_assigneesInTask_personFound() throws CommandException, ParseException {
-        Model assignedModel =
-                new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
-        Model expectedAssignedModel =
-                new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
+    void execute_assigneesInTask_personFound() throws CommandException {
+        Model expectedModel = new ModelManager(
+                assignedModel.getAddressBook(), new UserPrefs(), new TaskList(assignedModel.getTaskList()));
 
-        Index targetIndex = ParserUtil.parseIndex("1");
+        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, 2);
+        List<Person> assignedList = expectedModel.getFilteredTaskList().get(0).getPeople();
+        PersonContainInTask pred = new PersonContainInTask(assignedList);
 
-        // Initializing command
-        ViewCommand command = new ViewCommand(targetIndex);
+        ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(0));
 
-        // Initializing predicate for expected model
-        Task targetTask = expectedAssignedModel.getFilteredTaskList().get(targetIndex.getZeroBased());
-        List<Person> listOfPeople = targetTask.getPeople();
-        PersonContainInTask predicate = preparePredicate(listOfPeople);
+        viewCommand.execute(assignedModel);
 
-        // Get expected result from model
-        expectedAssignedModel.updateFilteredPersonList(predicate);
-        // Get result from command execute
-        command.execute(assignedModel);
+        assertEquals(assignedModel.getFilteredPersonList(), expectedModel.getFilteredPersonList().filtered(pred));
 
-        assertEquals(expectedAssignedModel.getFilteredPersonList(), assignedModel.getFilteredPersonList());
     }
 
     private PersonContainInTask preparePredicate(List<Person> personList) {
