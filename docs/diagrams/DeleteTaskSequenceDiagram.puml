@@ -20,7 +20,7 @@ LogicManager -> AddressBookParser : parseCommand("deletet 1")
 activate AddressBookParser
 
 create DeleteTaskCommandParser
-AddressBookParser -> DeleteTaskCommandParser
+AddressBookParser -> DeleteTaskCommandParser : DeleteTaskCommandParser()
 activate DeleteTaskCommandParser
 
 DeleteTaskCommandParser --> AddressBookParser
@@ -30,7 +30,7 @@ AddressBookParser -> DeleteTaskCommandParser : parse("1")
 activate DeleteTaskCommandParser
 
 create DeleteTaskCommand
-DeleteTaskCommandParser -> DeleteTaskCommand
+DeleteTaskCommandParser -> DeleteTaskCommand : DeleteTaskCommand(1)
 activate DeleteTaskCommand
 
 DeleteTaskCommand --> DeleteTaskCommandParser
@@ -55,7 +55,7 @@ Model --> DeleteTaskCommand
 deactivate Model
 
 create CommandResult
-DeleteTaskCommand -> CommandResult
+DeleteTaskCommand -> CommandResult : CommandResult(...)
 activate CommandResult
 
 CommandResult --> DeleteTaskCommand
