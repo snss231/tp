@@ -46,53 +46,48 @@ public class AddTaskCommand extends Command {
     private final LocalDateTime dateTime;
     private final Set<Tag> tags;
     private final Link link;
-    private final int tid;
     private final int recurrence;
     private final int period;
 
     /**
-     * Constructor for AddTaskCommand. Takes in 5 parameters, taskName, dateTime and tags.
-     * There can be multiple tags.
+     * Constructor for AddTaskCommand. Takes in 4 parameters, taskName, dateTime, tags
+     * and link. There can be multiple tags.
      *
      * @param taskName Name of Task.
      * @param dateTime LocalDateTime object to represent date time of Task.
      * @param tags A set of tags link to the Task.
      * @param link Link of a task.
-     * @param tid The task id of a task.
      */
-    public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link, int tid) {
+    public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link) {
         requireAllNonNull(taskName, dateTime, tags, link);
 
         this.taskName = taskName;
         this.dateTime = dateTime;
         this.tags = tags;
         this.link = link;
-        this.tid = tid;
         this.recurrence = 0;
         this.period = 0;
     }
 
     /**
-     * Constructor for AddTaskCommand. Takes in 7 parameters, taskName, dateTime and tags.
-     * There can be multiple tags.
+     * Constructor for AddTaskCommand. Takes in 6 parameters, taskName, dateTime, tags, 
+     * link, recurrence, and period. There can be multiple tags.
      *
      * @param taskName Name of Task.
      * @param dateTime LocalDateTime object to represent date time of Task.
      * @param tags A set of tags link to the Task.
      * @param link Link of a task.
-     * @param tid The task id of a task.
      * @param recurrence The number of times the task should recur.
      * @param period The number of days apart each task should be.
      */
     public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link,
-                          int tid, int recurrence, int period) {
+                          int recurrence, int period) {
 
         requireAllNonNull(taskName, dateTime, tags, link);
         this.taskName = taskName;
         this.dateTime = dateTime;
         this.tags = tags;
         this.link = link;
-        this.tid = tid;
         this.recurrence = recurrence;
         this.period = period;
     }
@@ -100,11 +95,11 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Task taskToBeAdded = new Task(taskName, dateTime, tags, link, tid);
+        Task taskToBeAdded = new Task(taskName, dateTime, tags, link);
         model.getTaskList().addTask(taskToBeAdded);
         for (int i = 1; i < period; i++) {
             LocalDateTime temp = dateTime.plusDays(i * recurrence);
-            taskToBeAdded = new Task(taskName, temp, tags, link, tid);
+            taskToBeAdded = new Task(taskName, temp, tags, link);
             model.getTaskList().addTask(taskToBeAdded);
         }
         return new CommandResult(ADD_TASK_SUCCESS);

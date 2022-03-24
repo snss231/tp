@@ -104,7 +104,7 @@ public class UnassignCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_IN_TASK);
         }
         Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(),
-                updatedList, taskToUpdate.getTags(), taskToUpdate.getLink(), taskToUpdate.getTid());
+                updatedList, taskToUpdate.getTags(), taskToUpdate.getLink());
         return editedTask;
     }
 

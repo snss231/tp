@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import seedu.address.commons.util.TranslatorUtil;
@@ -25,7 +24,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     private final String dateTimePattern = "dd-MM-yyyy HHmm";
     private final SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(dateTimePattern);
-    private final int maxNumber = 999999999;
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand for TASKNAME, DATETIME, TAG
@@ -50,10 +48,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         LocalDateTime dateTime;
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
-
-        Random rand = new Random();
-
-        int tid = rand.nextInt(maxNumber);
 
         try {
             dateTime = convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString));
@@ -96,10 +90,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                         AddTaskCommand.MESSAGE_USAGE));
             }
 
-            return new AddTaskCommand(taskName, dateTime, tags, link, tid, periodInt, recurrenceInt);
+            return new AddTaskCommand(taskName, dateTime, tags, link, periodInt, recurrenceInt);
         }
 
-        return new AddTaskCommand(taskName, dateTime, tags, link, tid);
+        return new AddTaskCommand(taskName, dateTime, tags, link);
     }
 
 
