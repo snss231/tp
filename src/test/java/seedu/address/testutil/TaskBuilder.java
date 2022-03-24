@@ -28,7 +28,6 @@ public class TaskBuilder {
     private Set<Tag> tags;
     private Link link;
     private List<Person> people;
-    private int tid;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -39,7 +38,6 @@ public class TaskBuilder {
         tags = new HashSet<>();
         link = new Link(DEFAULT_ZOOMLINK);
         people = new ArrayList<Person>();
-        tid = 0;
     }
 
     /**
@@ -51,7 +49,6 @@ public class TaskBuilder {
         tags = new HashSet<>(taskToCopy.getTags());
         link = taskToCopy.getLink();
         people = taskToCopy.getPeople();
-        tid = taskToCopy.getTid();
     }
 
     /**
@@ -96,7 +93,7 @@ public class TaskBuilder {
 
 
     public Task build() {
-        return new Task(name, dateTime, people, tags, link, tid);
+        return new Task(name, dateTime, people, tags, link);
     }
 
 }
