@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalAssignedTasks.getTypicalAssignedTask
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -22,18 +23,12 @@ import seedu.address.model.task.Task;
 
 public class ViewCommandTest {
 
-    // Model with no people assigned to the tasks
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
-
-    // Model with people assigned to the tasks
-    private Model assignedModel =
-            new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
-    private Model expectedAssignedModel =
-            new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
-
     @Test
     void execute_zeroAssigneesInTask_noPersonFound() throws CommandException, ParseException {
+        // Model with no people assigned to the tasks
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
+
         Index targetIndex = ParserUtil.parseIndex("1");
 
         // Initializing command
@@ -42,10 +37,14 @@ public class ViewCommandTest {
         // Initializing predicate for expected model
         Task targetTask = expectedModel.getFilteredTaskList().get(targetIndex.getZeroBased());
         List<Person> listOfPeople = targetTask.getPeople();
-        PersonContainInTask predicate = preparePredicate(listOfPeople);
 
         // Get expected result from model
-        expectedModel.updateFilteredPersonList(predicate);
+        List<Person> lastShownPersonList = new ArrayList<>();
+        lastShownPersonList.addAll(expectedModel.getFilteredPersonList());
+        PersonContainInTask originalStatePred = new PersonContainInTask(lastShownPersonList);
+        expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredPersonList(originalStatePred);
+
         // Get result from command execute
         command.execute(model);
 
@@ -55,7 +54,11 @@ public class ViewCommandTest {
 
     @Test
     void execute_assigneesInTask_personFound() throws CommandException, ParseException {
-        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, 2);
+        Model assignedModel =
+                new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
+        Model expectedAssignedModel =
+                new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAssignedTaskList());
+
         Index targetIndex = ParserUtil.parseIndex("1");
 
         // Initializing command

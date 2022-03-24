@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -23,7 +25,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String NO_CONTACT_ASSIGN = "There were no contact assigned to this task.";
+    public static final String NO_CONTACT_ASSIGN = "There are no contact assigned to this task.";
     public static final String DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE = "There were %1$d contacts assigned to this task";
     public static final String DISPLAY_TASK_CONTACT_SUCCESS_SINGLE = "There was %1$d contact assigned to this task";
 
@@ -48,6 +50,10 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownTaskList = model.getFilteredTaskList();
 
+        List<Person> lastShownPersonList = new ArrayList<>();
+        lastShownPersonList.addAll(model.getFilteredPersonList());
+        PersonContainInTask originalStatePred = new PersonContainInTask(lastShownPersonList);
+
         if (targetIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
@@ -63,6 +69,8 @@ public class ViewCommand extends Command {
         int listSize = model.getFilteredPersonList().size();
 
         if (listSize < 1) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredPersonList(originalStatePred);
             return new CommandResult(NO_CONTACT_ASSIGN);
         }
 
