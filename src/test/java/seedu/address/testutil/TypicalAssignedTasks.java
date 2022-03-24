@@ -10,13 +10,15 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 public class TypicalAssignedTasks {
-    public static final List<Person> GROUP_ONE = Arrays.asList(TypicalPersons.AMY, TypicalPersons.ALICE);
+    // Ensure people in group are on the actual filtered list
+    public static final List<Person> GROUP_ONE = Arrays.asList(TypicalPersons.ALICE, TypicalPersons.BENSON);
     public static final List<Person> GROUP_TWO =
-            Arrays.asList(TypicalPersons.CARL, TypicalPersons.DANIEL, TypicalPersons.BOB);
+            Arrays.asList(TypicalPersons.CARL, TypicalPersons.DANIEL, TypicalPersons.ELLE);
     public static final List<Person> GROUP_THREE = Arrays.asList(TypicalPersons.GEORGE);
 
     public static final Task BRUSH_TEETH = new TaskBuilder().withTaskName("Brush my teeth")
             .withDateTime(LocalDateTime.of(2022, 12, 15, 21, 0))
+            .withPeople(GROUP_ONE)
             .withPeople(GROUP_ONE)
             .withTags("Chores").withLink("").build();
 
