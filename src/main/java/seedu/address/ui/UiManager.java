@@ -1,8 +1,12 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -11,6 +15,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.model.task.Task;
 
 /**
  * The manager of the UI component.
@@ -20,10 +25,11 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/nuslogo.jpg";
 
     private Logic logic;
     private MainWindow mainWindow;
+    private AlertWindow alertWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -38,16 +44,19 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        alertWindow = new AlertWindow();
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            taskToAlert();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+
     }
 
     private Image getImage(String imagePath) {
@@ -83,6 +92,28 @@ public class UiManager implements Ui {
         showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
+    }
+
+    /**
+     * Shows alert window if there is task that is going to reach the deadline in a week.
+     */
+    private void taskToAlert() {
+        String displayString = "";
+        ObservableList<Task> taskList = logic.getTaskList().getTaskList();
+        Integer index = 1;
+        for (Task task : taskList) {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate afterOneWeek = currentDate.plus(1, ChronoUnit.WEEKS);
+            LocalDateTime taskDateTime = task.getDateTime();
+            LocalDate taskDate = taskDateTime.toLocalDate();
+            if (taskDate.isBefore(afterOneWeek) && taskDate.isAfter(currentDate)) {
+                displayString += index.toString() + ". " + task.getName() + ": " + task.getDateTimeString() + "\n";
+                index++;
+            }
+        }
+        if (displayString != "") {
+            alertWindow.display(displayString);
+        }
     }
 
 }

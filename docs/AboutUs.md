@@ -9,31 +9,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Brian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/brian16600.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/brian16600)]] [[portfolio](team/brian16600.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilites: Code Quality
 
 ### Sean Ng
 
 <img src="images/snss231.png" width="200px">
 
-[[github](http://github.com/snss231)] [[portfolio](team/snss231.md)]
+[[github](http://github.com/snss231)]] [[portfolio](team/snss231.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -42,9 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/junjunjieong.png" width="200px">
 
-[[github](http://github.com/junjunjieong)]
-
-[[portfolio](team/junjunjieong.md)]
+[[github](http://github.com/junjunjieong)]] [[portfolio](team/junjunjieong.md)]
 
 * Role: Developer
 * Responsibilities: Code quality + Deliverables and deadlines
@@ -53,9 +40,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/junrong98.png" width="200px">
 
-[[github](http://github.com/junrong98)]
-
-[[portfolio](team/junrong98.md)]
+[[github](http://github.com/junrong98)]] [[portfolio](team/junrong98.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality, In Charge of Tagging
+
+### Adrian Ong
+
+<img src="images/adrianongjj.png" width="200px">
+
+[[github](http://github.com/AdrianOngJJ)]] [[portfolio](team/adrianongjj.md)]
+
+* Role: Developer
+* Responsibilities: Glossary

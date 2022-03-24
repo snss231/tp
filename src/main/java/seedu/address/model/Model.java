@@ -5,7 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Username;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -13,6 +17,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,8 +65,33 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a person with the same username as {@code username} exists in the address book.
+     *
+     * @param username
+     * @return
+     */
+    boolean hasUsername(Username username);
+
+    /**
+     * Checks if Model has Email already existing.
+     *
+     * @param email Email to be checked.
+     * @return Whether email exists
+     */
+    boolean hasEmail(Email email);
+
+    /**
+     * Checks if Model has Phone already existing.
+     *
+     * @param phone Phone to be checked.
+     * @return Whether phone exists.
+     */
+    boolean hasPhone(Phone phone);
+
+    /**
+     * Deletes person.
+     *
+     * @param target Person to be deleted.
      */
     void deletePerson(Person target);
 
@@ -84,4 +116,29 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ReadOnlyTaskList getTaskList();
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the task list.
+     */
+    void deleteTask(Task target);
+
+    void setTask(Task taskToEdit, Task editedTask);
+
+    /**
+     * Returns true if a task with the same description as {@code task} exists in the task list.
+     */
+    boolean hasTask(Task task);
+
 }

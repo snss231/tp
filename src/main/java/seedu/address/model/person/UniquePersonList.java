@@ -37,6 +37,54 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a Person with an identical Github Username as the given argument.
+     *
+     * @param toCheck username to be checked.
+     * @return true/false whether username already exists.
+     */
+    public boolean containsUsername(Username toCheck) {
+        requireNonNull(toCheck);
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getUsername().equals(toCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the list contains a person with an identical Email.
+     *
+     * @param toCheck Email to be checked.
+     * @return Whether email already exists.
+     */
+    public boolean containsEmail(Email toCheck) {
+        requireNonNull(toCheck);
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getEmail().equals(toCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the list contains a person with an identical phone.
+     *
+     * @param toCheck Phone to be checked.
+     * @return Whether Phone already exists.
+     */
+    public boolean containsPhone(Phone toCheck) {
+        requireNonNull(toCheck);
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getPhone().equals(toCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

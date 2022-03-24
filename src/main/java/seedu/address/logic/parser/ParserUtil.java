@@ -1,19 +1,25 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,6 +102,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses username
+     *
+     * @param username String input for username
+     * @return Username object created using user input
+     * @throws ParseException If username is not in alphanumeric format
+     */
+    public static Username parseUsername(String username) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!Username.isValidId(trimmedUsername)) {
+            throw new ParseException(Username.MESSAGE_CONSTRAINTS);
+        }
+        return new Username(trimmedUsername);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +142,43 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@Code Optional<String> option} into a {@code Link}.
+     */
+    public static Link parseLink(Optional<String> option) {
+        requireNonNull(option);
+        if (option.isEmpty()) {
+            return new Link("");
+        } else {
+            return new Link(option.get());
+        }
+    }
+
+    /**
+     * Parses {@Code Optional<String> option} into a {@code String[]}.
+     */
+    public static String[] parseRecurring(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+        if (option.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        String arg = option.get();
+        String[] commands = arg.split(" ");
+
+        if (commands.length != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        return commands;
+    }
+
+    /**
+     * Checks if the given prefixes are provided in the argMultimap
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
