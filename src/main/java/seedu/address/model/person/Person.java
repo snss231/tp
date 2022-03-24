@@ -19,7 +19,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Username username;
+    private final GitUsername gitUsername;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -31,15 +31,15 @@ public class Person {
      * @param name Name of Person.
      * @param phone Phone Number of Person.
      * @param email Email address of Person.
-     * @param username Github Username of Person.
+     * @param gitUsername Github GitUsername of Person.
      * @param tags Tags for Person.
      */
-    public Person(Name name, Phone phone, Email email, Username username, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, username, tags);
+    public Person(Name name, Phone phone, Email email, GitUsername gitUsername, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, gitUsername, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.username = username;
+        this.gitUsername = gitUsername;
         this.tags.addAll(tags);
     }
 
@@ -56,8 +56,8 @@ public class Person {
         return email;
     }
 
-    public Username getUsername() {
-        return this.username;
+    public GitUsername getUsername() {
+        return this.gitUsername;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, username, tags);
+        return Objects.hash(name, phone, email, gitUsername, tags);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Username: ")
+                .append("; GitUsername: ")
                 .append(getUsername());
 
         Set<Tag> tags = getTags();

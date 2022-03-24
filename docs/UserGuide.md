@@ -80,7 +80,7 @@ Format: `help`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUBUSERID t/TAGS`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME t/TAGS`
 
 Examples:
 
@@ -296,7 +296,7 @@ _Details coming soon ..._
 
 | Action                                | Format, Examples                                                                                                                                           |
 |---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GITHUBUSERID [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
+| **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
 | **list**                              | `list`                                                                                                                                                     |
 | **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                            |
  | **Find Contact**                      | `find KEYWORD [MORE_KEYWORDS]...`                                                                                                                          |

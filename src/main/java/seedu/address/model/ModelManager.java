@@ -12,9 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Username;
 import seedu.address.model.task.Task;
 
 /**
@@ -102,9 +102,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasUsername(Username username) {
-        requireNonNull(username);
-        return addressBook.hasUsername(username);
+    public boolean hasUsername(GitUsername gitUsername) {
+        requireNonNull(gitUsername);
+        return addressBook.hasUsername(gitUsername);
     }
 
     @Override

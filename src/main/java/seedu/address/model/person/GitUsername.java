@@ -1,22 +1,22 @@
 package seedu.address.model.person;
 
 /**
- * Username represents the Github userID of a Person.
+ * GitUsername represents the Github userID of a Person.
  */
-public class Username {
+public class GitUsername {
 
-    public static final String MESSAGE_CONSTRAINTS = "Username should adhere to the following constraints:\n"
+    public static final String MESSAGE_CONSTRAINTS = "GitUsername should adhere to the following constraints:\n"
             + "1. AlphaNumeric";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
 
     private String userid;
 
     /**
-     * Constructs a Github Username for Person.
+     * Constructs a Github GitUsername for Person.
      *
      * @param userid String username
      */
-    public Username(String userid) {
+    public GitUsername(String userid) {
         this.userid = userid;
     }
 
@@ -46,11 +46,11 @@ public class Username {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Username)) {
+        if (!(other instanceof GitUsername)) {
             return false;
         }
-        Username otherUsername = (Username) other;
-        return this.userid.equals(otherUsername.userid);
+        GitUsername otherGitUsername = (GitUsername) other;
+        return this.userid.equals(otherGitUsername.userid);
     }
 
 }
