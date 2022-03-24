@@ -24,7 +24,7 @@ Alert | Forgetful? No worries, NUS Classes will remind you when tasks are approa
 ### Others
 
 * **User Guide** for NUS Classes can be found here: [User Guide](https://ay2122s2-cs2103t-t12-4.github.io/tp/UserGuide.html).
-* **Developer Guide** for NUS Classes can be found here: [Developer Guid](https://ay2122s2-cs2103t-t12-4.github.io/tp/DeveloperGuide.html).
+* **Developer Guide** for NUS Classes can be found here: [Developer Guide](https://ay2122s2-cs2103t-t12-4.github.io/tp/DeveloperGuide.html).
 
 ### Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
