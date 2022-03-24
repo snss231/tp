@@ -58,10 +58,10 @@ opt DateTime present
     deactivate EditTaskDescriptor
 end
 
-opt Tag present
-EditTaskCommandParser -> ParserUtil : parseTag(...)
+opt Tags present
+EditTaskCommandParser -> ParserUtil : parseTags(...)
 activate ParserUtil
-ParserUtil -> EditTaskCommandParser : newTag
+ParserUtil -> EditTaskCommandParser : Tags
 deactivate ParserUtil
 EditTaskCommandParser -> EditTaskDescriptor : setTags(...)
 activate EditTaskDescriptor

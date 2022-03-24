@@ -210,7 +210,7 @@ Edit task feature implements the following operations:
 * `EditTaskCommand#execute()` — Execute `ModelManager#setTask()` by parsing in the task to be edited and the updated version of the task.
 * `EditTaskDescriptor#setName()` — Set the edited task name to `EditTaskDescriptor`
 * `EditTaskDescriptor#setDate()` — Set the edited datetime to `EditTaskDescriptor`
-* `EditTaskDescriptor#setTag()` — Set the edited tag to `EditTaskDescriptor`
+* `EditTaskDescriptor#setTags()` — Set the edited tag to `EditTaskDescriptor`
 * `ParseUtil#parseIndex()` —  Parse to get the index number of the task
 * `ModelManager#setTask()` — Update the task information.
 * `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
@@ -222,7 +222,7 @@ Once user parse in the command, it will be handled by `AddressBookParser#parseCo
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
 Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
 task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field. 
-For each prefix in the command, it will be set the value to `editTaskDescriptor`, while tag will be parsed to `ParseUtil#parseTag()` then set the value to `editTaskDescriptor`.
+For each prefix in the command, it will set the value to `editTaskDescriptor`.
 ![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
 
 Step 3: `EditTaskCommandParser` will create `EditTaskCommand`, parse in `index` and `editTaskDescriptor`
