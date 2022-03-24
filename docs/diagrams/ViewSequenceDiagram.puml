@@ -22,7 +22,7 @@ LogicManager -> AddressBookParser : parseCommand("view 1")
 activate AddressBookParser
 
 create ViewCommandParser
-AddressBookParser -> ViewCommandParser
+AddressBookParser -> ViewCommandParser : ViewCommandParser()
 activate ViewCommandParser
 
 ViewCommandParser --> AddressBookParser
@@ -32,7 +32,7 @@ AddressBookParser -> ViewCommandParser : parse("1")
 activate ViewCommandParser
 
 create ViewCommand
-ViewCommandParser -> ViewCommand
+ViewCommandParser -> ViewCommand : ViewCommand(1)
 activate ViewCommand
 
 ViewCommand --> ViewCommandParser
@@ -65,7 +65,7 @@ deactivate Task
 ViewCommand -> Model : updateFilteredPersonList(x)
 
 create CommandResult
-ViewCommand -> CommandResult
+ViewCommand -> CommandResult : CommandResult(...)
 activate CommandResult
 
 CommandResult --> ViewCommand
