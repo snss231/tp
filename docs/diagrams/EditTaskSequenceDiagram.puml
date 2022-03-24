@@ -14,7 +14,7 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-
+'
  -> LogicManager : parseCommand("updatet ...")
 activate LogicManager
 
@@ -22,7 +22,7 @@ LogicManager -> AddressBookParser : parseCommand("updatet ...")
 activate AddressBookParser
 
 create EditTaskCommandParser
-AddressBookParser -> EditTaskCommandParser
+AddressBookParser -> EditTaskCommandParser : EditTaskCommandParser()
 activate EditTaskCommandParser
 
 EditTaskCommandParser --> AddressBookParser
@@ -38,7 +38,7 @@ ParserUtil -> EditTaskCommandParser : index
 deactivate ParserUtil
 
 create EditTaskDescriptor
-EditTaskCommandParser -> EditTaskDescriptor
+EditTaskCommandParser -> EditTaskDescriptor : EditTaskDescriptor()
 activate EditTaskDescriptor
 
 EditTaskDescriptor --> EditTaskCommandParser
@@ -97,7 +97,7 @@ Model --> EditTaskCommand
 deactivate Model
 
 create CommandResult
-EditTaskCommand -> CommandResult
+EditTaskCommand -> CommandResult : CommandResult(...)
 activate CommandResult
 
 CommandResult --> EditTaskCommand
