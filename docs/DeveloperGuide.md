@@ -210,7 +210,7 @@ Edit task feature implements the following operations:
 * `EditTaskCommand#execute()` — Execute `ModelManager#setTask()` by parsing in the task to be edited and the updated version of the task.
 * `EditTaskDescriptor#setName()` — Set the edited task name to `EditTaskDescriptor`
 * `EditTaskDescriptor#setDate()` — Set the edited datetime to `EditTaskDescriptor`
-* `EditTaskDescriptor#setTags()` — Set the edited tag to `EditTaskDescriptor`
+* `EditTaskDescriptor#setTags()` — Set the edited tags to `EditTaskDescriptor`
 * `ParseUtil#parseIndex()` —  Parse to get the index number of the task
 * `ModelManager#setTask()` — Update the task information.
 * `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
