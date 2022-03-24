@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -48,11 +46,8 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownTaskList = model.getFilteredTaskList();
 
-        List<Person> lastShownPersonList = new ArrayList<>();
-        lastShownPersonList.addAll(model.getFilteredPersonList());
-        PersonContainInTask originalStatePred = new PersonContainInTask(lastShownPersonList);
+        List<Task> lastShownTaskList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -62,17 +57,17 @@ public class ViewCommand extends Command {
 
         List<Person> listOfPeople = taskToDisplay.getPeople();
 
+        int listSize = listOfPeople.size();
+
+        if (listSize < 1) {
+            return new CommandResult(NO_CONTACT_ASSIGN);
+        }
+
         PersonContainInTask predicate = new PersonContainInTask(listOfPeople);
 
         model.updateFilteredPersonList(predicate);
 
-        int listSize = model.getFilteredPersonList().size();
-
-        if (listSize < 1) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            model.updateFilteredPersonList(originalStatePred);
-            return new CommandResult(NO_CONTACT_ASSIGN);
-        }
+        listSize = model.getFilteredPersonList().size();
 
         if (listSize == 1) {
             return new CommandResult(String.format(DISPLAY_TASK_CONTACT_SUCCESS_SINGLE, listSize));
