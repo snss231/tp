@@ -20,7 +20,6 @@ public class Task {
     private List<Person> people;
     private Set<Tag> tags;
     private Link link;
-    private int tid;
 
     /**
      * Constructor for Task.
@@ -30,13 +29,12 @@ public class Task {
      * @param tags Tags for the tasks
      * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link, int tid) {
+    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link) {
         this.name = name;
         this.dateTime = dateTime;
         this.people = new ArrayList<>();
         this.tags = tags;
         this.link = link;
-        this.tid = tid;
     }
 
     /**
@@ -48,8 +46,8 @@ public class Task {
      * @param tags Tags for the tasks
      * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link, int tid) {
-        this(name, dateTime, tags, link, tid);
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link) {
+        this(name, dateTime, tags, link);
         this.people = new ArrayList<>(people);
     }
 
@@ -165,16 +163,6 @@ public class Task {
      */
     public Link getLink() {
         return link;
-    }
-
-
-    /**
-     * Returns the tid assigned to Task.
-     *
-     * @return A tid.
-     */
-    public int getTid() {
-        return tid;
     }
 
     @Override
