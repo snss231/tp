@@ -70,7 +70,7 @@ public class AddTaskCommand extends Command {
     }
 
     /**
-     * Constructor for AddTaskCommand. Takes in 6 parameters, taskName, dateTime, tags, 
+     * Constructor for AddTaskCommand. Takes in 6 parameters, taskName, dateTime, tags,
      * link, recurrence, and period. There can be multiple tags.
      *
      * @param taskName Name of Task.
