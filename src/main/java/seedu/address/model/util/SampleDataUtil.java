@@ -72,7 +72,7 @@ public class SampleDataUtil {
                     getTagSet("Chores"), new Link("")),
             new Task("Consultation with students", LocalDateTime.of(2022, 8, 3, 14, 0),
                     getTagSet("Consultation"),
-                    new Link("https://nus-sg.zoom.us/j/86344685271?pwd=Uk5JZUJiRktJbURydHpGVXRNd0lPUT09#success")),
+                    new Link("www.google.com")),
             new Task("Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30) ,
                     getTagSet("Meeting"), new Link(""))
         };

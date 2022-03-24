@@ -31,13 +31,13 @@ public class TypicalAssignedTasks {
             .withDateTime(LocalDateTime.of(2022, 8, 3, 14, 0))
             .withTags("Consult")
             .withPeople(GROUP_THREE)
-            .withLink("https://nus-sg.zoom.us/j/86344685271?pwd=Uk5JZUJiRktJbURydHpGVXRNd0lPUT09#success")
+            .withLink("www.google.com")
             .build();
 
     public static final Task INVIGILATOR_MEETING = new TaskBuilder().withTaskName("Meeting with exam invigilators")
             .withDateTime(LocalDateTime.of(2022, 2, 5, 14, 30))
             .withTags("Meeting")
-            .withLink("https://nus-sg.zoom.us/j/86344685271?pwd=Uk5JZUJiRktJbURydHpGVXRNd0lPUT09#success")
+            .withLink("www.google.com")
             .build();
 
     public static List<Task> getTypicalTasks() {
