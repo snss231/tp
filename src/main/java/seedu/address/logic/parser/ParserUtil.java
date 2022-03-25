@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,12 +11,13 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
 
@@ -100,19 +102,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses username
+     * Parses Git username
      *
-     * @param username String input for username
-     * @return Username object created using user input
-     * @throws ParseException If username is not in alphanumeric format
+     * @param gitUsername String input for Git username
+     * @return GitUsername object created using user input
+     * @throws ParseException If gitUsername is not in alphanumeric format
      */
-    public static Username parseUsername(String username) throws ParseException {
-        requireNonNull(username);
-        String trimmedUsername = username.trim();
-        if (!Username.isValidId(trimmedUsername)) {
-            throw new ParseException(Username.MESSAGE_CONSTRAINTS);
+    public static GitUsername parseUsername(String gitUsername) throws ParseException {
+        requireNonNull(gitUsername);
+        String trimmedUsername = gitUsername.trim();
+        if (!GitUsername.isValidId(trimmedUsername)) {
+            throw new ParseException(GitUsername.MESSAGE_CONSTRAINTS);
         }
-        return new Username(trimmedUsername);
+        return new GitUsername(trimmedUsername);
     }
 
     /**
@@ -146,11 +148,31 @@ public class ParserUtil {
      * Parses {@Code Optional<String> option} into a {@code Link}.
      */
     public static Link parseLink(Optional<String> option) {
+        requireNonNull(option);
         if (option.isEmpty()) {
             return new Link("");
         } else {
             return new Link(option.get());
         }
+    }
+
+    /**
+     * Parses {@Code Optional<String> option} into a {@code String[]}.
+     */
+    public static String[] parseRecurring(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+        if (option.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        String arg = option.get();
+        String[] commands = arg.split(" ");
+
+        if (commands.length != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        return commands;
     }
 
     /**

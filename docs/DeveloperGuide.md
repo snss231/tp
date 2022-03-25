@@ -122,15 +122,12 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task list data i.e., all 'Task' objects (which are contained in a `TaskList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when some `Person`'s data in the list changes.
+* stores the currently 'selected' `Task` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when some `Task`'s data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -140,8 +137,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save address book, task list and user preference data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as any one of them (if only the functionality of one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,83 +151,133 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Delete person feature
 
-#### Proposed Implementation
+In NUS Classes, `Task`s are entities that maintain a list of `People` that are associated with the task.
+When a contact is deleted from the `AddressBook`, it is essential that the `Task`s that contain that contact are updated to also remove the contact.
+To implement this, upon every `DeleteCommand` execution, we call the `TaskList::removePerson` which iterate through all the tasks and remove the relevant `Person` from the tasks if present.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+<img src="images/DeleteModelSequenceDiagram.png" width="600" />
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Design considerations:
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**Aspect:** how relevant tasks are updated when a person is removed from the address book
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+* **Alternative 1 (current choice):** Iterate through all tasks to remove the relevant person.
+  * Pros: Easy to implement.
+  * Cons: _May_ have performance issues given a large list of tasks
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+* **Alternative 2:** Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
+  * Pros: _May_ see some performance benefit (not necessary to iterate through all the tasks upon each `DeleteCommand`)
+  * Cons: More fragile code due to circular dependency (`Person` depends on `Task`). Not often that a Professor will delete a contact (student or tutor) in the course of a module.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+### Delete Task feature
+Delete task feature implements the following operations:
+* `DeleteTaskCommandParser#parse()` — Parse the index number from user command to `DeleteTaskCommand` to get the task to be deleted.
+* `DeleteTaskCommand#execute()` — Execute `ModelManager#deleteTask()` by parsing in the task to be deleted.
+* `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTask()` by parsing in the task to be deleted.
+* `TaskList#deleteCurrTask()` — Deletes the task from the TaskList stored here.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 1: User will enter the command `deletet 1` to delete the first task.
+Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
+to create `DeleteTaskCommand` and execute to delete the task from the task list.
 
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+The Sequence Diagram below illustrates the interactions of how the delete task feature work.
+![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 2: Outcome after executing `DeleteTaskCommand`
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Execution flow of Activity Diagram:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
 
+#### Design considerations:
+**Aspect: How delete task executes:**
+
+* **Alternative 1 (current choice):** Delete task based on the index shown.
+    * Pros: Easy to implement.
+    * Cons: Have to scroll through task list to look for task index number.
+
+* **Alternative 2:** Delete task based on the task name.
+    * Pros: User just have to enter the task name.
+    * Cons: We must do check ensure that user enter the correct spelling and spacing of the task name
+
+### Edit Task feature
+Edit task feature implements the following operations:
+* `EditTaskCommandParser#parse()` — Parse the command such as index of the task to edit and which information to update.
+* `EditTaskCommand#execute()` — Execute `ModelManager#setTask()` by parsing in the task to be edited and the updated version of the task.
+* `EditTaskDescriptor#setName()` — Set the edited task name to `EditTaskDescriptor`
+* `EditTaskDescriptor#setDate()` — Set the edited datetime to `EditTaskDescriptor`
+* `EditTaskDescriptor#setTags()` — Set the edited tags to `EditTaskDescriptor`
+* `ParseUtil#parseIndex()` —  Parse to get the index number of the task
+* `ModelManager#setTask()` — Update the task information.
+* `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
+
+Step 1: User parse in command. For example, `updatet 1 tn/Teach CS2103T dt/12-03-2022 1330 t/Homework`
+Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
+![EditTaskSequenceDiagramstate0](images/EditTaskDiagram/EditTaskSequenceDiagramState0.png)
+
+Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
+Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
+task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
+For each prefix in the command, it will set the value to `editTaskDescriptor`.
+![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
+
+Step 3: `EditTaskCommandParser` will create `EditTaskCommand`, parse in `index` and `editTaskDescriptor`
+`EditTaskCommand` will start to execute and call `ModelManager#setTask` and `ModelManager#updateFilteredTaskList` to update
+the task and task list.
+![EditTaskSequenceDiagramstate2](images/EditTaskDiagram/EditTaskSequenceDiagramState2.png)
+
+Step 4: Lastly return the result.
+Possible outcome from the result.
+* Outcome 1: Successfully updated task.
+* Outcome 2: Throw CommandException due to index out of range or task is repeated.
+
+* ![EditTaskOutcomeActivityeDiagram](images/Activity Diagram/EditTaskOutcome.png)
+
+The Sequence Diagram below illustrates the overall interactions of how the edit task feature work.
+![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The following sequence diagram shows how the undo operation works:
+### View Task feature
+The view task mechanism is facilitated by `ViewCommand`, `ViewCommandParser`, `ModelManager` and `Task`. Additionally, it implements the following operation:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+* `ViewCommandParser#parse()` — Parses the arguments provided by the users into a command to be executed.
+* `ViewCommand#execute()`  — Executes the operations required to display the people associated with a specific task.
+* `ModelManager#getFilteredTaskList()`  — Gets the task list currently displayed as output to the user.
+* `ModelManager#updateFilteredPersonList()`  — Updates the person list displayed as output to the user by providing the argument with a list of people.
+* `Task#getPeople()` — Gets a list of people associated to a task.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Given below is an example usage scenario and how the view task mechanism behaves at each step.
 
-</div>
+Step 1. The user will enter the command `view 1` to view the people associated with the first task. The command will be handled by
+`AddressBookParser#parseCommand()` which will create a `ViewCommandParser` object.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Step 2. The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
+by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
-</div>
+Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
+`ModelManager#updateFilteredPersonList()` which will proceed to update the UI.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+The following sequence diagram shows how the view task operation works:
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect:** How should the results be displayed in the *Contact* column when no one is associated with the task:
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Continue displaying the current list of people.
+  * Pros: Reduce commands required by user to populate and use the column for input.
+  * Cons: May be confusing to user.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2: Display an empty list** .
+  * Pros: Clearly inform the users that the task has no people associate with it.
+  * Cons: Requires more commands by the user in order to use the column again.
 
 _{more aspects and alternatives to be added}_
 

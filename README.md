@@ -3,20 +3,30 @@
 ![Ui](docs/images/Ui.png)
 
 # NUS Classes
-NUS Classes is an app that enables the professors to better manage contacts from large numbers of students and staff,
-and allow the professor to document the task that he/she needs to do.
+**NUS Classes** is an app that enables the professors to better manage contacts from large numbers of students and staff,
+and allows the professors to document the tasks that they need to do.
 
-## Features
+### Features
 
-New features added on top of [AddressBook-Level3](https://se-education.org/addressbook-level3/)
-* Create task
-* Update task
-* Delete task
-* List all or a single task
-* Tag task
+Features added on top of AB3.
 
-## Others
+Feature | Description
+--- | ---
+Create Task | Add and schedule (*recurring*) tasks on NUS Classes easily with a single command.
+Update Task | Edit tasks which are outdated or when mistakes were made.
+Delete Task | Delete tasks which are unnecessary or when you are done with it.
+Un/Assign Task| Assign and unassign contacts to a task. Help with organization and planning!
+View Task | View the people assigned to a task. Help with remembering who you are suppose to meet!
+Tag Task | Tag a task with different tags. Help with categorizing tasks!
+Filter Task | Too many tasks? Filter them based on keywords!
+Alert | Forgetful? No worries, NUS Classes will remind you when tasks are approaching deadline!
 
-* NUS Classes user guide can be found here: [User Guide](https://ay2122s2-cs2103t-t12-4.github.io/tp/UserGuide.html).
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* This project was adopted from the existing AB3 se-education.org project. Refer to the AB3 product website **[here](https://se-education.org/addressbook-level3/)**.
+### Others
+
+* **User Guide** for NUS Classes can be found here: [User Guide](https://ay2122s2-cs2103t-t12-4.github.io/tp/UserGuide.html).
+* **Developer Guide** for NUS Classes can be found here: [Developer Guide](https://ay2122s2-cs2103t-t12-4.github.io/tp/DeveloperGuide.html).
+
+### Acknowledgements
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+Additionally, this project was adopted from the existing AB3 se-education.org project. Please refer
+to the AB3 product website **[here](https://se-education.org/addressbook-level3/)** for more information.

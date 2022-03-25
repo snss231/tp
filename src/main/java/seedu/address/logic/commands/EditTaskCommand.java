@@ -168,6 +168,7 @@ public class EditTaskCommand extends Command {
         public Optional<Link> getLink() {
             return Optional.ofNullable(link);
         }
+
         /**
          * Sets {@code tag} to this object's {@code tag}.
          * A defensive copy of {@code tags} is used internally.

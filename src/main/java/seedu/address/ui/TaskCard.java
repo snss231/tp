@@ -1,7 +1,13 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -56,8 +62,18 @@ public class TaskCard extends UiPart<Region> {
 
         if (task.getLink().toString() != "") {
             link.setText(task.getLink().toString());
-        } else {
-            link.setVisible(false);
+
+            link.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        Desktop.getDesktop().browse(new URI(link.getText()));
+                    } catch (URISyntaxException | IOException e) {
+                        link.setText(task.getLink().toString() + " INVALID LINK");
+                    }
+                }
+            });
+
         }
     }
 
