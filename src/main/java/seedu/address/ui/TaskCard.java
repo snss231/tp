@@ -74,7 +74,7 @@ public class TaskCard extends UiPart<Region> {
             id.getStyleClass().add("cell_big_label_late");
             name.getStyleClass().add("cell_big_label_late");
             date.getStyleClass().add("cell_small_label_late");
-        } else if (taskDateTime.isBefore(todayDate.minusDays(3))) {
+        } else if (taskDateTime.isBefore(todayDate.plusDays(3))) {
             id.getStyleClass().add("cell_big_label_soon");
             name.getStyleClass().add("cell_big_label_soon");
             date.getStyleClass().add("cell_small_label_soon");
