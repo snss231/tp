@@ -64,7 +64,7 @@ NUS Classes is a **desktop app for managing contacts, optimized for use via a Co
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+### Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -98,7 +98,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-##Contact Features
+# Contact Features
 
 ### Adding a person: `addc`
 
@@ -171,7 +171,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-##Task Features
+# Task Features
 
 ### Adding a task: `addt`
 
@@ -286,7 +286,7 @@ Examples:
 * `filter apple` returns `Buy apple` and `Make apple juice`
 * `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
-##Other Features
+# Other Features
 
 ### Clearing all entries : `clear`
 
