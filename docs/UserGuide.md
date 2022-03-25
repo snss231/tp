@@ -172,6 +172,11 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 # Task Features
+### Listing all tasks : `listt`
+
+Shows a list of all tasks in the address book.
+
+Format: `listt`
 
 ### Adding a task: `addt`
 
