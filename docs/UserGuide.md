@@ -215,19 +215,19 @@ Examples:
 * `deletet 2` Deletes the task at index 2.
 
 
-### Updating a task: `updatet`
-Updates an existing task in the task list.
+### Editing a task: `editt`
+Edits an existing task in the task list.
 
-Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
+Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
 
 * Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-* `updatet 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
-* `updatet 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
-* `updatet 1 dt/2022-12-12 1200, 2022-12-12 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.`
+* `editt 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
+* `editt 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
+* `editt 1 dt/2022-12-12 1200, 2022-12-12 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 If there's no need to change a certain field you can leave it out!<br>
