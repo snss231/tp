@@ -221,7 +221,7 @@ Once user parse in the command, it will be handled by `AddressBookParser#parseCo
 
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
 Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
-task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
+task name, datetime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
 For each prefix in the command, it will set the value to `editTaskDescriptor`.
 ![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
 
