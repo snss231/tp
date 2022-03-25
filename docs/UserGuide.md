@@ -216,7 +216,7 @@ Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 If there's no need to change a certain field you can leave it out!<br>
-:bulb: **Tip** *[, ENDDATETIME] is optional.
+:bulb: **Tip** * `, ENDDATETIME` is optional.
 </div>
 
 ### Assigning a contact to a task: `assign`
