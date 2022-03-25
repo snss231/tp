@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Will be updated soon
+    * Added `filter` command [\#64](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/64)
   * Developer Guide:
     * Updated Glossary [\#22](../DeveloperGuide.md)
 
