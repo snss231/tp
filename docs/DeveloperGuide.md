@@ -215,13 +215,13 @@ Edit task feature implements the following operations:
 * `ModelManager#setTask()` — Update the task information.
 * `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
 
-Step 1: User parse in command. For example, `updatet 1 tn/Teach CS2103T dt/12-03-2022 1330 t/Homework`
+Step 1: User parse in command. For example, `editt 1 tn/Teach CS2103T dt/12-03-2022 1330 t/Homework`
 Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
 ![EditTaskSequenceDiagramstate0](images/EditTaskDiagram/EditTaskSequenceDiagramState0.png)
 
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
 Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
-task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
+task name, datetime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
 For each prefix in the command, it will set the value to `editTaskDescriptor`.
 ![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
 
