@@ -19,10 +19,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -95,9 +95,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Username updatedUsername = editPersonDescriptor.getUsername().orElse(personToEdit.getUsername());
+        GitUsername updatedGitUsername = editPersonDescriptor.getUsername().orElse(personToEdit.getUsername());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedUsername, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedGitUsername, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Username username;
+        private GitUsername gitUsername;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setUsername(toCopy.username);
+            setUsername(toCopy.gitUsername);
             setTags(toCopy.tags);
         }
 
@@ -147,7 +147,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, username, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gitUsername, tags);
         }
 
         public void setName(Name name) {
@@ -175,12 +175,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setUsername(Username username) {
-            this.username = username;
+        public void setUsername(GitUsername gitUsername) {
+            this.gitUsername = gitUsername;
         }
 
-        public Optional<Username> getUsername() {
-            return Optional.ofNullable(username);
+        public Optional<GitUsername> getUsername() {
+            return Optional.ofNullable(gitUsername);
         }
 
         /**

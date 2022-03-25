@@ -10,8 +10,8 @@ and allows the professors to document the tasks that they need to do.
 
 Features added on top of AB3.
 
-Feature | Description 
---- | --- 
+Feature | Description
+--- | ---
 Create Task | Add and schedule (*recurring*) tasks on NUS Classes easily with a single command.
 Update Task | Edit tasks which are outdated or when mistakes were made.
 Delete Task | Delete tasks which are unnecessary or when you are done with it.

@@ -221,7 +221,7 @@ Once user parse in the command, it will be handled by `AddressBookParser#parseCo
 
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
 Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
-task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field. 
+task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
 For each prefix in the command, it will set the value to `editTaskDescriptor`.
 ![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
 
@@ -258,7 +258,7 @@ Step 1. The user will enter the command `view 1` to view the people associated w
 
 Step 2. The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list 
+Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
 by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
 Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to

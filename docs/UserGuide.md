@@ -35,7 +35,7 @@ NUS Classes is a **desktop app for managing contacts, optimized for use via a Co
 
    * **`clear`** : Deletes all contacts.
 
-    * **`exit`** : Exits the app.
+   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -80,12 +80,12 @@ Format: `help`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/USERNAME t/TAGS`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME t/TAGS`
 
 Examples:
 
-* `addc n/john p/12345678 e/john@gmail.com t/Schoolmate`
-* `addc n/mary p/87654321 e/mary@gmail.com t/Teammate Classmate`
+* `addc n/john p/12345678 e/john@gmail.com u/john123 t/Schoolmate`
+* `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate Classmate`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 You can add multiple tags to a contact. Just put t/ before every tag!
@@ -133,23 +133,6 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Filtering tasks by name: `filter`
-
-Filters out tasks whose task names contain any of the given keywords.
-
-Format: `filter KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `eat` will match `Eat`
-* The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
-* Only the name is searched.
-* Only full words will be matched e.g. `Apples` will not match `Apple`
-* Tasks matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
-
-Examples:
-* `filter apple` returns `Buy apple` and `Make apple juice`
-* `filter orange pear` returns `Buy orange`, `Buy pear`<br>
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -173,7 +156,7 @@ Format: `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/P
 Examples:
 * `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
 * `addt tn/Consultation dt/19-03-2022 1500, 19-03-2022 1600` Adds a task called Consultation taking place from `19th March 2022 3-4pm`
-* `addt tn/CS2103 Lecture dt/19-03-2022 1500, 19-03-2022 1600 z/https://nus-sg.zoom.us…​ r/weekly 12` 
+* `addt tn/CS2103 Lecture dt/19-03-2022 1500, 19-03-2022 1600 z/https://nus-sg.zoom.us…​ r/weekly 12`
 Adds a task called CS2103 Lecture taking place from `19th March 2022 3-4pm` that occurs `weekly` for the next `12 weeks` with the `meeting link`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -185,7 +168,7 @@ There cannot be an already existing tag with the same name; tags must be unique.
 
 </div>
 
-### Delete a task: `deletet` 
+### Delete a task: `deletet`
 
 Deletes the specified task from the task list.
 
@@ -203,6 +186,8 @@ Examples:
 ### Editing a task: `updatet`
 Edit and updates an existing task in the task list.
 
+Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
+
 * Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -212,10 +197,6 @@ Examples:
 * `updatet 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
 * `updatet 1 dt/2022-12-12 1200, 2022-12-12 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.`
 
-Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
-
-
-
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 If there's no need to change a certain field you can leave it out!<br>
 :bulb: **Tip** *[, ENDDATETIME] is optional.
@@ -224,6 +205,8 @@ If there's no need to change a certain field you can leave it out!<br>
 ### Assigning a contact to a task: `assign`
 Assigns a person in the contact list to a task.
 
+Format: `assign INDEX p/ PERSONINDEX`
+
 * Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -231,6 +214,8 @@ Examples:
 
 ### Unassigning a contact from a task: `unassign`
 Unassigns a person in the contact list from a task.
+
+Format: `unassign INDEX p/ PERSONINDEX`
 
 * Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
 * If the person is not already assigned to the task, the operation will fail.
@@ -251,6 +236,23 @@ Format: `view INDEX`
 
 Examples:
 * `view 1` will display all contacts assigned to the 1st task in the task list.
+
+### Filtering tasks by name: `filter`
+
+Filters out tasks whose task names contain any of the given keywords.
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `eat` will match `Eat`
+* The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
+* Only the name is searched.
+* Only full words will be matched e.g. `Apples` will not match `Apple`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
+
+Examples:
+* `filter apple` returns `Buy apple` and `Make apple juice`
+* `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
 
 ### Clearing all entries : `clear`
@@ -292,14 +294,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                      |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**    | `clear`                                                                                                                                                               |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Remove**   | `remove tn/TASKNAME cn/CONTACTNAME`<br> e.g., `remove tn/taskname cn/john`                                                                                            |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**     | `list`                                                                                                                                                                |
-| **Tag Task** | `tag [tn/TASKNAME] [tg/INDEX]` e.g., `tag tn/attend meeting @utown tg/1`                                                                                              |
-| **Help**     | `help`                                                                                                                                                                |
+| Action                                | Format, Examples                                                                                                                                           |
+|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
+| **list**                              | `list`                                                                                                                                                     |
+| **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                            |
+ | **Find Contact**                      | `find KEYWORD [MORE_KEYWORDS]...`                                                                                                                          |
+| **Delete**                            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                        |
+| **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                           |
+| **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/PERIOD RECURRENCE]`                                                                     |
+| **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
+| **Update Task**                       | `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                          |
+| **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
+| **Unassign contact <br> From Task**   | `unassign INDEX p/PERSONINDEX`                                                                                                                             |
+| **View contacts<br>Assigned to Task** | `view INDEX`                                                                                                                                               |
+| **Filter**                            | `filter KEYWORD [MORE_KEYWORDS]`                                                                                                                           |
+| **Clear**                             | `clear`                                                                                                                                                    |
+| **Exit**                              | `exit`                                                                                                                                                     |
