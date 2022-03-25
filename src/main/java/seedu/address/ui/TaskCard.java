@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import javafx.event.ActionEvent;
@@ -53,13 +54,38 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
+
         name.setText(task.getName());
+        LocalDateTime taskDeadline = task.getDateTime();
+        setTaskColor(taskDeadline);
+
         date.setText("Due: " + task.getDateTimeString());
 
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+        setLink();
+    }
+
+    public void setTaskColor(LocalDateTime taskDateTime) {
+        LocalDateTime todayDate = LocalDateTime.now();
+        if (taskDateTime.isBefore(todayDate)) {
+            id.getStyleClass().add("cell_big_label_late");
+            name.getStyleClass().add("cell_big_label_late");
+            date.getStyleClass().add("cell_small_label_late");
+        } else if (taskDateTime.isBefore(todayDate.minusDays(3))) {
+            id.getStyleClass().add("cell_big_label_soon");
+            name.getStyleClass().add("cell_big_label_soon");
+            date.getStyleClass().add("cell_small_label_soon");
+        } else {
+            id.getStyleClass().add("cell_big_label");
+            name.getStyleClass().add("cell_big_label");
+            date.getStyleClass().add("cell_small_label");
+        }
+    }
+
+    public void setLink() {
         if (task.getLink().toString() != "") {
             link.setText(task.getLink().toString());
 
@@ -69,7 +95,7 @@ public class TaskCard extends UiPart<Region> {
                     try {
                         Desktop.getDesktop().browse(new URI(link.getText()));
                     } catch (URISyntaxException | IOException e) {
-                        link.setText(task.getLink().toString() + " INVALID LINK");
+                        link.getStyleClass().add("cell_small_hyperlink_invalid");
                     }
                 }
             });
