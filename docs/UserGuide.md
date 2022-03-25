@@ -6,7 +6,30 @@ title: User Guide
 NUS Classes is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUS Classes can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+* [Quick Start](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#quick-start)
+* [Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#features)
+    * [Help](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#viewing-help--help)
+    * [Contact Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#contact-features)
+        * [Adding a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#adding-a-person-addc)
+        * [Listing all persons](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#listing-all-persons--list)
+        * [Editing a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-a-person--edit)
+        * [Locating persons by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#locating-persons-by-name-find)
+        * [Deleting a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-a-person--delete)
+    * [Task Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#task-features)
+        * [Adding a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#adding-a-task-addt)
+        * [Deleting a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-a-task-deletet)
+        * [Updating a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#Updating-a-task-updatet)
+        * [Assigning a contact to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#assigning-a-contact-to-a-task-assign)
+        * [Unassigning a contact from a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#unassigning-a-contact-from-a-task-unassign)
+        * [Viewing contacts assigned to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#viewing-contacts-assigned-to-a-task-view)
+        * [Filtering tasks by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#filtering-tasks-by-name-filter)
+    * [Other Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#other-features)
+        * [Clearing all entires](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#clearing-all-entries--clear)
+        * [Exiting the program](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#exiting-the-program--exit)
+        * [Saving the data](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#saving-the-data)
+        * [Editing the data file](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-the-data-file)
+* [FAQ](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#faq)
+* [Command Summary](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -16,12 +39,12 @@ NUS Classes is a **desktop app for managing contacts, optimized for use via a Co
 
 1. Download the latest `nusclasses.jar` from [here](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your NUS Classes manager.
+1. Copy the file to the folder you want to use as the _main folder_ for your NUS Classes manager.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all contacts.
@@ -75,6 +98,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+##Contact Features
 
 ### Adding a person: `addc`
 
@@ -85,7 +109,7 @@ Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME t/TAGS`
 Examples:
 
 * `addc n/john p/12345678 e/john@gmail.com u/john123 t/Schoolmate`
-* `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate Classmate`
+* `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate t/Classmate`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 You can add multiple tags to a contact. Just put t/ before every tag!
@@ -141,50 +165,58 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be a positive integer 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+##Task Features
+
 ### Adding a task: `addt`
 
 Adds a task for a datetime with a tag.
 
-Format: `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/PERIOD RECURRENCE]`
+Format: `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
 
+Note: `INTERVAL` refers to the number of days for another recurrence of the task to occur: </br>e.g. `INTERVAL` of 5 for a task on 01-01-2022 would next occur on 05-01-2022.
+
+Note: `RECURRENCE` refers to how many times the task is repeated: </br> e.g. `RECURRENCE` of 5 with an `INTERVAL` of 7 means that the task repeats weekly for 5 weeks.
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip** For `INTERVAL`, the values `daily`,`weekly`,`monthly`, `quarterly` and `annually` are accepted.
+</div>
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip** The format for TIME is in dd-mm-yyyy hhmm.
+</div>
 Examples:
 * `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
 * `addt tn/Consultation dt/19-03-2022 1500, 19-03-2022 1600` Adds a task called Consultation taking place from `19th March 2022 3-4pm`
 * `addt tn/CS2103 Lecture dt/19-03-2022 1500, 19-03-2022 1600 z/https://nus-sg.zoom.us…​ r/weekly 12`
 Adds a task called CS2103 Lecture taking place from `19th March 2022 3-4pm` that occurs `weekly` for the next `12 weeks` with the `meeting link`.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The format for TIME is in dd-mm-yyyy hhmm.
-</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 There cannot be an already existing tag with the same name; tags must be unique.
 
 </div>
 
-### Delete a task: `deletet`
+### Deleting a task: `deletet`
 
 Deletes the specified task from the task list.
 
 Format: `deletet 1`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be a positive integer 1, 2, 3, …​
 
 Examples:
 * `deletet 1` Deletes the task at index 1.
 * `deletet 2` Deletes the task at index 2.
 
 
-### Editing a task: `updatet`
-Edit and updates an existing task in the task list.
+### Updating a task: `updatet`
+Updates an existing task in the task list.
 
 Format: `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
 
@@ -199,7 +231,7 @@ Examples:
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 If there's no need to change a certain field you can leave it out!<br>
-:bulb: **Tip** *[, ENDDATETIME] is optional.
+:bulb: **Tip** The `ENDDATETIME` field is optional
 </div>
 
 ### Assigning a contact to a task: `assign`
@@ -254,6 +286,7 @@ Examples:
 * `filter apple` returns `Buy apple` and `Make apple juice`
 * `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
+##Other Features
 
 ### Clearing all entries : `clear`
 
@@ -302,7 +335,7 @@ _Details coming soon ..._
  | **Find Contact**                      | `find KEYWORD [MORE_KEYWORDS]...`                                                                                                                          |
 | **Delete**                            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                        |
 | **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                           |
-| **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/PERIOD RECURRENCE]`                                                                     |
+| **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
 | **Update Task**                       | `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                          |
 | **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
