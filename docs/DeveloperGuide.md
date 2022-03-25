@@ -161,13 +161,13 @@ To implement this, upon every `DeleteCommand` execution, we call the `TaskList::
 
 Design considerations:
 
-Aspect: how relevant tasks are updated when a person is removed from the address book
+**Aspect:** how relevant tasks are updated when a person is removed from the address book
 
-* Alternative 1 (current choice): Iterate through all tasks to remove the relevant person.
+* **Alternative 1 (current choice):** Iterate through all tasks to remove the relevant person.
   * Pros: Easy to implement.
   * Cons: _May_ have performance issues given a large list of tasks
 
-* Alternative 2: Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
+* **Alternative 2:** Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
   * Pros: _May_ see some performance benefit (not necessary to iterate through all the tasks upon each `DeleteCommand`)
   * Cons: More fragile code due to circular dependency (`Person` depends on `Task`). Not often that a Professor will delete a contact (student or tutor) in the course of a module.
 
@@ -176,7 +176,7 @@ Delete task feature implements the following operations:
 * `DeleteTaskCommandParser#parse()` — Parse the index number from user command to `DeleteTaskCommand` to get the task to be deleted.
 * `DeleteTaskCommand#execute()` — Execute `ModelManager#deleteTask()` by parsing in the task to be deleted.
 * `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTask()` by parsing in the task to be deleted.
-* `TaskList#deleteCurrTaskk()` — Deletes the task from the TaskList stored here.
+* `TaskList#deleteCurrTask()` — Deletes the task from the TaskList stored here.
 
 Step 1: User will enter the command `deletet 1` to delete the first task.
 Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
@@ -188,8 +188,8 @@ The Sequence Diagram below illustrates the interactions of how the delete task f
 </div>
 
 Step 2: Outcome after executing `DeleteTaskCommand`
-* Outcome 1: Successfully delete task.
-* Outcome 2: Throw CommandException due to index out of range.
+
+Execution flow of Activity Diagram:
 
 ![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
 
@@ -269,7 +269,7 @@ The following sequence diagram shows how the view task operation works:
 
 #### Design considerations:
 
-**Aspect: How should the results be displayed in the *Contact* column when no one is associated with the task:**
+**Aspect:** How should the results be displayed in the *Contact* column when no one is associated with the task:
 
 * **Alternative 1 (current choice):** Continue displaying the current list of people.
   * Pros: Reduce commands required by user to populate and use the column for input.
