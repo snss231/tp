@@ -269,11 +269,11 @@ Format: `view INDEX`
 Examples:
 * `view 1` will display all contacts assigned to the 1st task in the task list.
 
-### Filtering tasks by name: `filter`
+### Filtering tasks by name: `findt`
 
 Filters out tasks whose task names contain any of the given keywords.
 
-Format: `filter KEYWORD [MORE_KEYWORDS]`
+Format: `findt KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `eat` will match `Eat`
 * The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
@@ -283,8 +283,8 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
   e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
 
 Examples:
-* `filter apple` returns `Buy apple` and `Make apple juice`
-* `filter orange pear` returns `Buy orange`, `Buy pear`<br>
+* `findt apple` returns `Buy apple` and `Make apple juice`
+* `findt orange pear` returns `Buy orange`, `Buy pear`<br>
 
 # Other Features
 
