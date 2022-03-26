@@ -224,4 +224,20 @@ public class ModelManager implements Model {
         requireNonNull(task);
         return taskList.hasTask(task);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void markTask(Task task) {
+        taskList.markTask(task);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void unmarkTask(Task task) {
+        taskList.unmarkTask(task);
+    }
 }

@@ -286,6 +286,34 @@ Examples:
 * `filter apple` returns `Buy apple` and `Make apple juice`
 * `filter orange pear` returns `Buy orange`, `Buy pear`<br>
 
+### Mark a task as done: `mark`
+
+Marks the specified task from the task list as done.
+
+Format: `mark INDEX`
+
+* Marks the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3, …​
+* Icon will display a green tick to show the task is marked.
+
+Examples:
+* `mark 1` marks the task at index 1<br>
+
+### Unmark a task as not done: `unmark`
+
+Unmarks the specified task from the task list as not done.
+
+Format: `unmark INDEX`
+
+* Unmarks the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3, …​
+* Icon will display a empty white box to show the task is unmarked.
+
+Examples:
+* `unmark 1` unmarks the task at index 1<br>
+
 # Other Features
 
 ### Clearing all entries : `clear`

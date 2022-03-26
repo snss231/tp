@@ -48,6 +48,7 @@ public class AddTaskCommand extends Command {
     private final Link link;
     private final int recurrence;
     private final int period;
+    private final boolean isTaskMarkDone;
 
     /**
      * Constructor for AddTaskCommand. Takes in 4 parameters, taskName, dateTime, tags
@@ -67,6 +68,7 @@ public class AddTaskCommand extends Command {
         this.link = link;
         this.recurrence = 0;
         this.period = 0;
+        this.isTaskMarkDone = false;
     }
 
     /**
@@ -90,16 +92,17 @@ public class AddTaskCommand extends Command {
         this.link = link;
         this.recurrence = recurrence;
         this.period = period;
+        this.isTaskMarkDone = false;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Task taskToBeAdded = new Task(taskName, dateTime, tags, link);
+        Task taskToBeAdded = new Task(taskName, dateTime, tags, link, isTaskMarkDone);
         model.getTaskList().addTask(taskToBeAdded);
         for (int i = 1; i < period; i++) {
             LocalDateTime temp = dateTime.plusDays(i * recurrence);
-            taskToBeAdded = new Task(taskName, temp, tags, link);
+            taskToBeAdded = new Task(taskName, temp, tags, link, isTaskMarkDone);
             model.getTaskList().addTask(taskToBeAdded);
         }
         return new CommandResult(ADD_TASK_SUCCESS);

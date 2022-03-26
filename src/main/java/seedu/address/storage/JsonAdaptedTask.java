@@ -23,13 +23,15 @@ public class JsonAdaptedTask {
     private final String dateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String link;
+    private final String isTaskMarkDone;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("link") String link) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("link") String link,
+                           @JsonProperty("isTaskMarkDone") String isTaskMarkDone) {
         this.name = name;
         this.dateTime = dateTime;
         this.link = link;
@@ -37,6 +39,7 @@ public class JsonAdaptedTask {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isTaskMarkDone = isTaskMarkDone;
     }
 
     /**
@@ -49,6 +52,7 @@ public class JsonAdaptedTask {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isTaskMarkDone = String.valueOf(source.isTaskMark());
     }
 
     /**
@@ -73,7 +77,8 @@ public class JsonAdaptedTask {
         Set<Tag> modelTag = new HashSet<>(taskTags);
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         Link modelLink = new Link(link);
+        boolean modelIsTaskMarkDone = Boolean.parseBoolean(isTaskMarkDone);
 
-        return new Task(name, modelDateTime, modelTag, modelLink);
+        return new Task(name, modelDateTime, modelTag, modelLink, modelIsTaskMarkDone);
     }
 }

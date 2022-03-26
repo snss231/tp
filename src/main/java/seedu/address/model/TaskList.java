@@ -130,4 +130,41 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     public void removePerson(Person target) {
         internalList.forEach(task -> task.removePerson(target));
     }
+
+    /**
+     * Marks the task as completed and update the task list.
+     *
+     * @param task the task to be marked.
+     */
+    public void markTask(Task task) {
+        requireAllNonNull(task);
+
+        int index = internalList.indexOf(task);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        Task newTask = internalList.get(index);
+        newTask.markTask();
+        setTask(task, newTask);
+    }
+
+    /**
+     * Unmarks the task as not complete and update the task list.
+     *
+     * @param task the task to be unmarked.
+     */
+    public void unmarkTask(Task task) {
+        requireAllNonNull(task);
+
+        int index = internalList.indexOf(task);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        Task newTask = internalList.get(index);
+        newTask.unmarkTask();
+        setTask(task, newTask);
+    }
+
 }

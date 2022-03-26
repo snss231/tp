@@ -141,4 +141,18 @@ public interface Model {
      */
     boolean hasTask(Task task);
 
+    /**
+     * Marks the given task as completed.
+     *
+     * @param task the task to be marked.
+     */
+    void markTask(Task task);
+
+    /**
+     * Unmarks the given task as not complete.
+     *
+     * @param task the task to be unmarked.
+     */
+    void unmarkTask(Task task);
+
 }

@@ -92,8 +92,9 @@ public class EditTaskCommand extends Command {
         LocalDateTime updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
         Set<Tag> updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         Link link = editTaskDescriptor.getLink().orElse(taskToEdit.getLink());
+        boolean isTaskMarkDone = taskToEdit.isTaskMark();
 
-        return new Task(updatedName, updatedDate, updatedTag, link);
+        return new Task(updatedName, updatedDate, updatedTag, link, isTaskMarkDone);
     }
 
     @Override
