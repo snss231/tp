@@ -44,13 +44,13 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
-        alertWindow = new AlertWindow();
+        // alertWindow = new AlertWindow();
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            taskToAlert();
+            // taskToAlert();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

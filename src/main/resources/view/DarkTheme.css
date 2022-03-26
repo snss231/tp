@@ -119,26 +119,52 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
-    -fx-text-fill: white;
-}
-
 .cell_big_label {
     -fx-font-family: "Roboto";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
+}
+
+.cell_big_label_late {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 16px;
+    -fx-text-fill: #BC544B;
+}
+
+.cell_big_label_soon {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 16px;
+    -fx-text-fill: #ccad10;
 }
 
 .cell_small_label {
     -fx-font-family: "Roboto";
     -fx-font-size: 12px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
+}
+
+.cell_small_label_late {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12px;
+    -fx-text-fill: #BC544B;
+}
+
+.cell_small_label_soon {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12px;
+    -fx-text-fill: #ccad10;
 }
 
 .cell_small_hyperlink {
     -fx-font-family: "Roboto";
     -fx-font-size: 12px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #0645AD;
+}
+
+.cell_small_hyperlink_invalid {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFCCCC;
 }
 
 .stack-pane {

@@ -108,7 +108,7 @@ public class ParserUtil {
      * @return GitUsername object created using user input
      * @throws ParseException If gitUsername is not in alphanumeric format
      */
-    public static GitUsername parseUsername(String gitUsername) throws ParseException {
+    public static GitUsername parseGitUsername(String gitUsername) throws ParseException {
         requireNonNull(gitUsername);
         String trimmedUsername = gitUsername.trim();
         if (!GitUsername.isValidId(trimmedUsername)) {

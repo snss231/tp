@@ -11,9 +11,9 @@ import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
  * Finds and lists all tasks in task storage whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterCommand extends Command {
+public class FindTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "findt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -22,7 +22,7 @@ public class FilterCommand extends Command {
 
     private final TaskNameContainsKeywordsPredicate predicate;
 
-    public FilterCommand(TaskNameContainsKeywordsPredicate predicate) {
+    public FindTaskCommand(TaskNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -37,7 +37,7 @@ public class FilterCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterCommand // instanceof handles nulls
-                && predicate.equals(((FilterCommand) other).predicate)); // state check
+                || (other instanceof FindTaskCommand // instanceof handles nulls
+                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 }

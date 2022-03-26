@@ -116,17 +116,17 @@ You can add multiple tags to a contact. Just put t/ before every tag!
 
 </div>
 
-### Listing all persons : `list`
+### Listing all persons : `listc`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `listc`
 
-### Editing a person : `edit`
+### Editing a person : `editc`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -136,14 +136,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name: `findc`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findc KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -153,23 +153,23 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `findc John` returns `john` and `John Doe`
+* `findc alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person : `deletec`
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `deletec INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listc` followed by `deletec 2` deletes the 2nd person in the address book.
+* `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
 
 # Task Features
 ### Listing all tasks : `listt`
@@ -274,11 +274,11 @@ Format: `view INDEX`
 Examples:
 * `view 1` will display all contacts assigned to the 1st task in the task list.
 
-### Filtering tasks by name: `filter`
+### Filtering tasks by name: `findt`
 
 Filters out tasks whose task names contain any of the given keywords.
 
-Format: `filter KEYWORD [MORE_KEYWORDS]`
+Format: `findt KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `eat` will match `Eat`
 * The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
@@ -288,8 +288,8 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
   e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
 
 Examples:
-* `filter apple` returns `Buy apple` and `Make apple juice`
-* `filter orange pear` returns `Buy orange`, `Buy pear`<br>
+* `findt apple` returns `Buy apple` and `Make apple juice`
+* `findt orange pear` returns `Buy orange`, `Buy pear`<br>
 
 # Other Features
 
@@ -335,18 +335,17 @@ _Details coming soon ..._
 | Action                                | Format, Examples                                                                                                                                           |
 |---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
-| **list**                              | `list`                                                                                                                                                     |
-| **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                            |
- | **Find Contact**                      | `find KEYWORD [MORE_KEYWORDS]...`                                                                                                                          |
-| **Delete**                            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                        |
-| **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                           |
+| **list**                              | `listc`                                                                                                                                                    |
+| **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                           |
+ | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
+| **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
 | **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
 | **listt**                             | `listt`                                                                                                                                                     |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
-| **Update Task**                       | `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                          |
+| **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
 | **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
 | **Unassign contact <br> From Task**   | `unassign INDEX p/PERSONINDEX`                                                                                                                             |
 | **View contacts<br>Assigned to Task** | `view INDEX`                                                                                                                                               |
-| **Filter**                            | `filter KEYWORD [MORE_KEYWORDS]`                                                                                                                           |
+| **Find Task**                         | `findt KEYWORD [MORE_KEYWORDS]`                                                                                                                            |
 | **Clear**                             | `clear`                                                                                                                                                    |
 | **Exit**                              | `exit`                                                                                                                                                     |
