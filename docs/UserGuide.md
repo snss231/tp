@@ -172,6 +172,11 @@ Examples:
 * `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
 
 # Task Features
+### Listing all tasks : `listt`
+
+Shows a list of all tasks in the address book.
+
+Format: `listt`
 
 ### Adding a task: `addt`
 
@@ -335,6 +340,7 @@ _Details coming soon ..._
  | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
 | **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
 | **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
+| **listt**                             | `listt`                                                                                                                                                     |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
 | **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
 | **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
