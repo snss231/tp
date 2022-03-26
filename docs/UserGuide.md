@@ -126,7 +126,7 @@ Format: `listc`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
+Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -330,17 +330,17 @@ _Details coming soon ..._
 | Action                                | Format, Examples                                                                                                                                           |
 |---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
-| **list**                              | `list`                                                                                                                                                     |
-| **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                            |
- | **Find Contact**                      | `find KEYWORD [MORE_KEYWORDS]...`                                                                                                                          |
-| **Delete**                            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                        |
-| **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                           |
+| **list**                              | `listc`                                                                                                                                                    |
+| **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                           |
+ | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
+| **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
+| **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                          |
 | **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
-| **Update Task**                       | `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                          |
+| **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
 | **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
 | **Unassign contact <br> From Task**   | `unassign INDEX p/PERSONINDEX`                                                                                                                             |
 | **View contacts<br>Assigned to Task** | `view INDEX`                                                                                                                                               |
-| **Filter**                            | `filter KEYWORD [MORE_KEYWORDS]`                                                                                                                           |
+| **Find Task**                         | `findt KEYWORD [MORE_KEYWORDS]`                                                                                                                            |
 | **Clear**                             | `clear`                                                                                                                                                    |
 | **Exit**                              | `exit`                                                                                                                                                     |
