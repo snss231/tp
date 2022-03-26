@@ -27,7 +27,7 @@ import seedu.address.model.task.Task;
  */
 public class EditTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "updatet";
+    public static final String COMMAND_WORD = "editt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task "
             + "by the index number used in the displayed task list. "
@@ -42,7 +42,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_TAG + "Homework";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to update must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "A field has to be edited at least.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in your task list.";
 
     private final Index index;
@@ -88,9 +88,9 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        LocalDateTime updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
-        Set<Tag> updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        String editName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        LocalDateTime editdDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
+        Set<Tag> editTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         Link link = editTaskDescriptor.getLink().orElse(taskToEdit.getLink());
         boolean isTaskMarkDone = taskToEdit.isTaskMark();
 

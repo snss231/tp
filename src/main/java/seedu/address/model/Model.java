@@ -68,7 +68,7 @@ public interface Model {
      * Returns true if a person with the same gitUsername as {@code gitUsername} exists in the address book.
      *
      * @param gitUsername
-     * @return
+     * @return Whether username exists
      */
     boolean hasUsername(GitUsername gitUsername);
 
