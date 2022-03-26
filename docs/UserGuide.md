@@ -334,7 +334,6 @@ _Details coming soon ..._
 | **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                           |
  | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
 | **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
-| **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                          |
 | **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
 | **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
