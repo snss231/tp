@@ -341,6 +341,7 @@ _Details coming soon ..._
 | **Delete**                            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                        |
 | **Edit Contact**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                           |
 | **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
+| **listt**                             | `listt`                                                                                                                                                     |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
 | **Update Task**                       | `updatet INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                          |
 | **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
