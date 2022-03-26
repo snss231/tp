@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.text.TextFlow?>
+
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -27,7 +27,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$taskname" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$taskname" />
       </HBox>
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
       <Hyperlink fx:id="link" styleClass="cell_small_hyperlink"></Hyperlink>
