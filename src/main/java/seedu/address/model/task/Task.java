@@ -47,6 +47,7 @@ public class Task {
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param tags Tags for the tasks
      * @param link Link to be added to the task
+     * @param isMarkDone true if task is done, else false
      */
     public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link,
                 boolean isMarkDone) {
