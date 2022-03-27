@@ -77,7 +77,7 @@ public class SampleDataUtil {
             new Task("CS2103T Lecture",
                     LocalDateTime.of(2022, 4, 15, 14, 0),
                     getTagSet("Week 13 Lecture"),
-                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09")),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"), false),
             new Task("Consultation with students", LocalDateTime.now().plusDays(1),
                     getTagSet("Consultation"),
                     new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
