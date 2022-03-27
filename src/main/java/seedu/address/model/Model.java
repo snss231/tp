@@ -21,6 +21,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
+    /** {@code Predicate} that evaluate to false if task is unmark */
+    Predicate<Task> PREDICATE_SHOW_ALL_UNMARK_TASKS = task -> !task.isTaskMark();
+
+    /** {@code Predicate} that evaluate to true if task is mark */
+    Predicate<Task> PREDICATE_SHOW_ALL_MARK_TASKS = task -> task.isTaskMark();
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
