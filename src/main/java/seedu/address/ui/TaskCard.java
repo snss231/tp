@@ -108,8 +108,6 @@ public class TaskCard extends UiPart<Region> {
         if (task.getLink().toString() != "") {
             linkLabel.setText("Link:");
             link.setText(task.getLink().toString());
-            link.setWrapText(true);
-
             link.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
