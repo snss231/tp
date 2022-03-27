@@ -31,7 +31,17 @@
         <Label fx:id="name" text="\$taskname" />
       </HBox>
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-      <Hyperlink fx:id="link" styleClass="cell_small_hyperlink" />
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <Label fx:id="linkLabel" styleClass="cell_small_label">
+                   <minWidth>
+                       <!-- Ensures that the label text is never truncated -->
+                       <Region fx:constant="USE_PREF_SIZE" />
+                   </minWidth>
+               </Label>
+            <Hyperlink fx:id="link" styleClass="cell_small_hyperlink" />
+            </children>
+         </HBox>
       <FlowPane fx:id="tags" />
     </VBox>
       <rowConstraints>

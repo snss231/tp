@@ -54,6 +54,8 @@ public class TaskCard extends UiPart<Region> {
     private Hyperlink link;
     @FXML
     private ImageView markImage;
+    @FXML
+    private Label linkLabel;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -104,7 +106,9 @@ public class TaskCard extends UiPart<Region> {
 
     public void setLink() {
         if (task.getLink().toString() != "") {
+            linkLabel.setText("Link:");
             link.setText(task.getLink().toString());
+            link.setWrapText(true);
 
             link.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
