@@ -31,7 +31,7 @@
         <Label fx:id="name" text="\$taskname" />
       </HBox>
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-         <HBox alignment="CENTER_LEFT" spacing="5">
+         <HBox alignment="CENTER_LEFT">
             <children>
                <Label fx:id="linkLabel" styleClass="cell_small_label">
                    <minWidth>
