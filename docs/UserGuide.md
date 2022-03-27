@@ -224,15 +224,19 @@ There cannot be an already existing tag with the same name; tags must be unique.
 
 Shows a list of all the tasks in the task list as per the specified filtering options. `listt` has the three folowing formats:
 
-Format: `listt all/`
+Format: 
+
+Shows a list of all tasks in the task list.
+
+`listt all/`
 
 Shows a list of tasks that is marked as completed in the task list.
 
-Format: `listt c/`
+`listt c/`
 
 Shows a list of tasks that is not mark as completed in the task list.
 
-Format: `listt nc/`
+`listt nc/`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 Good usage of `listt` will help in keeping track of tasks by status!
