@@ -1,7 +1,4 @@
----
-layout: page
-title: User Guide
----
+#User Guide
 
 NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as 
 adding and editing tasks, finding tasks by date or name, tagging tasks with appropriate tags and marking them as done. It also includes contact management features
@@ -58,14 +55,14 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 1. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all contacts.
+    * **`listc`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to NUS Classes.
+    * **`addc`**`n/John Doe p/98765432 e/johnd@u.nus.edu u/john123 t/Schoolmate` : Adds a contact named `John Doe` to NUS Classes,
+   with email `johnd@u.nus.edu`, Github Username `john123` and tag `Schoolmate`
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`deletec`**`3` : Deletes the 3rd contact shown in the current contact list.
 
-
-   * `remove` `tn/TA meeting cn/john`: Removes the TA meeting task from contact name john.
+   * `assign 1 p/ 2` : Assigns the contact at index 2 to the task at index 1.
 
    * **`clear`** : Clears all contacts from NUS Classes
 
@@ -82,10 +79,10 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addc n/CONTACTNAME`, `CONTACTNAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -105,7 +102,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpmessage.png)
 
 Format: `help`
 
@@ -115,7 +112,7 @@ Format: `help`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME t/TAGS`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]`
 
 Examples:
 
@@ -148,7 +145,8 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
 
 Examples:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-* `editc 1 p/82223333 e/Joseph@comp.nus.edu.sg` Edits the phone number and email address of the 1st person to be `82223333` and `Joseph@comp.nus.edu.sg` respectively. <br>
+* `editc 1 p/82223333 e/Joseph@comp.nus.edu.sg` Edits the phone number and email address of the 1st person to be `82223333` and `Joseph@comp.nus.edu.sg` respectively.
+    <br><br>
     ![Result for 'editc'](images/editcCommandShowcase.png)
     
     
@@ -170,7 +168,8 @@ Format: `findc KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findc John` returns `john` and `John Doe`
 * `findc brian sean` returns `Brian Chow`, `Sean Ng`<br>
-  ![result for 'find brian sean'](images/findcCommandShowcase.png)
+    <br>
+    ![result for 'find brian sean'](images/findcCommandShowcase.png)
 
 ### Deleting a person : `deletec`
 
@@ -185,6 +184,7 @@ Format: `deletec INDEX`
 Examples:
 * `listc` followed by `deletec 2` deletes the 2nd person in NUS Classes.
 * `findc Joseph` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.<br>
+    <br>
     ![result for `deletec 1` part 1](images/deletecCommandShowcase1.png) <br><br>
     ![result for `deletec 1` part 2](images/deletecCommandShowcase2.png)
 
@@ -207,6 +207,7 @@ Note: `RECURRENCE` refers to how many times the task is repeated: </br> e.g. `RE
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip** The format for TIME is in dd-mm-yyyy hhmm.
 </div>
+
 Examples:
 * `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
 * `addt tn/Consultation dt/19-03-2022 1500, 19-03-2022 1600` Adds a task called Consultation taking place from `19th March 2022 3-4pm`
@@ -250,9 +251,12 @@ Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
 Examples:
 * `editt 1 tn/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
 * `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm-1pm. <br>
+    <br>
     ![`editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300`](images/edittCommandShowcase1.png)
 
+
 * `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.` <br>
+    <br>
     ![`editt 1 dt/12-12-2022 1200, 12-12-2022 1400`](images/edittCommandShowcase2.png)
     
 
@@ -278,6 +282,7 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findt with` returns `Consultation with students` and `Meeting with invigilators`
 * `findt TAs lecture` returns `Meeting with TAs` and all recurrences of `CS2103T lecture` <br>
+    <br>
     ![`findt TAs lecture`](images/findtCommandShowcase.png)
 
 ### Assigning a contact to a task: `assign`
@@ -289,6 +294,7 @@ Format: `assign INDEX p/PERSONINDEX`
 
 Examples:
 * `assign 1 p/2` Assigns the 2nd person in the person list to the 1st task in the task list. <br>
+    <br>
     ![`assign 1 p/2](images/assignCommandShowcase.png)
 
 ### Unassigning a contact from a task: `unassign`
@@ -302,7 +308,11 @@ Format: `unassign INDEX p/PERSONINDEX`
 
 Examples:
 * `unassign 1 p/2` Unassigns the 2nd person in the person list from the 1st task in the task list.
+<br>
+<br>
     ![`unassign 1 p/2](images/unassignCommandShowcase.png)
+
+
 ### Viewing contacts assigned to a task: `view`
 
 Display all contacts assigned to a given task.
@@ -315,6 +325,7 @@ Format: `view INDEX`
 
 Examples:
 * `view 2` will display all contacts assigned to the 1st task in the task list. <br>
+    <br>
     ![`view 2`](images/viewtCommandShowcase.png)
 
 
@@ -332,6 +343,7 @@ Format: `mark INDEX`
 
 Examples:
 * `mark 2` marks the task at index 2 as done <br>
+    <br>
     ![`mark 2`](images/marktCommandShowcase.png)
 
 ### Unmark a task as not done: `unmark`
@@ -347,6 +359,7 @@ Format: `unmark INDEX`
 
 Examples:
 * `unmark 2` unmarks the task at index 2 as not done. <br>
+    <br>
     ![`unmark 2`](images/unmarkCommandShowcase.png)
 
 ### Deleting a task: `deletet`
