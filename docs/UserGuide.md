@@ -172,17 +172,17 @@ Examples:
 * `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
 
 # Task Features
-### Listing the tasks : `listt`
+### Listing tasks : `listt`
 
-Shows a list of the all tasks in the address book.
+Shows a list of all the tasks in the address book.
 
 Format: `listt all/`
 
-Shows a list of the tasks that is marked as completed in the address book.
+Shows a list of tasks that is marked as completed in the address book.
 
 Format: `listt c/`
 
-Shows a list of the tasks that is not mark as completed in the address book.
+Shows a list of tasks that is not mark as completed in the address book.
 
 Format: `listt nc/`
 
