@@ -1,4 +1,4 @@
-#User Guide
+# User Guide
 
 NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as 
 adding and editing tasks, finding tasks by date or name, tagging tasks with appropriate tags and marking them as done. It also includes contact management features
