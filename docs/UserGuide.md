@@ -174,15 +174,15 @@ Examples:
 # Task Features
 ### Listing tasks : `listt`
 
-Shows a list of all the tasks in the address book.
+Shows a list of all the tasks in the task list.
 
 Format: `listt all/`
 
-Shows a list of tasks that is marked as completed in the address book.
+Shows a list of tasks that is marked as completed in the task list.
 
 Format: `listt c/`
 
-Shows a list of tasks that is not mark as completed in the address book.
+Shows a list of tasks that is not mark as completed in the task list.
 
 Format: `listt nc/`
 
