@@ -54,6 +54,8 @@ public class TaskCard extends UiPart<Region> {
     private Hyperlink link;
     @FXML
     private ImageView markImage;
+    @FXML
+    private Label linkLabel;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -82,14 +84,17 @@ public class TaskCard extends UiPart<Region> {
             id.getStyleClass().add("cell_big_label_late");
             name.getStyleClass().add("cell_big_label_late");
             date.getStyleClass().add("cell_small_label_late");
+            linkLabel.getStyleClass().add("cell_small_label_late");
         } else if (taskDateTime.isBefore(todayDate.plusDays(3))) {
             id.getStyleClass().add("cell_big_label_soon");
             name.getStyleClass().add("cell_big_label_soon");
             date.getStyleClass().add("cell_small_label_soon");
+            linkLabel.getStyleClass().add("cell_small_label_soon");
         } else {
             id.getStyleClass().add("cell_big_label");
             name.getStyleClass().add("cell_big_label");
             date.getStyleClass().add("cell_small_label");
+            linkLabel.getStyleClass().add("cell_small_label");
         }
     }
 
@@ -104,8 +109,8 @@ public class TaskCard extends UiPart<Region> {
 
     public void setLink() {
         if (task.getLink().toString() != "") {
+            linkLabel.setText("Link:");
             link.setText(task.getLink().toString());
-
             link.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
