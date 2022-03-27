@@ -102,7 +102,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpmessage.png)
+![help message](images/helpMessage.png)
 
 Format: `help`
 
