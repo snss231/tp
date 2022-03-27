@@ -25,7 +25,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Joseph"), new Phone("89993233"), new Email("Joseph@nus.edu.sg"),
-                new GitUsername(""), getTagSet("Colleague", "Lecturer")),
+                new GitUsername("ProfJosephNUS"), getTagSet("Colleague", "Lecturer")),
             new Person(new Name("Example TA"), new Phone("92624417"), new Email("e111111@u.nus.edu"),
                     new GitUsername("TACS2103T"),
                     getTagSet("TA", "T-12")),

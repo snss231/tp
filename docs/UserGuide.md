@@ -5,7 +5,12 @@ title: User Guide
 
 NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as 
 adding and editing tasks, finding tasks by date or name, tagging tasks with appropriate tags and marking them as done. It also includes contact management features
-such as finding contacts, assigning contacts to specific tasks and tagging contacts. NUS Classes is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+such as finding contacts, assigning contacts to specific tasks and tagging contacts. 
+
+Tasks that are overdue and not done are displayed in red, tasks due within a day are displayed in yellow
+and tasks with more than a day are displayed in yellow. Tasks also contain a clickable zoom link, for easy access to lectures/tutorials or zoom meetings.
+
+NUS Classes is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 Using NUS Classes can get your contact management tasks done faster than traditional GUI apps, saving time on otherwise tedious administrative tasks.
 
 * Table of Contents
@@ -21,14 +26,16 @@ Using NUS Classes can get your contact management tasks done faster than traditi
     * [Task Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#task-features)
         * [Adding a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#adding-a-task-addt)
         * [Listing tasks](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#listing-tasks-listt)
-        * [Deleting a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-a-task-deletet)
-        * [Updating a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#Editing-a-task-editt)
+        * [Editing a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-a-task-editt)
+        * [Finding tasks by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#finding-tasks-by-name-findt)
         * [Assigning a contact to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#assigning-a-contact-to-a-task-assign)
         * [Unassigning a contact from a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#unassigning-a-contact-from-a-task-unassign)
         * [Viewing contacts assigned to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#viewing-contacts-assigned-to-a-task-view)
-        * [Finding tasks by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#finding-tasks-by-name-findt)
+        * [Mark a task as done](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#mark-a-task-as-done-mark)
+        * [Unmark a task as not done](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#unmark-a-task-as-not-done-unmark)
+        * [Deleting tasks](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-tasks-deletet)
     * [Other Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#other-features)
-        * [Clearing all entires](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#clearing-all-entries--clear)
+        * [Clearing all contacts](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#clearing-all-contacts--clear)
         * [Exiting the program](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#exiting-the-program--exit)
         * [Saving the data](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#saving-the-data)
         * [Editing the data file](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-the-data-file)
@@ -112,8 +119,8 @@ Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME t/TAGS`
 
 Examples:
 
-* `addc n/john p/12345678 e/john@gmail.com u/john123 t/Schoolmate`
-* `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate t/Classmate`
+* `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
+* `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammate t/Classmate`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 You can add multiple tags to a contact. Just put t/ before every tag!
@@ -140,8 +147,12 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
   specifying any tags after it.
 
 Examples:
-*  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `editc 1 p/82223333 e/Joseph@comp.nus.edu.sg` Edits the phone number and email address of the 1st person to be `82223333` and `Joseph@comp.nus.edu.sg` respectively. <br>
+    ![Result for 'editc'](images/editcCommandShowcase.png)
+    
+    
+
 
 ### Locating persons by name: `findc`
 
@@ -158,8 +169,8 @@ Format: `findc KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `findc John` returns `john` and `John Doe`
-* `findc alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findc brian sean` returns `Brian Chow`, `Sean Ng`<br>
+  ![result for 'find brian sean'](images/findcCommandShowcase.png)
 
 ### Deleting a person : `deletec`
 
@@ -173,7 +184,11 @@ Format: `deletec INDEX`
 
 Examples:
 * `listc` followed by `deletec 2` deletes the 2nd person in NUS Classes.
-* `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
+* `findc Joseph` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.<br>
+    ![result for `deletec 1` part 1](images/deletecCommandShowcase1.png) <br><br>
+    ![result for `deletec 1` part 2](images/deletecCommandShowcase2.png)
+
+
 
 # Task Features
 
@@ -181,7 +196,7 @@ Examples:
 
 Adds a task for a datetime with a tag.
 
-Format: `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
+Format: `addt tn/TASKNAME dt/DATETIME [ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
 
 Note: `INTERVAL` refers to the number of days for another recurrence of the task to occur: </br>e.g. `INTERVAL` of 5 for a task on 01-01-2022 would next occur on 05-01-2022.
 
@@ -223,20 +238,6 @@ Good usage of `listt` will help in keeping track of tasks by status!
 
 </div>
 
-### Deleting a task: `deletet`
-
-Deletes the specified task from the task list.
-
-Format: `deletet 1`
-
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …​
-
-Examples:
-* `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
-* `findt lecture` followed by `deletet 2` lists out all tasks with the keyword `lecture`, then deletes the task at index 2.
-
 ### Editing a task: `editt`
 Edits an existing task in the task list.
 
@@ -247,49 +248,19 @@ Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
 * Existing values will be updated to the input values.
 
 Examples:
-* `editt 1 n/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
-* `editt 2 n/Meeting with Prof Tan dt/2022-12-01 1200` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm.
-* `editt 1 dt/2022-12-12 1200, 2022-12-12 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.`
+* `editt 1 tn/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
+* `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm-1pm. <br>
+    ![`editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300`](images/edittCommandShowcase1.png)
+
+* `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm.` <br>
+    ![`editt 1 dt/12-12-2022 1200, 12-12-2022 1400`](images/edittCommandShowcase2.png)
+    
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 If there's no need to change a certain field you can leave it out!<br>
 :bulb: **Tip** The `ENDDATETIME` field is optional
 </div>
 
-### Assigning a contact to a task: `assign`
-Assigns a person in the contact list to a task.
-
-Format: `assign INDEX p/ PERSONINDEX`
-
-* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `assign 1 p/ 2` Assigns the 2nd person in the person list to the 1st task in the task list.
-
-### Unassigning a contact from a task: `unassign`
-Unassigns a person in the contact list from a task.
-
-Format: `unassign INDEX p/ PERSONINDEX`
-
-* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
-* If the person is not already assigned to the task, the operation will fail.
-* The `view` command can help you quickly identify which contacts are already assigned to a task.
-
-Examples:
-* `unassign 1 p/ 2` Unassigns the 2nd person in the person list from the 1st task in the task list.
-
-### Viewing contacts assigned to a task: `view`
-
-Display all contacts assigned to a given task.
-
-Format: `view INDEX`
-
-* View all the contact assigned to the task located the specified `INDEX`
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `view 1` will display all contacts assigned to the 1st task in the task list.
 
 ### Finding tasks by name: `findt`
 
@@ -305,8 +276,48 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
   e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
 
 Examples:
-* `findt apple` returns `Buy apple` and `Make apple juice`
-* `findt orange pear` returns `Buy orange`, `Buy pear`<br>
+* `findt with` returns `Consultation with students` and `Meeting with invigilators`
+* `findt TAs lecture` returns `Meeting with TAs` and all recurrences of `CS2103T lecture` <br>
+    ![`findt TAs lecture`](images/findtCommandShowcase.png)
+
+### Assigning a contact to a task: `assign`
+Assigns a person in the contact list to a task.
+
+Format: `assign INDEX p/PERSONINDEX`
+
+* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `assign 1 p/2` Assigns the 2nd person in the person list to the 1st task in the task list. <br>
+    ![`assign 1 p/2](images/assignCommandShowcase.png)
+
+### Unassigning a contact from a task: `unassign`
+Unassigns a person in the contact list from a task.
+
+Format: `unassign INDEX p/PERSONINDEX`
+
+* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* If the person is not already assigned to the task, the operation will fail.
+* The `view` command can help you quickly identify which contacts are already assigned to a task.
+
+Examples:
+* `unassign 1 p/2` Unassigns the 2nd person in the person list from the 1st task in the task list.
+    ![`unassign 1 p/2](images/unassignCommandShowcase.png)
+### Viewing contacts assigned to a task: `view`
+
+Display all contacts assigned to a given task.
+
+Format: `view INDEX`
+
+* View all the contact assigned to the task located the specified `INDEX`
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 2` will display all contacts assigned to the 1st task in the task list. <br>
+    ![`view 2`](images/viewtCommandShowcase.png)
+
+
 
 ### Mark a task as done: `mark`
 
@@ -320,7 +331,8 @@ Format: `mark INDEX`
 * Icon will display a green tick to show the task is marked.
 
 Examples:
-* `mark 1` marks the task at index 1<br>
+* `mark 2` marks the task at index 2 as done <br>
+    ![`mark 2`](images/marktCommandShowcase.png)
 
 ### Unmark a task as not done: `unmark`
 
@@ -334,11 +346,32 @@ Format: `unmark INDEX`
 * Icon will display a empty white box to show the task is unmarked.
 
 Examples:
-* `unmark 1` unmarks the task at index 1<br>
+* `unmark 2` unmarks the task at index 2 as not done. <br>
+    ![`unmark 2`](images/unmarkCommandShowcase.png)
+
+### Deleting a task: `deletet`
+
+Deletes the specified task from the task list.
+
+Format: `deletet 1`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
+* `findt lecture` followed by `deletet 2` lists out all tasks with the keyword `lecture`, then deletes the task at index 2. <br>
+    <br> Finding the tasks by keyword `lecture`:
+    ![`findt lecture` followed by `deletet 2`](images/deletettCommandShowcase1.png)
+    <br>
+    <br> Deleting the lecture at index 2 `deletet 2`:
+    ![`deletet 2`](images/deletetCommandShowcase2.png)
+
 
 # Other Features
 
-### Clearing all entries : `clear`
+### Clearing all contacts : `clear`
 
 Clears all contacts from NUS Classes.
 
@@ -385,12 +418,14 @@ _Details coming soon ..._
  | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
 | **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
 | **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
-| **List Tasks**                        | `listt`                                                                                                                                                     |
-| **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
+| **List Tasks**                        | `listt`                                                                                                                                                    |
 | **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
-| **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
+| **Find Task**                         | `findt KEYWORD [MORE_KEYWORDS]`                                                                                                                            |
+| **Assign contact <br> To Task**       | `assign INDEX p/PERSONINDEX`                                                                                                                               |
 | **Unassign contact <br> From Task**   | `unassign INDEX p/PERSONINDEX`                                                                                                                             |
 | **View contacts<br>Assigned to Task** | `view INDEX`                                                                                                                                               |
-| **Find Task**                         | `findt KEYWORD [MORE_KEYWORDS]`                                                                                                                            |
-| **Clear**                             | `clear`                                                                                                                                                    |
+| **Mark Task**                         | `mark INDEX`                                                                                                                                               |
+| **Unmark Task**                       | `unmark INDEX`                                                                                                                                             |
+| **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
+| **Clear all contacts**                | `clear`                                                                                                                                                    |
 | **Exit**                              | `exit`                                                                                                                                                     |
