@@ -19,4 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_GIT_USERNAME = new Prefix("u/");
     public static final Prefix PREFIX_LINK = new Prefix("z/");
     public static final Prefix PREFIX_RECURRING = new Prefix("r/");
+    public static final Prefix PREFIX_LIST_ALL_TASK = new Prefix("all/");
+    public static final Prefix PREFIX_LIST_INCOMPLETE_TASK = new Prefix("nc/");
+    public static final Prefix PREFIX_LIST_COMPLETE_TASK = new Prefix("c/");
 }

@@ -23,7 +23,7 @@ import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
 /**
- * Edits the details of an existing task in the task lsit.
+ * Edits the details of an existing task in the task list.
  */
 public class EditTaskCommand extends Command {
 

@@ -38,5 +38,5 @@
          <RowConstraints />
       </rowConstraints>
   </GridPane>
-   <ImageView fx:id="markImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="markImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
 </HBox>
