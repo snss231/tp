@@ -102,7 +102,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpmessage.png)
+![help message](images/helpmessage2.png)
 
 Format: `help`
 
@@ -194,7 +194,7 @@ Examples:
 
 ### Adding a task: `addt`
 
-Adds a task for a datetime with a tag.
+Adds a task.
 
 Format: `addt tn/TASKNAME dt/DATETIME [ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
 
