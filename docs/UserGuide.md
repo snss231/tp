@@ -3,7 +3,10 @@ layout: page
 title: User Guide
 ---
 
-NUS Classes is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUS Classes can get your contact management tasks done faster than traditional GUI apps.
+NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as 
+adding and editing tasks, finding tasks by date or name, tagging tasks with appropriate tags and marking them as done. It also includes contact management features
+such as finding contacts, assigning contacts to specific tasks and tagging contacts. NUS Classes is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+Using NUS Classes can get your contact management tasks done faster than traditional GUI apps, saving time on otherwise tedious administrative tasks.
 
 * Table of Contents
 * [Quick Start](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#quick-start)
@@ -11,18 +14,19 @@ NUS Classes is a **desktop app for managing contacts, optimized for use via a Co
     * [Help](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#viewing-help--help)
     * [Contact Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#contact-features)
         * [Adding a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#adding-a-person-addc)
-        * [Listing all persons](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#listing-all-persons--list)
-        * [Editing a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-a-person--edit)
-        * [Locating persons by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#locating-persons-by-name-find)
-        * [Deleting a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-a-person--delete)
+        * [Listing all persons](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#listing-all-persons--listc)
+        * [Editing a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-a-person--editc)
+        * [Locating persons by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#locating-persons-by-name-findc)
+        * [Deleting a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-a-person--deletec)
     * [Task Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#task-features)
         * [Adding a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#adding-a-task-addt)
+        * [Listing tasks](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#listing-tasks-listt)
         * [Deleting a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-a-task-deletet)
-        * [Updating a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#Updating-a-task-updatet)
+        * [Updating a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#Editing-a-task-editt)
         * [Assigning a contact to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#assigning-a-contact-to-a-task-assign)
         * [Unassigning a contact from a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#unassigning-a-contact-from-a-task-unassign)
         * [Viewing contacts assigned to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#viewing-contacts-assigned-to-a-task-view)
-        * [Filtering tasks by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#filtering-tasks-by-name-filter)
+        * [Finding tasks by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#finding-tasks-by-name-findt)
     * [Other Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#other-features)
         * [Clearing all entires](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#clearing-all-entries--clear)
         * [Exiting the program](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#exiting-the-program--exit)
@@ -49,14 +53,14 @@ NUS Classes is a **desktop app for managing contacts, optimized for use via a Co
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to NUS Classes.
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
 
    * `remove` `tn/TA meeting cn/john`: Removes the TA meeting task from contact name john.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Clears all contacts from NUS Classes
 
    * **`exit`** : Exits the app.
 
@@ -118,13 +122,13 @@ You can add multiple tags to a contact. Just put t/ before every tag!
 
 ### Listing all persons : `listc`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in NUS Classes.
 
 Format: `listc`
 
 ### Editing a person : `editc`
 
-Edits an existing person in the address book.
+Edits an existing person in NUS Classes.
 
 Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
 
@@ -159,7 +163,7 @@ Examples:
 
 ### Deleting a person : `deletec`
 
-Deletes the specified person from the address book.
+Deletes the specified person from NUS Classes.
 
 Format: `deletec INDEX`
 
@@ -168,23 +172,10 @@ Format: `deletec INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `listc` followed by `deletec 2` deletes the 2nd person in the address book.
+* `listc` followed by `deletec 2` deletes the 2nd person in NUS Classes.
 * `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
 
 # Task Features
-### Listing tasks : `listt`
-
-Shows a list of all the tasks in the task list.
-
-Format: `listt all/`
-
-Shows a list of tasks that is marked as completed in the task list.
-
-Format: `listt c/`
-
-Shows a list of tasks that is not mark as completed in the task list.
-
-Format: `listt nc/`
 
 ### Adding a task: `addt`
 
@@ -213,6 +204,25 @@ There cannot be an already existing tag with the same name; tags must be unique.
 
 </div>
 
+### Listing tasks : `listt`
+
+Shows a list of all the tasks in the task list as per the specified filtering options. `listt` has the three folowing formats:
+
+Format: `listt all/`
+
+Shows a list of tasks that is marked as completed in the task list.
+
+Format: `listt c/`
+
+Shows a list of tasks that is not mark as completed in the task list.
+
+Format: `listt nc/`
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip**
+Good usage of `listt` will help in keeping track of tasks by status!
+
+</div>
+
 ### Deleting a task: `deletet`
 
 Deletes the specified task from the task list.
@@ -224,9 +234,8 @@ Format: `deletet 1`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `deletet 1` Deletes the task at index 1.
-* `deletet 2` Deletes the task at index 2.
-
+* `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
+* `findt lecture` followed by `deletet 2` lists out all tasks with the keyword `lecture`, then deletes the task at index 2.
 
 ### Editing a task: `editt`
 Edits an existing task in the task list.
@@ -282,9 +291,9 @@ Format: `view INDEX`
 Examples:
 * `view 1` will display all contacts assigned to the 1st task in the task list.
 
-### Filtering tasks by name: `findt`
+### Finding tasks by name: `findt`
 
-Filters out tasks whose task names contain any of the given keywords.
+Finds tasks whose task names contain any of the given keywords.
 
 Format: `findt KEYWORD [MORE_KEYWORDS]`
 
@@ -331,7 +340,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all contacts from NUS Classes.
 
 Format: `clear`
 
@@ -343,14 +352,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+NUS Classes data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+NUS Classes data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NUS Classes will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -362,7 +371,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUS Classes home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -371,12 +380,12 @@ _Details coming soon ..._
 | Action                                | Format, Examples                                                                                                                                           |
 |---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
-| **list**                              | `listc`                                                                                                                                                    |
+| **List Contacts**                     | `listc`                                                                                                                                                    |
 | **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                           |
  | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
 | **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
 | **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
-| **listt**                             | `listt`                                                                                                                                                     |
+| **List Tasks**                        | `listt`                                                                                                                                                     |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
 | **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
 | **Assign contact <br> To Task**       | `assign INDEX p/ PERSONINDEX`                                                                                                                              |
