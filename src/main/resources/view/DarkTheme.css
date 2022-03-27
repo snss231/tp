@@ -158,7 +158,7 @@
 .cell_small_hyperlink {
     -fx-font-family: "Roboto";
     -fx-font-size: 12px;
-    -fx-text-fill: #0645AD;
+    -fx-text-fill: #83CDE6;
 }
 
 .cell_small_hyperlink_invalid {
