@@ -25,7 +25,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Joseph"), new Phone("89993233"), new Email("Joseph@nus.edu.sg"),
-                new GitUsername(""), getTagSet("Colleague", "Lecturer")),
+                new GitUsername("ProfJosephNUS"), getTagSet("Colleague", "Lecturer")),
             new Person(new Name("Example TA"), new Phone("92624417"), new Email("e111111@u.nus.edu"),
                     new GitUsername("TACS2103T"),
                     getTagSet("TA", "T-12")),
@@ -67,21 +67,21 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
+            new Task("Meeting with TAs", LocalDateTime.now().minusDays(2),
+                    getTagSet("Discuss tutorials"), new Link(""), true),
+            new Task("Consultation with students", LocalDateTime.now().plusDays(1),
+                    getTagSet("Consultation"),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
+                    false),
             new Task("CS2103T Lecture",
                     LocalDateTime.of(2022, 4, 8, 14, 0),
                     getTagSet("Week 12 Lecture"),
                     new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
                     false),
-            new Task("Meeting with TAs", LocalDateTime.now().minusDays(2),
-                    getTagSet("Discuss tutorials"), new Link(""), false),
             new Task("CS2103T Lecture",
                     LocalDateTime.of(2022, 4, 15, 14, 0),
                     getTagSet("Week 13 Lecture"),
                     new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"), false),
-            new Task("Consultation with students", LocalDateTime.now().plusDays(1),
-                    getTagSet("Consultation"),
-                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
-                    false),
             new Task("Meeting with exam invigilators", LocalDateTime.now().plusWeeks(2) ,
                     getTagSet("Meeting"), new Link(""), false),
             new Task("CS2103T Lecture",
