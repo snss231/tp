@@ -70,22 +70,25 @@ public class SampleDataUtil {
             new Task("CS2103T Lecture",
                     LocalDateTime.of(2022, 4, 8, 14, 0),
                     getTagSet("Week 12 Lecture"),
-                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09")),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
+                    false),
             new Task("Meeting with TAs", LocalDateTime.now().minusDays(2),
-                    getTagSet("Discuss tutorials"), new Link("")),
+                    getTagSet("Discuss tutorials"), new Link(""), false),
             new Task("CS2103T Lecture",
                     LocalDateTime.of(2022, 4, 15, 14, 0),
                     getTagSet("Week 13 Lecture"),
                     new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09")),
             new Task("Consultation with students", LocalDateTime.now().plusDays(1),
                     getTagSet("Consultation"),
-                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09")),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
+                    false),
             new Task("Meeting with exam invigilators", LocalDateTime.now().plusWeeks(2) ,
-                    getTagSet("Meeting"), new Link("")),
+                    getTagSet("Meeting"), new Link(""), false),
             new Task("CS2103T Lecture",
                     LocalDateTime.of(2022, 4, 22, 14, 0),
                     getTagSet("Week 14 Lecture"),
-                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"))
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
+                    false)
         };
     }
 

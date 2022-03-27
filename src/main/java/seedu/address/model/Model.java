@@ -68,7 +68,7 @@ public interface Model {
      * Returns true if a person with the same gitUsername as {@code gitUsername} exists in the address book.
      *
      * @param gitUsername
-     * @return
+     * @return Whether username exists
      */
     boolean hasUsername(GitUsername gitUsername);
 
@@ -140,5 +140,19 @@ public interface Model {
      * Returns true if a task with the same description as {@code task} exists in the task list.
      */
     boolean hasTask(Task task);
+
+    /**
+     * Marks the given task as completed.
+     *
+     * @param task the task to be marked.
+     */
+    void markTask(Task task);
+
+    /**
+     * Unmarks the given task as not complete.
+     *
+     * @param task the task to be unmarked.
+     */
+    void unmarkTask(Task task);
 
 }

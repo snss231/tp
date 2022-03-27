@@ -1,9 +1,0 @@
-#alertMessage, #alertHeaderMessage {
-    -fx-text-fill: white;
-}
-
-#AlertBox {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-pref-height: 200;
-    -fx-pref-width: 400;
-}

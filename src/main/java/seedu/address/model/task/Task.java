@@ -20,6 +20,7 @@ public class Task {
     private List<Person> people;
     private Set<Tag> tags;
     private Link link;
+    private boolean isMarkDone;
 
     /**
      * Constructor for Task.
@@ -29,12 +30,13 @@ public class Task {
      * @param tags Tags for the tasks
      * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link) {
+    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link, boolean isMarkDone) {
         this.name = name;
         this.dateTime = dateTime;
         this.people = new ArrayList<>();
         this.tags = tags;
         this.link = link;
+        this.isMarkDone = isMarkDone;
     }
 
     /**
@@ -45,9 +47,11 @@ public class Task {
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param tags Tags for the tasks
      * @param link Link to be added to the task
+     * @param isMarkDone true if task is done, else false
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link) {
-        this(name, dateTime, tags, link);
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link,
+                boolean isMarkDone) {
+        this(name, dateTime, tags, link, isMarkDone);
         this.people = new ArrayList<>(people);
     }
 
@@ -163,6 +167,27 @@ public class Task {
      */
     public Link getLink() {
         return link;
+    }
+
+    /**
+     * Sets the isMarkDone as true to show that the task is done.
+     */
+    public void markTask() {
+        this.isMarkDone = true;
+    }
+
+    /**
+     * Sets the isMarkDone as false to show that the task is not done.
+     */
+    public void unmarkTask() {
+        this.isMarkDone = false;
+    }
+
+    /**
+     * Returns the status if the task is mark done.
+     */
+    public boolean isTaskMark() {
+        return isMarkDone;
     }
 
     @Override

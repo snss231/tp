@@ -12,6 +12,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -23,6 +25,10 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+
+    // Credit: Image icon taken from https://icons8.com.
+    private static final String TICK_ICON = "/images/tick.png";
+    private static final String UNTICK_ICON = "/images/untick.png";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,6 +52,8 @@ public class TaskCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Hyperlink link;
+    @FXML
+    private ImageView markImage;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -56,9 +64,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
 
         name.setText(task.getName());
-        LocalDateTime taskDeadline = task.getDateTime();
-        setTaskColor(taskDeadline);
-
+        setTaskColor(task.getDateTime());
         date.setText("Due: " + task.getDateTimeString());
 
         task.getTags().stream()
@@ -66,6 +72,8 @@ public class TaskCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         setLink();
+
+        setMarkedImage(task);
     }
 
     public void setTaskColor(LocalDateTime taskDateTime) {
@@ -83,6 +91,15 @@ public class TaskCard extends UiPart<Region> {
             name.getStyleClass().add("cell_big_label");
             date.getStyleClass().add("cell_small_label");
         }
+    }
+
+    public void setMarkedImage(Task task) {
+        if (task.isTaskMark()) {
+            markImage.setImage(new Image(TICK_ICON));
+        } else {
+            markImage.setImage(new Image(UNTICK_ICON));
+        }
+
     }
 
     public void setLink() {
