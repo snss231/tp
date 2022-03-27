@@ -174,7 +174,7 @@ Examples:
 # Task Features
 ### Listing tasks : `listt`
 
-Shows a list of the all tasks in the address book.
+Shows a list of all the tasks in the address book.
 
 Format: `listt all/`
 
