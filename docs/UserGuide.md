@@ -1,42 +1,41 @@
 # User Guide
 
 NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as 
-creating tasks, tagging tasks, assigning contacts to specific tasks and marking a task as complete or incomplete. It also includes contact management features
-such as finding contacts, assigning contacts and tagging contacts. 
+creating tasks, tagging tasks, assigning contacts to tasks, and marking tasks as complete or incomplete. It also includes contact management features such as finding contacts, assigning contacts to specific tasks and tagging contacts. 
 
-NUS Classes also provides a simple alert feature for tasks by displaying tasks in different color based on the urgency of the task. Tasks that are overdue are marked as red, whereas tasks that are nearing deadline is marked as yellow. Tasks also contain a clickable zoom link, for easy access to lectures/tutorials or zoom meetings.
+NUS Classes also provides a simple alert feature for tasks by displaying tasks in different color based on the urgency of the task. Tasks that are overdue are marked as red, whereas, tasks that are nearing deadline are marked as yellow.
 
 NUS Classes is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 Using NUS Classes can get your contact management tasks done faster than traditional GUI apps, saving time on otherwise tedious administrative tasks.
 
 * Table of Contents
-* [Quick Start](#quick-start)
-* [Features](#features)
-    * [Help](#viewing-help--help)
-    * [Contact Features](#contact-features)
-        * [Adding a person](#adding-a-person-addc)
-        * [Listing all persons](#listing-all-persons--listc)
-        * [Editing a person](#editing-a-person--editc)
-        * [Locating persons by name](#locating-persons-by-name-findc)
-        * [Deleting a person](#deleting-a-person--deletec)
-    * [Task Features](#task-features)
-        * [Adding a task](#adding-a-task-addt)
-        * [Listing tasks](#listing-tasks-listt)
-        * [Editing a task](#editing-a-task-editt)
-        * [Finding tasks by name](#finding-tasks-by-name-findt)
-        * [Assigning a contact to a task](#assigning-a-contact-to-a-task-assign)
-        * [Unassigning a contact from a task](#unassigning-a-contact-from-a-task-unassign)
-        * [Viewing contacts assigned to a task](#viewing-contacts-assigned-to-a-task-view)
-        * [Mark a task as done](#mark-a-task-as-done-mark)
-        * [Unmark a task as not done](#unmark-a-task-as-not-done-unmark)
-        * [Deleting tasks](#deleting-tasks-deletet)
-    * [Other Features](#other-features)
-        * [Clearing all contacts](#clearing-all-contacts--clear)
-        * [Exiting the program](#exiting-the-program--exit)
-        * [Saving the data](#saving-the-data)
-        * [Editing the data file](#editing-the-data-file)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+* [Quick Start](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#quick-start)
+* [Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#features)
+    * [Help](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#viewing-help--help)
+    * [Contact Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#contact-features)
+        * [Adding a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#adding-a-person-addc)
+        * [Listing all persons](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#listing-all-persons--listc)
+        * [Editing a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-a-person--editc)
+        * [Locating persons by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#locating-persons-by-name-findc)
+        * [Deleting a person](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-a-person--deletec)
+    * [Task Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#task-features)
+        * [Adding a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#adding-a-task-addt)
+        * [Listing tasks](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#listing-tasks-listt)
+        * [Editing a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-a-task-editt)
+        * [Finding tasks by name](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#finding-tasks-by-name-findt)
+        * [Assigning a contact to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#assigning-a-contact-to-a-task-assign)
+        * [Unassigning a contact from a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#unassigning-a-contact-from-a-task-unassign)
+        * [Viewing contacts assigned to a task](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#viewing-contacts-assigned-to-a-task-view)
+        * [Mark a task as done](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#mark-a-task-as-done-mark)
+        * [Unmark a task as not done](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#unmark-a-task-as-not-done-unmark)
+        * [Deleting tasks](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#deleting-tasks-deletet)
+    * [Other Features](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#other-features)
+        * [Clearing all contacts](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#clearing-all-contacts--clear)
+        * [Exiting the program](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#exiting-the-program--exit)
+        * [Saving the data](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#saving-the-data)
+        * [Editing the data file](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#editing-the-data-file)
+* [FAQ](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#faq)
+* [Command Summary](https://github.com/AY2122S2-CS2103T-T12-4/tp/blob/master/docs/UserGuide.md#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -101,7 +100,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpmessage2.png)
+![help message](images/helpMessage.png)
 
 Format: `help`
 
@@ -193,7 +192,7 @@ Examples:
 
 ### Adding a task: `addt`
 
-Adds a task.
+Adds a task for a datetime with a tag.
 
 Format: `addt tn/TASKNAME dt/DATETIME [ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
 
@@ -223,15 +222,19 @@ There cannot be an already existing tag with the same name; tags must be unique.
 
 Shows a list of all the tasks in the task list as per the specified filtering options. `listt` has the three folowing formats:
 
-Format: `listt all/`
+Format: 
+
+Shows a list of all tasks in the task list.
+
+`listt all/`
 
 Shows a list of tasks that is marked as completed in the task list.
 
-Format: `listt c/`
+`listt c/`
 
 Shows a list of tasks that is not mark as completed in the task list.
 
-Format: `listt nc/`
+`listt nc/`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 Good usage of `listt` will help in keeping track of tasks by status!
