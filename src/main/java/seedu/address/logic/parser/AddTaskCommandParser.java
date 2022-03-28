@@ -46,11 +46,19 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         String taskName = argMultimap.getValue(PREFIX_TASKNAME).get();
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
         LocalDateTime dateTime;
+        LocalDateTime endDateTime;
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
-            dateTime = convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString));
+            if (dateTimeString.contains(",")) {
+                String[] splits = dateTimeString.split(",");
+                dateTime = convertToLocalDateTime(dateTimeFormatter.parse(splits[0]));
+                endDateTime = convertToLocalDateTime(dateTimeFormatter.parse(splits[1]));
+            } else {
+                dateTime = convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString));
+                endDateTime = null;
+            }
         } catch (java.text.ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
@@ -90,10 +98,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                         AddTaskCommand.MESSAGE_USAGE));
             }
 
-            return new AddTaskCommand(taskName, dateTime, tags, link, periodInt, recurrenceInt);
+            return new AddTaskCommand(taskName, dateTime, endDateTime, tags, link, periodInt, recurrenceInt);
         }
 
-        return new AddTaskCommand(taskName, dateTime, tags, link);
+        return new AddTaskCommand(taskName, dateTime, endDateTime, tags, link);
     }
 
 
