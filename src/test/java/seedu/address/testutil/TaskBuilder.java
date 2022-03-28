@@ -1,9 +1,16 @@
 package seedu.address.testutil;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Task objects.
@@ -14,10 +21,15 @@ public class TaskBuilder {
     public static final LocalDateTime DEFAULT_DATETIME =
             LocalDateTime.of(2022, 12, 15, 21, 0);
     public static final String DEFAULT_TAG = "School";
+    public static final String DEFAULT_ZOOMLINK = "";
+    public static final boolean DEFAULT_ISTASKMARKDONE = false;
 
     private String name;
     private LocalDateTime dateTime;
-    private Tag tag;
+    private Set<Tag> tags;
+    private Link link;
+    private List<Person> people;
+    private boolean isTaskMarkDone;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -25,7 +37,10 @@ public class TaskBuilder {
     public TaskBuilder() {
         name = DEFAULT_NAME;
         dateTime = DEFAULT_DATETIME;
-        tag = new Tag(DEFAULT_TAG);
+        tags = new HashSet<>();
+        link = new Link(DEFAULT_ZOOMLINK);
+        people = new ArrayList<Person>();
+        isTaskMarkDone = false;
     }
 
     /**
@@ -34,7 +49,10 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         name = taskToCopy.getName();
         dateTime = taskToCopy.getDateTime();
-        tag = taskToCopy.getTag();
+        tags = new HashSet<>(taskToCopy.getTags());
+        link = taskToCopy.getLink();
+        people = taskToCopy.getPeople();
+        isTaskMarkDone = taskToCopy.isTaskMark();
     }
 
     /**
@@ -48,8 +66,8 @@ public class TaskBuilder {
     /**
      * Parses the {@code tag} into a {@code Tag} and set it to the {@code Task} that we are building.
      */
-    public TaskBuilder withTags(String tag) {
-        this.tag = new Tag(tag);
+    public TaskBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -61,8 +79,25 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code link} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withLink(String link) {
+        this.link = new Link(link);
+        return this;
+    }
+
+    /**
+     * Sets the {@code people} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withPeople(List<Person> people) {
+        this.people = people;
+        return this;
+    }
+
+
     public Task build() {
-        return new Task(name, dateTime, tag);
+        return new Task(name, dateTime, people, tags, link, isTaskMarkDone);
     }
 
 }

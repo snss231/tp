@@ -9,12 +9,13 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
 /**
@@ -23,24 +24,26 @@ import seedu.address.model.task.Task;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Person(new Name("Joseph"), new Phone("89993233"), new Email("Joseph@nus.edu.sg"),
+                new GitUsername("ProfJosephNUS"), getTagSet("Colleague", "Lecturer")),
+            new Person(new Name("Example TA"), new Phone("92624417"), new Email("e111111@u.nus.edu"),
+                    new GitUsername("TACS2103T"),
+                    getTagSet("TA", "T-12")),
+            new Person(new Name("Brian Chow"), new Phone("87438807"), new Email("e123456@u.nus.edu"),
+                new GitUsername("brian16600"),
+                getTagSet("CS2101 Group 4", "CS2103T Lab 12")),
+            new Person(new Name("Sean Ng"), new Phone("99272758"), new Email("e234567@u.nus.edu"),
+                new GitUsername("snss231"),
+                getTagSet("Teammate", "CS2101 Group 4")),
+            new Person(new Name("Adrian Ong"), new Phone("93210283"), new Email("e345678@u.nus.edu"),
+                new GitUsername("adrianongjj"),
+                getTagSet("CS2103T Lab 12")),
+            new Person(new Name("Ong Jun Jie"), new Phone("91031282"), new Email("e456789@u.nus.edu"),
+                new GitUsername("junjunjieong"),
+                getTagSet("CS2107", "CS2040")),
+            new Person(new Name("Jun Rong"), new Phone("92492021"), new Email("e567890@u.nus.edu"),
+                new GitUsername("junrong98"),
+                getTagSet("CS2030", "CS2107"))
         };
     }
 
@@ -64,14 +67,28 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task("Brush my teeth",
-                    LocalDateTime.of(2022, 12, 15, 21, 0), new Tag("Toilet")),
-            new Task("Do the laundry", LocalDateTime.of(2022, 6, 2, 15, 0),
-                    new Tag("Washing Machine")),
-            new Task("Consultation with students", LocalDateTime.of(2022, 8, 3, 14, 0),
-            new Tag("Consult")),
-            new Task("Meeting with exam invigilators", LocalDateTime.of(2022, 2, 5, 14, 30) ,
-                    new Tag("Meeting"))
+            new Task("Meeting with TAs", LocalDateTime.now().minusDays(2),
+                    getTagSet("Discuss tutorials"), new Link(""), true),
+            new Task("Consultation with students", LocalDateTime.now().plusDays(1),
+                    getTagSet("Consultation"),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
+                    false),
+            new Task("CS2103T Lecture",
+                    LocalDateTime.of(2022, 4, 8, 14, 0),
+                    getTagSet("Week 12 Lecture"),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
+                    false),
+            new Task("CS2103T Lecture",
+                    LocalDateTime.of(2022, 4, 15, 14, 0),
+                    getTagSet("Week 13 Lecture"),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"), false),
+            new Task("Meeting with exam invigilators", LocalDateTime.now().plusWeeks(2) ,
+                    getTagSet("Meeting"), new Link(""), false),
+            new Task("CS2103T Lecture",
+                    LocalDateTime.of(2022, 4, 22, 14, 0),
+                    getTagSet("Week 14 Lecture"),
+                    new Link("https://nus-sg.zoom.us/j/92307270969?pwd=VVMvNWFPWFpyVHRIcXR0VkJlNkg0dz09"),
+                    false)
         };
     }
 

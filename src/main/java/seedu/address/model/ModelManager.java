@@ -11,7 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.task.Task;
 
 /**
@@ -99,8 +102,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasUsername(GitUsername gitUsername) {
+        requireNonNull(gitUsername);
+        return addressBook.hasUsername(gitUsername);
+    }
+
+    @Override
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return addressBook.hasEmail(email);
+    }
+
+    @Override
+    public boolean hasPhone(Phone phone) {
+        requireNonNull(phone);
+        return addressBook.hasPhone(phone);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        taskList.removePerson(target);
     }
 
     @Override
@@ -201,5 +223,21 @@ public class ModelManager implements Model {
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskList.hasTask(task);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void markTask(Task task) {
+        taskList.markTask(task);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void unmarkTask(Task task) {
+        taskList.unmarkTask(task);
     }
 }
