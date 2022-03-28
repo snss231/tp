@@ -384,6 +384,7 @@ Examples:
     <br> Deleting the lecture at index 2 `deletet 2`:
     ![`deletet 2`](images/deletetCommandShowcase2.png)
 
+<a name="gen"></a>
 ### Generating the emails of all the contacts assigned to a task: `gen`
 
 Displays all the emails of all the contacts assigned to the specified task and displays a button to copy the emails into your clipboard.
