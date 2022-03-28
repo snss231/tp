@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,7 +16,10 @@ import seedu.address.model.tag.Tag;
  * Task consists of a String object representing a name and a LocalDateTime object representing the date and time.
  */
 public class Task {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, h.mm a");
+    private static final DateTimeFormatter FORMAT_TIME = DateTimeFormatter.ofPattern("h.mm a");
+    private static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
+    private static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
+    private static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
     private String name;
     private LocalDateTime dateTime;
     private LocalDateTime endDateTime;
@@ -102,7 +107,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.name + " " + this.dateTime.format(formatter);
+        return this.name + " " + dateTime.format(FORMAT_YEAR);
     }
 
     /**
@@ -114,18 +119,57 @@ public class Task {
     }
 
     /**
-     * Returns a user-friendly representation of the dateTime.
+     * Returns a user-friendly representation of the dateTime and endDateTime.
      */
     public String getDateTimeString() {
-        if (this.endDateTime)
-        return this.dateTime.format(formatter);
+        if (endDateTime == null) {
+            return getDeadline();
+        }
+        return getDateTimeRange();
+    }
+
+    private String getDeadline() {
+        return String.format("Due: %s", getUserFriendlyDateTime(dateTime));
+    }
+
+    private String getUserFriendlyDateTime(LocalDateTime dateTime) {
+        LocalDateTime today = LocalDate.now().atStartOfDay();
+        LocalDateTime date = dateTime.toLocalDate().atStartOfDay();
+        long daysFrom = Duration.between(today, date).toDays();
+        String result;
+        if (daysFrom == 0) { // today
+            result = String.format("Today, %s", dateTime.format(FORMAT_TIME));
+        } else if (daysFrom == 1) { // tomorrow
+            result = String.format("Tomorrow, %s", dateTime.format(FORMAT_TIME));
+        } else if (daysFrom >= 2 && daysFrom <= 7) { // this week
+            result = dateTime.format(FORMAT_DAY_OF_WEEK);
+        } else if (date.getYear() == today.getYear()) { // this year
+            result = dateTime.format(FORMAT_MONTH);
+        } else { // next year onwards
+            result = dateTime.format(FORMAT_YEAR);
+        }
+        return result;
+    }
+
+    private String getDateTimeRange() {
+        assert endDateTime != null;
+        LocalDateTime date = dateTime.toLocalDate().atStartOfDay();
+        LocalDateTime endDate = endDateTime.toLocalDate().atStartOfDay();
+
+        String result;
+        if (Duration.between(date, endDate).toDays() == 0) {
+            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), endDateTime.format(FORMAT_TIME));
+        } else {
+            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), getUserFriendlyDateTime(endDateTime));
+        }
+        return String.format("From: %s", result);
     }
 
     /**
      * Returns a user-friendly representation of the endDateTime.
      */
     public String getEndDateTimeString() {
-        return this.endDateTime.format(formatter);
+        return this.endDateTime.format(FORMAT_YEAR);
     }
 
 
