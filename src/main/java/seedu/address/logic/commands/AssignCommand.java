@@ -99,7 +99,7 @@ public class AssignCommand extends Command {
     private Task getUpdatedTask(Person personToAdd, Task taskToUpdate) {
         List<Person> updatedList = new ArrayList<>(taskToUpdate.getPeople());
         updatedList.add(personToAdd);
-        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(),
+        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), taskToUpdate.getDateTime(),
                 updatedList, taskToUpdate.getTags(), taskToUpdate.getLink(), taskToUpdate.isTaskMark());
         return editedTask;
     }
