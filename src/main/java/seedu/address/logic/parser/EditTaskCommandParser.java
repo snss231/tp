@@ -53,7 +53,14 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             try {
                 String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
-                editTaskDescriptor.setDate(convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString)));
+                if (dateTimeString.contains(",")) {
+                    String[] splits = dateTimeString.split(",");
+                    editTaskDescriptor.setDate(convertToLocalDateTime(dateTimeFormatter.parse(splits[0])));
+                    editTaskDescriptor.setEndDate(convertToLocalDateTime(dateTimeFormatter.parse(splits[1])));
+                } else {
+                    editTaskDescriptor.setDate(convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString)));
+                    editTaskDescriptor.setEndDate(null);
+                }
             } catch (java.text.ParseException e) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
             }
