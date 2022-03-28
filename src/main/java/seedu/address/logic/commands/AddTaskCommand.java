@@ -52,31 +52,7 @@ public class AddTaskCommand extends Command {
     private final int period;
     private final boolean isTaskMarkDone;
 
-    /**
-     * Constructor for AddTaskCommand. Takes in 4 parameters, taskName, dateTime, tags
-     * and link. There can be multiple tags.
-     *
-     * @param taskName Name of Task.
-     * @param dateTime LocalDateTime object to represent date time of Task.
-     * @param tags A set of tags link to the Task.
-     * @param link Link of a task.
-     */
-    public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link) {
-        this(taskName, dateTime, null, tags, link);
-    }
 
-    public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link) {
-        requireAllNonNull(taskName, dateTime, tags, link);
-
-        this.taskName = taskName;
-        this.dateTime = dateTime;
-        this.tags = tags;
-        this.link = link;
-        this.recurrence = 0;
-        this.period = 0;
-        this.isTaskMarkDone = false;
-        this.endDateTime = endDateTime;
-    }
 
     /**
      * Constructor for AddTaskCommand. Takes in 6 parameters, taskName, dateTime, tags,
@@ -101,6 +77,14 @@ public class AddTaskCommand extends Command {
         this.recurrence = recurrence;
         this.period = period;
         this.isTaskMarkDone = false;
+    }
+
+    /**
+     * Constructor for AddTaskCommand without period or recurrence.
+     */
+    public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags,
+                          Link link) {
+        this(taskName, dateTime, endDateTime, tags, link, 0, 0);
     }
 
     @Override

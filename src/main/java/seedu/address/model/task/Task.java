@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -27,23 +28,6 @@ public class Task {
      * Constructor for Task.
      *
      * @param name Name of task
-     * @param dateTime LocalDateTime object representing Date and Time for Task
-     * @param tags Tags for the tasks
-     * @param link Link to be added to the task
-     */
-    public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link, boolean isMarkDone) {
-        this.name = name;
-        this.dateTime = dateTime;
-        this.people = new ArrayList<>();
-        this.tags = tags;
-        this.link = link;
-        this.isMarkDone = isMarkDone;
-    }
-
-    /**
-     * Constructor for Task with a list of people already provided.
-     *
-     * @param name Name of task
      * @param people People to be added to the list
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param tags Tags for the tasks
@@ -52,9 +36,39 @@ public class Task {
      */
     public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, List<Person> people, Set<Tag> tags,
                 Link link, boolean isMarkDone) {
-        this(name, dateTime, endDateTime, tags, link, isMarkDone);
-        this.people = new ArrayList<>(people);
+        this.name = name;
+        this.dateTime = dateTime;
+        this.endDateTime = endDateTime;
+        this.people = people;
+        this.tags = tags;
+        this.link = link;
+        this.isMarkDone = isMarkDone;
     }
+
+    /**
+     * Constructor for Task with people but no endDateTime.
+     */
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link,
+                boolean isMarkDone) {
+        this(name, dateTime, null, people, tags, link, isMarkDone);
+    }
+
+    /**
+     * Constructor for Task with endDateTime but no people.
+     */
+    public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link,
+                boolean isMarkDone) {
+        this(name, dateTime, endDateTime, new ArrayList<>(), tags, link, isMarkDone);
+    }
+
+    /**
+     * Constructor for Task without people or endDateTime.
+     */
+    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link, boolean isMarkDone) {
+        this(name, dateTime, null, new ArrayList<>(), tags, link, isMarkDone);
+    }
+
+
 
     /**
      * Changes name of Task.
