@@ -38,7 +38,7 @@ public class Task {
         this.name = name;
         this.dateTime = dateTime;
         this.endDateTime = endDateTime;
-        this.people = people;
+        this.people = new ArrayList<>(people);
         this.tags = tags;
         this.link = link;
         this.isMarkDone = isMarkDone;
