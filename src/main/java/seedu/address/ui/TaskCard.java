@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 
@@ -67,7 +68,8 @@ public class TaskCard extends UiPart<Region> {
 
         name.setText(task.getName());
         setTaskColor(task.getDateTime());
-        date.setText("Due: " + task.getDateTimeString());
+
+        date.setText(task.getDateTimeString());
 
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

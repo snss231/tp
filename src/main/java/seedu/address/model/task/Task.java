@@ -92,6 +92,7 @@ public class Task {
     }
 
     public String getDateTimeString() {
+        if (this.endDateTime)
         return this.dateTime.format(formatter);
     }
 
