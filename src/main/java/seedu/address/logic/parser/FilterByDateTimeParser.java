@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.FindTaskCommand.ERROR_MESSAGE_INVALID_FORMAT;
-import static seedu.address.logic.commands.FindTaskCommand.ERROR_MESSAGE_INVALID_TAG;
+import static seedu.address.logic.commands.FilterByDateCommand.ERROR_MESSAGE_INVALID_FORMAT;
+import static seedu.address.logic.commands.FilterByDateCommand.ERROR_MESSAGE_INVALID_TAG;
 
 /**
  * Parses input arguments and creates a new FilterByDate Command
@@ -25,8 +25,6 @@ public class FilterByDateTimeParser  implements Parser<FilterByDateCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
 
         return new FilterByDateCommand(new TaskBetweenDatesPredicate(inBetweenDates(trimmedArgs)));
     }

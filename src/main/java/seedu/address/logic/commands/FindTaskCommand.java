@@ -25,31 +25,18 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " apple orange pear";
 
-    public static final String ERROR_MESSAGE_INVALID_FORMAT =
-            "Invalid date format. It should be \"dd-mm-yyyy HHMM\"";
-    public static final String ERROR_MESSAGE_INVALID_TAG =
-            "Invalid tag format. It should be \"d/dd-mm-yyyy HHMM, dd-mm-yyyy HHMM\"";
 
-
-    private final Predicate<? extends Task> predicate;
+    private final TaskNameContainsKeywordsPredicate predicate;
 
     public FindTaskCommand(TaskNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
-    public FilterCommand(TaskBetweenDatesPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    /**
-     * Give reason why it safe to suppress warning here.
-     */
-    @SuppressWarnings("unchecked")
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredTaskList((Predicate<Task>) predicate);
+        model.updateFilteredTaskList(this.predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }

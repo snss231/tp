@@ -1,19 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.FindTaskCommand.ERROR_MESSAGE_INVALID_FORMAT;
-import static seedu.address.logic.commands.FindTaskCommand.ERROR_MESSAGE_INVALID_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.List;
 
-import seedu.address.logic.commands.FilterByDateCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.TaskBetweenDatesPredicate;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
@@ -35,13 +27,6 @@ public class FilterCommandParser
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        // check if prefix are used
-        for (String string: nameKeywords) {
-            if (string.contains(PREFIX_DATE.toString())) {
-                return new FilterByDateCommand(new TaskBetweenDatesPredicate(inBetweenDates(trimmedArgs)));
-            }
-        }
 
         return new FindTaskCommand(new TaskNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }

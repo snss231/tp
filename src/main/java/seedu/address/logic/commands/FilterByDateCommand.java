@@ -21,6 +21,12 @@ public class FilterByDateCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " apple orange pear";
 
+    public static final String ERROR_MESSAGE_INVALID_FORMAT =
+            "Invalid date format. It should be \"dd-mm-yyyy HHMM\"";
+    public static final String ERROR_MESSAGE_INVALID_TAG =
+            "Invalid tag format. It should be \"d/dd-mm-yyyy HHMM, dd-mm-yyyy HHMM\"";
+
+
     private final TaskBetweenDatesPredicate predicate;
 
     public FilterByDateCommand(TaskBetweenDatesPredicate predicate) {
