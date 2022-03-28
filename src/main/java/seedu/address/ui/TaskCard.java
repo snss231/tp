@@ -77,6 +77,8 @@ public class TaskCard extends UiPart<Region> {
 
         setLink();
 
+
+
         setMarkedImage(task);
     }
 
