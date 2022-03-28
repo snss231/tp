@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskBetweenDatesPredicate;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
