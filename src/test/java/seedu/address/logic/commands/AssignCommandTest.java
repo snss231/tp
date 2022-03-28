@@ -26,7 +26,7 @@ class AssignCommandTest {
         Person personToAdd = model.getFilteredPersonList().get(0);
         Task taskToEdit = model.getFilteredTaskList().get(0);
         Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(),
-                taskToEdit.getPeople(), taskToEdit.getTags(), taskToEdit.getLink(), taskToEdit.getTid());
+                taskToEdit.getPeople(), taskToEdit.getTags(), taskToEdit.getLink());
 
         updatedTask.addPerson(personToAdd);
         Model expectedModel = new ModelManager(
@@ -49,7 +49,7 @@ class AssignCommandTest {
         Person personToAdd = model.getFilteredPersonList().get(0);
         Task taskToEdit = model.getFilteredTaskList().get(0);
         Task updatedTask = new Task(taskToEdit.getName(), taskToEdit.getDateTime(),
-                taskToEdit.getPeople(), taskToEdit.getTags(), taskToEdit.getLink(), taskToEdit.getTid());
+                taskToEdit.getPeople(), taskToEdit.getTags(), taskToEdit.getLink());
         updatedTask.addPerson(personToAdd);
 
         AssignCommand assignCommand =

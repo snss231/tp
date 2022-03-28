@@ -161,13 +161,13 @@ To implement this, upon every `DeleteCommand` execution, we call the `TaskList::
 
 Design considerations:
 
-Aspect: how relevant tasks are updated when a person is removed from the address book
+**Aspect:** how relevant tasks are updated when a person is removed from the address book
 
-* Alternative 1 (current choice): Iterate through all tasks to remove the relevant person.
+* **Alternative 1 (current choice):** Iterate through all tasks to remove the relevant person.
   * Pros: Easy to implement.
   * Cons: _May_ have performance issues given a large list of tasks
 
-* Alternative 2: Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
+* **Alternative 2:** Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
   * Pros: _May_ see some performance benefit (not necessary to iterate through all the tasks upon each `DeleteCommand`)
   * Cons: More fragile code due to circular dependency (`Person` depends on `Task`). Not often that a Professor will delete a contact (student or tutor) in the course of a module.
 
@@ -176,7 +176,7 @@ Delete task feature implements the following operations:
 * `DeleteTaskCommandParser#parse()` — Parse the index number from user command to `DeleteTaskCommand` to get the task to be deleted.
 * `DeleteTaskCommand#execute()` — Execute `ModelManager#deleteTask()` by parsing in the task to be deleted.
 * `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTask()` by parsing in the task to be deleted.
-* `TaskList#deleteCurrTaskk()` — Deletes the task from the TaskList stored here.
+* `TaskList#deleteCurrTask()` — Deletes the task from the TaskList stored here.
 
 Step 1: User will enter the command `deletet 1` to delete the first task.
 Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
@@ -188,8 +188,8 @@ The Sequence Diagram below illustrates the interactions of how the delete task f
 </div>
 
 Step 2: Outcome after executing `DeleteTaskCommand`
-* Outcome 1: Successfully delete task.
-* Outcome 2: Throw CommandException due to index out of range.
+
+Execution flow of Activity Diagram:
 
 ![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
 
@@ -210,7 +210,7 @@ Edit task feature implements the following operations:
 * `EditTaskCommand#execute()` — Execute `ModelManager#setTask()` by parsing in the task to be edited and the updated version of the task.
 * `EditTaskDescriptor#setName()` — Set the edited task name to `EditTaskDescriptor`
 * `EditTaskDescriptor#setDate()` — Set the edited datetime to `EditTaskDescriptor`
-* `EditTaskDescriptor#setTag()` — Set the edited tag to `EditTaskDescriptor`
+* `EditTaskDescriptor#setTags()` — Set the edited tags to `EditTaskDescriptor`
 * `ParseUtil#parseIndex()` —  Parse to get the index number of the task
 * `ModelManager#setTask()` — Update the task information.
 * `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
@@ -221,8 +221,8 @@ Once user parse in the command, it will be handled by `AddressBookParser#parseCo
 
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
 Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
-task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field. 
-For each prefix in the command, it will be set the value to `editTaskDescriptor`, while tag will be parsed to `ParseUtil#parseTag()` then set the value to `editTaskDescriptor`.
+task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
+For each prefix in the command, it will set the value to `editTaskDescriptor`.
 ![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
 
 Step 3: `EditTaskCommandParser` will create `EditTaskCommand`, parse in `index` and `editTaskDescriptor`
@@ -258,7 +258,7 @@ Step 1. The user will enter the command `view 1` to view the people associated w
 
 Step 2. The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list 
+Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
 by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
 Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
@@ -269,7 +269,7 @@ The following sequence diagram shows how the view task operation works:
 
 #### Design considerations:
 
-**Aspect: How should the results be displayed in the *Contact* column when no one is associated with the task:**
+**Aspect:** How should the results be displayed in the *Contact* column when no one is associated with the task:
 
 * **Alternative 1 (current choice):** Continue displaying the current list of people.
   * Pros: Reduce commands required by user to populate and use the column for input.

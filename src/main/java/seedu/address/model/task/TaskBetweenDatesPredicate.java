@@ -1,7 +1,5 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,8 +16,8 @@ public class TaskBetweenDatesPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        return (task.getDateTime().isBefore(beforeAfterDates.get(0))
-            && task.getDateTime().isAfter(beforeAfterDates.get(1)));
+        return (task.getDateTime().isAfter(beforeAfterDates.get(0))
+            && task.getDateTime().isBefore(beforeAfterDates.get(1)));
     }
 
     @Override
