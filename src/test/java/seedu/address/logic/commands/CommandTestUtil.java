@@ -164,11 +164,10 @@ public class CommandTestUtil {
      */
     public static void showTaskAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
-
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String taskName = task.getName();
-        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(taskName)));
-
+        String[] arrTaskName = taskName.split(" ");
+        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(arrTaskName)));
         assertEquals(1, model.getFilteredTaskList().size());
     }
 

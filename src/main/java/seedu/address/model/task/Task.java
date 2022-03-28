@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -17,19 +18,25 @@ public class Task {
     private String name;
     private LocalDateTime dateTime;
     private List<Person> people;
-    private Tag tag;
+    private Set<Tag> tags;
+    private Link link;
+    private boolean isMarkDone;
 
     /**
      * Constructor for Task.
      *
      * @param name Name of task
      * @param dateTime LocalDateTime object representing Date and Time for Task
+     * @param tags Tags for the tasks
+     * @param link Link to be added to the task
      */
-    public Task(String name, LocalDateTime dateTime, Tag tag) {
+    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link, boolean isMarkDone) {
         this.name = name;
         this.dateTime = dateTime;
         this.people = new ArrayList<>();
-        this.tag = tag;
+        this.tags = tags;
+        this.link = link;
+        this.isMarkDone = isMarkDone;
     }
 
     /**
@@ -38,9 +45,13 @@ public class Task {
      * @param name Name of task
      * @param people People to be added to the list
      * @param dateTime LocalDateTime object representing Date and Time for Task
+     * @param tags Tags for the tasks
+     * @param link Link to be added to the task
+     * @param isMarkDone true if task is done, else false
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people, Tag tag) {
-        this(name, dateTime, tag);
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link,
+                boolean isMarkDone) {
+        this(name, dateTime, tags, link, isMarkDone);
         this.people = new ArrayList<>(people);
     }
 
@@ -107,8 +118,8 @@ public class Task {
      *
      * @return Tag of Task.
      */
-    public Tag getTag() {
-        return this.tag;
+    public Set<Tag> getTags() {
+        return this.tags;
     }
 
     /**
@@ -148,6 +159,45 @@ public class Task {
     public String getEmails() {
         String[] emails = this.people.stream().map(p -> p.getEmail().toString()).toArray(String[]::new);
         return String.join(", ", emails);
+    }
+
+    /**
+     * Checks if this task contains the person.
+     * @param p the person to check for
+     * @return true if this task contains the person, false otherwise.
+     */
+    public boolean containsPerson(Person p) {
+        return this.people.contains(p);
+    }
+
+    /**
+     * Returns the zoom link assigned to Task.
+     *
+     * @return A link.
+     */
+    public Link getLink() {
+        return link;
+    }
+
+    /**
+     * Sets the isMarkDone as true to show that the task is done.
+     */
+    public void markTask() {
+        this.isMarkDone = true;
+    }
+
+    /**
+     * Sets the isMarkDone as false to show that the task is not done.
+     */
+    public void unmarkTask() {
+        this.isMarkDone = false;
+    }
+
+    /**
+     * Returns the status if the task is mark done.
+     */
+    public boolean isTaskMark() {
+        return isMarkDone;
     }
 
     @Override

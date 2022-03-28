@@ -19,9 +19,9 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final GitUsername gitUsername;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
 
@@ -31,34 +31,18 @@ public class Person {
      * @param name Name of Person.
      * @param phone Phone Number of Person.
      * @param email Email address of Person.
-     * @param address Address of Person.
+     * @param gitUsername Github GitUsername of Person.
      * @param tags Tags for Person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, GitUsername gitUsername, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, gitUsername, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.gitUsername = gitUsername;
         this.tags.addAll(tags);
     }
 
-    /**
-     * Constructor without email.
-     *
-     * @param name Name of Person.
-     * @param phone Phone Number of Person.
-     * @param email Email of Person.
-     * @param tags Tags of Person.
-     */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.tags.addAll(tags);
-        this.address = new Address("Test Address");
-    }
 
     public Name getName() {
         return name;
@@ -72,8 +56,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public GitUsername getUsername() {
+        return this.gitUsername;
     }
 
     /**
@@ -115,14 +99,14 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getUsername().equals(getUsername())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, gitUsername, tags);
     }
 
     @Override
@@ -133,8 +117,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; GitUsername: ")
+                .append(getUsername());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

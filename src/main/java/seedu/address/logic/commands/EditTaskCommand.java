@@ -8,8 +8,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -17,14 +19,15 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
 /**
- * Edits the details of an existing task in the task lsit.
+ * Edits the details of an existing task in the task list.
  */
 public class EditTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "updatet";
+    public static final String COMMAND_WORD = "editt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task "
             + "by the index number used in the displayed task list. "
@@ -39,7 +42,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_TAG + "Homework";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to update must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "A field has to be edited at least.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in your task list.";
 
     private final Index index;
@@ -85,11 +88,13 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        LocalDateTime updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
-        Tag updatedTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTag());
+        String editName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        LocalDateTime editDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
+        Set<Tag> editTag = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Link link = editTaskDescriptor.getLink().orElse(taskToEdit.getLink());
+        boolean isTaskMarkDone = taskToEdit.isTaskMark();
 
-        return new Task(updatedName, updatedDate, updatedTag);
+        return new Task(editName, editDate, editTag, link, isTaskMarkDone);
     }
 
     @Override
@@ -118,7 +123,8 @@ public class EditTaskCommand extends Command {
         private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         private String name;
         private LocalDateTime dateTime;
-        private Tag tag;
+        private Set<Tag> tags;
+        private Link link;
 
         public EditTaskDescriptor() {}
 
@@ -129,14 +135,15 @@ public class EditTaskCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.dateTime);
-            setTags(toCopy.tag);
+            setTags(toCopy.tags);
+            setLink(toCopy.link);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, dateTime, tag);
+            return CollectionUtil.isAnyNonNull(name, dateTime, tags);
         }
 
         public void setName(String name) {
@@ -151,16 +158,24 @@ public class EditTaskCommand extends Command {
             this.dateTime = dateTime;
         }
 
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
         public Optional<LocalDateTime> getDate() {
             return Optional.ofNullable(dateTime);
+        }
+
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
         }
 
         /**
          * Sets {@code tag} to this object's {@code tag}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Tag tag) {
-            this.tag = tag;
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -168,8 +183,8 @@ public class EditTaskCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Tag> getTags() {
-            return Optional.ofNullable(tag);
+        public Optional<Set<Tag>> getTags() {
+            return Optional.ofNullable(tags);
         }
 
         @Override

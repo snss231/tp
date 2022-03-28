@@ -23,7 +23,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String NO_CONTACT_ASSIGN = "There were no contact assigned to this task.";
+    public static final String NO_CONTACT_ASSIGN = "There are no contact assigned to this task.";
     public static final String DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE = "There were %1$d contacts assigned to this task";
     public static final String DISPLAY_TASK_CONTACT_SUCCESS_SINGLE = "There was %1$d contact assigned to this task";
 
@@ -46,6 +46,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Task> lastShownTaskList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownTaskList.size()) {
@@ -56,15 +57,17 @@ public class ViewCommand extends Command {
 
         List<Person> listOfPeople = taskToDisplay.getPeople();
 
-        PersonContainInTask predicate = new PersonContainInTask(listOfPeople);
-
-        model.updateFilteredPersonList(predicate);
-
-        int listSize = model.getFilteredPersonList().size();
+        int listSize = listOfPeople.size();
 
         if (listSize < 1) {
             return new CommandResult(NO_CONTACT_ASSIGN);
         }
+
+        PersonContainInTask predicate = new PersonContainInTask(listOfPeople);
+
+        model.updateFilteredPersonList(predicate);
+
+        listSize = model.getFilteredPersonList().size();
 
         if (listSize == 1) {
             return new CommandResult(String.format(DISPLAY_TASK_CONTACT_SUCCESS_SINGLE, listSize));

@@ -48,6 +48,7 @@ public class UiManager implements Ui {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+
     }
 
     private Image getImage(String imagePath) {
