@@ -31,8 +31,7 @@ public class FilterCommand extends Command {
             "Invalid tag format. It should be \"d/dd-mm-yyyy HHMM, dd-mm-yyyy HHMM\"";
 
 
-    @SuppressWarnings("unchecked")
-    private final Predicate predicate;
+    private final Predicate<? extends Task> predicate;
 
     public FilterCommand(TaskNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
@@ -42,12 +41,15 @@ public class FilterCommand extends Command {
         this.predicate = predicate;
     }
 
-    @Override
+    /**
+     * Give reason why it safe to suppress warning here.
+     */
     @SuppressWarnings("unchecked")
+    @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredTaskList(predicate);
+        model.updateFilteredTaskList((Predicate<Task>) predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
