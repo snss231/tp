@@ -11,8 +11,7 @@ import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FilterCommandParser
-{
+public class FilterCommandParser implements Parser<FindTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

@@ -24,7 +24,8 @@ public class FilterByDateCommand extends Command {
     public static final String ERROR_MESSAGE_INVALID_FORMAT =
             "Invalid date format. It should be \"dd-mm-yyyy HHMM\"";
     public static final String ERROR_MESSAGE_INVALID_TAG =
-            "Invalid tag format. It should be \"d/dd-mm-yyyy HHMM, dd-mm-yyyy HHMM\"";
+            "Invalid tag format. It should be either \"d/dd-mm-yyyy HHMM, dd-mm-yyyy HHMM\""
+                    + " or \"d/dd-mm-yyyy, dd-mm-yyyy\"";
 
 
     private final TaskBetweenDatesPredicate predicate;
