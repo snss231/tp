@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
@@ -26,7 +27,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = "addt" + ": Adds a task to the NUS Classes. "
             + "Parameters: "
             + PREFIX_TASKNAME + "TASKNAME "
-            + PREFIX_DATETIME + "DATETIME "
+            + PREFIX_DATETIME + "DATETIME [, ENDDATETIME]"
             + PREFIX_TAG + "TAG "
             + PREFIX_LINK + "LINK "
             + PREFIX_RECURRING + "PERIOD RECURRENCE\n"
@@ -44,6 +45,7 @@ public class AddTaskCommand extends Command {
 
     private final String taskName;
     private final LocalDateTime dateTime;
+    private final LocalDateTime endDateTime;
     private final Set<Tag> tags;
     private final Link link;
     private final int recurrence;
@@ -60,6 +62,10 @@ public class AddTaskCommand extends Command {
      * @param link Link of a task.
      */
     public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link) {
+        this(taskName, dateTime, null, tags, link);
+    }
+
+    public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link) {
         requireAllNonNull(taskName, dateTime, tags, link);
 
         this.taskName = taskName;
@@ -69,6 +75,7 @@ public class AddTaskCommand extends Command {
         this.recurrence = 0;
         this.period = 0;
         this.isTaskMarkDone = false;
+        this.endDateTime = endDateTime;
     }
 
     /**
@@ -82,12 +89,13 @@ public class AddTaskCommand extends Command {
      * @param recurrence The number of times the task should recur.
      * @param period The number of days apart each task should be.
      */
-    public AddTaskCommand(String taskName, LocalDateTime dateTime, Set<Tag> tags, Link link,
+    public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link,
                           int recurrence, int period) {
 
         requireAllNonNull(taskName, dateTime, tags, link);
         this.taskName = taskName;
         this.dateTime = dateTime;
+        this.endDateTime = endDateTime;
         this.tags = tags;
         this.link = link;
         this.recurrence = recurrence;
@@ -98,11 +106,16 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Task taskToBeAdded = new Task(taskName, dateTime, tags, link, isTaskMarkDone);
+        Task taskToBeAdded = new Task(taskName, dateTime, endDateTime, tags, link, isTaskMarkDone);
+
+        if (taskToBeAdded.hasInvalidDateRange()) {
+            throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
+        }
         model.getTaskList().addTask(taskToBeAdded);
         for (int i = 1; i < period; i++) {
             LocalDateTime temp = dateTime.plusDays(i * recurrence);
-            taskToBeAdded = new Task(taskName, temp, tags, link, isTaskMarkDone);
+            LocalDateTime tempEnd = endDateTime.plusDays(i * recurrence);
+            taskToBeAdded = new Task(taskName, temp, tempEnd, tags, link, isTaskMarkDone);
             model.getTaskList().addTask(taskToBeAdded);
         }
         return new CommandResult(ADD_TASK_SUCCESS);
