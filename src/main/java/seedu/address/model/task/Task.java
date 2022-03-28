@@ -140,6 +140,16 @@ public class Task {
         return this.people.size();
     }
 
+    /**
+     * Returns a copy-paste friendly string containing all the emails related to this task.
+     *
+     * @return The generated email string
+     */
+    public String getEmails() {
+        String[] emails = this.people.stream().map(p -> p.getEmail().toString()).toArray(String[]::new);
+        return String.join(", ", emails);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
