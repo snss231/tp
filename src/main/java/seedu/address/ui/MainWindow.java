@@ -175,6 +175,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+
+
+    private void handleEmails(String emails) {
+        resultDisplay.setEmails(emails);
+        resultDisplay.showCopy();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -189,6 +196,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isGenerateEmails()) {
+                handleEmails(commandResult.getEmails());
+            } else {
+                resultDisplay.hideCopy();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
