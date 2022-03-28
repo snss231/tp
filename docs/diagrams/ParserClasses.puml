@@ -35,4 +35,5 @@ XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+ArgumentMultimap ..> Prefix
 @enduml
