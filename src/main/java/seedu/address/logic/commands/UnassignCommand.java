@@ -103,7 +103,7 @@ public class UnassignCommand extends Command {
         if (!updatedList.remove(personToRemove)) {
             throw new CommandException(MESSAGE_PERSON_NOT_IN_TASK);
         }
-        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(),
+        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), taskToUpdate.getEndDateTime(),
                 updatedList, taskToUpdate.getTags(), taskToUpdate.getLink(), taskToUpdate.isTaskMark());
         return editedTask;
     }
