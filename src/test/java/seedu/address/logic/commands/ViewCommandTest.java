@@ -44,7 +44,7 @@ public class ViewCommandTest {
         Model expectedModel = new ModelManager(
                 assignedModel.getAddressBook(), new UserPrefs(), new TaskList(assignedModel.getTaskList()));
 
-        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, 2);
+        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS, 2);
         List<Person> assignedList = expectedModel.getFilteredTaskList().get(0).getPeople();
         PersonContainInTask pred = new PersonContainInTask(assignedList);
 

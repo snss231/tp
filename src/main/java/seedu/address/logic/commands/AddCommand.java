@@ -37,8 +37,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in NUS Classes!";
     public static final String MESSAGE_DUPLICATE_GIT_USERNAME = "This Github username already exists in NUS Classes!\n"
             + "Check again?";
-    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck gain?";
-    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Clases!\n"
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck again?";
+    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Classes!\n"
             + "Check again?";
 
     private final Person toAdd;

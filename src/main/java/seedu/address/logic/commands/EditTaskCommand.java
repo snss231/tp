@@ -30,7 +30,7 @@ public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "editt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task identified"
             + "by the index number used in the displayed task list. \n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -43,7 +43,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_TAG + "Homework";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "A field has to be edited at least.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in your task list.";
 
     private final Index index;
@@ -126,7 +126,6 @@ public class EditTaskCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         private String name;
         private LocalDateTime dateTime;
         private LocalDateTime endDateTime;
