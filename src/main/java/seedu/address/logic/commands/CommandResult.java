@@ -11,6 +11,8 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    private final String emails;
+
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
@@ -24,6 +26,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.emails = null;
     }
 
     /**
@@ -34,8 +37,23 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     *
+     * @return
+     */
+    public CommandResult(String feedbackToUser, String emails) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.emails = requireNonNull(emails);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public String getEmails() {
+        return emails;
     }
 
     public boolean isShowHelp() {
@@ -44,6 +62,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isGenerateEmails() {
+        return this.emails != null;
     }
 
     @Override
@@ -60,12 +82,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && emails == otherCommandResult.emails;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, emails);
     }
 
     public String toString() {

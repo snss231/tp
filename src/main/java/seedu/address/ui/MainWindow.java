@@ -175,6 +175,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+
+
+    private void handleEmails(String emails) {
+        resultDisplay.setEmails(emails);
+        resultDisplay.showCopy();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -190,6 +197,12 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandResult.isGenerateEmails()) {
+                handleEmails(commandResult.getEmails());
+            } else {
+                resultDisplay.hideCopy();
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -202,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.hideCopy();
             throw e;
         }
     }

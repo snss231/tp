@@ -195,6 +195,17 @@ public class Task {
     }
 
     /**
+     * Returns a copy-paste friendly string containing all the emails related to this task.
+     * The emails will be joined with a comma separator (e.g. "e1234578@u.nus.edu.sg, e12121212@u.nus.edu.sg").
+     *
+     * @return The generated email string
+     */
+    public String getEmails() {
+        String[] emails = this.people.stream().map(p -> p.getEmail().toString()).toArray(String[]::new);
+        return String.join(", ", emails);
+    }
+
+    /**
      * Checks if this task contains the person.
      * @param p the person to check for
      * @return true if this task contains the person, false otherwise.

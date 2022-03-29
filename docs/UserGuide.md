@@ -29,6 +29,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
         * [Mark a task as done](#mark-a-task-as-done-mark)
         * [Unmark a task as not done](#unmark-a-task-as-not-done-unmark)
         * [Deleting tasks](#deleting-tasks-deletet)
+        * [Generating emails of all contacts assigned to a task](#generating-emails-of-all-contacts-assigned-to-a-task-gen)
     * [Other Features](#other-features)
         * [Clearing all contacts](#clearing-all-contacts--clear)
         * [Exiting the program](#exiting-the-program--exit)
@@ -368,7 +369,7 @@ Examples:
 
 Deletes the specified task from the task list.
 
-Format: `deletet 1`
+Format: `deletet INDEX`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -382,6 +383,20 @@ Examples:
     <br>
     <br> Deleting the lecture at index 2 `deletet 2`:
     ![`deletet 2`](images/deletetCommandShowcase2.png)
+
+<a name="gen"></a>
+### Generating the emails of all the contacts assigned to a task: `gen`
+
+Displays all the emails of all the contacts assigned to the specified task and displays a button to copy the emails into your clipboard.
+
+Format: `gen INDEX`
+
+* Displays all the emails of the contacts assigned to the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br><br>
 
 
 # Other Features
