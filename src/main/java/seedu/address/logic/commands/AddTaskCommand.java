@@ -30,7 +30,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_DATETIME + "DATETIME [, ENDDATETIME]"
             + " [" + PREFIX_TAG + "TAG] "
             + " [" + PREFIX_LINK + "LINK] "
-            + " [" + PREFIX_RECURRING + "PERIOD RECURRENCE\n"
+            + " [" + PREFIX_RECURRING + "PERIOD RECURRENCE]\n"
             + "Example: " + "addt" + " "
             + PREFIX_TASKNAME + "John Doe "
             + PREFIX_DATETIME + "25-12-2022 1800 "
