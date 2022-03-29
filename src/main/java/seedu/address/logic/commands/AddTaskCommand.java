@@ -35,7 +35,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_TASKNAME + "John Doe "
             + PREFIX_DATETIME + "25-12-2022 1800 "
             + PREFIX_TAG + "CS2103T "
-            + PREFIX_LINK + "https://...] "
+            + PREFIX_LINK + "https://[...] "
             + PREFIX_RECURRING + "5 5\n"
             + "Hint: for " + PREFIX_RECURRING + " you can use predefined values [annually, quarterly, monthly,"
             + " weekly, daily] for the period field.";
