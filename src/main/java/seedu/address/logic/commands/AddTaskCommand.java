@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -90,6 +91,13 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        String checkTagLength = TagUtil.checkTagLength(tags);
+
+        //null value represents no tags are too long.
+        if (checkTagLength != null) {
+            throw new CommandException(checkTagLength);
+        }
         Task taskToBeAdded = new Task(taskName, dateTime, endDateTime, tags, link, isTaskMarkDone);
 
         if (taskToBeAdded.hasInvalidDateRange()) {

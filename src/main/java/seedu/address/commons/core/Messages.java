@@ -12,4 +12,6 @@ public class Messages {
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
     public static final String MESSAGE_INVALID_DATE_RANGE = "The end date must be after the start date!";
+    public static final String MESSAGE_TAG_TOO_LONG = "Error: Tags can be at most 50 characters in length.\n"
+            + "The following tags are too long:\n%s";
 }
