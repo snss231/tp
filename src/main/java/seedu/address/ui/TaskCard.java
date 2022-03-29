@@ -68,20 +68,13 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName());
         setTaskColor(task.getDateTime());
 
-        if (task.hasEndDateTime()) {
-            date.setText(String.format("From: %s - %s", task.getDateTimeString(), task.getEndDateTimeString()));
-        } else {
-            date.setText("Due: " + task.getDateTimeString());
-        }
+        date.setText(task.getDateTimeString());
 
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         setLink();
-
-
-
         setMarkedImage(task);
     }
 
