@@ -32,8 +32,10 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task "
             + "by the index number used in the displayed task list. \n"
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Existing values will be overwritten by the input values. Index must be a positive integer\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "INDEX "
             + "[" + PREFIX_TASKNAME + "TASK NAME] "
             + "[" + PREFIX_DATETIME + "TIME(dd-mm-yyyy hhmm)] "
             + "[" + PREFIX_TAG + "TAG]...\n"

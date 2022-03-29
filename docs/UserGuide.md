@@ -81,7 +81,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
   e.g. in `addc n/CONTACTNAME`, `CONTACTNAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -111,12 +111,12 @@ Format: `help`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/_USERNAME [t/TAGS]`
 
 Examples:
 
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
-* `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammate t/Classmate`
+* `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Tea![img.png](img.png)Hmmate t/Classmate`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 You can add multiple tags to a contact. Just put t/ before every tag!
@@ -133,7 +133,7 @@ Format: `listc`
 
 Edits an existing person in NUS Classes.
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
+Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -291,9 +291,9 @@ Examples:
 ### Assigning a contact to a task: `assign`
 Assigns a person in the contact list to a task.
 
-Format: `assign INDEX p/PERSONINDEX`
+Format: `assign TASKINDEX p/PERSONINDEX`
 
-* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* Assigns the person at the specified `PERSONINDEX` to the task at `TASKINDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `assign 1 p/2` Assigns the 2nd person in the person list to the 1st task in the task list. <br>
@@ -303,9 +303,9 @@ Examples:
 ### Unassigning a contact from a task: `unassign`
 Unassigns a person in the contact list from a task.
 
-Format: `unassign INDEX p/PERSONINDEX`
+Format: `unassign TASKINDEX p/PERSONINDEX`
 
-* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* Assigns the person at the specified `PERSONINDEX` to the task at `TASKINDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
 * If the person is not already assigned to the task, the operation will fail.
 * The `view` command can help you quickly identify which contacts are already assigned to a task.
 
@@ -440,22 +440,22 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                                | Format, Examples                                                                                                                                           |
-|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
-| **List Contacts**                     | `listc`                                                                                                                                                    |
-| **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                           |
- | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
-| **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
-| **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
-| **List Tasks**                        | `listt`                                                                                                                                                    |
-| **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
-| **Find Task**                         | `findt KEYWORD [MORE_KEYWORDS]`                                                                                                                            |
-| **Assign contact <br> To Task**       | `assign INDEX p/PERSONINDEX`                                                                                                                               |
-| **Unassign contact <br> From Task**   | `unassign INDEX p/PERSONINDEX`                                                                                                                             |
-| **View contacts<br>Assigned to Task** | `view INDEX`                                                                                                                                               |
-| **Mark Task**                         | `mark INDEX`                                                                                                                                               |
-| **Unmark Task**                       | `unmark INDEX`                                                                                                                                             |
-| **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
-| **Clear all contacts**                | `clear`                                                                                                                                                    |
-| **Exit**                              | `exit`                                                                                                                                                     |
+| Action                                | Format, Examples                                                                                                                                              |
+|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GITHUB_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
+| **List Contacts**                     | `listc`                                                                                                                                                       |
+| **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…​`<br>                                                                           |
+ | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                            |
+| **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                          |
+| **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                      |
+| **List Tasks**                        | `listt`                                                                                                                                                       |
+| **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                               |
+| **Find Task**                         | `findt KEYWORD [MORE_KEYWORDS]`                                                                                                                               |
+| **Assign contact <br> To Task**       | `assign INDEX p/PERSONINDEX`                                                                                                                                  |
+| **Unassign contact <br> From Task**   | `unassign INDEX p/PERSONINDEX`                                                                                                                                |
+| **View contacts<br>Assigned to Task** | `view INDEX`                                                                                                                                                  |
+| **Mark Task**                         | `mark INDEX`                                                                                                                                                  |
+| **Unmark Task**                       | `unmark INDEX`                                                                                                                                                |
+| **Delete Task**                       | `deletet INDEX`                                                                                                                                               |
+| **Clear all contacts**                | `clear`                                                                                                                                                       |
+| **Exit**                              | `exit`                                                                                                                                                        |
