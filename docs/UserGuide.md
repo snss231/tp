@@ -29,6 +29,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
         * [Mark a task as done](#mark-a-task-as-done-mark)
         * [Unmark a task as not done](#unmark-a-task-as-not-done-unmark)
         * [Deleting tasks](#deleting-tasks-deletet)
+        * [Generating emails of all contacts assigned to a task](#generating-emails-of-all-contacts-assigned-to-a-task-gen)
     * [Other Features](#other-features)
         * [Clearing all contacts](#clearing-all-contacts--clear)
         * [Exiting the program](#exiting-the-program--exit)
