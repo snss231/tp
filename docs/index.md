@@ -3,8 +3,8 @@ layout: page
 title: NUS Classes
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/ay2122s2-cs2103t-t12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/ay2122s2-cs2103t-t12-4/tp/actions)
+[![codecov](https://codecov.io/gh/ay2122s2-cs2103t-t12-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/ay2122s2-cs2103t-t12-4/tp)
 
 ![Ui](images/Ui.png)
 

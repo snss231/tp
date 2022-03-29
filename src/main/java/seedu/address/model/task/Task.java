@@ -241,6 +241,7 @@ public class Task {
 
     /**
      * Returns a copy-paste friendly string containing all the emails related to this task.
+     * The emails will be joined with a comma separator (e.g. "e1234578@u.nus.edu.sg, e12121212@u.nus.edu.sg").
      *
      * @return The generated email string
      */
