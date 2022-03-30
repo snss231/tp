@@ -37,9 +37,9 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_DATETIME + "TIME(dd-mm-yyyy hhmm)] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TASKNAME + "Do homework CS2103T "
+            + PREFIX_TASKNAME + "CS2103T Lecture "
             + PREFIX_DATETIME + "12-03-2022 1330 "
-            + PREFIX_TAG + "Homework";
+            + PREFIX_TAG + "Lecture";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

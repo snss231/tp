@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all contacts assigned the task identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all contacts assigned to the task identified "
             + "by the index number used in the displayed task list. \n"
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";

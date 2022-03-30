@@ -32,10 +32,10 @@ public class AddTaskCommand extends Command {
             + " [" + PREFIX_LINK + "LINK] "
             + " [" + PREFIX_RECURRING + "PERIOD RECURRENCE]\n"
             + "Example: " + "addt" + " "
-            + PREFIX_TASKNAME + "John Doe "
+            + PREFIX_TASKNAME + "Lecture "
             + PREFIX_DATETIME + "25-12-2022 1800 "
             + PREFIX_TAG + "CS2103T "
-            + PREFIX_LINK + "https://[...] "
+            + PREFIX_LINK + "https://... "
             + PREFIX_RECURRING + "5 5\n"
             + "Hint: for " + PREFIX_RECURRING + " you can use predefined values [annually, quarterly, monthly,"
             + " weekly, daily] for the period field.";
