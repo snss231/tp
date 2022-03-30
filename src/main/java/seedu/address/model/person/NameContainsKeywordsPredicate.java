@@ -22,7 +22,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         for (String str: keywords) {
             Tag[] tags = new Tag[person.getTags().size()];
             person.getTags().toArray(tags);
-            for (int i = 0; i < tags.length; i++ ) {
+            for (int i = 0; i < tags.length; i++) {
                 if (StringUtil.containsWordIgnoreCase(tags[i].toString(), str.trim())) {
                     isEqual = true;
                     break;

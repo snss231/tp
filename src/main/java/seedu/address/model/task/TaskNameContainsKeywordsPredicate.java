@@ -26,7 +26,7 @@ public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
             }
             Tag[] tags = new Tag[task.getTags().size()];
             task.getTags().toArray(tags);
-            for (int i = 0; i < tags.length; i++ ) {
+            for (int i = 0; i < tags.length; i++) {
                 if (StringUtil.containsWordIgnoreCase(tags[i].toString(), str.trim())) {
                     isEqual = true;
                     break;
