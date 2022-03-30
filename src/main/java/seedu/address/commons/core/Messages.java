@@ -22,4 +22,7 @@ public class Messages {
     public static final String MESSAGE_NEED_AT_LEAST_ONE_VALID_PARAMETER =
             "You need at least one valid parameter!\n%1$s";
     public static final String MESSAGE_INVALID_PARAMETERS = "Missing/Invalid parameters: ";
+
+    public static final String MESSAGE_TAG_TOO_LONG = "Error: Tags can be at most 50 characters in length.\n"
+            + "The following tag(s) are too long:\n%s";
 }

@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +16,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -30,7 +30,7 @@ public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "editt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task identified"
             + "by the index number used in the displayed task list. \n"
             + "Existing values will be overwritten by the input values. Index must be a positive integer\n"
             + "Usage: "
@@ -40,12 +40,12 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_DATETIME + "TIME(dd-mm-yyyy hhmm)] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TASKNAME + "Do homework CS2103T "
+            + PREFIX_TASKNAME + "CS2103T Lecture "
             + PREFIX_DATETIME + "12-03-2022 1330 "
-            + PREFIX_TAG + "Homework";
+            + PREFIX_TAG + "Lecture";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "A field has to be edited at least.\n%1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n%1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in your task list.";
 
     private final Index index;
@@ -74,6 +74,13 @@ public class EditTaskCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
+        String checkTagLength = TagUtil.checkTagLength(editedTask.getTags());
+
+        //null value represents no tags are too long.
+        if (checkTagLength != null) {
+            throw new CommandException(checkTagLength);
+        }
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -128,7 +135,6 @@ public class EditTaskCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         private String name;
         private LocalDateTime dateTime;
         private LocalDateTime endDateTime;

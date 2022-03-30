@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all relevant contacts under a task "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all contacts assigned to the task identified "
             + "by the index number used in the displayed task list. \n"
             + "Usage: "
             + COMMAND_WORD + " "
@@ -62,7 +62,7 @@ public class ViewCommand extends Command {
         int listSize = listOfPeople.size();
 
         if (listSize < 1) {
-            return new CommandResult(NO_CONTACT_ASSIGN);
+            return new CommandResult(String.format(NO_CONTACT_ASSIGN, targetIndex.getOneBased()));
         }
 
         PersonContainInTask predicate = new PersonContainInTask(listOfPeople);
@@ -71,11 +71,7 @@ public class ViewCommand extends Command {
 
         listSize = model.getFilteredPersonList().size();
 
-        if (listSize == 1) {
-            return new CommandResult(String.format(DISPLAY_TASK_CONTACT_SUCCESS_SINGLE, listSize));
-        }
-
         return new CommandResult(
-                String.format(DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, listSize));
+                String.format(DISPLAY_TASK_CONTACT_SUCCESS, listSize));
     }
 }

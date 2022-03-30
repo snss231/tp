@@ -175,8 +175,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-
-
     private void handleEmails(String emails) {
         resultDisplay.setEmails(emails);
         resultDisplay.showCopy();

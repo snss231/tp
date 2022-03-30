@@ -7,6 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 
+
 /**
  * Finds and lists all tasks in task storage whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
@@ -22,6 +23,7 @@ public class FindTaskCommand extends Command {
             + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " apple orange pear";
 
+
     private final TaskNameContainsKeywordsPredicate predicate;
 
     public FindTaskCommand(TaskNameContainsKeywordsPredicate predicate) {
@@ -31,7 +33,8 @@ public class FindTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(predicate);
+
+        model.updateFilteredTaskList(this.predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
