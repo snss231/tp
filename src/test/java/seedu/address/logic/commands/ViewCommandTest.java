@@ -31,9 +31,11 @@ public class ViewCommandTest {
         Model expectedModel =
                 new ModelManager(model.getAddressBook(), new UserPrefs(), new TaskList(model.getTaskList()));
 
-        String expectedMessage = ViewCommand.NO_CONTACT_ASSIGN;
+        Index taskIndex = Index.fromZeroBased(0);
 
-        ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(0));
+        String expectedMessage = String.format(ViewCommand.NO_CONTACT_ASSIGN, taskIndex.getOneBased());
+
+        ViewCommand viewCommand = new ViewCommand(taskIndex);
 
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
@@ -44,7 +46,7 @@ public class ViewCommandTest {
         Model expectedModel = new ModelManager(
                 assignedModel.getAddressBook(), new UserPrefs(), new TaskList(assignedModel.getTaskList()));
 
-        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, 2);
+        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS, 2);
         List<Person> assignedList = expectedModel.getFilteredTaskList().get(0).getPeople();
         PersonContainInTask pred = new PersonContainInTask(assignedList);
 

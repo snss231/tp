@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -24,19 +25,19 @@ import seedu.address.model.task.Task;
 public class AddTaskCommand extends Command {
 
     /* Message printed if wrong usage */
-    public static final String MESSAGE_USAGE = "addt" + ": Adds a task to the NUS Classes. "
+    public static final String MESSAGE_USAGE = "addt" + ": Adds a task to NUS Classes. "
             + "Parameters: "
             + PREFIX_TASKNAME + "TASKNAME "
             + PREFIX_DATETIME + "DATETIME [, ENDDATETIME]"
-            + PREFIX_TAG + "TAG "
-            + PREFIX_LINK + "LINK "
-            + PREFIX_RECURRING + "PERIOD RECURRENCE\n"
+            + " [" + PREFIX_TAG + "TAG] "
+            + " [" + PREFIX_LINK + "LINK] "
+            + " [" + PREFIX_RECURRING + "PERIOD RECURRENCE]\n"
             + "Example: " + "addt" + " "
-            + PREFIX_TASKNAME + "John Doe "
+            + PREFIX_TASKNAME + "Lecture "
             + PREFIX_DATETIME + "25-12-2022 1800 "
-            + PREFIX_TAG + "CS2103T"
-            + " [" + PREFIX_LINK + "https://...]"
-            + " [" + PREFIX_RECURRING + "5 5]\n"
+            + PREFIX_TAG + "CS2103T "
+            + PREFIX_LINK + "https://... "
+            + PREFIX_RECURRING + "5 5\n"
             + "Hint: for " + PREFIX_RECURRING + " you can use predefined values [annually, quarterly, monthly,"
             + " weekly, daily] for the period field.";
 
@@ -90,6 +91,13 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        String checkTagLength = TagUtil.checkTagLength(tags);
+
+        //null value represents no tags are too long.
+        if (checkTagLength != null) {
+            throw new CommandException(checkTagLength);
+        }
         Task taskToBeAdded = new Task(taskName, dateTime, endDateTime, tags, link, isTaskMarkDone);
 
         if (taskToBeAdded.hasInvalidDateRange()) {

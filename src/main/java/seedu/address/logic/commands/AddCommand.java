@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -37,8 +38,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in NUS Classes!";
     public static final String MESSAGE_DUPLICATE_GIT_USERNAME = "This Github username already exists in NUS Classes!\n"
             + "Check again?";
-    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck gain?";
-    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Clases!\n"
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck again?";
+    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Classes!\n"
             + "Check again?";
 
     private final Person toAdd;
@@ -69,6 +70,13 @@ public class AddCommand extends Command {
 
         if (model.hasPhone(toAdd.getPhone())) {
             throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        String checkTagLength = TagUtil.checkTagLength(toAdd.getTags());
+
+        //null value represents no tags are too long.
+        if (checkTagLength != null) {
+            throw new CommandException(checkTagLength);
         }
 
         model.addPerson(toAdd);

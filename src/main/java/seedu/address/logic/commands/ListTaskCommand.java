@@ -19,10 +19,10 @@ public class ListTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List the available task\n"
-            + "Parameters: [" + PREFIX_LIST_ALL_TASK + "] or "
-            + "[" + PREFIX_LIST_INCOMPLETE_TASK + "] or "
-            + "[" + PREFIX_LIST_COMPLETE_TASK + "]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks\n"
+            + "Parameters: [" + PREFIX_LIST_ALL_TASK + "] for all (complete + incomplete) tasks,\n "
+            + "[" + PREFIX_LIST_INCOMPLETE_TASK + "] for incomplete tasks and\n "
+            + "[" + PREFIX_LIST_COMPLETE_TASK + "] for complete tasks\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_LIST_ALL_TASK;
 
     private String prefix;
