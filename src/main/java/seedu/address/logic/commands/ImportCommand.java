@@ -63,7 +63,7 @@ public class ImportCommand extends Command {
 
         for (Person p : toAdd) {
             if (model.hasPerson(p) || model.hasEmail(p.getEmail()) || model.hasPhone(p.getPhone())
-            || model.hasUsername(p.getUsername())) {
+                || model.hasUsername(p.getUsername())) {
                 duplicateCount++;
                 duplicateContacts.add(p);
                 continue;
