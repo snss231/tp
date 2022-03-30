@@ -111,7 +111,7 @@ Format: `help`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/_USERNAME [t/TAGS]`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]`
 
 Examples:
 
