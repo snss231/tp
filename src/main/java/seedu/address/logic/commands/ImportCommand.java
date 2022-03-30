@@ -16,7 +16,8 @@ import seedu.address.model.person.Person;
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports contacts into NUS Classes from a .csv data file. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports contacts into "
+            + "NUS Classes from a .csv data file. "
             + "Parameters: "
             + PREFIX_FILEPATH + "FILEPATH\n"
             + "Example: " + COMMAND_WORD + " "
