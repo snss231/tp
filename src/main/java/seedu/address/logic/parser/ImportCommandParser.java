@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
@@ -27,6 +27,12 @@ public class ImportCommandParser implements Parser<ImportCommand> {
     public static final String MESSAGE_CSV_MISSING_FIELD = "Error: found empty field in the file %s";
 
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the ImportCommand
+     * and returns a ImportCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ImportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILEPATH);
 
@@ -85,8 +91,9 @@ public class ImportCommandParser implements Parser<ImportCommand> {
                 try {
                     gitUsername = ParserUtil.parseGitUsername(values[githubIndex]);
                 } catch (ParseException e) {
-                    invalidFields.add(String.format(
-                            "Error: the github username \"%s\" is invalid: %s", values[githubIndex], GitUsername.MESSAGE_CONSTRAINTS));
+                    invalidFields.add(
+                            String.format("Error: the github username \"%s\" is invalid: %s",
+                            values[githubIndex], GitUsername.MESSAGE_CONSTRAINTS));
                     continue;
                 }
                 toAdd.add(new Person(name, phone, email, gitUsername, tagList));

@@ -79,11 +79,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && (otherPerson.name.equals(name)
-                || otherPerson.phone.equals(phone)
-                || otherPerson.email.equals(email)
-                || otherPerson.gitUsername.equals(gitUsername)
-                || otherPerson.tags.equals(tags));
+                && otherPerson.name.equals(name);
     }
 
     /**

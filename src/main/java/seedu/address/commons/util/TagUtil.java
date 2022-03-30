@@ -22,7 +22,7 @@ public class TagUtil {
                     tags.stream()
                             .filter(tag -> tag.tagName.length() > 50)
                             .reduce("", (str, tag) -> tag + "\n" + str, (s1, s2) -> s1 + s2));
-        };
+        }
         return null;
     }
 }

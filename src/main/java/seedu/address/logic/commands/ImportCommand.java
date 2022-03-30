@@ -37,6 +37,13 @@ public class ImportCommand extends Command {
     private final List<Person> toAdd;
     private final List<String> invalidFields;
 
+    /**
+     * Creates an ImportCommand with the following fields
+     * @param toAdd The people to be added to the model (before duplicate checks)
+     * @param filename The name of the data file
+     * @param invalidFields A list of strings, each giving info on an invalid entry that was provided in the data file.
+     */
+
     public ImportCommand(List<Person> toAdd, String filename, List<String> invalidFields) {
         this.toAdd = toAdd;
         this.filename = filename;
@@ -55,7 +62,8 @@ public class ImportCommand extends Command {
         int invalidTagCount = 0;
 
         for (Person p : toAdd) {
-            if (model.hasPerson(p)) {
+            if (model.hasPerson(p) || model.hasEmail(p.getEmail()) || model.hasPhone(p.getPhone())
+            || model.hasUsername(p.getUsername())) {
                 duplicateCount++;
                 duplicateContacts.add(p);
                 continue;
