@@ -187,6 +187,18 @@ Examples:
     ![result for `deletec 1` part 1](images/deletecCommandShowcase1.png) <br><br>
     ![result for `deletec 1` part 2](images/deletecCommandShowcase2.png)
 
+### Importing contacts from a data file : `import`
+
+Imports a list of contacts from a .csv file.
+
+Format: `import fp/FILENAME`
+
+* The csv file must contain the following 5 headers (Name, Phone, Email, Github, Tags). 
+* If there are repeated headers, the first one will be considered.
+* Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
+
+Examples:
+* `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
 
 
 # Task Features
