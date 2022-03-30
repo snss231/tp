@@ -39,7 +39,7 @@ Hope you'll be satisfied using NUSClasses :smile:
         * [Deleting tasks](#deleting-a-task-deletet)
         * [Generating emails of all contacts assigned to a task](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen)
     * [Other Features](#other-features)
-        * [Clearing all contacts](#clearing-all-contacts--clear)
+        * [Clearing all data](#clearing-all-data--clear)
         * [Exiting the program](#exiting-the-program--exit)
         * [Saving the data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -71,7 +71,7 @@ Hope you'll be satisfied using NUSClasses :smile:
 
    * **`assign`**`1 p/ 2` : Assigns the contact at index 2 to the task at index 1.
 
-   * **`clear`** : Clears all contacts from NUS Classes
+   * **`clear`** : Clears all contacts and tasks from NUS Classes
 
    * **`exit`** : Exits the app.
 
@@ -478,11 +478,16 @@ Examples:
 
 # Other Features
 
-### Clearing all contacts : `clear`
+### Clearing all data : `clear`
 
-Clears all contacts from NUS Classes.
+Clears all contacts and tasks from NUS Classes.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Be careful! This action is irreversible.
+</div>
+
 
 ### Exiting the program : `exit`
 
@@ -516,7 +521,6 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
 | Action                                                                                                                             | Format, Examples                                                                         |
 |------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | [**Add Contact**](#adding-a-contact-addc)                                                                                          | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​`                            |
@@ -538,3 +542,4 @@ _Details coming soon ..._
 | [**Generating emails of all the contacts<br>Assigned to task**](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen) | `gen INDEX`                                                                              |
 | [**Clear all contacts**](#clearing-all-contacts--clear)                                                                            | `clear`                                                                                  |
 | [**Exit**](#exiting-the-program--exit)                                                                                             | `exit`                                                                                   |
+

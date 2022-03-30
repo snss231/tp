@@ -161,4 +161,5 @@ public interface Model {
      */
     void unmarkTask(Task task);
 
+    void setTaskList(ReadOnlyTaskList tasks);
 }
