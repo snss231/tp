@@ -30,6 +30,11 @@ public class FilterByDateCommand extends Command {
 
     private final TaskBetweenDatesPredicate predicate;
 
+    /**
+     * Constructor for FilterByDateCommand
+     *
+     * @param predicate Predicate that returns true if task's date falls on or in between the given range
+     */
     public FilterByDateCommand(TaskBetweenDatesPredicate predicate) {
         this.predicate = predicate;
     }
