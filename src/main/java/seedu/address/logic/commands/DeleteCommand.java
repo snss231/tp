@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Index must be a positive integer.\n"
             + "Usage: "
-            + COMMAND_WORD  + " "
+            + COMMAND_WORD + " "
             + "INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 

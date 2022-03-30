@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -36,11 +36,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_GIT_USERNAME, PREFIX_TAG);
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();

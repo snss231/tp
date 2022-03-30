@@ -45,7 +45,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_TAG + "Homework";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "A field has to be edited at least.";
+    public static final String MESSAGE_NOT_EDITED = "A field has to be edited at least.\n%1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in your task list.";
 
     private final Index index;

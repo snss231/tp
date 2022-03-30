@@ -24,7 +24,9 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         Index personIndex;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
+            String missingParameterMessage = displayInvalidParameters(argMultimap);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, missingParameterMessage
+                    + "\n" + UnassignCommand.MESSAGE_USAGE));
         }
 
         taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -32,4 +34,16 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
 
         return new UnassignCommand(taskIndex, personIndex);
     }
+
+    /**
+     * Checks what parameters are missing in user's input. Returns the tags that are missing.
+     * Example: If p/ are missing, return "Missing/Invalid parameters: p/".
+     *
+     * @param argMultimap Argument Multimap of user input that is read.
+     * @return String format of missing parameters.
+     */
+    public String displayInvalidParameters(ArgumentMultimap argMultimap) {
+        return "Missing/Invalid parameters: " + PREFIX_PERSON;
+    }
+
 }

@@ -25,7 +25,7 @@ public class ViewCommand extends Command {
             + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String NO_CONTACT_ASSIGN = "There are no contact assigned to this task.";
+    public static final String NO_CONTACT_ASSIGN = "There are no contacts assigned to this task.";
     public static final String DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE = "There were %1$d contacts assigned to this task";
     public static final String DISPLAY_TASK_CONTACT_SUCCESS_SINGLE = "There was %1$d contact assigned to this task";
 
