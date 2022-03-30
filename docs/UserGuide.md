@@ -32,6 +32,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
         * [Generating emails of all contacts assigned to a task](#generating-emails-of-all-contacts-assigned-to-a-task-gen)
     * [Other Features](#other-features)
         * [Clearing all contacts](#clearing-all-contacts--clear)
+        * [Importing contacts from a data file](#importing-contacts-from-a-data-file--import)
         * [Exiting the program](#exiting-the-program--exit)
         * [Saving the data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -186,19 +187,6 @@ Examples:
     <br>
     ![result for `deletec 1` part 1](images/deletecCommandShowcase1.png) <br><br>
     ![result for `deletec 1` part 2](images/deletecCommandShowcase2.png)
-
-### Importing contacts from a data file : `import`
-
-Imports a list of contacts from a .csv file.
-
-Format: `import fp/FILENAME`
-
-* The csv file must contain the following 5 headers (Name, Phone, Email, Github, Tags). 
-* If there are repeated headers, the first one will be considered.
-* Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
-
-Examples:
-* `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
 
 
 # Task Features
@@ -431,15 +419,30 @@ NUS Classes data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-NUS Classes data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+NUS Classes data are saved into two JSON files:
+* `[JAR file location]/data/addressbook.json` for contact data
+* `[JAR file location/data/tasklist.json` for task data
+
+Advanced users are welcome to update data directly by editing these data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, NUS Classes will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Importing contacts from a data file : `import`
 
-_Details coming soon ..._
+Imports a list of contacts from a .csv file.
+
+Format: `import fp/FILENAME`
+
+* The .csv file must contain the following 5 headers (Name, Phone, Email, Github, Tags). Any other headers will be ignored.
+* Tags in the .csv file should be separated with a `/` character.
+* If there are repeated headers, the first one will be considered.
+* Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
+
+Examples:
+* `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
