@@ -184,6 +184,13 @@ public class ParserUtil {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Creates and returns the Path of the import file.
+     *
+     * @param option Optional containing the filepath
+     * @return The path of the file
+     * @throws ParseException if no filepath is provide
+     */
     public static Path parsePath(Optional<String> option) throws ParseException {
         requireNonNull(option);
 

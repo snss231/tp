@@ -5,8 +5,8 @@ package seedu.address.model.person;
  */
 public class GitUsername {
 
-    public static final String MESSAGE_CONSTRAINTS = "GitUsername should adhere to the following constraints:\n"
-            + "1. AlphaNumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Github usernames should only contain alphanumeric characters.\n";
+
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
 
     private String userid;

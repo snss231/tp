@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.core.io.CharacterEscapes;
 import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -31,13 +30,17 @@ public class ImportCommand extends Command {
                     + "than the maximum length of 50 characters were not added:\n";
     private static final String MESSAGE_NO_CONTACTS_ADDED =
             "Import completed. No contacts were added to NUS Classes from %s.\n";
+    private static final String MESSAGE_INVALID_FIELDS =
+            "\nNote: %d contacts containing were not added due to these issues:\n";
 
     private final String filename;
     private final List<Person> toAdd;
+    private final List<String> invalidFields;
 
-    public ImportCommand(List<Person> toAdd, String filename) {
+    public ImportCommand(List<Person> toAdd, String filename, List<String> invalidFields) {
         this.toAdd = toAdd;
         this.filename = filename;
+        this.invalidFields = invalidFields;
     }
 
     @Override
@@ -71,15 +74,22 @@ public class ImportCommand extends Command {
 
         String infoAdded = addedCount == 0 ? String.format(MESSAGE_NO_CONTACTS_ADDED, filename)
                 : String.format(MESSAGE_SUCCESS, addedCount, filename)
-                + String.join("\n", () -> added.stream().<CharSequence>map(Person::toString).iterator());
+                + String.join("\n", () -> added.stream().<CharSequence>map(Person::toString).iterator())
+                + "\n";
 
         String infoDuplicates = duplicateCount == 0 ? "" : String.format(MESSAGE_DUPLICATES_NOT_ADDED, duplicateCount)
-                + String.join("\n", () -> duplicateContacts.stream().<CharSequence>map(Person::toString).iterator());
+                + String.join("\n", () -> duplicateContacts.stream().<CharSequence>map(Person::toString).iterator())
+                + "\n";
 
         String infoInvalidTags = invalidTagCount == 0 ? "" : String.format(MESSAGE_FOUND_TAGS_TOO_LONG, invalidTagCount)
-                + String.join("\n", () -> invalidTagContacts.stream().<CharSequence>map(Person::toString).iterator());
+                + String.join("\n", () -> invalidTagContacts.stream().<CharSequence>map(Person::toString).iterator())
+                + "\n";
 
+        int invalidCount = invalidFields.size();
+        String infoInvalidFields = invalidCount == 0 ? ""
+                : String.format(MESSAGE_INVALID_FIELDS, invalidCount)
+                + invalidFields.stream().collect(Collectors.joining("\n"));
 
-        return new CommandResult(infoAdded + infoDuplicates + infoInvalidTags);
+        return new CommandResult(infoAdded + infoDuplicates + infoInvalidTags + "\n" + infoInvalidFields);
     }
 }

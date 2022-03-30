@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
@@ -25,6 +26,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
 
     public static final String MESSAGE_CSV_MISSING_FIELD = "Error: found empty field in the file %s";
 
+
     public ImportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILEPATH);
 
@@ -35,6 +37,8 @@ public class ImportCommandParser implements Parser<ImportCommand> {
         Path path = ParserUtil.parsePath(argMultimap.getValue(PREFIX_FILEPATH));
 
         List<Person> toAdd = new ArrayList<>();
+
+        List<String> invalidFields = new ArrayList<>();
 
         try {
             Scanner sc = new Scanner(path.toFile());
@@ -51,13 +55,40 @@ public class ImportCommandParser implements Parser<ImportCommand> {
 
             while (sc.hasNextLine()) {
                 String[] values = sc.nextLine().split(",");
-
-                Name name = ParserUtil.parseName(values[nameIndex]);
-                Phone phone = ParserUtil.parsePhone(values[phoneIndex]);
-                Email email = ParserUtil.parseEmail(values[emailIndex]);
-                GitUsername gitUsername = ParserUtil.parseGitUsername(values[githubIndex]);
+                Name name;
+                Phone phone;
+                Email email;
+                GitUsername gitUsername;
                 Set<Tag> tagList = ParserUtil.parseTags(Arrays.asList(values[tagsIndex].split("/")));
+                try {
+                    name = ParserUtil.parseName(values[nameIndex]);
+                } catch (ParseException e) {
+                    invalidFields.add(String.format(
+                            "Error: the name \"%s\" is invalid: %s", values[nameIndex], Name.MESSAGE_CONSTRAINTS));
+                    continue;
+                }
+                try {
+                    phone = ParserUtil.parsePhone(values[phoneIndex]);
+                } catch (ParseException e) {
+                    invalidFields.add(String.format(
+                            "Error: the phone \"%s\" is invalid: %s", values[phoneIndex], Phone.MESSAGE_CONSTRAINTS));
+                    continue;
+                }
+                try {
+                    email = ParserUtil.parseEmail(values[emailIndex]);
+                } catch (ParseException e) {
+                    invalidFields.add(String.format(
+                            "Error: the email \"%s\" is invalid: %s", values[emailIndex], Email.MESSAGE_CONSTRAINTS));
+                    continue;
+                }
 
+                try {
+                    gitUsername = ParserUtil.parseGitUsername(values[githubIndex]);
+                } catch (ParseException e) {
+                    invalidFields.add(String.format(
+                            "Error: the github username \"%s\" is invalid: %s", values[githubIndex], GitUsername.MESSAGE_CONSTRAINTS));
+                    continue;
+                }
                 toAdd.add(new Person(name, phone, email, gitUsername, tagList));
             }
 
@@ -65,6 +96,6 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             throw new ParseException(String.format(MESSAGE_CSV_MISSING_HEADERS, path.getFileName()));
         }
 
-        return new ImportCommand(toAdd, argMultimap.getValue(PREFIX_FILEPATH).get());
+        return new ImportCommand(toAdd, argMultimap.getValue(PREFIX_FILEPATH).get(), invalidFields);
     }
 }
