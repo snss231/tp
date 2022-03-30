@@ -517,6 +517,7 @@ _Details coming soon ..._
 
 ## Command summary
 
+
 | Action                                                                                                                             | Format, Examples                                                                         |
 |------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | [**Add Contact**](#adding-a-contact-addc)                                                                                          | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​`                            |
