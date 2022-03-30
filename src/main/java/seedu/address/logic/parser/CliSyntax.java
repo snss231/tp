@@ -23,4 +23,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_LIST_ALL_TASK = new Prefix("all/");
     public static final Prefix PREFIX_LIST_INCOMPLETE_TASK = new Prefix("nc/");
     public static final Prefix PREFIX_LIST_COMPLETE_TASK = new Prefix("c/");
+    public static final Prefix PREFIX_FILEPATH = new Prefix("fp/");
 }
