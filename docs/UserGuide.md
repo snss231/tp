@@ -33,6 +33,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
     * [Other Features](#other-features)
         * [Clearing all contacts](#clearing-all-contacts--clear)
         * [Importing contacts from a data file](#importing-contacts-from-a-data-file--import)
+        * [Clearing all data](#clearing-all-data--clear)
         * [Exiting the program](#exiting-the-program--exit)
         * [Saving the data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -64,7 +65,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
    * `assign 1 p/ 2` : Assigns the contact at index 2 to the task at index 1.
 
-   * **`clear`** : Clears all contacts from NUS Classes
+   * **`clear`** : Clears all contacts and tasks from NUS Classes
 
    * **`exit`** : Exits the app.
 
@@ -401,11 +402,16 @@ Examples:
 
 # Other Features
 
-### Clearing all contacts : `clear`
+### Clearing all data : `clear`
 
-Clears all contacts from NUS Classes.
+Clears all contacts and tasks from NUS Classes.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Be careful! This action is irreversible.
+</div>
+
 
 ### Exiting the program : `exit`
 
@@ -472,5 +478,5 @@ Examples:
 | **Mark Task**                         | `mark INDEX`                                                                                                                                               |
 | **Unmark Task**                       | `unmark INDEX`                                                                                                                                             |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
-| **Clear all contacts**                | `clear`                                                                                                                                                    |
+| **Clear all data**                    | `clear`                                                                                                                                                    |
 | **Exit**                              | `exit`                                                                                                                                                     |
