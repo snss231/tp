@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
@@ -24,6 +25,7 @@ public class JsonAdaptedTask {
     private final String dateTime;
     private final String endDateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedPerson> people = new ArrayList<>();
     private final String link;
     private final String isTaskMarkDone;
 
@@ -33,11 +35,13 @@ public class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime,
                            @JsonProperty("endDateTime") String endDateTime,
+                           @JsonProperty("people") List<JsonAdaptedPerson> people,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("link") String link,
                            @JsonProperty("isTaskMarkDone") String isTaskMarkDone) {
         this.name = name;
         this.dateTime = dateTime;
         this.endDateTime = endDateTime;
+        this.people.addAll(people);
         this.link = link;
 
         if (tagged != null) {
@@ -54,6 +58,9 @@ public class JsonAdaptedTask {
         dateTime = String.valueOf(source.getDateTime());
         endDateTime = String.valueOf(source.getEndDateTime());
         link = source.getLink().toString();
+        people.addAll(source.getPeople().stream()
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -71,6 +78,12 @@ public class JsonAdaptedTask {
             taskTags.add(tag.toModelType());
         }
 
+        List<Person> modelPeople = new ArrayList<>();
+        for (JsonAdaptedPerson person : people) {
+            modelPeople.add(person.toModelType());
+        }
+
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Name"));
         }
@@ -82,10 +95,9 @@ public class JsonAdaptedTask {
         LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
 
         Set<Tag> modelTag = new HashSet<>(taskTags);
-        final Set<Tag> modelTags = new HashSet<>(taskTags);
         Link modelLink = new Link(link);
         boolean modelIsTaskMarkDone = Boolean.parseBoolean(isTaskMarkDone);
 
-        return new Task(name, modelDateTime, modelEndDateTime, modelTag, modelLink, modelIsTaskMarkDone);
+        return new Task(name, modelDateTime, modelEndDateTime, modelPeople, modelTag, modelLink, modelIsTaskMarkDone);
     }
 }
