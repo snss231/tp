@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +29,7 @@ public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "editt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task identified"
             + "by the index number used in the displayed task list. \n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -38,12 +37,12 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_DATETIME + "TIME(dd-mm-yyyy hhmm)] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TASKNAME + "Do homework CS2103T "
+            + PREFIX_TASKNAME + "CS2103T Lecture "
             + PREFIX_DATETIME + "12-03-2022 1330 "
-            + PREFIX_TAG + "Homework";
+            + PREFIX_TAG + "Lecture";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "A field has to be edited at least.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in your task list.";
 
     private final Index index;
@@ -126,7 +125,6 @@ public class EditTaskCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         private String name;
         private LocalDateTime dateTime;
         private LocalDateTime endDateTime;
