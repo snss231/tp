@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -69,6 +70,13 @@ public class AddCommand extends Command {
 
         if (model.hasPhone(toAdd.getPhone())) {
             throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        String checkTagLength = TagUtil.checkTagLength(toAdd.getTags());
+
+        //null value represents no tags are too long.
+        if (checkTagLength != null) {
+            throw new CommandException(checkTagLength);
         }
 
         model.addPerson(toAdd);
