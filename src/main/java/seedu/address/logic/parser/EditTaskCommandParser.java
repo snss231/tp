@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 
@@ -36,7 +37,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(dateTimePattern);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG, PREFIX_LINK);
 
         Index index;
 
@@ -64,6 +65,10 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             } catch (java.text.ParseException e) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
             }
+        }
+
+        if (argMultimap.getValue(PREFIX_LINK).isPresent()) {
+            editTaskDescriptor.setLink(ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK)));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);

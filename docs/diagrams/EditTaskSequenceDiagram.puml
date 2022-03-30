@@ -34,7 +34,7 @@ activate EditTaskCommandParser
 EditTaskCommandParser -> ParserUtil : parseIndex(...)
 activate ParserUtil
 
-ParserUtil -> EditTaskCommandParser : index
+ParserUtil --> EditTaskCommandParser : index
 deactivate ParserUtil
 
 create EditTaskDescriptor
@@ -64,6 +64,17 @@ activate ParserUtil
 ParserUtil --> EditTaskCommandParser : Tags
 deactivate ParserUtil
 EditTaskCommandParser -> EditTaskDescriptor : setTags(...)
+activate EditTaskDescriptor
+EditTaskDescriptor --> EditTaskCommandParser
+deactivate EditTaskDescriptor
+end
+
+opt Link present
+EditTaskCommandParser -> ParserUtil : parseLink(...)
+activate ParserUtil
+ParserUtil --> EditTaskCommandParser : Link
+deactivate ParserUtil
+EditTaskCommandParser -> EditTaskDescriptor : setLink(...)
 activate EditTaskDescriptor
 EditTaskDescriptor --> EditTaskCommandParser
 deactivate EditTaskDescriptor

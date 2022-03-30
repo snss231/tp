@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -36,10 +37,12 @@ public class EditTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TASKNAME + "TASK NAME] "
             + "[" + PREFIX_DATETIME + "TIME(dd-mm-yyyy hhmm)] "
+            + "[" + PREFIX_LINK + "LINK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASKNAME + "Do homework CS2103T "
             + PREFIX_DATETIME + "12-03-2022 1330 "
+            + PREFIX_LINK + "https://...  "
             + PREFIX_TAG + "Homework";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Updated Task: %1$s";
@@ -151,7 +154,7 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, dateTime, tags);
+            return CollectionUtil.isAnyNonNull(name, dateTime, tags, link);
         }
 
         public void setName(String name) {
