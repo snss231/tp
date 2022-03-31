@@ -77,13 +77,13 @@ Hope you'll be satisfied using NUSClasses :smile:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `addc n/CONTACTNAME`, `CONTACTNAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -107,7 +107,7 @@ Hope you'll be satisfied using NUSClasses :smile:
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage2.png)
+![help message](images/helpmessage2.png)
 
 Format: `help`
 
