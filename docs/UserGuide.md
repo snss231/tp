@@ -117,7 +117,7 @@ Format: `help`
 
 Adds a contact with basic details like name, phone number and email.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]`
 
 Examples:
 
@@ -145,7 +145,7 @@ You will find this command useful after using [`findc`](#finding-contacts-by-nam
 
 Edits an existing contact in NUS Classes.
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
+Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
@@ -245,7 +245,7 @@ There cannot be an already existing tag with the same name; tags must be unique.
 ### Editing a task: `editt`
 Edits an existing task in the task list.
 
-Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
+Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`
 
 * Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
 * At least one of the optional fields must be provided.
@@ -295,7 +295,6 @@ Examples:
     ![`findt TAs lecture`](images/findtCommandShowcase.png)
 
 ### Finding tasks by date: `findt`
-
 Find tasks whose task falls in between the given dates (inclusive).
 
 Format: `findt dt/DATETIME1, DATETIME2`
@@ -312,7 +311,6 @@ Examples:
 * `find dt/14-04-2022 0900, 15-04-2022 0900` Finds all tasks in between `14th April 2022, 9am` and `15th April 2022, 9am`, inclusive.
 * `find dt/15-02-2022, 13-02-2022` Finds all tasks in between `13th February 2022, 12mn` and `15th February 2022, 11:59pm`, inclusive.
 * `find dt/20-12-2022, 21-12-2022 0900` Finds all tasks in between `20th December 2022 12mn` and `21st December 2022 9am`, inclusive.
-
 
 ### Assigning a contact to a task: `assign`
 Assigns a contact in the contact list to a task.
@@ -542,4 +540,5 @@ _Details coming soon ..._
 | [**Generating emails of all the contacts<br>Assigned to task**](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen) | `gen INDEX`                                                                              |
 | [**Clear all contacts**](#clearing-all-contacts--clear)                                                                            | `clear`                                                                                  |
 | [**Exit**](#exiting-the-program--exit)                                                                                             | `exit`                                                                                   |
+
 

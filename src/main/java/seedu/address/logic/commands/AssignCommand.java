@@ -21,7 +21,9 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add the person identified by the index number "
             + "used in the displayed person list "
             + "to the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: TASK_INDEX " + PREFIX_PERSON + "PERSON_INDEX\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "TASK_INDEX " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
 

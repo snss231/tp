@@ -19,18 +19,19 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "addc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to NUS Classes. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to NUS Classes.\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_GIT_USERNAME + "GIT_USERNAME "
+            + PREFIX_GIT_USERNAME + "GITHUB_USERNAME "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_GIT_USERNAME + "john123"
+            + PREFIX_GIT_USERNAME + "john123 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

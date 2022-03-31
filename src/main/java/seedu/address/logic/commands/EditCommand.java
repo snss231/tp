@@ -36,13 +36,15 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "\nExisting values will be overwritten by the input values. Index must be positive integers.\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_GIT_USERNAME + "GITHUB_USERNAME]...\n"
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_GIT_USERNAME + "GITUSERNAME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
@@ -50,7 +52,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person with these exact same parameters already "
+            + "exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

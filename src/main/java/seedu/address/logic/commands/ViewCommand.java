@@ -20,7 +20,9 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all contacts assigned to the task identified "
             + "by the index number used in the displayed task list. \n"
-            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String NO_CONTACT_ASSIGN = "Failed: There are no contacts assigned to task %d.";
