@@ -564,7 +564,7 @@ Examples:
 | [**Unmark Task**](#unmarking-a-task-as-not-done-unmark)                                                                            | `unmark INDEX`                                                                           |
 | [**Delete Task**](#deleting-a-task-deletet)                                                                                        | `deletet INDEX`                                                                          |
 | [**Generating emails of all the contacts<br>Assigned to task**](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen) | `gen INDEX`                                                                              |
-| [**Clear all contacts**](#clearing-all-contacts--clear)                                                                            | `clear`                                                                                  |
+| [**Clear all data**](#clearing-all-data--clear)                                                                                    | `clear`                                                                                  |
 | [**Import contacts**](#importing-contacts-from-a-data-file--import)                                                                | `import fp/FILEPATH`                                                                     |
 | [**Exit**](#exiting-the-program--exit)                                                                                             | `exit`                                                                                   |
 
