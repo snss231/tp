@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -108,7 +109,10 @@ public class AddTaskCommand extends Command {
         model.getTaskList().addTask(taskToBeAdded);
         for (int i = 1; i < period; i++) {
             LocalDateTime temp = dateTime.plusDays(i * recurrence);
-            LocalDateTime tempEnd = endDateTime.plusDays(i * recurrence);
+            LocalDateTime tempEnd = null;
+            if (!isNull(endDateTime)) {
+                tempEnd = endDateTime.plusDays(i * recurrence);
+            }
             taskToBeAdded = new Task(taskName, temp, tempEnd, tags, link, isTaskMarkDone);
             model.getTaskList().addTask(taskToBeAdded);
         }
