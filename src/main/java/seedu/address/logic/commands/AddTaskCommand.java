@@ -26,7 +26,7 @@ public class AddTaskCommand extends Command {
 
     /* Message printed if wrong usage */
     public static final String COMMAND_WORD = "addt";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the NUS Classes.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to NUS Classes.\n"
             + "Usage: "
             + COMMAND_WORD + " "
             + PREFIX_TASKNAME + "TASKNAME "
@@ -35,7 +35,7 @@ public class AddTaskCommand extends Command {
             + " [" + PREFIX_LINK + "LINK" + "] "
             + " [" + PREFIX_RECURRING + "PERIOD RECURRENCE" + "] \n"
             + "Example: " + "addt" + " "
-            + PREFIX_TASKNAME + "John Doe "
+            + PREFIX_TASKNAME + "Lecture "
             + PREFIX_DATETIME + "25-12-2022 1800,"
             + "25-12-2022 2000 "
             + PREFIX_TAG + "CS2103T "
