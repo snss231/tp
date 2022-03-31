@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -78,7 +79,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.name.equals(name);
     }
 
     /**
@@ -117,13 +118,13 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; GitUsername: ")
+                .append("; Github: ")
                 .append(getUsername());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            builder.append("; Tags: ")
+                    .append(tags.stream().<CharSequence>map(Tag::toString).collect(Collectors.joining(", ")));
         }
         return builder.toString();
     }
