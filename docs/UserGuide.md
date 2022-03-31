@@ -245,7 +245,7 @@ Good usage of `listt` will help in keeping track of tasks by status!
 ### Editing a task: `editt`
 Edits an existing task in the task list.
 
-Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
+Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`
 
 * Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.

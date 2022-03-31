@@ -108,7 +108,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     public void setLink() {
-        if (task.getLink().toString() != "") {
+        if (!task.getLink().toString().isEmpty()) {
             linkLabel.setText("Link:");
             link.setText(task.getLink().toString());
             link.setOnAction(new EventHandler<ActionEvent>() {
@@ -121,7 +121,6 @@ public class TaskCard extends UiPart<Region> {
                     }
                 }
             });
-
         }
     }
 
