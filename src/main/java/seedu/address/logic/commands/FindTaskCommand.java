@@ -16,11 +16,11 @@ public class FindTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "findt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names/tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Usage: "
             + COMMAND_WORD + " "
-            + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "KEYWORD [MORE_KEYWORDS]...[TAG]...\n"
             + "Example: " + COMMAND_WORD + " lecture consultation";
 
 

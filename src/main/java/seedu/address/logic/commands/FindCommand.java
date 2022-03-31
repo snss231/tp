@@ -14,11 +14,11 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "findc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names/tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Usage: "
             + COMMAND_WORD + " "
-            + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "KEYWORD [MORE_KEYWORDS]...[TAG]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;

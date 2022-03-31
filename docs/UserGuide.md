@@ -21,13 +21,13 @@ Hope you'll be satisfied using NUSClasses :smile:
         * [Adding a contact](#adding-a-contact-addc)
         * [Listing all contacts](#listing-all-contacts--listc)
         * [Editing a contact](#editing-a-contact--editc)
-        * [Finding contacts by name](#finding-contacts-by-name-findc)
+        * [Finding contacts](#finding-contacts-findc)
         * [Deleting a contact](#deleting-a-contact--deletec)
     * [Task Features](#task-features)
         * [Adding a task](#adding-a-task-addt)
         * [Listing tasks](#listing-tasks--listt)
         * [Editing a task](#editing-a-task-editt)
-        * [Finding tasks by name](#finding-tasks-by-name-findt)
+        * [Finding tasks](#finding-tasks-findt)
         * [Finding tasks by date](#finding-tasks-by-date-findt)
         * [Assigning a contact to a task](#assigning-a-contact-to-a-task-assign)
         * [Viewing contacts assigned to a task](#viewing-contacts-assigned-to-a-task-view)
@@ -168,11 +168,11 @@ Examples:
 You can remove all the contact’s tags by typing `t/` without specifying any tags after it. Useful when removing outdated tags from a contact.
 </div>
 
-### Finding contacts by name: `findc`
+### Finding contacts: `findc`
 
 Find contacts whose names contain any of the given keywords.
 
-Format: `findc KEYWORD [MORE_KEYWORDS]`
+Format: `findc KEYWORD [MORE_KEYWORDS]...[TAG]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -181,11 +181,17 @@ Format: `findc KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+You can find based on tags too!
+</div>
+
 Examples:
 * `findc John` returns `john` and `John Doe`
 * `findc brian sean` returns `Brian Chow`, `Sean Ng`<br>
     <br>
     ![result for 'find brian sean'](images/findcCommandShowcase.png)
+* 
+
 
 ### Deleting a contact : `deletec`
 
@@ -275,11 +281,11 @@ Examples:
 </div>
 
 
-### Finding tasks by name: `findt`
+### Finding tasks: `findt`
 
-Find tasks whose task names contain any of the given keywords.
+Find tasks whose task names contain any of the given keywords and/or by tags.
 
-Format: `findt KEYWORD [MORE_KEYWORDS]`
+Format: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
 
 * The search is case-insensitive. e.g `eat` will match `Eat`
 * The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
@@ -301,10 +307,16 @@ Format: `findt dt/DATETIME1, DATETIME2`
 
 * The ordering of date doesn't matter . e.g `dt/12-02-2022 0800, 13-03-2022 0800` will match `dt/13-02-2022 0800, 12-03-2022 0800`
 * `DATETIME1` and `DATETIME2` follows this format: "dd-MM-yyyy HHmm"
+* `dd`: Day; `MM`: Month; `yyyy`: Year; `HH`: Hour; `mm`: Minutes
+* `HHmm` is in 24-Hour format
+* Requires 2 date time inputs
 
 <div markdown="span" class="alert alert-info">
 :bulb: **Tip:**<br>
-`DATETIME1` and `DATETIME2` do not require `HHmm` if you wish to find tasks that fall on/in between the dates.
+
+* `DATETIME1` and `DATETIME2` do not require `HHmm` if you wish to find tasks that fall on/in between the dates.
+* Similar to [`findc`](#finding-contacts-findc), you can find based on tags too!
+
 </div>
 
 Examples:
@@ -538,13 +550,13 @@ Examples:
 | [**Add Contact**](#adding-a-contact-addc)                                                                                          | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​`                            |
 | [**List Contacts**](#listing-all-contacts--listc)                                                                                  | `listc`                                                                                  |
 | [**Edit Contact**](#editing-a-contact--editc)                                                                                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`             |
- | [**Find Contact**](#finding-contacts-by-name-findc)                                                                                | `findc KEYWORD [MORE_KEYWORDS]...`                                                       |
+ | [**Find Contacts**](#finding-contacts-findc)                                                                                       | `findc KEYWORD [MORE_KEYWORDS]...[TAG]...`                                               |
 | [**Delete**](#deleting-a-contact--deletec)                                                                                         | `deletec INDEX`                                                                          |
 | [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
 | [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt`                                                                                  |
 | [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                          |
-| [**Find Task by Name**](#finding-tasks-by-name-findt)                                                                              | `findt KEYWORD [MORE_KEYWORDS]`                                                          |
-| [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1,, DATETIME2`                                                         |
+| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`                                               |
+| [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1, DATETIME2`                                                          |
 | [**Assign contact <br> To Task**](#assigning-a-contact-to-a-task-assign)                                                           | `assign INDEX p/CONTACTINDEX`                                                            |
 | [**View contacts<br>Assigned to Task**](#viewing-contacts-assigned-to-a-task-view)                                                 | `view INDEX`                                                                             |
 | [**Unassign contact <br>From Task**](#unassigning-a-contact-from-a-task-unassign)                                                  | `unassign INDEX p/CONTACTINDEX`                                                          |
@@ -552,7 +564,7 @@ Examples:
 | [**Unmark Task**](#unmarking-a-task-as-not-done-unmark)                                                                            | `unmark INDEX`                                                                           |
 | [**Delete Task**](#deleting-a-task-deletet)                                                                                        | `deletet INDEX`                                                                          |
 | [**Generating emails of all the contacts<br>Assigned to task**](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen) | `gen INDEX`                                                                              |
-| [**Clear all contacts**](#clearing-all-contacts--clear)                                                                            | `clear`                                                                                  |
+| [**Clear all data**](#clearing-all-data--clear)                                                                                    | `clear`                                                                                  |
 | [**Import contacts**](#importing-contacts-from-a-data-file--import)                                                                | `import fp/FILEPATH`                                                                     |
 | [**Exit**](#exiting-the-program--exit)                                                                                             | `exit`                                                                                   |
 
