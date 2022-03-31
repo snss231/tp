@@ -21,7 +21,7 @@ public class FindTaskCommand extends Command {
             + "Usage: "
             + COMMAND_WORD + " "
             + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " apple orange pear";
+            + "Example: " + COMMAND_WORD + " lecture consultation";
 
 
     private final TaskNameContainsKeywordsPredicate predicate;
