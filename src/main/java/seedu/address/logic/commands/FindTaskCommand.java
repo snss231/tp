@@ -18,8 +18,10 @@ public class FindTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " apple orange pear";
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " lecture consultation";
 
 
     private final TaskNameContainsKeywordsPredicate predicate;

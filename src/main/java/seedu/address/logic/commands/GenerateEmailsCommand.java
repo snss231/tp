@@ -17,7 +17,9 @@ public class GenerateEmailsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Generates all the emails of the people related to the task "
             + "identified by the index number in the task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_NO_CONTACTS_ASSIGNED =

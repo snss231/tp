@@ -24,12 +24,25 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         Index personIndex;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+            String missingParameterMessage = displayInvalidParameters(argMultimap);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, missingParameterMessage
+                    + "\n" + AssignCommand.MESSAGE_USAGE));
         }
 
         taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON).get());
 
         return new AssignCommand(taskIndex, personIndex);
+    }
+
+    /**
+     * Checks what parameters are missing in user's input. Returns the tags that are missing.
+     * Example: If p/ are missing, return "Missing/Invalid parameters: p/".
+     *
+     * @param argMultimap Argument Multimap of user input that is read.
+     * @return String format of missing parameters.
+     */
+    public String displayInvalidParameters(ArgumentMultimap argMultimap) {
+        return "Missing/Invalid parameters: " + PREFIX_PERSON;
     }
 }

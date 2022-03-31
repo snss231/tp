@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARAMETERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -32,14 +33,16 @@ class UnassignCommandParserTest {
 
     @Test
     void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PARAMETERS + "p/\n"
+                + UnassignCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, String.valueOf(INDEX_FIRST_TASK.getOneBased()), expectedMessage);
     }
 
     @Test
     void parse_noInput_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PARAMETERS + "p/\n"
+                + UnassignCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, "", expectedMessage);
     }

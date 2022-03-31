@@ -32,14 +32,18 @@ class AssignCommandParserTest {
 
     @Test
     void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE);
+        String missingParameter = "Missing/Invalid parameters: p/\n";
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, missingParameter
+                + AssignCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, String.valueOf(INDEX_FIRST_TASK.getOneBased()), expectedMessage);
     }
 
     @Test
     void parse_noInput_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE);
+        String missingParameter = "Missing/Invalid parameters: p/\n";
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, missingParameter
+                + AssignCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, "", expectedMessage);
     }

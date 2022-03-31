@@ -39,7 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GIT_USERNAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            StringBuffer sb = displayInvalidParameters(argMultimap);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, sb + "\n"
+                    + AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -51,5 +53,31 @@ public class AddCommandParser implements Parser<AddCommand> {
         Person person = new Person(name, phone, email, gitUsername, tagList);
 
         return new AddCommand(person);
+    }
+
+    /**
+     * Checks what parameters are missing in user's input. Returns the tags that are missing.
+     * Example: If n/ and p/ are missing, return "Missing/Invalid parameters: n/, p/".
+     *
+     * @param argMultimap Argument Multimap of user input that is read.
+     * @return StringBuffer format of missing parameters.
+     */
+    public StringBuffer displayInvalidParameters(ArgumentMultimap argMultimap) {
+        String errorString = "Missing/Invalid parameters: ";
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            errorString += PREFIX_NAME + ", ";
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
+            errorString += PREFIX_PHONE + ", ";
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            errorString += PREFIX_EMAIL + ", ";
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_GIT_USERNAME)) {
+            errorString += PREFIX_GIT_USERNAME + ", ";
+        }
+        StringBuffer sb = new StringBuffer(errorString);
+        sb.delete(sb.length() - 2, sb.length() - 1); //Deleting last comma
+        return sb;
     }
 }

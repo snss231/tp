@@ -25,8 +25,10 @@ import seedu.address.model.task.Task;
 public class AddTaskCommand extends Command {
 
     /* Message printed if wrong usage */
-    public static final String MESSAGE_USAGE = "addt" + ": Adds a task to NUS Classes. "
-            + "Parameters: "
+    public static final String COMMAND_WORD = "addt";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to NUS Classes.\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
             + PREFIX_TASKNAME + "TASKNAME "
             + PREFIX_DATETIME + "DATETIME [, ENDDATETIME]"
             + " [" + PREFIX_TAG + "TAG] "
@@ -34,14 +36,14 @@ public class AddTaskCommand extends Command {
             + " [" + PREFIX_RECURRING + "PERIOD RECURRENCE]\n"
             + "Example: " + "addt" + " "
             + PREFIX_TASKNAME + "Lecture "
-            + PREFIX_DATETIME + "25-12-2022 1800 "
+            + PREFIX_DATETIME + "25-12-2022 1800,"
+            + "25-12-2022 2000 "
             + PREFIX_TAG + "CS2103T "
             + PREFIX_LINK + "https://... "
             + PREFIX_RECURRING + "5 5\n"
             + "Hint: for " + PREFIX_RECURRING + " you can use predefined values [annually, quarterly, monthly,"
             + " weekly, daily] for the period field.";
 
-    public static final String COMMAND_WORD = "addt";
     public static final String ADD_TASK_SUCCESS = "Task added!";
 
     private final String taskName;
