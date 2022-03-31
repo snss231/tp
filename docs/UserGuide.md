@@ -1,5 +1,3 @@
-# User Guide
-
 NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as 
 creating tasks, tagging tasks, assigning contacts to tasks, and marking tasks as complete or incomplete. It also includes contact management features such as finding contacts, assigning contacts to specific tasks and tagging contacts. 
 
@@ -8,28 +6,36 @@ NUS Classes also provides a simple alert feature for tasks by displaying tasks i
 NUS Classes is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 Using NUS Classes can get your contact management tasks done faster than traditional GUI apps, saving time on otherwise tedious administrative tasks.
 
-* Table of Contents
+This User Guide has been conveniently catergorised into **Contact Features**, **Task Features** and **Other Features**. This will help you locate quickly the command that you want to know more about.
+
+Blue text boxes are additional tips and notes to enhance your experience with NUSClasses, while yellow text boxes are warnings that will cause NUSClasses to not function as intended. Graphics are also available to further aid us visually.
+
+Hope you'll be satisfied using NUSClasses :smile:
+
+## Table of Contents
+
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Help](#viewing-help--help)
     * [Contact Features](#contact-features)
-        * [Adding a person](#adding-a-person-addc)
-        * [Listing all persons](#listing-all-persons--listc)
-        * [Editing a person](#editing-a-person--editc)
-        * [Locating persons by name](#locating-persons-by-name-findc)
-        * [Deleting a person](#deleting-a-person--deletec)
+        * [Adding a contact](#adding-a-contact-addc)
+        * [Listing all contacts](#listing-all-contacts--listc)
+        * [Editing a contact](#editing-a-contact--editc)
+        * [Finding contacts by name](#finding-contacts-by-name-findc)
+        * [Deleting a contact](#deleting-a-contact--deletec)
     * [Task Features](#task-features)
         * [Adding a task](#adding-a-task-addt)
-        * [Listing tasks](#listing-tasks-listt)
+        * [Listing tasks](#listing-tasks--listt)
         * [Editing a task](#editing-a-task-editt)
         * [Finding tasks by name](#finding-tasks-by-name-findt)
+        * [Finding tasks by date](#finding-tasks-by-date-findt)
         * [Assigning a contact to a task](#assigning-a-contact-to-a-task-assign)
-        * [Unassigning a contact from a task](#unassigning-a-contact-from-a-task-unassign)
         * [Viewing contacts assigned to a task](#viewing-contacts-assigned-to-a-task-view)
-        * [Mark a task as done](#mark-a-task-as-done-mark)
-        * [Unmark a task as not done](#unmark-a-task-as-not-done-unmark)
-        * [Deleting tasks](#deleting-tasks-deletet)
-        * [Generating the emails of all contacts assigned to a task](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen)
+        * [Unassigning a contact from a task](#unassigning-a-contact-from-a-task-unassign)
+        * [Mark a task as done](#marking-a-task-as-done-mark)
+        * [Unmark a task as not done](#unmarking-a-task-as-not-done-unmark)
+        * [Deleting tasks](#deleting-a-task-deletet)
+        * [Generating emails of all contacts assigned to a task](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen)
     * [Other Features](#other-features)
         * [Importing contacts from a data file](#importing-contacts-from-a-data-file--import)
         * [Clearing all data](#clearing-all-data--clear)
@@ -49,10 +55,10 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
 1. Copy the file to the folder you want to use as the _main folder_ for your NUS Classes manager.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
     * **`listc`** : Lists all contacts.
@@ -62,7 +68,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
     * **`deletec`**`3` : Deletes the 3rd contact shown in the current contact list.
 
-   * `assign 1 p/ 2` : Assigns the contact at index 2 to the task at index 1.
+   * **`assign`**`1 p/ 2` : Assigns the contact at index 2 to the task at index 1.
 
    * **`clear`** : Clears all contacts and tasks from NUS Classes
 
@@ -72,17 +78,17 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `addc n/CONTACTNAME`, `CONTACTNAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -100,17 +106,17 @@ Using NUS Classes can get your contact management tasks done faster than traditi
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpmessage2.png)
 
 Format: `help`
 
 # Contact Features
 
-### Adding a person: `addc`
+### Adding a contact: `addc`
 
-Adds a contact.
+Adds a contact with basic details like name, phone number and email.
 
 Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]`
 
@@ -119,42 +125,52 @@ Examples:
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
 * `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammate t/Classmate`
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip**
-You can add multiple tags to a contact. Just put t/ before every tag!
+<div markdown="block" class="alert alert-info">:bulb: **Tip:**
 
+* You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
+
+* Make sure your email is in the correct format, i.e. abd@u.nus.edu &#9989, abd@kk &#10060
 </div>
 
-### Listing all persons : `listc`
+### Listing all contacts : `listc`
 
-Shows a list of all persons in NUS Classes.
+Shows a list of all contacts in NUS Classes.
 
 Format: `listc`
 
-### Editing a person : `editc`
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+You will find this command useful after using [`findc`](#finding-contacts-by-name-findc)
+</div>
 
-Edits an existing person in NUS Classes.
+### Editing a contact : `editc`
+
+Edits an existing contact in NUS Classes.
 
 Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+* The index **must be a positive integer** 1, 2, 3, …​
+
+* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
+</div>
 
 Examples:
-* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-* `editc 1 p/82223333 e/Joseph@comp.nus.edu.sg` Edits the phone number and email address of the 1st person to be `82223333` and `Joseph@comp.nus.edu.sg` respectively.
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+* `editc 1 p/82223333 e/Joseph@comp.nus.edu.sg` Edits the phone number and email address of the 1st contact to be `82223333` and `Joseph@comp.nus.edu.sg` respectively.
     <br><br>
     ![Result for 'editc'](images/editcCommandShowcase.png)
-    
-    
 
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+You can remove all the contact’s tags by typing `t/` without specifying any tags after it. Useful when removing outdated tags from a contact.
+</div>
 
-### Locating persons by name: `findc`
+### Finding contacts by name: `findc`
 
-Finds persons whose names contain any of the given keywords.
+Find contacts whose names contain any of the given keywords.
 
 Format: `findc KEYWORD [MORE_KEYWORDS]`
 
@@ -171,19 +187,22 @@ Examples:
     <br>
     ![result for 'find brian sean'](images/findcCommandShowcase.png)
 
-### Deleting a person : `deletec`
+### Deleting a contact : `deletec`
 
-Deletes the specified person from NUS Classes.
+Deletes the specified contact from NUS Classes.
 
 Format: `deletec INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
 
 Examples:
-* `listc` followed by `deletec 2` deletes the 2nd person in NUS Classes.
-* `findc Joseph` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.<br>
+* `listc` followed by `deletec 2` deletes the 2nd contact in NUS Classes.
+* `findc Joseph` followed by `deletec 1` deletes the 1st contact in the results of the `findc` command.<br>
     <br>
     ![result for `deletec 1` part 1](images/deletecCommandShowcase1.png) <br><br>
     ![result for `deletec 1` part 2](images/deletecCommandShowcase2.png)
@@ -197,48 +216,29 @@ Adds a task for a datetime with a tag.
 
 Format: `addt tn/TASKNAME dt/DATETIME [ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
 
-Note: `INTERVAL` refers to the number of days for another recurrence of the task to occur: </br>e.g. `INTERVAL` of 5 for a task on 01-01-2022 would next occur on 05-01-2022.
+* The format for TIME is in dd-MM-yyyy HHmm.
 
-Note: `RECURRENCE` refers to how many times the task is repeated: </br> e.g. `RECURRENCE` of 5 with an `INTERVAL` of 7 means that the task repeats weekly for 5 weeks.
+<div markdown="block" class="alert alert-info">
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip** For `INTERVAL`, the values `daily`,`weekly`,`monthly`, `quarterly` and `annually` are accepted.
-</div>
+:bulb: **Notes about `INTERVAL RECURRENCE`:**<br>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip** The format for TIME is in dd-mm-yyyy hhmm.
+* `INTERVAL` refers to the number of days for next occurrence of the task: <br>
+_e.g. `INTERVAL` = 5 (days) for a task on 01-01-2022 would next occur on 05-01-2022._
+* For `INTERVAL`, the values `daily`,`weekly`,`monthly`, `quarterly` and `annually` are accepted.
+* `RECURRENCE` refers to how many cycles the task is to be repeated:<br>
+_e.g. `RECURRENCE` = 5 (cycles) with an `INTERVAL` = 7 (equivalent to `weekly`) means that the task repeats weekly for 5 cycles._
+
 </div>
 
 Examples:
-* `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for 17th March 2022, 6pm at School
+* `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for `17th March 2022, 6pm` at School
 * `addt tn/Consultation dt/19-03-2022 1500, 19-03-2022 1600` Adds a task called Consultation taking place from `19th March 2022 3-4pm`
 * `addt tn/CS2103 Lecture dt/19-03-2022 1500, 19-03-2022 1600 z/https://nus-sg.zoom.us…​ r/weekly 12`
-Adds a task called CS2103 Lecture taking place from `19th March 2022 3-4pm` that occurs `weekly` for the next `12 weeks` with the `meeting link`.
-
+Adds a task called CS2103 Lecture taking place from `19th March 2022 3-4pm` that occurs `weekly` for `12 cycles` with the `meeting link`.
+* `addt tn/Running dt/12-02-2022 1900 t/Track r/3 5` Adds a task called Running for `12th February 2022, 7pm` that occurs `every 3 days` for `5 cycles`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 There cannot be an already existing tag with the same name; tags must be unique.
-
-</div>
-
-### Listing tasks : `listt`
-
-Shows a list of all the tasks in the task list as per the specified filtering options. `listt` has the three folowing formats:
-
-Format: 
-
-Shows a list of all tasks in the task list.
-
-`listt all/`
-
-Shows a list of tasks that is marked as completed in the task list.
-
-`listt c/`
-
-Shows a list of tasks that is not mark as completed in the task list.
-
-`listt nc/`
-
-<div markdown="span" class="alert alert-warning">:bulb: **Tip**
-Good usage of `listt` will help in keeping track of tasks by status!
 
 </div>
 
@@ -247,9 +247,13 @@ Edits an existing task in the task list.
 
 Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`
 
-* Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
 
 Examples:
 * `editt 1 tn/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
@@ -263,15 +267,17 @@ Examples:
     ![`editt 1 dt/12-12-2022 1200, 12-12-2022 1400`](images/edittCommandShowcase2.png)
     
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip**
-If there's no need to change a certain field you can leave it out!<br>
-:bulb: **Tip** The `ENDDATETIME` field is optional
+<div markdown="block" class="alert alert-info">
+:bulb: **Tip:** <br>
+
+* If there's no need to change a certain field you can leave it out!<br>
+* The `ENDDATETIME` field is optional.
 </div>
 
 
 ### Finding tasks by name: `findt`
 
-Finds tasks whose task names contain any of the given keywords.
+Find tasks whose task names contain any of the given keywords.
 
 Format: `findt KEYWORD [MORE_KEYWORDS]`
 
@@ -288,52 +294,84 @@ Examples:
     <br>
     ![`findt TAs lecture`](images/findtCommandShowcase.png)
 
-### Assigning a contact to a task: `assign`
-Assigns a person in the contact list to a task.
+### Finding tasks by date: `findt`
+Find tasks whose task falls in between the given dates (inclusive).
 
-Format: `assign TASKINDEX p/PERSONINDEX`
+Format: `findt dt/DATETIME1, DATETIME2`
 
-* Assigns the person at the specified `PERSONINDEX` to the task at `TASKINDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* The ordering of date doesn't matter . e.g `dt/12-02-2022 0800, 13-03-2022 0800` will match `dt/13-02-2022 0800, 12-03-2022 0800`
+* `DATETIME1` and `DATETIME2` follows this format: "dd-MM-yyyy HHmm"
+
+<div markdown="span" class="alert alert-info">
+:bulb: **Tip:**<br>
+`DATETIME1` and `DATETIME2` do not require `HHmm` if you wish to find tasks that fall on/in between the dates.
+</div>
 
 Examples:
-* `assign 1 p/2` Assigns the 2nd person in the person list to the 1st task in the task list. <br>
+* `find dt/14-04-2022 0900, 15-04-2022 0900` Finds all tasks in between `14th April 2022, 9am` and `15th April 2022, 9am`, inclusive.
+* `find dt/15-02-2022, 13-02-2022` Finds all tasks in between `13th February 2022, 12mn` and `15th February 2022, 11:59pm`, inclusive.
+* `find dt/20-12-2022, 21-12-2022 0900` Finds all tasks in between `20th December 2022 12mn` and `21st December 2022 9am`, inclusive.
+
+### Assigning a contact to a task: `assign`
+Assigns a contact in the contact list to a task.
+
+Format: `assign INDEX p/CONTACTINDEX`
+
+* Assigns the contact at the specified `CONTACTINDEX` to the task at `INDEX`. 
+* The indices refer to the index numbers shown in the corresponding displayed task/contact list.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
+
+Examples:
+* `assign 1 p/2` Assigns the 2nd contact in the contact list to the 1st task in the task list. <br>
     <br>
     ![`assign 1 p/2](images/assignCommandShowcase.png)
-
-### Unassigning a contact from a task: `unassign`
-Unassigns a person in the contact list from a task.
-
-Format: `unassign TASKINDEX p/PERSONINDEX`
-
-* Assigns the person at the specified `PERSONINDEX` to the task at `TASKINDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
-* If the person is not already assigned to the task, the operation will fail.
-* The `view` command can help you quickly identify which contacts are already assigned to a task.
-
-Examples:
-* `unassign 1 p/2` Unassigns the 2nd person in the person list from the 1st task in the task list.
-<br>
-<br>
-    ![`unassign 1 p/2](images/unassignCommandShowcase.png)
-
 
 ### Viewing contacts assigned to a task: `view`
 
 Display all contacts assigned to a given task.
 
-Format: `view INDEX`
+Format: `view TASKINDEX`
 
 * View all the contact assigned to the task located the specified `INDEX`
 * The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
 
 Examples:
 * `view 2` will display all contacts assigned to the 1st task in the task list. <br>
-    <br>
-    ![`view 2`](images/viewtCommandShowcase.png)
+  <br>
+  ![`view 2`](images/viewtCommandShowcase.png)
+
+  
+### Unassigning a contact from a task: `unassign`
+Unassigns a contact in the contact list from a task.
+
+Format: `unassign INDEX p/CONTACTINDEX`
+
+* Assigns the contact at the specified `CONTACTINDEX` to the task at `INDEX`. 
+* The indices refer to the index numbers shown in the corresponding displayed task/contact list.
+* The `view` command can help you quickly identify which contacts are already assigned to a task.
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
+* The index **must be a positive integer** 1, 2, 3, …​
+* If the contact is not already assigned to the task, the operation will fail.
+</div>
+
+Examples:
+* `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.
+<br>
+<br>
+    ![`unassign 1 p/2](images/unassignCommandShowcase.png)
 
 
-
-### Mark a task as done: `mark`
+### Marking a task as done: `mark`
 
 Marks the specified task from the task list as done.
 
@@ -341,15 +379,19 @@ Format: `mark INDEX`
 
 * Marks the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …​
 * Icon will display a green tick to show the task is marked.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
+
 
 Examples:
 * `mark 2` marks the task at index 2 as done <br>
     <br>
     ![`mark 2`](images/marktCommandShowcase.png)
 
-### Unmark a task as not done: `unmark`
+### Unmarking a task as not done: `unmark`
 
 Unmarks the specified task from the task list as not done.
 
@@ -357,13 +399,36 @@ Format: `unmark INDEX`
 
 * Unmarks the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …​
-* Icon will display a empty white box to show the task is unmarked.
+* Icon will display an empty white box to show the task is unmarked.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
 
 Examples:
 * `unmark 2` unmarks the task at index 2 as not done. <br>
     <br>
     ![`unmark 2`](images/unmarkCommandShowcase.png)
+
+### Listing tasks : `listt`
+
+Shows a list of all the tasks in the task list as per the specified filtering options. `listt` has the three following formats:
+
+Format:
+
+`listt all/`
+Shows a list of all tasks in the task list.
+
+`listt c/`
+Shows a list of tasks that is marked as completed in the task list.
+
+`listt nc/`
+Shows a list of tasks that is not mark as completed in the task list.
+
+<div markdown="span" class="alert alert-info">:bulb: **Tip**
+Good usage of `listt` will help in keeping track of tasks by status!
+
+</div>
 
 ### Deleting a task: `deletet`
 
@@ -373,7 +438,11 @@ Format: `deletet INDEX`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
+
 
 Examples:
 * `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
@@ -393,7 +462,11 @@ Format: `gen INDEX`
 
 * Displays all the emails of the contacts assigned to the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The index **must be a positive integer** 1, 2, 3, …​
+</div>
+
 
 Examples:
 * `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br><br>
@@ -460,25 +533,27 @@ Examples:
 
 ## Command summary
 
+| Action                                                                                                                             | Format, Examples                                                                         |
+|------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| [**Add Contact**](#adding-a-contact-addc)                                                                                          | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​`                            |
+| [**List Contacts**](#listing-all-contacts--listc)                                                                                  | `listc`                                                                                  |
+| [**Edit Contact**](#editing-a-contact--editc)                                                                                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`             |
+ | [**Find Contact**](#finding-contacts-by-name-findc)                                                                                | `findc KEYWORD [MORE_KEYWORDS]...`                                                       |
+| [**Delete**](#deleting-a-contact--deletec)                                                                                         | `deletec INDEX`                                                                          |
+| [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
+| [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt`                                                                                  |
+| [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                          |
+| [**Find Task by Name**](#finding-tasks-by-name-findt)                                                                              | `findt KEYWORD [MORE_KEYWORDS]`                                                          |
+| [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1,, DATETIME2`                                                         |
+| [**Assign contact <br> To Task**](#assigning-a-contact-to-a-task-assign)                                                           | `assign INDEX p/CONTACTINDEX`                                                            |
+| [**View contacts<br>Assigned to Task**](#viewing-contacts-assigned-to-a-task-view)                                                 | `view INDEX`                                                                             |
+| [**Unassign contact <br>From Task**](#unassigning-a-contact-from-a-task-unassign)                                                  | `unassign INDEX p/CONTACTINDEX`                                                          |
+| [**Mark Task**](#marking-a-task-as-done-mark)                                                                                      | `mark INDEX`                                                                             |
+| [**Unmark Task**](#unmarking-a-task-as-not-done-unmark)                                                                            | `unmark INDEX`                                                                           |
+| [**Delete Task**](#deleting-a-task-deletet)                                                                                        | `deletet INDEX`                                                                          |
+| [**Generating emails of all the contacts<br>Assigned to task**](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen) | `gen INDEX`                                                                              |
+| [**Clear all contacts**](#clearing-all-contacts--clear)                                                                            | `clear`                                                                                  |
+| [**Import contacts**](#importing-contacts-from-a-data-file--import)                                                                | `import fp/FILEPATH`                                                                     |
+| [**Exit**](#exiting-the-program--exit)                                                                                             | `exit`                                                                                   |
 
-| Action                                | Format, Examples                                                                                                                                           |
-|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
-| **List Contacts**                     | `listc`                                                                                                                                                    |
-| **Edit Contact**                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`<br>                                                                           |
- | **Find Contact**                      | `findc KEYWORD [MORE_KEYWORDS]...`                                                                                                                         |
-| **Delete**                            | `deletec INDEX`<br> e.g., `delete 3`                                                                                                                       |
-| **Add Task**                          | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`                                                                   |
-| **List Tasks**                        | `listt`                                                                                                                                                    |
-| **Edit Task**                         | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                                                                                            |
-| **Find Task**                         | `findt KEYWORD [MORE_KEYWORDS]`                                                                                                                            |
-| **Assign contact <br> To Task**       | `assign INDEX p/PERSONINDEX`                                                                                                                               |
-| **Unassign contact <br> From Task**   | `unassign INDEX p/PERSONINDEX`                                                                                                                             |
-| **View contacts<br>Assigned to Task** | `view INDEX`                                                                                                                                               |
-| **Mark Task**                         | `mark INDEX`                                                                                                                                               |
-| **Unmark Task**                       | `unmark INDEX`                                                                                                                                             |
-| **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
-| **Clear all data**                    | `clear` |
-| **Import contacts**                   | `import fp/FILEPATH`|
-| **Exit**                              | `exit`    |                                                                                                     |
 

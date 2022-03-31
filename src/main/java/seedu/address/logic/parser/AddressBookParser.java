@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,7 +73,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case FindTaskCommand.COMMAND_WORD:
-            if (arguments.contains(PREFIX_DATE.toString())) {
+            if (arguments.contains(PREFIX_DATETIME.toString())) {
                 return new FilterByDateTimeParser().parse(arguments);
             } else {
                 return new FilterCommandParser().parse(arguments);
