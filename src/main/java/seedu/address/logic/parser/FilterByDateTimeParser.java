@@ -51,17 +51,26 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
      * @return A list of before and after dates
      */
     public List<LocalDateTime> inBetweenDates(String dates) throws DateTimeParseException, ParseException {
-        // from "d/22-08-2022,23-08-2022" to ["d", "22-08-2022 0800", "23-08-2022 0800"]
+        // from "dt/22-08-2022 0800,23-08-2022 0800" to ["dt", "22-08-2022 0800", "23-08-2022 0800"]
         String[] splitDates = dates.split("[/,]");
         if (splitDates.length != 3) {
             throw new ParseException(ERROR_MESSAGE_INVALID_TAG);
         }
 
+
         // check if time is provided
-        if (gotTime(splitDates[1]) && gotTime(splitDates[2])) {
-            return dayMonthYear(splitDates[1], splitDates[2]);
+        if (checkTime(splitDates[1]) && checkTime(splitDates[2])) {
+            return localDateTimeChecker(dayMonthYearTime(splitDates[1]), dayMonthYearTime(splitDates[2]));
+        } else if (!checkTime(splitDates[1]) && !checkTime(splitDates[2])) {
+            return timeAdder(localDateTimeChecker(dayMonthYear(splitDates[1]), dayMonthYear(splitDates[2])));
+        } else if (checkTime(splitDates[1]) && !checkTime(splitDates[2])) {
+            return localDateTimeTargetedAdder(dayMonthYearTime(splitDates[1]),
+                    dayMonthYear(splitDates[2]), true);
+        } else if (!checkTime(splitDates[1]) && checkTime(splitDates[2])) {
+            return localDateTimeTargetedAdder(dayMonthYear(splitDates[1]),
+                    dayMonthYearTime(splitDates[2]), false);
         } else {
-            return dayMonthYearTime(splitDates[1], splitDates[2]);
+            throw new ParseException(ERROR_MESSAGE_INVALID_TAG);
         }
     }
 
@@ -71,26 +80,20 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
      * @param datetime String datetime input form user
      * @return true if date time contains time, else return false
      */
-    private boolean gotTime(String datetime) {
-        return datetime.trim().split("[- ]").length == 3;
+    private boolean checkTime(String datetime) {
+        return datetime.trim().split("[- ]").length == 4;
     }
 
     /**
      * Converts user date only input into a list containing 2 date time elements
      *
-     * @param datetime1 String of date without time in the format dd-MM-yyyy
-     * @param datetime2 String of date without time in the format dd-MM-yyyy
+     * @param datetime String of date without time in the format dd-MM-yyyy
      * @return List of date sorted, first date at 0000 hrs (lower bound) and second date at 2359 hrs (upper bound)
      * @throws ParseException Invalid date format
      */
-    private List<LocalDateTime> dayMonthYear(String datetime1, String datetime2) throws ParseException {
+    private LocalDateTime dayMonthYear(String datetime) throws ParseException {
         try {
-            LocalDateTime ldt1 = convertToLocalDateTime(dateOnlyFormatter.parse(datetime1));
-            LocalDateTime ldt2 = convertToLocalDateTime(dateOnlyFormatter.parse(datetime2));
-            List<LocalDateTime> sortedLdt = localDateTimeChecker(ldt1, ldt2);
-            LocalDateTime setUpperBoundTiming = sortedLdt.get(1).plusHours(23).plusMinutes(59);
-            sortedLdt.set(1, setUpperBoundTiming);
-            return sortedLdt;
+            return convertToLocalDateTime(dateOnlyFormatter.parse(datetime));
         } catch (java.text.ParseException e) {
             throw new ParseException(ERROR_MESSAGE_INVALID_FORMAT);
         }
@@ -98,16 +101,13 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
     /**
      * Converts user date time input into a list containing 2 date time elements
      *
-     * @param datetime1 String of date time in the format dd-MM-yyyy
-     * @param datetime2 String of date time in the format dd-MM-yyyy HHmm
+     * @param datetime String of date time in the format dd-MM-yyyy HHmm
      * @return List of date sorted, first dt being lower bound, second dt being upper bound
      * @throws ParseException Invalid date format
      */
-    private List<LocalDateTime> dayMonthYearTime(String datetime1, String datetime2) throws ParseException {
+    private LocalDateTime dayMonthYearTime(String datetime) throws ParseException {
         try {
-            LocalDateTime ldt1 = convertToLocalDateTime(dateTimeFormatter.parse(datetime1));
-            LocalDateTime ldt2 = convertToLocalDateTime(dateTimeFormatter.parse(datetime2));
-            return localDateTimeChecker(ldt1, ldt2);
+            return convertToLocalDateTime(dateTimeFormatter.parse(datetime));
         } catch (java.text.ParseException e) {
             throw new ParseException(ERROR_MESSAGE_INVALID_FORMAT);
         }
@@ -122,12 +122,48 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
      */
     private List<LocalDateTime> localDateTimeChecker(LocalDateTime firstDateTime, LocalDateTime secondDateTime) {
         if (firstDateTime.isBefore(secondDateTime)) {
-            LocalDateTime[] toReturn = {firstDateTime, secondDateTime};
-            return Arrays.asList(toReturn);
+            return Arrays.asList(firstDateTime, secondDateTime);
         } else {
-            LocalDateTime[] toReturn = {secondDateTime, firstDateTime};
-            return Arrays.asList(toReturn);
+            return Arrays.asList(secondDateTime, firstDateTime);
         }
+    }
+
+    /**
+     * Sort 2 given date time, where only 1 of them have time
+     *
+     * @param firstDateTime first date time to be sorted
+     * @param secondDateTime second date time to be sorted
+     * @param firstDateContainsTime is true if first date contains time
+     * @return A list of date time, first dt being the earlier one, second dt being the later one
+     * @throws ParseException Invalid date time format
+     */
+    private List<LocalDateTime> localDateTimeTargetedAdder(LocalDateTime firstDateTime,
+                                                           LocalDateTime secondDateTime,
+                                                           boolean firstDateContainsTime) throws ParseException {
+        if (firstDateTime.isBefore(secondDateTime) && firstDateContainsTime) {
+            return Arrays.asList(firstDateTime, secondDateTime.plusHours(23).plusMinutes(59));
+        } else if (firstDateTime.isBefore(secondDateTime) && !firstDateContainsTime) {
+            return Arrays.asList(firstDateTime, secondDateTime);
+        } else if (!firstDateTime.isBefore(secondDateTime) && firstDateContainsTime) {
+            return Arrays.asList(secondDateTime, firstDateTime);
+        } else if (!firstDateTime.isBefore(secondDateTime) && !firstDateContainsTime) {
+            return Arrays.asList(secondDateTime, firstDateTime.plusHours(23).plusMinutes(59));
+        } else {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+    }
+
+    /**
+     * Adds upperbound time 23 hours and 59 min, in order to give it the property of full day search
+     * e.g. dt/21-02-2022, 22-02-2022 -> 21 Feb 2022 12mn, 22 Feb 2022 11:59pm
+     *
+     * @param listOfDates Sorted date time list
+     * @return Sorted date time list with proper time
+     */
+    private List<LocalDateTime> timeAdder(List<LocalDateTime> listOfDates) {
+        LocalDateTime setUpperBoundTiming = listOfDates.get(1).plusHours(23).plusMinutes(59);
+        listOfDates.set(1, setUpperBoundTiming);
+        return listOfDates;
     }
 
     /**
