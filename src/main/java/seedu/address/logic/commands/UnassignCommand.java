@@ -19,7 +19,9 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove the person identified by the index number"
             + "used in the displayed person list "
             + "to the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: TASK_INDEX + " + PREFIX_PERSON + "PERSON_INDEX\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "TASK_INDEX + " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
     public static final String MESSAGE_PREFIX = "Removed %1$s, Number: %2$s from the task `%3$s`\n";

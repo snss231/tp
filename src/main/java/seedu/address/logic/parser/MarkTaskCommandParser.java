@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkTaskCommand;
@@ -21,8 +21,7 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new MarkTaskCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
     }
 
