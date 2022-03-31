@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.GenerateEmailsCommand;
@@ -14,8 +14,7 @@ public class GenerateEmailsCommandParser implements Parser<GenerateEmailsCommand
             Index index = ParserUtil.parseIndex(args);
             return new GenerateEmailsCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, GenerateEmailsCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
     }
 }

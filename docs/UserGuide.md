@@ -82,7 +82,7 @@ Using NUS Classes can get your contact management tasks done faster than traditi
   e.g. in `addc n/CONTACTNAME`, `CONTACTNAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -112,7 +112,7 @@ Format: `help`
 
 Adds a contact.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]`
+Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]`
 
 Examples:
 
@@ -134,7 +134,7 @@ Format: `listc`
 
 Edits an existing person in NUS Classes.
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [u/GITUSERNAME]…​`
+Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -245,7 +245,7 @@ Good usage of `listt` will help in keeping track of tasks by status!
 ### Editing a task: `editt`
 Edits an existing task in the task list.
 
-Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`
+Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`
 
 * Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -291,9 +291,9 @@ Examples:
 ### Assigning a contact to a task: `assign`
 Assigns a person in the contact list to a task.
 
-Format: `assign INDEX p/PERSONINDEX`
+Format: `assign TASKINDEX p/PERSONINDEX`
 
-* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* Assigns the person at the specified `PERSONINDEX` to the task at `TASKINDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `assign 1 p/2` Assigns the 2nd person in the person list to the 1st task in the task list. <br>
@@ -303,9 +303,9 @@ Examples:
 ### Unassigning a contact from a task: `unassign`
 Unassigns a person in the contact list from a task.
 
-Format: `unassign INDEX p/PERSONINDEX`
+Format: `unassign TASKINDEX p/PERSONINDEX`
 
-* Assigns the person at the specified `PERSONINDEX` to the task at `INDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
+* Assigns the person at the specified `PERSONINDEX` to the task at `TASKINDEX`. The indices refer to the index numbers shown in the corresponding displayed task/person list. The index **must be a positive integer** 1, 2, 3, …​
 * If the person is not already assigned to the task, the operation will fail.
 * The `view` command can help you quickly identify which contacts are already assigned to a task.
 
@@ -460,6 +460,7 @@ Examples:
 
 ## Command summary
 
+
 | Action                                | Format, Examples                                                                                                                                           |
 |---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**                       | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/91234567 e/jamesho@example.com u/James123 t/friend t/colleague` |
@@ -480,3 +481,4 @@ Examples:
 | **Clear all data**                    | `clear` |
 | **Import contacts**                   | `import fp/FILEPATH`|
 | **Exit**                              | `exit`    |                                                                                                     |
+
