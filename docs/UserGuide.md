@@ -116,7 +116,7 @@ Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]`
 Examples:
 
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
-* `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Tea![img.png](img.png)Hmmate t/Classmate`
+* `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammmate t/Classmate`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip**
 You can add multiple tags to a contact. Just put t/ before every tag!
