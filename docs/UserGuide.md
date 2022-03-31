@@ -29,9 +29,8 @@ Using NUS Classes can get your contact management tasks done faster than traditi
         * [Mark a task as done](#mark-a-task-as-done-mark)
         * [Unmark a task as not done](#unmark-a-task-as-not-done-unmark)
         * [Deleting tasks](#deleting-tasks-deletet)
-        * [Generating emails of all contacts assigned to a task](#generating-emails-of-all-contacts-assigned-to-a-task-gen)
+        * [Generating the emails of all contacts assigned to a task](#generating-the-emails-of-all-the-contacts-assigned-to-a-task-gen)
     * [Other Features](#other-features)
-        * [Clearing all contacts](#clearing-all-contacts--clear)
         * [Importing contacts from a data file](#importing-contacts-from-a-data-file--import)
         * [Clearing all data](#clearing-all-data--clear)
         * [Exiting the program](#exiting-the-program--exit)
@@ -478,5 +477,6 @@ Examples:
 | **Mark Task**                         | `mark INDEX`                                                                                                                                               |
 | **Unmark Task**                       | `unmark INDEX`                                                                                                                                             |
 | **Delete Task**                       | `deletet INDEX`                                                                                                                                            |
-| **Clear all data**                    | `clear`                                                                                                                                                    |
-| **Exit**                              | `exit`                                                                                                                                                     |
+| **Clear all data**                    | `clear` |
+| **Import contacts**                   | `import fp/FILEPATH`|
+| **Exit**                              | `exit`    |                                                                                                     |
