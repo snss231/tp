@@ -129,7 +129,7 @@ Adds a contact with basic details like name, phone number and email.
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
 * `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammate t/Classmate`
 
-<div markdown="block" class="alert alert-info">:bulb: **Tip:**
+<div markdown="block" class="alert alert-info">:bulb: **Tips:**
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
@@ -314,8 +314,8 @@ Find tasks whose task falls in between the given dates (inclusive).
 **Format**: `findt dt/DATETIME1, DATETIME2`
 
 * The ordering of date doesn't matter . e.g `dt/12-02-2022 0800, 13-03-2022 0800` will match `dt/13-02-2022 0800, 12-03-2022 0800`
-* `DATETIME1` and `DATETIME2` follows this format: "dd-MM-yyyy HHmm"
-* `dd`: Day; `MM`: Month; `yyyy`: Year; `HH`: Hour; `mm`: Minutes
+* `DATETIME1` and `DATETIME2` follows this format: _dd-MM-yyyy HHmm_
+* _dd_: Day; _MM_: Month; _yyyy_: Year; _HH_: Hour; _mm_: Minutes
 * `HHmm` is in 24-Hour format
 * Requires 2 date time inputs
 
