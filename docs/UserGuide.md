@@ -114,7 +114,7 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpmessage2.png)
 
-Format: `help`
+**Format**: `help`
 
 # Contact Features
 
@@ -122,9 +122,9 @@ Format: `help`
 
 Adds a contact with basic details like name, phone number and email.
 
-Format: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]`
+**Format**: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]`
 
-Examples:
+**Examples**:
 
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
 * `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammate t/Classmate`
@@ -140,7 +140,7 @@ Examples:
 
 Shows a list of all contacts in NUS Classes.
 
-Format: `listc`
+**Format**: `listc`
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**
 You will find this command useful after using [`findc`](#finding-contacts-by-name-findc)
@@ -150,7 +150,7 @@ You will find this command useful after using [`findc`](#finding-contacts-by-nam
 
 Edits an existing contact in NUS Classes.
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…​`
+**Format**: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
@@ -162,7 +162,7 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/GITHUB_USERNAME] [t/TAG]…
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 </div>
 
-Examples:
+**Examples**:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 * `editc 1 p/82223333 e/Joseph@comp.nus.edu.sg` Edits the phone number and email address of the 1st contact to be `82223333` and `Joseph@comp.nus.edu.sg` respectively.
     <br><br>
@@ -176,7 +176,7 @@ You can remove all the contact’s tags by typing `t/` without specifying any ta
 
 Find contacts whose names contain any of the given keywords.
 
-Format: `findc KEYWORD [MORE_KEYWORDS]...[TAG]...`
+**Format**: `findc KEYWORD [MORE_KEYWORDS]...[TAG]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -185,23 +185,21 @@ Format: `findc KEYWORD [MORE_KEYWORDS]...[TAG]...`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
-You can find based on tags too!
-</div>
-
-Examples:
+**Examples**:
 * `findc John` returns `john` and `John Doe`
 * `findc brian sean` returns `Brian Chow`, `Sean Ng`<br>
     <br>
     ![result for 'find brian sean'](images/findcCommandShowcase.png)
-* 
 
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+You can find based on tags too!
+</div>
 
 ### Deleting a contact : `deletec`
 
 Deletes the specified contact from NUS Classes.
 
-Format: `deletec INDEX`
+**Format**: `deletec INDEX`
 
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
@@ -210,7 +208,7 @@ Format: `deletec INDEX`
 The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
-Examples:
+**Examples**:
 * `listc` followed by `deletec 2` deletes the 2nd contact in NUS Classes.
 * `findc Joseph` followed by `deletec 1` deletes the 1st contact in the results of the `findc` command.<br>
     <br>
@@ -224,9 +222,14 @@ Examples:
 
 Adds a task for a datetime with a tag.
 
-Format: `addt tn/TASKNAME dt/DATETIME [ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
+**Format**: `addt tn/TASKNAME dt/DATETIME [ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]`
 
-* The format for TIME is in dd-MM-yyyy HHmm.
+* The format for TIME is in `dd-MM-yyyy HHmm`.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+There cannot be an already existing tag with the same name; tags must be unique.
+
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -240,22 +243,17 @@ _e.g. `RECURRENCE` = 5 (cycles) with an `INTERVAL` = 7 (equivalent to `weekly`) 
 
 </div>
 
-Examples:
+**Examples**:
 * `addt tn/Meeting dt/17-03-2022 1800 t/School` Adds a task called Meeting for `17th March 2022, 6pm` at School
 * `addt tn/Consultation dt/19-03-2022 1500, 19-03-2022 1600` Adds a task called Consultation taking place from `19th March 2022 3-4pm`
 * `addt tn/CS2103 Lecture dt/19-03-2022 1500, 19-03-2022 1600 z/https://nus-sg.zoom.us…​ r/weekly 12`
 Adds a task called CS2103 Lecture taking place from `19th March 2022 3-4pm` that occurs `weekly` for `12 cycles` with the `meeting link`.
 * `addt tn/Running dt/12-02-2022 1900 t/Track r/3 5` Adds a task called Running for `12th February 2022, 7pm` that occurs `every 3 days` for `5 cycles`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There cannot be an already existing tag with the same name; tags must be unique.
-
-</div>
-
 ### Editing a task: `editt`
 Edits an existing task in the task list.
 
-Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`
+**Format**: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`
 
 * Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
 * At least one of the optional fields must be provided.
@@ -265,7 +263,7 @@ Format: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`
 The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
-Examples:
+**Examples**:
 * `editt 1 tn/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`
 * `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm-1pm. <br>
     <br>
@@ -278,7 +276,7 @@ Examples:
     
 
 <div markdown="block" class="alert alert-info">
-:bulb: **Tip:** <br>
+:bulb: **Tips:** <br>
 
 * If there's no need to change a certain field you can leave it out!<br>
 * The `ENDDATETIME` field is optional.
@@ -289,7 +287,7 @@ Examples:
 
 Find tasks whose task names contain any of the given keywords and/or by tags.
 
-Format: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
+**Format**: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
 
 * The search is case-insensitive. e.g `eat` will match `Eat`
 * The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
@@ -298,16 +296,22 @@ Format: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
 * Tasks matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
 
-Examples:
+**Examples**:
 * `findt with` returns `Consultation with students` and `Meeting with invigilators`
 * `findt TAs lecture` returns `Meeting with TAs` and all recurrences of `CS2103T lecture` <br>
     <br>
     ![`findt TAs lecture`](images/findtCommandShowcase.png)
 
+<div markdown="span" class="alert alert-info">
+:bulb: **Tip:**
+Similar to [`findc`](#finding-contacts-findc), you can find based on tags too!
+
+</div>
+
 ### Finding tasks by date: `findt`
 Find tasks whose task falls in between the given dates (inclusive).
 
-Format: `findt dt/DATETIME1, DATETIME2`
+**Format**: `findt dt/DATETIME1, DATETIME2`
 
 * The ordering of date doesn't matter . e.g `dt/12-02-2022 0800, 13-03-2022 0800` will match `dt/13-02-2022 0800, 12-03-2022 0800`
 * `DATETIME1` and `DATETIME2` follows this format: "dd-MM-yyyy HHmm"
@@ -315,23 +319,21 @@ Format: `findt dt/DATETIME1, DATETIME2`
 * `HHmm` is in 24-Hour format
 * Requires 2 date time inputs
 
-<div markdown="span" class="alert alert-info">
-:bulb: **Tip:**<br>
-
-* `DATETIME1` and `DATETIME2` do not require `HHmm` if you wish to find tasks that fall on/in between the dates.
-* Similar to [`findc`](#finding-contacts-findc), you can find based on tags too!
-
-</div>
-
-Examples:
+**Examples**:
 * `find dt/14-04-2022 0900, 15-04-2022 0900` Finds all tasks in between `14th April 2022, 9am` and `15th April 2022, 9am`, inclusive.
 * `find dt/15-02-2022, 13-02-2022` Finds all tasks in between `13th February 2022, 12mn` and `15th February 2022, 11:59pm`, inclusive.
 * `find dt/20-12-2022, 21-12-2022 0900` Finds all tasks in between `20th December 2022 12mn` and `21st December 2022 9am`, inclusive.
 
+<div markdown="span" class="alert alert-info">
+:bulb: **Tip:**
+`DATETIME1` and `DATETIME2` do not require `HHmm` if you wish to find tasks that fall on/in between the dates.
+
+</div>
+
 ### Assigning a contact to a task: `assign`
 Assigns a contact in the contact list to a task.
 
-Format: `assign INDEX p/CONTACTINDEX`
+**Format**: `assign INDEX p/CONTACTINDEX`
 
 * Assigns the contact at the specified `CONTACTINDEX` to the task at `INDEX`. 
 * The indices refer to the index numbers shown in the corresponding displayed task/contact list.
@@ -340,7 +342,7 @@ Format: `assign INDEX p/CONTACTINDEX`
 The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
-Examples:
+**Examples**:
 * `assign 1 p/2` Assigns the 2nd contact in the contact list to the 1st task in the task list. <br>
     <br>
     ![`assign 1 p/2](images/assignCommandShowcase.png)
@@ -349,7 +351,7 @@ Examples:
 
 Display all contacts assigned to a given task.
 
-Format: `view TASKINDEX`
+**Format**: `view TASKINDEX`
 
 * View all the contact assigned to the task located the specified `INDEX`
 * The index refers to the index number shown in the displayed task list.
@@ -358,7 +360,7 @@ Format: `view TASKINDEX`
 The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
-Examples:
+**Examples**:
 * `view 2` will display all contacts assigned to the 1st task in the task list. <br>
   <br>
   ![`view 2`](images/viewtCommandShowcase.png)
@@ -367,7 +369,7 @@ Examples:
 ### Unassigning a contact from a task: `unassign`
 Unassigns a contact in the contact list from a task.
 
-Format: `unassign INDEX p/CONTACTINDEX`
+**Format**: `unassign INDEX p/CONTACTINDEX`
 
 * Assigns the contact at the specified `CONTACTINDEX` to the task at `INDEX`. 
 * The indices refer to the index numbers shown in the corresponding displayed task/contact list.
@@ -380,7 +382,7 @@ Format: `unassign INDEX p/CONTACTINDEX`
 * If the contact is not already assigned to the task, the operation will fail.
 </div>
 
-Examples:
+**Examples**:
 * `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.
 <br>
 <br>
@@ -391,7 +393,7 @@ Examples:
 
 Marks the specified task from the task list as done.
 
-Format: `mark INDEX`
+**Format**: `mark INDEX`
 
 * Marks the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -401,8 +403,7 @@ Format: `mark INDEX`
 The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
-
-Examples:
+**Examples**:
 * `mark 2` marks the task at index 2 as done <br>
     <br>
     ![`mark 2`](images/marktCommandShowcase.png)
@@ -411,7 +412,7 @@ Examples:
 
 Unmarks the specified task from the task list as not done.
 
-Format: `unmark INDEX`
+**Format**: `unmark INDEX`
 
 * Unmarks the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -421,7 +422,7 @@ Format: `unmark INDEX`
 The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
-Examples:
+**Examples**:
 * `unmark 2` unmarks the task at index 2 as not done. <br>
     <br>
     ![`unmark 2`](images/unmarkCommandShowcase.png)
@@ -430,7 +431,7 @@ Examples:
 
 Shows a list of all the tasks in the task list as per the specified filtering options. `listt` has the three following formats:
 
-Format:
+**Format**:
 
 `listt all/`
 Shows a list of all tasks in the task list.
@@ -441,7 +442,7 @@ Shows a list of tasks that is marked as completed in the task list.
 `listt nc/`
 Shows a list of tasks that is not mark as completed in the task list.
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip**
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
 Good usage of `listt` will help in keeping track of tasks by status!
 
 </div>
@@ -450,7 +451,7 @@ Good usage of `listt` will help in keeping track of tasks by status!
 
 Deletes the specified task from the task list.
 
-Format: `deletet INDEX`
+**Format**: `deletet INDEX`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -460,7 +461,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
 
-Examples:
+**Examples**:
 * `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
 * `findt lecture` followed by `deletet 2` lists out all tasks with the keyword `lecture`, then deletes the task at index 2. <br>
     <br> Finding the tasks by keyword `lecture`:
@@ -474,7 +475,7 @@ Examples:
 
 Displays all the emails of all the contacts assigned to the specified task and displays a button to copy the emails into your clipboard.
 
-Format: `gen INDEX`
+**Format**: `gen INDEX`
 
 * Displays all the emails of the contacts assigned to the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -484,7 +485,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
 
-Examples:
+**Examples**:
 * `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br><br>
 
 
@@ -494,7 +495,7 @@ Examples:
 
 Clears all contacts and tasks from NUS Classes.
 
-Format: `clear`
+**Format**: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Be careful! This action is irreversible.
@@ -505,7 +506,7 @@ Be careful! This action is irreversible.
 
 Exits the program.
 
-Format: `exit`
+**Format**: `exit`
 
 ### Saving the data
 
@@ -527,14 +528,14 @@ If your changes to the data file makes its format invalid, NUS Classes will disc
 
 Imports a list of contacts from a .csv file.
 
-Format: `import fp/FILENAME`
+**Format**: `import fp/FILENAME`
 
 * The .csv file must contain the following 5 headers (Name, Phone, Email, Github, Tags). Any other headers will be ignored.
 * Tags in the .csv file should be separated with a `/` character.
 * If there are repeated headers, the first one will be considered.
 * Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
 
-Examples:
+**Examples**:
 * `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
 
 
