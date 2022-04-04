@@ -18,11 +18,11 @@ public class StatusBarFooter extends UiPart<Region> {
     private Label saveLocationStatus;
 
     /**
-     * Creates a {@code StatusBarFooter} with the given {@code Path}.
+     * Creates a {@code StatusBarFooter}.
      */
-    public StatusBarFooter(Path saveLocation) {
+    public StatusBarFooter() {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        saveLocationStatus.setText("");
     }
 
 }
