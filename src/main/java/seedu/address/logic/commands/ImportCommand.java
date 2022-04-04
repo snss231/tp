@@ -32,7 +32,7 @@ public class ImportCommand extends Command {
     private static final String MESSAGE_NO_CONTACTS_ADDED =
             "Import completed. No contacts were added to NUS Classes from %s.\n";
     private static final String MESSAGE_INVALID_FIELDS =
-            "\nNote: %d contacts containing were not added due to these issues:\n";
+            "\nNote: %d contact(s) containing invalid fields were not added due to these issues:\n";
 
     private final String filename;
     private final List<Person> toAdd;
@@ -44,7 +44,6 @@ public class ImportCommand extends Command {
      * @param filename The name of the data file
      * @param invalidFields A list of strings, each giving info on an invalid entry that was provided in the data file.
      */
-
     public ImportCommand(List<Person> toAdd, String filename, List<String> invalidFields) {
         this.toAdd = toAdd;
         this.filename = filename;
@@ -63,8 +62,7 @@ public class ImportCommand extends Command {
         int invalidTagCount = 0;
 
         for (Person p : toAdd) {
-            if (model.hasPerson(p) || model.hasEmail(p.getEmail()) || model.hasPhone(p.getPhone())
-                || model.hasUsername(p.getUsername())) {
+            if (model.hasEmail(p.getEmail()) || model.hasPhone(p.getPhone()) || model.hasUsername(p.getUsername())) {
                 duplicateCount++;
                 duplicateContacts.add(p);
                 continue;
@@ -81,24 +79,28 @@ public class ImportCommand extends Command {
             model.addPerson(p);
         }
 
-        String infoAdded = addedCount == 0 ? String.format(MESSAGE_NO_CONTACTS_ADDED, filename)
-                : String.format(MESSAGE_SUCCESS, addedCount, filename)
-                + String.join("\n", () -> added.stream().<CharSequence>map(Person::toString).iterator())
-                + "\n";
+        String infoAdded = addedCount == 0
+                ? String.format(MESSAGE_NO_CONTACTS_ADDED, filename)
+                : String.format(MESSAGE_SUCCESS, addedCount, filename) + personListToString(added);
 
-        String infoDuplicates = duplicateCount == 0 ? "" : String.format(MESSAGE_DUPLICATES_NOT_ADDED, duplicateCount)
-                + String.join("\n", () -> duplicateContacts.stream().<CharSequence>map(Person::toString).iterator())
-                + "\n";
+        String infoDuplicates = duplicateCount == 0
+                ? ""
+                : String.format(MESSAGE_DUPLICATES_NOT_ADDED, duplicateCount) + personListToString(duplicateContacts);
 
-        String infoInvalidTags = invalidTagCount == 0 ? "" : String.format(MESSAGE_FOUND_TAGS_TOO_LONG, invalidTagCount)
-                + String.join("\n", () -> invalidTagContacts.stream().<CharSequence>map(Person::toString).iterator())
-                + "\n";
+        String infoInvalidTags = invalidTagCount == 0
+                ? ""
+                : String.format(MESSAGE_FOUND_TAGS_TOO_LONG, invalidTagCount) + personListToString(invalidTagContacts);
 
         int invalidCount = invalidFields.size();
-        String infoInvalidFields = invalidCount == 0 ? ""
-                : String.format(MESSAGE_INVALID_FIELDS, invalidCount)
-                + invalidFields.stream().collect(Collectors.joining("\n"));
 
-        return new CommandResult(infoAdded + infoDuplicates + infoInvalidTags + "\n" + infoInvalidFields);
+        String infoInvalidFields = invalidCount == 0
+                ? ""
+                : String.format(MESSAGE_INVALID_FIELDS, invalidCount) + String.join("\n", invalidFields);
+
+        return new CommandResult(infoAdded + infoDuplicates + infoInvalidTags + infoInvalidFields);
+    }
+
+    private String personListToString(List<Person> people) {
+        return String.join("\n", () -> people.stream().<CharSequence>map(Person::toString).iterator()) + "\n";
     }
 }
