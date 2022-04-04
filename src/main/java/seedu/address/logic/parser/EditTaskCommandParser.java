@@ -43,7 +43,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG, PREFIX_LINK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASKNAME) && !arePrefixesPresent(argMultimap, PREFIX_DATETIME)
-                && !arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+                && !arePrefixesPresent(argMultimap, PREFIX_TAG) && !arePrefixesPresent(argMultimap, PREFIX_LINK)) {
             String errorMessage = MESSAGE_NEED_AT_LEAST_ONE_VALID_PARAMETER;
             throw new ParseException(String.format(errorMessage, EditTaskCommand.MESSAGE_USAGE));
         }

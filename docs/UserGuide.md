@@ -529,16 +529,16 @@ If your changes to the data file makes its format invalid, NUS Classes will disc
 
 Imports a list of contacts from a .csv file.
 
-**Format**: `import fp/FILENAME`
+**Format**: `import fp/FILEPATH`
 
 * The .csv file must contain the following 5 headers (Name, Phone, Email, Github, Tags). Any other headers will be ignored.
-* Tags in the .csv file should be separated with a `/` character.
 * If there are repeated headers, the first one will be considered.
+* Tags in the .csv file should be separated with a `/` character.
 * Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
 
 **Examples**:
 * `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
-
+* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -561,7 +561,7 @@ Imports a list of contacts from a .csv file.
 | [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
 | [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt`                                                                                  |
 | [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`                 |
-| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                           |
+| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                        |
 | [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1, DATETIME2`                                                          |
 | [**Assign contact <br> To Task**](#assigning-a-contact-to-a-task-assign)                                                           | `assign INDEX p/CONTACTINDEX`                                                            |
 | [**View contacts<br>Assigned to Task**](#viewing-contacts-assigned-to-a-task-view)                                                 | `view INDEX`                                                                             |
