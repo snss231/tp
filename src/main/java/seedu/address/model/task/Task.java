@@ -84,7 +84,7 @@ public class Task {
     }
 
     /**
-     * Add a person to the list of people associated with the task.
+     * Adds a person to the list of people associated with the task.
      *
      * @param person Person to add
      */
@@ -93,7 +93,7 @@ public class Task {
     }
 
     /**
-     * Remove a person from the list of people associated with the task.
+     * Removes a person from the list of people associated with the task.
      *
      * @param person Person to remove
      */
@@ -102,9 +102,10 @@ public class Task {
     }
 
     /**
-     * Update a person in the list of people associated with the task.
+     * Updates a person in the list of people associated with the task.
      *
-     * @param person Person to add
+     * @param person The person to update
+     * @param editedPerson The edited person
      */
     public void updatePerson(Person person, Person editedPerson) {
         int index = people.indexOf(person);

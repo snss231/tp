@@ -133,6 +133,12 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     }
 
 
+    /**
+     * Updates the person in each task if the task contains the person.
+     *
+     * @param target the person to be updated.
+     * @param editedPerson the updated person.
+     */
     public void setPerson(Person target, Person editedPerson) {
         internalList.forEach(task-> task.updatePerson(target, editedPerson));
     }
