@@ -48,7 +48,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                     + AddTaskCommand.MESSAGE_USAGE));
         }
 
-        String taskName = argMultimap.getValue(PREFIX_TASKNAME).get();
+        String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASKNAME).get());
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
         LocalDateTime dateTime;
         LocalDateTime endDateTime;

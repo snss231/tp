@@ -20,6 +20,10 @@ public class Task {
     private static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
     private static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
     private static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
+    private static final int MAX_LENGTH = 100;
+    private static final int MIN_LENGTH = 3;
+    public static final String NAME_LENGTH_ERROR = "The name of the tasks must be at least "
+            + MIN_LENGTH + "characters long and at most " + MAX_LENGTH + "characters long";
     private String name;
     private LocalDateTime dateTime;
     private LocalDateTime endDateTime;
@@ -27,7 +31,6 @@ public class Task {
     private Set<Tag> tags;
     private Link link;
     private boolean isMarkDone;
-
     /**
      * Constructor for Task.
      *
@@ -291,6 +294,13 @@ public class Task {
 
     public boolean hasInvalidDateRange() {
         return endDateTime != null && dateTime.compareTo(endDateTime) >= 0;
+    }
+
+    /**
+     * Returns if a given string is a valid length.
+     */
+    public static boolean isValidLength(String test) {
+        return (test.length() >= MIN_LENGTH && test.length() <= MAX_LENGTH);
     }
 
     @Override
