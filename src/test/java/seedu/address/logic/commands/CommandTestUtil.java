@@ -71,9 +71,9 @@ public class CommandTestUtil {
     public static final String VALID_NAME_TASKA = "Homework";
     public static final String VALID_NAME_TASKB = "Brush my teeth";
     public static final LocalDateTime VALID_DATETIME_TASKA =
-            LocalDateTime.of(2022, 12, 15, 21, 0);
+            LocalDateTime.of(2050, 12, 15, 21, 0);
     public static final LocalDateTime VALID_DATETIME_TASKB =
-            LocalDateTime.of(2022, 02, 05, 13, 0);
+            LocalDateTime.of(2050, 02, 05, 13, 0);
     public static final String VALID_TAG_TASKA = "Schoolwork";
     public static final String VALID_TAG_TASKB = "Toilet";
     public static final EditTaskCommand.EditTaskDescriptor TASK_A;
@@ -81,8 +81,8 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_TASKA = " " + PREFIX_TASKNAME + VALID_NAME_TASKA;
     public static final String NAME_DESC_TASKB = " " + PREFIX_TASKNAME + VALID_NAME_TASKB;
-    public static final String DATETIME_DESC_TASKA = " " + PREFIX_DATETIME + "15-12-2022 2100";
-    public static final String DATETIME_DESC_TASKB = " " + PREFIX_DATETIME + "05-02-2022 1300";
+    public static final String DATETIME_DESC_TASKA = " " + PREFIX_DATETIME + "15-12-2050 2100";
+    public static final String DATETIME_DESC_TASKB = " " + PREFIX_DATETIME + "05-02-2050 1300";
     public static final String TAG_DESC_TASKA = " " + PREFIX_TAG + VALID_TAG_TASKA;
     public static final String TAG_DESC_TASKB = " " + PREFIX_TAG + VALID_TAG_TASKB;
 

@@ -56,6 +56,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
+            dateTimeFormatter.setLenient(false);
+
             if (dateTimeString.contains(",")) {
                 String[] splits = dateTimeString.split(",");
                 dateTime = convertToLocalDateTime(dateTimeFormatter.parse(splits[0]));
@@ -139,5 +141,4 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         sb.delete(sb.length() - 2, sb.length() - 1); //Deleting last comma
         return sb;
     }
-
 }
