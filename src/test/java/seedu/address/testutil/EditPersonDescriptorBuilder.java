@@ -64,9 +64,9 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Username} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String username) {
+    public EditPersonDescriptorBuilder withUsername(String username) {
         descriptor.setUsername(new GitUsername(username));
         return this;
     }
