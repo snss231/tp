@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;

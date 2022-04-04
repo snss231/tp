@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
