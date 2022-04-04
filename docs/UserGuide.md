@@ -528,16 +528,16 @@ If your changes to the data file makes its format invalid, NUS Classes will disc
 
 Imports a list of contacts from a .csv file.
 
-**Format**: `import fp/FILENAME`
+**Format**: `import fp/FILEPATH`
 
 * The .csv file must contain the following 5 headers (Name, Phone, Email, Github, Tags). Any other headers will be ignored.
-* Tags in the .csv file should be separated with a `/` character.
 * If there are repeated headers, the first one will be considered.
+* Tags in the .csv file should be separated with a `/` character.
 * Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
 
 **Examples**:
 * `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
-
+* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder
 
 --------------------------------------------------------------------------------------------------------------------
 
