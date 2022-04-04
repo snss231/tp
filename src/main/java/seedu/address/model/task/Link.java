@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 
 public class Link {
+    public static final String INVALID_LINK = "The link provided is not a valid URL!";
     private String link = "";
 
     /**
