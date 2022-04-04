@@ -92,8 +92,25 @@ public class Task {
         people.add(person);
     }
 
+    /**
+     * Remove a person from the list of people associated with the task.
+     *
+     * @param person Person to remove
+     */
     public void removePerson(Person person) {
         people.remove(person);
+    }
+
+    /**
+     * Update a person in the list of people associated with the task.
+     *
+     * @param person Person to add
+     */
+    public void updatePerson(Person person, Person editedPerson) {
+        int index = people.indexOf(person);
+        if (index != -1) {
+            people.set(index, editedPerson);
+        }
     }
 
     /**

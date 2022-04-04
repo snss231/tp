@@ -61,6 +61,7 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         this.internalList.add(taskToAdd);
     }
 
+
     @Override
     public String toString() {
         String output = "";
@@ -129,6 +130,11 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
      */
     public void removePerson(Person target) {
         internalList.forEach(task -> task.removePerson(target));
+    }
+
+
+    public void setPerson(Person target, Person editedPerson) {
+        internalList.forEach(task-> task.updatePerson(target, editedPerson));
     }
 
     /**
