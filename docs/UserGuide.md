@@ -442,9 +442,12 @@ Shows a list of tasks that is marked as completed in the task list.
 `listt nc/`
 Shows a list of tasks that is not mark as completed in the task list.
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
-Good usage of `listt` will help in keeping track of tasks by status!
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Information:**
+<ul>
+    <li>If more than 1 prefixes is present, system will prioritise `all/` -> `nc/` -> `c/` .</li>
+</ul>
 </div>
 
 ### Deleting a task: `deletet`
