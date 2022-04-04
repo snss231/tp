@@ -82,7 +82,7 @@ Hope you'll be satisfied using NUSClasses :smile:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -92,7 +92,7 @@ Hope you'll be satisfied using NUSClasses :smile:
   e.g. in `addc n/CONTACTNAME`, `CONTACTNAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAGS]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -118,24 +118,26 @@ Shows a message with the link to the User Guide for reference.
 
 **Format**: `help`
 
-# Contact Features
+## Contact Features
 
 ### Adding a contact: `addc`
 
 Adds a contact with basic details like name, phone number, email and Github Username. Tags are optional but can be added as well for easier contact management.
 
-**Format**: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAGS]…​`
+**Format**: `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GITHUB_USERNAME [t/TAG]…​`
 
 **Examples**:
 
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
-* `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammate t/Classmate`
+* `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate t/Classmate`
 
 <div markdown="block" class="alert alert-info">:bulb: **Tip:**
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
-* Make sure your email is in the correct format, i.e. abd@u.nus.edu &#9989, abd@kk &#10060
+* Make sure the contact's email is in the correct format, i.e. abd@u.nus.edu &#9989, abd@kk &#10060
+
+* Make sure the contact's phone number is at least 3 digits long! Phone numbers with > 8 digits are allowed since international phone numbers have different numbers of digits.
 </div>
 
 ### Listing all contacts : `listc`
@@ -176,16 +178,16 @@ You can remove all the contact’s tags by typing `t/` without specifying any ta
 
 ### Finding contacts: `findc`
 
-Find contacts whose names contain any of the given keywords.
+Find contacts whose names and/or tags contain any of the given keywords.
 
-**Format**: `findc KEYWORD [MORE_KEYWORDS]...[TAG]...`
+**Format**: `findc KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* `KEYWORD` can be used to search for matching words in both tags and names of contacts.
+* The search is case-insensitive. e.g `john` will match `John`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `hans mary` will return `Hans Bo`, `Mary Sue`
 
 **Examples**:
 * `findc John` returns `john` and `John Doe`.
@@ -193,9 +195,6 @@ Find contacts whose names contain any of the given keywords.
     <br>
     ![result for 'find brian sean'](images/findcCommandShowcase.png)
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
-You can find based on tags too!
-</div>
 
 ### Deleting a contact : `deletec`
 
@@ -218,7 +217,7 @@ The index **must be a positive integer** 1, 2, 3, …​
     ![result for `deletec 1` part 2](images/deletecCommandShowcase2.png)
 
 
-# Task Features
+## Task Features
 
 ### Adding a task: `addt`
 
@@ -229,7 +228,7 @@ Adds a task for a datetime with a tag.
 * The format for TIME is in `dd-MM-yyyy HHmm`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-There cannot be an already existing tag with the same name; tags must be unique.
+The task that you are creating cannot have duplicate tags, tags are unique for that specific task e.g. `addt tn/Lecture dt/12-12-2022 1200 t/Weekly Lecture t/Weekly Lecture` would be invalid.
 
 </div>
 
@@ -287,16 +286,15 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 ### Finding tasks: `findt`
 
-Find tasks whose task names contain any of the given keywords and/or tags.
+Find tasks whose task names and/or tags contain any of the given keywords.
 
 **Format**: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
-
-* The search is case-insensitive. e.g `eat` will match `Eat`
-* The order of the keywords does not matter. e.g. `Eat Apple` will match `Apple Eat`
-* Both task names and tags are searched for matching keywords.
-* Only full words will be matched e.g. `Apples` will not match `Apple`
+* `KEYWORD` can be used to search for matching words in both tags and names of tasks.
+* The search is case-insensitive. e.g `lecture` will match `Lecture`
+* The order of the keywords does not matter. e.g. `Lecture CS2103T` will match `CS2103T Lecture`
+* Only full words will be matched e.g. `Tut` will not match `Tutorial`
 * Tasks matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Apple Pear` will return `Eat apple`, `Buy pear`
+  e.g. `Lecture Tutorial` will return `CS2103T Lecture`, `Tutorial 12`
 
 **Examples**:
 * `findt with` returns `Consultation with students` and `Meeting with invigilators`.
@@ -307,7 +305,7 @@ Find tasks whose task names contain any of the given keywords and/or tags.
 
 <div markdown="span" class="alert alert-info">
 :bulb: **Tip:**
-Similar to [`findc`](#finding-contacts-findc), you can find based on tags too!
+If you have many tasks, properly using `findt` will help you to keep organized! 
 
 </div>
 
@@ -558,12 +556,12 @@ Imports a list of contacts from a .csv file.
 | [**Add Contact**](#adding-a-contact-addc)                                                                                          | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​`                            |
 | [**List Contacts**](#listing-all-contacts--listc)                                                                                  | `listc`                                                                                  |
 | [**Edit Contact**](#editing-a-contact--editc)                                                                                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`             |
- | [**Find Contacts**](#finding-contacts-findc)                                                                                       | `findc KEYWORD [MORE_KEYWORDS]...[TAG]...`                                               |
+ | [**Find Contacts**](#finding-contacts-findc)                                                                                       | `findc KEYWORD [MORE_KEYWORDS]…​`                                               |
 | [**Delete**](#deleting-a-contact--deletec)                                                                                         | `deletec INDEX`                                                                          |
 | [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
 | [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt`                                                                                  |
-| [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [t/TAG]`                          |
-| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`                                               |
+| [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`                 |
+| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                           |
 | [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1, DATETIME2`                                                          |
 | [**Assign contact <br> To Task**](#assigning-a-contact-to-a-task-assign)                                                           | `assign INDEX p/CONTACTINDEX`                                                            |
 | [**View contacts<br>Assigned to Task**](#viewing-contacts-assigned-to-a-task-view)                                                 | `view INDEX`                                                                             |
