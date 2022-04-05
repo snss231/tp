@@ -112,13 +112,14 @@ public class ParserUtil {
     /**
      * Parses task name
      *
-     * @param taskName String input for Git username
+     * @param option String input for Git username
      * @return The Task name.
      */
-    public static String parseTaskName(String taskName) throws ParseException {
-        requireNonNull(taskName);
-        String trimmedUsername = taskName.trim();
-        if (!Task.isValidLength(taskName)) {
+    public static String parseTaskName(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+
+        String trimmedUsername = option.get().trim();
+        if (!Task.isValidLength(trimmedUsername)) {
             throw new ParseException(Task.NAME_LENGTH_ERROR);
         }
 
