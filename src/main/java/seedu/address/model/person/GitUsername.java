@@ -8,7 +8,7 @@ public class GitUsername {
     public static final String GIT_USERNAME_REGEX = "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+){0,2}$";
 
     public static final String MESSAGE_CONSTRAINTS = "Github usernames should only contain alphanumeric"
-            + "characters or hyphens.\n";
+            + " characters or hyphens.\n";
 
     private String userid;
 

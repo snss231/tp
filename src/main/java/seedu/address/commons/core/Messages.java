@@ -25,4 +25,10 @@ public class Messages {
 
     public static final String MESSAGE_TAG_TOO_LONG = "Error: Tags can be at most 50 characters in length.\n"
             + "The following tag(s) are too long:\n%s";
+
+    public static final String MESSAGE_DUPLICATE_GIT_USERNAME = "This Github username already exists in NUS Classes!\n"
+            + "Check again?";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck again?";
+    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Classes!\n"
+            + "Check again?";
 }
