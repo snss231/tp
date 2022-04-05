@@ -108,7 +108,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     public void setLink() {
-        if (!task.getLink().toString().isEmpty()) {
+        if (!(task.getLink().isEmpty()) && !(task.getLink().toString().isEmpty())) {
             linkLabel.setText("Link:");
             link.setText(task.getLink().toString());
             link.setOnAction(new EventHandler<ActionEvent>() {

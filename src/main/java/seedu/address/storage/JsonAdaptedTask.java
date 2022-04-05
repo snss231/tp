@@ -95,7 +95,7 @@ public class JsonAdaptedTask {
         LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
 
         Set<Tag> modelTag = new HashSet<>(taskTags);
-        Link modelLink = new Link(link);
+        Link modelLink = Objects.equals(link, null) ? new Link() : new Link(link);
         boolean modelIsTaskMarkDone = Boolean.parseBoolean(isTaskMarkDone);
 
         return new Task(name, modelDateTime, modelEndDateTime, modelPeople, modelTag, modelLink, modelIsTaskMarkDone);
