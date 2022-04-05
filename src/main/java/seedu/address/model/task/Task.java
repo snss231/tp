@@ -23,7 +23,7 @@ public class Task {
     private static final int MAX_LENGTH = 100;
     private static final int MIN_LENGTH = 3;
     public static final String NAME_LENGTH_ERROR = "The name of the tasks must be at least "
-            + MIN_LENGTH + "characters long and at most " + MAX_LENGTH + "characters long";
+            + MIN_LENGTH + " characters long and at most " + MAX_LENGTH + " characters long";
     private String name;
     private LocalDateTime dateTime;
     private LocalDateTime endDateTime;
