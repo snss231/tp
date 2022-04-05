@@ -127,11 +127,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses Git username
+     * Parses Git username. Only allows AlphaNumeric and hyphens, as per GitHub's username formats.
+     * Spaces are not allowed.
      *
      * @param gitUsername String input for Git username
      * @return GitUsername object created using user input
-     * @throws ParseException If gitUsername is not in alphanumeric format
+     * @throws ParseException If gitUsername is not in alphanumeric format or has symbols other than hyphens.
      */
     public static GitUsername parseGitUsername(String gitUsername) throws ParseException {
         requireNonNull(gitUsername);

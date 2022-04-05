@@ -5,9 +5,10 @@ package seedu.address.model.person;
  */
 public class GitUsername {
 
-    public static final String MESSAGE_CONSTRAINTS = "Github usernames should only contain alphanumeric characters.\n";
+    public static final String GIT_USERNAME_REGEX = "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+){0,2}$";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
+    public static final String MESSAGE_CONSTRAINTS = "Github usernames should only contain alphanumeric"
+            + "characters or hyphens.\n";
 
     private String userid;
 
@@ -36,7 +37,7 @@ public class GitUsername {
      * @return True for valid id, false for invalid id.
      */
     public static boolean isValidId(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(GIT_USERNAME_REGEX);
     }
 
     @Override
