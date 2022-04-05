@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EMAIL;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_GIT_USERNAME;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.commons.core.Messages.MESSAGE_TAG_TOO_LONG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.DUPLICATE_ALICE_EMAIL;
@@ -15,6 +16,8 @@ import static seedu.address.testutil.TypicalPersons.DUPLICATE_ALICE_USERNAME;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -33,6 +36,7 @@ import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
@@ -43,7 +47,6 @@ public class AddCommandTest {
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
-
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
@@ -61,6 +64,25 @@ public class AddCommandTest {
 
         //Check that Valid Person exists in Model
         assertEquals(validList, modelAcceptingPerson.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_invalidTagLength_throwsCommandException() {
+        Model model = new ModelManager();
+        ArrayList<Tag> list = new ArrayList<>();
+        String invalidTag = "This tag is over 50 characters long..............................."
+                + "............................................................................................";
+        list.add(new Tag(invalidTag));
+        Set<Tag> invalidTagSet = new HashSet<Tag>(list);
+
+        Person invalidTagPerson = new PersonBuilder().withTags(invalidTag).build();
+        AddCommand invalidAddCommand = new AddCommand(invalidTagPerson);
+        assertThrows(CommandException.class,
+                String.format(MESSAGE_TAG_TOO_LONG,
+                        invalidTagSet.stream()
+                                .filter(tag -> tag.tagName.length() > 50)
+                                .reduce("", (str, tag) -> tag + "\n" + str, (s1, s2) -> s1 + s2)), ()
+                -> invalidAddCommand.execute(model));
     }
 
 

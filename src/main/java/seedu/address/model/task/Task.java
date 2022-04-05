@@ -105,6 +105,15 @@ public class Task {
         this.dateTime = newDateTime;
     }
 
+    /**
+     * Changes EndDateTime of Task
+     *
+     * @param endDateTime LocalDateTime of new endDateTime
+     */
+    public void changeEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
     @Override
     public String toString() {
         return this.name + " " + dateTime.format(FORMAT_YEAR);
@@ -211,6 +220,15 @@ public class Task {
     }
 
     /**
+     * Sets new tags for Task object
+     *
+     * @param tags new Set of tags to replace previous ones
+     */
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    /**
      * Returns list of People assigned to Task.
      *
      * @return List of People.
@@ -289,6 +307,11 @@ public class Task {
         return isMarkDone;
     }
 
+    /**
+     * Returns true if endDateTime is earlier than dateTime
+     *
+     * @return True if endDateTime is earlier, false if endDateTime is later
+     */
     public boolean hasInvalidDateRange() {
         return endDateTime != null && dateTime.compareTo(endDateTime) >= 0;
     }

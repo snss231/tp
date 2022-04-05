@@ -106,7 +106,7 @@ Hope you'll be satisfied using NUSClasses :smile:
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listc`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* `INDEX` refers to positive integers only, and within the bounds of the number of contacts/number of tasks. Values such as `-1`, `abc`, or `2 abcdefg` are invalid.
+* `INDEX` refers to a single non-zero positive integer only, and within the bounds of the number of contacts/number of tasks. Values such as `-1`, `abc`, or `2 abcdefg` are invalid.
 
 </div>
 
@@ -229,6 +229,14 @@ Adds a task for a datetime with a tag.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The task that you are creating cannot have duplicate tags, tags are unique for that specific task e.g. `addt tn/Lecture dt/12-12-2022 1200 t/Weekly Lecture t/Weekly Lecture` would be invalid.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Notes about `TASKNAME`:**<br>
+* Two Tasks with the same `TASKNAME` is valid. This is to allow for multiple tasks with different dates to be valid, such as `CS2103T Lecture`
+at `04/04/2022` and another `CS2103T Lecture` at `11/04/2022`.
 
 </div>
 

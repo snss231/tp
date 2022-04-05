@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -49,6 +50,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String USERNAME_DESC_AMY = " " + PREFIX_GIT_USERNAME + VALID_USERNAME_AMY;
+    public static final String USERNAME_DESC_BOB = " " + PREFIX_GIT_USERNAME + VALID_USERNAME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -69,22 +72,24 @@ public class CommandTestUtil {
     public static final String VALID_NAME_TASKA = "Homework";
     public static final String VALID_NAME_TASKB = "Brush my teeth";
     public static final LocalDateTime VALID_DATETIME_TASKA =
-            LocalDateTime.of(2022, 12, 15, 21, 0);
+            LocalDateTime.of(2050, 12, 15, 21, 0);
+    public static final String VALID_DATETIME_TASKA_PLUS_ONE_DAY = "16-12-2050 2100";
     public static final LocalDateTime VALID_DATETIME_TASKB =
-            LocalDateTime.of(2022, 02, 05, 13, 0);
+            LocalDateTime.of(2050, 02, 05, 13, 0);
     public static final String VALID_TAG_TASKA = "Schoolwork";
     public static final String VALID_TAG_TASKB = "Toilet";
+    public static final String VALID_TAG_CHORES = "Chores";
     public static final EditTaskCommand.EditTaskDescriptor TASK_A;
     public static final EditTaskCommand.EditTaskDescriptor TASK_B;
 
     public static final String NAME_DESC_TASKA = " " + PREFIX_TASKNAME + VALID_NAME_TASKA;
     public static final String NAME_DESC_TASKB = " " + PREFIX_TASKNAME + VALID_NAME_TASKB;
-    public static final String DATETIME_DESC_TASKA = " " + PREFIX_DATETIME + "15-12-2022 2100";
-    public static final String DATETIME_DESC_TASKB = " " + PREFIX_DATETIME + "05-02-2022 1300";
+    public static final String DATETIME_DESC_TASKA = " " + PREFIX_DATETIME + "15-12-2050 2100";
+    public static final String DATETIME_DESC_TASKB = " " + PREFIX_DATETIME + "05-02-2050 1300";
     public static final String TAG_DESC_TASKA = " " + PREFIX_TAG + VALID_TAG_TASKA;
     public static final String TAG_DESC_TASKB = " " + PREFIX_TAG + VALID_TAG_TASKB;
 
-    public static final String INVALID_DATETIME_DESC = PREFIX_DATETIME + "22/11/2022 1220"; // Wrong format
+    public static final String INVALID_DATETIME_DESC = PREFIX_DATETIME + "22/11/2050 1220"; // Wrong format
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
