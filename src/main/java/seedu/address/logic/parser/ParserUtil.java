@@ -25,6 +25,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -103,7 +104,29 @@ public class ParserUtil {
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
+
+        if (!Email.isValidLength(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses task name
+     *
+     * @param option String input for Git username
+     * @return The Task name.
+     */
+    public static String parseTaskName(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+
+        String trimmedUsername = option.get().trim();
+        if (!Task.isValidLength(trimmedUsername)) {
+            throw new ParseException(Task.NAME_LENGTH_ERROR);
+        }
+
+        return trimmedUsername;
     }
 
     /**

@@ -48,7 +48,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                     + AddTaskCommand.MESSAGE_USAGE));
         }
 
-        String taskName = argMultimap.getValue(PREFIX_TASKNAME).get();
+        String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASKNAME));
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
         LocalDateTime dateTime;
         LocalDateTime endDateTime;
@@ -80,16 +80,16 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
             Map<String, Integer> periodMapping = TranslatorUtil.getPeriodMapping();
 
-            if (periodMapping.containsKey(periodStr)) {
-                periodInt = periodMapping.get(periodStr);
-            } else {
+            if (!periodMapping.containsKey(periodStr)) {
                 try {
                     periodInt = Integer.parseInt(periodStr);
                 } catch (NumberFormatException e) {
                     throw new ParseException(String.format(MESSAGE_INVALID_RECURRENCE,
-                             AddTaskCommand.MESSAGE_USAGE));
+                            AddTaskCommand.MESSAGE_USAGE));
                 }
             }
+
+            periodInt = periodMapping.get(periodStr);
 
             try {
                 recurrenceInt = Integer.parseInt(recurrenceStr);
