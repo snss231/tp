@@ -10,16 +10,16 @@ and allows the professors to document the tasks that they need to do.
 
 Features added on top of AB3.
 
-Feature | Description
---- | ---
-Create Task | Add and schedule (*recurring*) tasks on NUS Classes easily with a single command.
-Update Task | Edit tasks which are outdated or when mistakes were made.
-Delete Task | Delete tasks which are unnecessary or when you are done with it.
-Un/Assign Task| Assign and unassign contacts to a task. Help with organization and planning!
-View Task | View the people assigned to a task. Help with remembering who you are suppose to meet!
-Tag Task | Tag a task with different tags. Help with categorizing tasks!
-Filter Task | Too many tasks? Filter them based on keywords!
-Alert | Forgetful? No worries, NUS Classes will remind you when tasks are approaching deadline!
+| Feature        | Description                                                                                                                      |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------|
+| Create Task    | Add and schedule (*recurring*) tasks on NUS Classes easily with a single command.                                                |
+| Update Task    | Edit tasks which are outdated or when mistakes were made.                                                                        |
+| Delete Task    | Delete tasks which are unnecessary or when you are done with it.                                                                 |
+| Un/Assign Task | Assign and unassign contacts to a task. Help with organization and planning!                                                     |
+| View Task      | View the people assigned to a task. Help with remembering who you are suppose to meet!                                           |
+| Tag Task       | Tag a task with different tags. Help with categorizing tasks!                                                                    |
+| Filter Task    | Too many tasks? Filter them based on keywords!                                                                                   |
+| Alert          | Forgetful? No worries, tasks in NUS Classes are color coded to allow you to quickly identify tasks that are overdue or due soon! |
 
 ### Others
 

@@ -6,39 +6,60 @@ title: Ong Jun Jie Project Portfolio Page
 
 ### Project: NUSClasses
 
-NUS Classes is an app that enables the professors to better manage contacts from large numbers of students and staff, and allow the professor to document the task that he/she needs to do.
+NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as
+creating tasks, tagging tasks, assigning contacts to tasks, and marking tasks as complete or incomplete. It also includes contact management features such as finding contacts, assigning contacts to specific tasks and tagging contacts.
 
 Given below are my contributions to the project.
 
- ** Will update in future**
+ ** Will update more in future**
 
-* **New Feature**: to be added soon
-  * What it does: to be added soon
-  * Justification: to be added soon
-  * Highlights: to be added soon
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Delete Task feature
+  * What it does: Delete the task from the task list based on index
+  * Justification: Important for user to remove the task that is not needed
+  * Credits: *{code ideas from AB3 delete contacts feature}*
+
+* **New Feature**: Edit Task feature
+  * What it does: Edit the selected task based on the field(s) user want to edit
+  * Justification: Important for user to edit the task to change the wrong information
+  * Highlights: Have to understand how `EditPersonDescriptor` work and modify it to suit for `Task`.
+  Was able to construct `EditTaskDescriptor` and now able to modify the class accordingly if there is any changes to the `Task` class
+  * Credits: *{code ideas from AB3 edit contacts feature}*
+
+* **New Feature**: Mark and Unmark Task feature
+  * What it does: 
+    * Mark command allow the user to set the task as done
+    * Unmark command allow the user to set the task as not done
+  * Justification: User may want to know which task has completed.
+  * Highlights: Have to understand the structure of `UI` and edit the current `taskcard` UI to hold image that represent the checkbox.
+  Tick represent task is done, empty checkbox represent task not done
+
+* **New Feature**: List Task feature
+  * What it does: List the task based on the prefix(all/, c/, nc/) input by user.
+  * Justification: User may prefer to see all the available task, or see list of completed/uncompleted task.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=junjunjieOng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18)
 
-
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Will be updated
+  * Managed releases `v1.2` - `v1.4rc` (3 releases) on GitHub
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `remove` [\#6](../UserGuide.md)
+    * Added documentation for the feature `deletet` [\#6](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/6)
+    * Added documentation for the features `editt` [\#86](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/86)
+    * Added documentation for the features `mark` and `unmark` [\#150](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/150)
   * Developer Guide:
-    * Updated `user profile` and `value proposition` [\#7](../DeveloperGuide.md)
-    * Updated `User Stories` [\#7](../DeveloperGuide.md)
-    * Updated `Non-functional requirement` [\#7](../DeveloperGuide.md)
+    * Updated `user profile` and `value proposition` [\#7](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/7/files)
+    * Updated `User Stories` and `Non-functional requirement` [\#7](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/7/files)
+    * Added implementation detail of `deletet` and `editt` feature [\#107](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/107)
+    * Created activity diagram and Sequence diagram for `editt` and `deletet` feature [\#107](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/107)
 
 * **Community**:
-  * to be added soon
+  * Total PRs reviewed (with non-trivial review comments): **10**
+    * [\#106](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/106), [\#107](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/107), 
+    [\#114](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/114), [\#132](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/132),
+    [\#145](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/145), [\#149](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/149),
+    [\#154](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/154), [\#158](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/158),
+    [\#175](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/175), [\#183](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/183)
+  * Reported bugs and suggestions for other team in [PE-D](https://github.com/junjunjieOng/ped/issues)
 
-* **Tools**:
-  * to be added soon
 
-* _{you can add/remove categories in the list above}_
