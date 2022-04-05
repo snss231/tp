@@ -286,7 +286,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 ### Finding tasks: `findt`
 
-Find tasks whose task names and/or tags contain any of the given keywords.
+Find tasks whose task names or tags contain any of the given keywords.
 
 **Format**: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
 * `KEYWORD` can be used to search for matching words in both tags and names of tasks.
