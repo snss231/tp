@@ -305,7 +305,7 @@ Find tasks whose task names and/or tags contain any of the given keywords.
 
 <div markdown="span" class="alert alert-info">
 :bulb: **Tip:**
-If you have many tasks, properly using `findt` will help you to keep organized! 
+If you have many tasks, using `findt` will help you to keep organized! 
 
 </div>
 
