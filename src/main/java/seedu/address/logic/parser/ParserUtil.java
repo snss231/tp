@@ -155,12 +155,12 @@ public class ParserUtil {
     public static Link parseLink(Optional<String> option) throws ParseException {
         requireNonNull(option);
         if (option.isEmpty()) {
-            return new Link("");
+            return new Link();
         } else {
             try {
                 new URL(option.get()).toURI();
             } catch (URISyntaxException | MalformedURLException e) {
-                throw new ParseException(Link.INVALID_LINK);
+                throw new ParseException(Link.MESSAGE_CONSTRAINTS);
             }
             return new Link(option.get());
         }

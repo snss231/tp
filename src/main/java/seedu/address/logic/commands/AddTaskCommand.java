@@ -72,7 +72,7 @@ public class AddTaskCommand extends Command {
     public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link,
                           int recurrence, int period) {
 
-        requireAllNonNull(taskName, dateTime, tags, link);
+        requireAllNonNull(taskName, dateTime, tags);
         this.taskName = taskName;
         this.dateTime = dateTime;
         this.endDateTime = endDateTime;
