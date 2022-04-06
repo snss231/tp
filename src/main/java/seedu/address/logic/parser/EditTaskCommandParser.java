@@ -28,6 +28,8 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new EditTaskCommand object
  */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
+    private final String dateTimePattern = "dd-MM-yyyy HHmm";
+    private final SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(dateTimePattern);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditTaskCommand
@@ -36,8 +38,6 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      */
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String dateTimePattern = "dd-MM-yyyy HHmm";
-        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(dateTimePattern);
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG, PREFIX_LINK);
@@ -62,6 +62,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             try {
+                dateTimeFormatter.setLenient(false);
                 String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
                 if (dateTimeString.contains(",")) {
                     String[] splits = dateTimeString.split(",");
