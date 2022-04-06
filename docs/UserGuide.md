@@ -138,6 +138,9 @@ Adds a contact with basic details like name, phone number, email and Github User
 * Make sure the contact's email is in the correct format, i.e. abd@u.nus.edu &#9989, abd@kk &#10060
 
 * Make sure the contact's phone number is at least 3 digits long! Phone numbers with > 8 digits are allowed since international phone numbers have different numbers of digits.
+
+* Github usernames can only consist of alphanumeric characters or single hyphens, and cannot begin or end with a hyphen. Usernames such as `john123` and `jo-hn123` are valid, but usernames such as `john123-`, `-john123` and `jo--hn123` are invalid.
+
 </div>
 
 ### Listing all contacts : `listc`
