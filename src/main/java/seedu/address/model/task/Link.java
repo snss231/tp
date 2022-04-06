@@ -3,7 +3,8 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 
 public class Link {
-    private String link = "";
+    public static final String MESSAGE_CONSTRAINTS = "The link provided should follows the proper URL format.";
+    private String link;
 
     /**
      * Constructs a {@code Link}.
@@ -15,6 +16,10 @@ public class Link {
         this.link = link;
     }
 
+    public Link() {
+        this.link = null;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this || this.link.equals(((Link) other).link);
@@ -23,5 +28,9 @@ public class Link {
     @Override
     public String toString() {
         return link;
+    }
+
+    public boolean isEmpty() {
+        return link == null;
     }
 }

@@ -32,7 +32,7 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "editt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit and update the details of the task identified"
-            + "by the index number used in the displayed task list. \n"
+            + " by the index number used in the displayed task list. \n"
             + "Existing values will be overwritten by the input values. Index must be a positive integer\n"
             + "Usage: "
             + COMMAND_WORD + " "

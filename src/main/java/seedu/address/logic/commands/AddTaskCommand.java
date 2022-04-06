@@ -72,7 +72,7 @@ public class AddTaskCommand extends Command {
     public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link,
                           int recurrence, int period) {
 
-        requireAllNonNull(taskName, dateTime, tags, link);
+        requireAllNonNull(taskName, dateTime, tags);
         this.taskName = taskName;
         this.dateTime = dateTime;
         this.endDateTime = endDateTime;
@@ -122,7 +122,7 @@ public class AddTaskCommand extends Command {
         if (taskToBeAdded.hasInvalidDateRange()) {
             throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
         }
-        model.getTaskList().addTask(taskToBeAdded);
+        model.addTask(taskToBeAdded);
         for (int i = 1; i < period; i++) {
             LocalDateTime temp = dateTime.plusDays(i * recurrence);
             LocalDateTime tempEnd = null;
@@ -130,7 +130,7 @@ public class AddTaskCommand extends Command {
                 tempEnd = endDateTime.plusDays(i * recurrence);
             }
             taskToBeAdded = new Task(taskName, temp, tempEnd, tags, link, isTaskMarkDone);
-            model.getTaskList().addTask(taskToBeAdded);
+            model.addTask(taskToBeAdded);
         }
         return new CommandResult(ADD_TASK_SUCCESS);
     }
