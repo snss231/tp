@@ -19,7 +19,15 @@ public class ViewCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+
+        // Using an alphabets for index
         assertParseFailure(parser, "a", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        // Using a negative integer for index
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        // Using zero for index
+        assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        // Using special character for index
+        assertParseFailure(parser, "&", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
 }
