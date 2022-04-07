@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA_PLUS_ONE_DAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHORES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
@@ -26,7 +25,6 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.TaskBuilder;
@@ -61,7 +59,7 @@ public class AddTaskCommandParserTest {
 
         assertParseSuccess(parser, " " + NAME_DESC_TASKB + DATETIME_DESC_TASKA
                 + " " + VALID_DATETIME_TASKA_PLUS_ONE_DAY + " " + PREFIX_TAG + VALID_TAG_CHORES + " "
-                + PREFIX_LINK + "  " + PREFIX_RECURRING + "2 2", testCommand);
+                + PREFIX_RECURRING + "2 2", testCommand);
     }
 
     @Test
