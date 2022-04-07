@@ -46,10 +46,6 @@ public class AddTaskCommandTest {
         //Null tag set
         assertThrows(NullPointerException.class, ()
             -> new AddTaskCommand(DEFAULT_NAME, DEFAULT_DATETIME, DEFAULT_DATETIME, null, defaultLink));
-
-        //Null link
-        assertThrows(NullPointerException.class, ()
-            -> new AddTaskCommand(DEFAULT_NAME, DEFAULT_DATETIME, DEFAULT_DATETIME, defaultTagSet, null));
     }
 
     @Test
