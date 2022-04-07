@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTERVAL;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
@@ -88,8 +89,9 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 try {
                     periodInt = Integer.parseInt(periodStr);
                 } catch (NumberFormatException e) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddTaskCommand.MESSAGE_USAGE));
+
+                    throw new ParseException(String.format(MESSAGE_INVALID_INTERVAL,
+                             AddTaskCommand.MESSAGE_USAGE));
                 }
             }
 
