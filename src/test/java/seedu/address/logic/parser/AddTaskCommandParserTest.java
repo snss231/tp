@@ -5,13 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTERVAL;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_TASKA;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKA;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA_PLUS_ONE_DAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHORES;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
@@ -75,6 +69,19 @@ public class AddTaskCommandParserTest {
         //Missing both
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 missingBothErrorMessage() + "\n" + AddTaskCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parseInvalidFieldsPresentFailure() throws Exception {
+
+        //Task name shorter than 3 characters
+        assertParseFailure(parser, " " + PREFIX_TASKNAME + " " + INVALID_TASK_NAME_SHORT + DATETIME_DESC_TASKA + " "
+                + PREFIX_TAG + VALID_TAG_CHORES, Task.NAME_LENGTH_ERROR);
+
+        //Task name longer than 3 characters
+        assertParseFailure(parser, " " + PREFIX_TASKNAME + " " + INVALID_TASK_NAME_LONG + DATETIME_DESC_TASKA + " "
+                + PREFIX_TAG + VALID_TAG_CHORES, Task.NAME_LENGTH_ERROR);
+
     }
 
     @Test
