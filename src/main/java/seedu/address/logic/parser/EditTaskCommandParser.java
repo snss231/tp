@@ -58,7 +58,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_TASKNAME).isPresent()) {
-            editTaskDescriptor.setName(argMultimap.getValue(PREFIX_TASKNAME).get());
+            String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASKNAME));
+            editTaskDescriptor.setName(taskName);
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             try {
