@@ -1,21 +1,21 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.Test;
+
 
 public class GitUsernameTest {
-    public String validUsername = "abc123"; //alnum
-    public String validUsername2 = "a-bc"; //hyphens
-    public String invalidUsername = "a___bc";
-    public String invalidUsername2 = "a!bc";
-    public String invalidUsername3 = "a|()";
-    public String invalidUsername4 = "a--bc";
-    public String invalidUsername5 = "-abc";
-    public String invalidUsername6 = "abc-";
+    private String validUsername = "abc123"; //alnum
+    private String validUsername2 = "a-bc"; //hyphens
+    private String invalidUsername = "a___bc";
+    private String invalidUsername2 = "a!bc";
+    private String invalidUsername3 = "a|()";
+    private String invalidUsername4 = "a--bc";
+    private String invalidUsername5 = "-abc";
+    private String invalidUsername6 = "abc-";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
