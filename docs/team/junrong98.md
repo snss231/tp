@@ -8,34 +8,49 @@ title: Jun Rong's Project Portfolio Page
 NUS Classes is an app that enables the professors to better manage contacts from large numbers of students and staff, and allow the professor to document the task that he/she needs to do.
 Given below are my contributions to the project.
 
-** Will update in future**
+* **New Feature**: View Task
+    * What it does: Allows user to view who were assigned to each task.
+    * Justification: User have to know who were assigned to each task, so users can easily grab the required information.
+    * Highlights: Understanding how `ObservableList` works and the effect it has on the GUI.
+    * Credits: *{code ideas from AB3 contacts feature}*
 
-* **New Feature**: to be added soon
-    * What it does: to be added soon
-    * Justification: to be added soon
-    * Highlights: to be added soon
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Create recurring tasks
+    * What it does: Allows user to create a task repeatedly with a fixed interval between them.
+    * Justification: Convenience to user as it allows user to create tasks that occur regularly with a single command.
 
+* **New Feature**: List tasks
+    * What it does: List all tasks.
+    * Justification: Allows users to see all the tasks created by them, especially after they manipulated to task list.
+  
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=junrong98&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18)
 
-
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-    * Will be updated
-
+    * Managed releases `v1.2` - `v1.4rc` (3 releases) on GitHub
+    
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `Tagging a task`
-        * Update documentation for the features `Adding a person`
+        * Added documentation for the features `Viewing contacts assigned to a task` [\#68](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/68)
+        * Update documentation for the features `Adding a task` [\#114](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/114/files)
+        * Update documentation for NUS Classes [\#123](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/123/files)
+    * Developer Guide:
+        * Added documentation for the features `View contacts assigned to a task` [\#118](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/118)
     * ReadMe:
       * Update ReadMe.
 
 * **Community**:
-    * to be added soon
-
-* **Tools**:
-    * to be added soon
-
-* _{you can add/remove categories in the list above}_
+    * Total PRs reviewed (with non-trivial review comments): **25**
+        * [\#45](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/45), [\#66](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/66),
+          [\#77](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/77), [\#100](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/100),
+          [\#107](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/107), [\#109](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/109),
+          [\#112](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/112), [\#117](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/117),
+          [\#132](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/132), [\#135](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/135),
+          [\#132](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/132), [\#135](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/135),
+          [\#144](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/144), [\#150](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/150),
+          [\#154](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/154), [\#157](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/157),
+          [\#158](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/158), [\#164](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/178),
+          [\#170](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/170), [\#178](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/178),
+          [\#180](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/180), [\#183](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/183),
+          [\#185](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/185), [\#186](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/186),
+          [\#249](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/249)
+      
+    * Reported bugs and suggestions for other team in [PE-D](https://github.com/junrong98/ped/issues)

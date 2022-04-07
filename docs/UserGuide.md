@@ -92,7 +92,7 @@ Hope you'll be satisfied using NUSClasses :smile:
   e.g. in `addc n/CONTACTNAME`, `CONTACTNAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `addc n/CONTACTNAME p/PHONENUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -297,7 +297,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 ### Finding tasks: `findt`
 
-Find tasks whose task names and/or tags contain any of the given keywords.
+Find tasks whose task names or tags contain any of the given keywords.
 
 **Format**: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
 * `KEYWORD` can be used to search for matching words in both tags and names of tasks.
@@ -316,7 +316,7 @@ Find tasks whose task names and/or tags contain any of the given keywords.
 
 <div markdown="span" class="alert alert-info">
 :bulb: **Tip:**
-If you have many tasks, properly using `findt` will help you to keep organized! 
+If you have many tasks, using `findt` will help you to keep organized! 
 
 </div>
 
@@ -454,9 +454,12 @@ Shows a list of tasks that is marked as completed in the task list.
 `listt nc/`
 Shows a list of tasks that is not mark as completed in the task list.
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
-Good usage of `listt` will help in keeping track of tasks by status!
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Information:**
+<ul>
+    <li>If more than 1 prefixes is present, system will prioritise `all/` -> `nc/` -> `c/` .</li>
+</ul>
 </div>
 
 ### Deleting a task: `deletet`
@@ -540,15 +543,30 @@ If your changes to the data file makes its format invalid, NUS Classes will disc
 
 Imports a list of contacts from a .csv file.
 
-**Format**: `import fp/FILENAME`
+**Format**: `import fp/FILEPATH`
 
 * The .csv file must contain the following 5 headers (Name, Phone, Email, Github, Tags). Any other headers will be ignored.
-* Tags in the .csv file should be separated with a `/` character.
 * If there are repeated headers, the first one will be considered.
+* Tags in the .csv file should be separated with a `/` character.
 * Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
 
 **Examples**:
 * `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
+* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder
+
+
+### User-friendly date display
+
+Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be displayed based on the current day to be more user-friendly. Here's a reference if you get confused:
+
+| Displayed date                  | Explanation                                                                                                                                                                                                                              |
+|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Today`                         | The current calendar day.                                                                                                                                                                                                                |
+| `Tomorrow`                      | The next calendar day.                                                                                                                                                                                                                   |
+| Day of week (e.g. `Mon`, `Sat`) | The next occurrence of that day of week. Examples:<ul><li>If today is `7 Apr, Thu`, `Tue` will refer to the _next_ Tuesday `12 Apr, Tue`</li><li>If today is `4 Apr, Mon`, `Mon` will refer to the _next_ Monday `11 Apr, Mon`</li></ul> |
+| Day and month (without year)    | The day of the current calendar year (e.g. if the current calendar year is 2022, `11 Apr` refers to `11 Apr 2022`                                                                                                                        |
+| Day, month and year             | -                                                                                                                                                                                                                                        |
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -572,7 +590,7 @@ Imports a list of contacts from a .csv file.
 | [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
 | [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt`                                                                                  |
 | [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`                 |
-| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                           |
+| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                        |
 | [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1, DATETIME2`                                                          |
 | [**Assign contact <br> To Task**](#assigning-a-contact-to-a-task-assign)                                                           | `assign INDEX p/CONTACTINDEX`                                                            |
 | [**View contacts<br>Assigned to Task**](#viewing-contacts-assigned-to-a-task-view)                                                 | `view INDEX`                                                                             |
