@@ -81,7 +81,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, EditCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(EditCommand.MESSAGE_PERSON_NOT_EDITED, EditCommand.MESSAGE_USAGE);
 
         Model expectedModel = new ModelManager(
                 new AddressBook(model.getAddressBook()), new UserPrefs(), new TaskList());

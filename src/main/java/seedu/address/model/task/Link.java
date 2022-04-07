@@ -22,7 +22,7 @@ public class Link {
 
     @Override
     public boolean equals(Object other) {
-        return other == this;
+        return other == this || this.link.equals(((Link) other).link);
     }
 
     @Override

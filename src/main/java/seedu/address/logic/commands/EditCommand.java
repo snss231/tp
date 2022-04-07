@@ -56,7 +56,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
             + MESSAGE_USAGE;
-    public static final String MESSAGE_DUPLICATE_PERSON = "At least one field of this contact must be edited! \n%1$s";
+    public static final String MESSAGE_PERSON_NOT_EDITED = "At least one field of this contact must be edited! \n%1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -109,7 +109,7 @@ public class EditCommand extends Command {
 
 
         if (model.hasPerson(editedPerson)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, MESSAGE_USAGE));
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_EDITED, MESSAGE_USAGE));
         }
 
         model.setPerson(personToEdit, editedPerson);
