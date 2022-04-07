@@ -140,8 +140,7 @@ public class AddTaskCommand extends Command {
         return (other instanceof AddTaskCommand
                 && this.taskName.equals(((AddTaskCommand) other).taskName)
                 && this.dateTime.equals(((AddTaskCommand) other).dateTime)
-                && this.tags.equals(((AddTaskCommand) other).tags)
-                && this.link.equals(((AddTaskCommand) other).link));
+                && this.tags.equals(((AddTaskCommand) other).tags));
     }
 
     @Override
