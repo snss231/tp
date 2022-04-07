@@ -82,16 +82,16 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
             Map<String, Integer> periodMapping = TranslatorUtil.getPeriodMapping();
 
-            if (!periodMapping.containsKey(periodStr)) {
+            if (periodMapping.containsKey(periodStr)) {
+                periodInt = periodMapping.get(periodStr);
+            } else {
                 try {
                     periodInt = Integer.parseInt(periodStr);
                 } catch (NumberFormatException e) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_RECURRENCE,
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddTaskCommand.MESSAGE_USAGE));
                 }
             }
-
-            periodInt = periodMapping.get(periodStr);
 
             try {
                 recurrenceInt = Integer.parseInt(recurrenceStr);
