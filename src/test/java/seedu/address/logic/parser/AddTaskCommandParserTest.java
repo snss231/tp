@@ -55,7 +55,7 @@ public class AddTaskCommandParserTest {
         AddTaskCommand testCommand = new AddTaskCommand(VALID_NAME_TASKB,
                 LocalDateTime.of(2050, 12, 15, 21, 0),
                 LocalDateTime.of(2050, 12, 16, 21, 0),
-                SampleDataUtil.getTagSet(VALID_TAG_CHORES), null, 2, 2);
+                SampleDataUtil.getTagSet(VALID_TAG_CHORES), new Link(""), 2, 2);
 
         assertParseSuccess(parser, " " + NAME_DESC_TASKB + DATETIME_DESC_TASKA
                 + " " + VALID_DATETIME_TASKA_PLUS_ONE_DAY + " " + PREFIX_TAG + VALID_TAG_CHORES + " "
