@@ -135,7 +135,7 @@ Adds a contact with basic details like name, phone number, email and Github User
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
-* Make sure the contact's email is in the correct format, i.e. abd@u.nus.edu &#9989, abd@kk &#10060
+* Make sure the contact's email is in the correct format, with an `@` and a domain name, i.e. abd@example.com :smiley:
 
 * Make sure the contact's phone number is at least 3 digits long! Phone numbers with > 8 digits are allowed since international phone numbers have different numbers of digits.
 </div>
@@ -564,6 +564,12 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUS Classes home folder.
+
+**Q**: Do I need to have extensive knowledge about Command Line Interface (CLI) to use this? <br>
+**A**: Nope! Simply refer to the format given in our [Command Summary](#command-summary) and our [Features Section](#features) for guidance!
+
+**Q**: I have further questions about NUS Classes. Where do I ask? <br>
+**A**: Open an Issue in our team's [Issue Tracker](https://github.com/AY2122S2-CS2103T-T12-4/tp/issues) and we'll look into it! :smiley:
 
 --------------------------------------------------------------------------------------------------------------------
 

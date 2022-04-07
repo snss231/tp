@@ -4,7 +4,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.FilterByDateCommand.ERROR_MESSAGE_INVALID_FORMAT;
-import static seedu.address.logic.commands.FilterByDateCommand.ERROR_MESSAGE_INVALID_TAG;
+import static seedu.address.logic.commands.FilterByDateCommand.ERROR_MESSAGE_INVALID_PARAMETER;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -45,7 +45,7 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
     }
 
     /**
-     * Gets the before and after date from "filter d/22-08-2022 0800,23-08-2023 0800"
+     * Gets the before and after date from a String of dates, e.g. "filter dt/22-08-2022 0800,23-08-2023 0800"
      *
      * @param dates dates to be seperated
      * @return A list of before and after dates
@@ -54,7 +54,7 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
         // from "dt/22-08-2022 0800,23-08-2022 0800" to ["dt", "22-08-2022 0800", "23-08-2022 0800"]
         String[] splitDates = dates.split("[/,]");
         if (splitDates.length != 3) {
-            throw new ParseException(ERROR_MESSAGE_INVALID_TAG);
+            throw new ParseException(ERROR_MESSAGE_INVALID_PARAMETER);
         }
 
 
@@ -70,7 +70,7 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
             return localDateTimeTargetedAdder(dayMonthYear(splitDates[1]),
                     dayMonthYearTime(splitDates[2]), false);
         } else {
-            throw new ParseException(ERROR_MESSAGE_INVALID_TAG);
+            throw new ParseException(ERROR_MESSAGE_INVALID_PARAMETER);
         }
     }
 
