@@ -1,19 +1,21 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TaskBuilder;
+
 
 public class TaskBetweenDatesPredicateTest {
     private final LocalDateTime beforeDateTime = LocalDateTime.of(2050, 6, 6, 6, 0);
     private final LocalDateTime afterDateTime = LocalDateTime.of(2050, 12, 12, 12, 0);
-    ArrayList<LocalDateTime> list = new ArrayList<>();
+    private ArrayList<LocalDateTime> list = new ArrayList<>();
 
     @Test
     public void testValidDate() {
