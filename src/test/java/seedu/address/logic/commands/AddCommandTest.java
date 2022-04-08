@@ -1,12 +1,23 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EMAIL;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_GIT_USERNAME;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.commons.core.Messages.MESSAGE_TAG_TOO_LONG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.DUPLICATE_ALICE_EMAIL;
+import static seedu.address.testutil.TypicalPersons.DUPLICATE_ALICE_PHONE;
+import static seedu.address.testutil.TypicalPersons.DUPLICATE_ALICE_USERNAME;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +27,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -23,6 +35,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
@@ -34,33 +48,72 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
-    /*
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Model modelAcceptingPerson = new ModelManager();
         Person validPerson = new PersonBuilder().build();
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelAcceptingPerson);
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        //Creating the equivalent list
+        UniquePersonList validUniquePersonList = new UniquePersonList();
+        validUniquePersonList.add(validPerson);
+        ObservableList<Person> validList = validUniquePersonList.asUnmodifiableObservableList();
 
+        //Successfully add Person
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+
+        //Check that Valid Person exists in Model
+        assertEquals(validList, modelAcceptingPerson.getFilteredPersonList());
     }
 
-     */
+    @Test
+    public void execute_invalidTagLength_throwsCommandException() {
+        Model model = new ModelManager();
+        ArrayList<Tag> list = new ArrayList<>();
+        String invalidTag = "This tag is over 50 characters long..............................."
+                + "............................................................................................";
+        list.add(new Tag(invalidTag));
+        Set<Tag> invalidTagSet = new HashSet<Tag>(list);
+
+        Person invalidTagPerson = new PersonBuilder().withTags(invalidTag).build();
+        AddCommand invalidAddCommand = new AddCommand(invalidTagPerson);
+        assertThrows(CommandException.class,
+                String.format(MESSAGE_TAG_TOO_LONG,
+                        invalidTagSet.stream()
+                                .filter(tag -> tag.tagName.length() > 50)
+                                .reduce("", (str, tag) -> tag + "\n" + str, (s1, s2) -> s1 + s2)), ()
+                -> invalidAddCommand.execute(model));
+    }
+
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
+        Person validPerson = ALICE;
         AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        //Check Username Error
+        Model modelWithSameUsername = new ModelManager();
+        modelWithSameUsername.addPerson(DUPLICATE_ALICE_USERNAME);
+        assertThrows(CommandException.class,
+                MESSAGE_DUPLICATE_GIT_USERNAME, () -> addCommand.execute(modelWithSameUsername));
+
+        //Check Email Error
+        Model modelWithSameEmail = new ModelManager();
+        modelWithSameEmail.addPerson(DUPLICATE_ALICE_EMAIL);
+        assertThrows(CommandException.class,
+                MESSAGE_DUPLICATE_EMAIL, () -> addCommand.execute(modelWithSameEmail));
+
+        //Check Phone Error
+        Model modelWithSamePhone = new ModelManager();
+        modelWithSamePhone.addPerson(DUPLICATE_ALICE_PHONE);
+        assertThrows(CommandException.class,
+                MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelWithSamePhone));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Person alice = new PersonBuilder().withName("Alice").withEmail("alice123@gmail.com").build();
+        Person bob = new PersonBuilder().withName("Bob").withEmail("bob123@gmail.com").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -186,6 +239,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 

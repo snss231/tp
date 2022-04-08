@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTERVAL;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
@@ -48,7 +49,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                     + AddTaskCommand.MESSAGE_USAGE));
         }
 
-        String taskName = argMultimap.getValue(PREFIX_TASKNAME).get();
+        String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASKNAME));
         String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
         LocalDateTime dateTime;
         LocalDateTime endDateTime;
@@ -56,6 +57,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK));
 
         try {
+            dateTimeFormatter.setLenient(false);
+
             if (dateTimeString.contains(",")) {
                 String[] splits = dateTimeString.split(",");
                 dateTime = convertToLocalDateTime(dateTimeFormatter.parse(splits[0]));
@@ -86,7 +89,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 try {
                     periodInt = Integer.parseInt(periodStr);
                 } catch (NumberFormatException e) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_RECURRENCE,
+
+                    throw new ParseException(String.format(MESSAGE_INVALID_INTERVAL,
                              AddTaskCommand.MESSAGE_USAGE));
                 }
             }
@@ -139,5 +143,4 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         sb.delete(sb.length() - 2, sb.length() - 1); //Deleting last comma
         return sb;
     }
-
 }

@@ -3,6 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,6 +25,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -100,15 +104,38 @@ public class ParserUtil {
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
+
+        if (!Email.isValidLength(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+
         return new Email(trimmedEmail);
     }
 
     /**
-     * Parses Git username
+     * Parses task name
+     *
+     * @param option String input for Git username
+     * @return The Task name.
+     */
+    public static String parseTaskName(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+
+        String trimmedUsername = option.get().trim();
+        if (!Task.isValidLength(trimmedUsername)) {
+            throw new ParseException(Task.NAME_LENGTH_ERROR);
+        }
+
+        return trimmedUsername;
+    }
+
+    /**
+     * Parses Git username. Only allows AlphaNumeric and hyphens, as per GitHub's username formats.
+     * Spaces are not allowed.
      *
      * @param gitUsername String input for Git username
      * @return GitUsername object created using user input
-     * @throws ParseException If gitUsername is not in alphanumeric format
+     * @throws ParseException If gitUsername is not in alphanumeric format or has symbols other than hyphens.
      */
     public static GitUsername parseGitUsername(String gitUsername) throws ParseException {
         requireNonNull(gitUsername);
@@ -149,11 +176,16 @@ public class ParserUtil {
     /**
      * Parses {@Code Optional<String> option} into a {@code Link}.
      */
-    public static Link parseLink(Optional<String> option) {
+    public static Link parseLink(Optional<String> option) throws ParseException {
         requireNonNull(option);
         if (option.isEmpty()) {
-            return new Link("");
+            return new Link();
         } else {
+            try {
+                new URL(option.get()).toURI();
+            } catch (URISyntaxException | MalformedURLException e) {
+                throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+            }
             return new Link(option.get());
         }
     }

@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EMAIL;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_GIT_USERNAME;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -43,17 +46,17 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_GIT_USERNAME + "GITHUB_USERNAME]...\n"
-            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_GIT_USERNAME + "GITHUB_USERNAME] "
+            + "[" + PREFIX_TAG + "TAG]...\n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_GIT_USERNAME + "john123";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person with these exact same parameters already "
-            + "exists in the address book.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
+            + MESSAGE_USAGE;
+    public static final String MESSAGE_PERSON_NOT_EDITED = "At least one field of this contact must be edited! \n%1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -89,9 +92,24 @@ public class EditCommand extends Command {
             throw new CommandException(checkTagLength);
         }
 
+        if (model.hasPhone(editedPerson.getPhone())
+                && !editedPerson.getPhone().equals(personToEdit.getPhone())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasEmail(editedPerson.getEmail())
+            && !editedPerson.getEmail().equals(personToEdit.getEmail())) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        if (model.hasUsername(editedPerson.getUsername())
+                && !editedPerson.getUsername().equals(personToEdit.getUsername())) {
+            throw new CommandException(MESSAGE_DUPLICATE_GIT_USERNAME);
+        }
+
+
+        if (model.hasPerson(editedPerson)) {
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_EDITED, MESSAGE_USAGE));
         }
 
         model.setPerson(personToEdit, editedPerson);
