@@ -577,14 +577,18 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUS Classes home folder.
 
+**Q**: Do I need to have extensive knowledge about Command Line Interface (CLI) to use this? <br>
+**A**: Nope! Simply refer to the format given in our [Command Summary](#command-summary) and our [Features Section](#features) for guidance!
+
+**Q**: I have further questions about NUS Classes. Where do I ask? <br>
+**A**: Open an Issue in our team's [Issue Tracker](https://github.com/AY2122S2-CS2103T-T12-4/tp/issues) and we'll look into it! :smiley:
+
 **Q**: Who do I contact if I want to be part of the Developer team?<br>
 **A**: You can email us at _e0544441@u.nus.edu_ with the subject `Interest in joining NUSClasses Developer Team`
 
 **Q**: What do I do to update the app?<br>
 **A**: Uninstall the current version of the app. Then, download the latest version of `NUSClasses.jar` from our [GitHub releases](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases)
 
-**Q**: My app is not working properly/frozen/found a bug?<br>
-**A**: Sorry for the inconvenience caused. You can email us at _e0544441@u.nus.edu_ with the subject `Issue with NUSClass`. Do not worry about losing your data as [mentioned before](#saving-the-data).
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class GitUsername {
 
+    //Credits to Stack Overflow. Accreditation done in PPP
     public static final String GIT_USERNAME_REGEX = "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+){0,2}$";
 
     public static final String MESSAGE_CONSTRAINTS = "Github usernames should only contain alphanumeric"
