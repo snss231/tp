@@ -281,12 +281,12 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
 * `editt 1 tn/Meeting with TAs` Edits the name of the 1st displayed task to be `Meeting with TAs`.
-* `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Edits the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm-1pm. <br>
+* `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Edits the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be `01 Dec 2022, 12pm-1pm`. <br>
     <br>
     ![`editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300`](images/edittCommandShowcase1.png)
 
 
-* `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Edits the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm`. <br>
+* `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Edits the datetime of the 1st displayed task to be on `12 Dec 2022, 12-2pm`. <br>
     <br>
     ![`editt 1 dt/12-12-2022 1200, 12-12-2022 1400`](images/edittCommandShowcase2.png)
     
