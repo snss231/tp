@@ -31,13 +31,15 @@ public class ListTaskCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListTaskCommand(""), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListTaskCommand(""), model,
+                ListTaskCommand.MESSAGE_SUCCESS_NOT_COMPLETED, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        assertCommandSuccess(new ListTaskCommand("all"), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListTaskCommand("all"), model,
+                ListTaskCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
 
     @Test

@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,9 +22,11 @@ import seedu.address.model.tag.Tag;
 
 public class ImportCommandParser implements Parser<ImportCommand> {
 
-    public static final String MESSAGE_CSV_MISSING_HEADERS = "Missing headers in the file %s";
+    public static final String MESSAGE_CSV_MISSING_HEADERS = "Missing headers in the file \"%s\"";
 
-    public static final String MESSAGE_CSV_MISSING_FIELD = "Error: found empty field in the file %s";
+    public static final String MESSAGE_CSV_MISSING_FIELD = "Error: found empty field in the file \"%s\"";
+
+    public static final String MESSAGE_FILE_DOES_NOT_EXIST = "Error: could not find the file \"%s\".";
 
 
     /**
@@ -40,14 +42,18 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             throw new ParseException(ImportCommand.MESSAGE_USAGE);
         }
 
-        Path path = ParserUtil.parsePath(argMultimap.getValue(PREFIX_FILEPATH));
+        File file = ParserUtil.parsePath(argMultimap.getValue(PREFIX_FILEPATH)).toFile();
+
+        if (!file.exists()) {
+            throw new ParseException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, file.getName()));
+        }
 
         List<Person> toAdd = new ArrayList<>();
 
         List<String> invalidFields = new ArrayList<>();
 
         try {
-            Scanner sc = new Scanner(path.toFile());
+            Scanner sc = new Scanner(file);
             List<String> columns = Arrays.asList(sc.nextLine().split(","));
             int nameIndex = columns.indexOf("Name");
             int phoneIndex = columns.indexOf("Phone");
@@ -56,7 +62,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             int tagsIndex = columns.indexOf("Tags");
 
             if (List.of(nameIndex, phoneIndex, emailIndex, githubIndex, tagsIndex).contains(-1)) {
-                throw new ParseException(String.format(MESSAGE_CSV_MISSING_FIELD, path.getFileName()));
+                throw new ParseException(String.format(MESSAGE_CSV_MISSING_FIELD, file.getPath()));
             }
 
             while (sc.hasNextLine()) {
@@ -100,7 +106,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             }
 
         } catch (FileNotFoundException e) {
-            throw new ParseException(String.format(MESSAGE_CSV_MISSING_HEADERS, path.getFileName()));
+            throw new ParseException(String.format(MESSAGE_CSV_MISSING_HEADERS, file.getPath()));
         }
 
         return new ImportCommand(toAdd, argMultimap.getValue(PREFIX_FILEPATH).get(), invalidFields);
