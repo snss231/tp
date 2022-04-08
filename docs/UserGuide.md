@@ -131,11 +131,12 @@ Adds a contact with basic details like name, phone number, email and Github User
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
 * `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate t/Classmate`
 
+
 <div markdown="block" class="alert alert-info">:bulb: **Tips:**
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
-* Make sure the contact's email is in the correct format, i.e. abd@u.nus.edu &#9989, abd@kk &#10060
+* Make sure the contact's email is in the correct format, i.e. abd@gmail.com :tick:, abd@yahoo :cross:
 
 * Make sure the contact's phone number is at least 3 digits long! Phone numbers with > 8 digits are allowed since international phone numbers have different numbers of digits.
 </div>
