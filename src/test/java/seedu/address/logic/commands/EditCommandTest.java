@@ -16,19 +16,23 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -49,6 +53,29 @@ public class EditCommandTest {
                 new AddressBook(model.getAddressBook()), new UserPrefs(), new TaskList());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_tasksUpdated_success() throws CommandException {
+        Person toEdit = model.getFilteredPersonList().get(0);
+
+        Model m = new ModelManager(
+                new AddressBook(model.getAddressBook()), new UserPrefs(), new TaskList());
+
+
+        Task affectedTask = new TaskBuilder().build();
+        affectedTask.addPerson(toEdit);
+
+        m.addTask(affectedTask);
+
+        Person editedPerson = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        editCommand.execute(m);
+
+        assertTrue(affectedTask.containsPerson(editedPerson));
+
+        assertFalse(affectedTask.containsPerson(toEdit));
     }
 
 
