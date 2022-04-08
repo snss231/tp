@@ -55,7 +55,7 @@ Hope you'll be satisfied using NUSClasses :smile:
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `nusclasses.jar` from [here](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases).
+1. Download the latest `NUSClasses.jar` from [here](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _main folder_ for your NUS Classes manager.
 
@@ -545,6 +545,15 @@ Imports a list of contacts from a .csv file.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUS Classes home folder.
+
+**Q**: Who do I contact if I want to be part of the Developer team?<br>
+**A**: You can email us at _e0544441@u.nus.edu_ with the subject `Interest in joining NUSClasses Developer Team`
+
+**Q**: What do I do to update the app?<br>
+**A**: Uninstall the current version of the app. Then, download the latest version of `NUSClasses.jar` from our [GitHub releases](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases)
+
+**Q**: My app is not working properly/frozen/found a bug?<br>
+**A**: Sorry for the inconvenience caused. You can email us at _e0544441@u.nus.edu_ with the subject `Issue with NUSClass`. Do not worry about losing your data as [mentioned before](#saving-the-data).
 
 --------------------------------------------------------------------------------------------------------------------
 
