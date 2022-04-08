@@ -396,10 +396,9 @@ Unassigns a contact in the contact list from a task.
 </div>
 
 **Examples**:
-* `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.
-<br>
-<br>
-    ![unassign 1 p/2](images/unassignCommandShowcase.png)
+* `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.<br>
+    <br>
+    ![unassign1](images/unassignCommandShowcase.png)
 
 
 ### Marking a task as done: `mark`
