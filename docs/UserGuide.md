@@ -55,7 +55,7 @@ Hope you'll be satisfied using NUSClasses :smile:
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `nusclasses.jar` from [here](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases).
+1. Download the latest `NUSClasses.jar` from [here](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _main folder_ for your NUS Classes manager.
 
@@ -131,13 +131,17 @@ Adds a contact with basic details like name, phone number, email and Github User
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
 * `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate t/Classmate`
 
-<div markdown="block" class="alert alert-info">:bulb: **Tip:**
+
+<div markdown="block" class="alert alert-info">:bulb: **Tips:**
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
-* Make sure the contact's email is in the correct format, with an `@` and a domain name, i.e. abd@example.com :smiley:
+* Make sure the contact's email is in the correct format, i.e. abd@gmail.com :tick:, abd@yahoo :cross:
 
 * Make sure the contact's phone number is at least 3 digits long! Phone numbers with > 8 digits are allowed since international phone numbers have different numbers of digits.
+
+* Github usernames can only consist of alphanumeric characters or single hyphens, and cannot begin or end with a hyphen. Usernames such as `john123` and `jo-hn123` are valid, but usernames such as `john123-`, `-john123` and `jo--hn123` are invalid.
+
 </div>
 
 ### Listing all contacts : `listc`
@@ -322,9 +326,9 @@ Find tasks whose task falls in between the given dates (inclusive).
 
 **Format**: `findt dt/DATETIME1, DATETIME2`
 
-* The ordering of date doesn't matter: e.g `dt/12-02-2022 0800, 13-03-2022 0800` will match `dt/13-02-2022 0800, 12-03-2022 0800`
-* `DATETIME1` and `DATETIME2` follows this format: "dd-MM-yyyy HHmm"
-* `dd`: Day; `MM`: Month; `yyyy`: Year; `HH`: Hour; `mm`: Minutes
+* The ordering of date doesn't matter . e.g `dt/12-02-2022 0800, 13-03-2022 0800` will match `dt/13-02-2022 0800, 12-03-2022 0800`
+* `DATETIME1` and `DATETIME2` follows this format: _dd-MM-yyyy HHmm_
+* _dd_: Day; _MM_: Month; _yyyy_: Year; _HH_: Hour; _mm_: Minutes
 * `HHmm` is in 24-Hour format
 * Requires 2 date time inputs
 
@@ -578,6 +582,13 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 
 **Q**: I have further questions about NUS Classes. Where do I ask? <br>
 **A**: Open an Issue in our team's [Issue Tracker](https://github.com/AY2122S2-CS2103T-T12-4/tp/issues) and we'll look into it! :smiley:
+
+**Q**: Who do I contact if I want to be part of the Developer team?<br>
+**A**: You can email us at _e0544441@u.nus.edu_ with the subject `Interest in joining NUSClasses Developer Team`
+
+**Q**: What do I do to update the app?<br>
+**A**: Uninstall the current version of the app. Then, download the latest version of `NUSClasses.jar` from our [GitHub releases](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases)
+
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -89,7 +89,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 try {
                     periodInt = Integer.parseInt(periodStr);
                 } catch (NumberFormatException e) {
-
                     throw new ParseException(String.format(MESSAGE_INVALID_INTERVAL,
                              AddTaskCommand.MESSAGE_USAGE));
                 }

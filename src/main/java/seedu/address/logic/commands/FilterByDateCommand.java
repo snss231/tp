@@ -29,6 +29,7 @@ public class FilterByDateCommand extends Command {
 
     public static final String ERROR_MESSAGE_INVALID_PARAMETER =
             "Invalid parameter format. It should be either \"dt/dd-MM-yyyy HHmm, dd-MM-yyyy HHmm\""
+
                     + " or \"dt/dd-MM-yyyy, dd-MM-yyyy\"";
 
 
