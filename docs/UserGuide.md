@@ -399,7 +399,7 @@ Unassigns a contact in the contact list from a task.
 * `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.
 <br>
 <br>
-    ![`unassign 1 p/2](images/unassignCommandShowcase.png)
+    ![unassign 1 p/2](images/unassignCommandShowcase.png)
 
 
 ### Marking a task as done: `mark`
@@ -478,7 +478,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 
 **Examples**:
-* `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
+* `listt all/` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
 * `findt lecture` followed by `deletet 2` lists out all tasks with the keyword `lecture`, then deletes the task at index 2. <br>
     <br> Finding the tasks by keyword `lecture`:
     ![`findt lecture` followed by `deletet 2`](images/deletettCommandShowcase1.png)
@@ -502,7 +502,9 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 
 **Examples**:
-* `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br><br>
+* `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br>
+  <br>
+  ![`gen 1`](images/genCommandShowcase.png)
 
 
 # Other Features
@@ -553,7 +555,11 @@ Imports a list of contacts from a .csv file.
 
 **Examples**:
 * `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
-* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder
+* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder<br>
+  <br>
+  ![`importCommand1` followed by `deletet 2`](images/importCommandShowcase1.png)
+  <br><br>
+  ![`importCommand2`](images/importCommandShowcase2.png)
 
 
 ### User-friendly date display
