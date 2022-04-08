@@ -3,6 +3,10 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -12,21 +16,23 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer!";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -98,23 +104,46 @@ public class ParserUtil {
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
+
+        if (!Email.isValidLength(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+
         return new Email(trimmedEmail);
     }
 
     /**
-     * Parses username
+     * Parses task name
      *
-     * @param username String input for username
-     * @return Username object created using user input
-     * @throws ParseException If username is not in alphanumeric format
+     * @param option String input for Git username
+     * @return The Task name.
      */
-    public static Username parseUsername(String username) throws ParseException {
-        requireNonNull(username);
-        String trimmedUsername = username.trim();
-        if (!Username.isValidId(trimmedUsername)) {
-            throw new ParseException(Username.MESSAGE_CONSTRAINTS);
+    public static String parseTaskName(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+
+        String trimmedUsername = option.get().trim();
+        if (!Task.isValidLength(trimmedUsername)) {
+            throw new ParseException(Task.NAME_LENGTH_ERROR);
         }
-        return new Username(trimmedUsername);
+
+        return trimmedUsername;
+    }
+
+    /**
+     * Parses Git username. Only allows AlphaNumeric and hyphens, as per GitHub's username formats.
+     * Spaces are not allowed.
+     *
+     * @param gitUsername String input for Git username
+     * @return GitUsername object created using user input
+     * @throws ParseException If gitUsername is not in alphanumeric format or has symbols other than hyphens.
+     */
+    public static GitUsername parseGitUsername(String gitUsername) throws ParseException {
+        requireNonNull(gitUsername);
+        String trimmedUsername = gitUsername.trim();
+        if (!GitUsername.isValidId(trimmedUsername)) {
+            throw new ParseException(GitUsername.MESSAGE_CONSTRAINTS);
+        }
+        return new GitUsername(trimmedUsername);
     }
 
     /**
@@ -147,11 +176,16 @@ public class ParserUtil {
     /**
      * Parses {@Code Optional<String> option} into a {@code Link}.
      */
-    public static Link parseLink(Optional<String> option) {
+    public static Link parseLink(Optional<String> option) throws ParseException {
         requireNonNull(option);
         if (option.isEmpty()) {
-            return new Link("");
+            return new Link();
         } else {
+            try {
+                new URL(option.get()).toURI();
+            } catch (URISyntaxException | MalformedURLException e) {
+                throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+            }
             return new Link(option.get());
         }
     }
@@ -180,5 +214,22 @@ public class ParserUtil {
      */
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Creates and returns the Path of the import file.
+     *
+     * @param option Optional containing the filepath
+     * @return The path of the file
+     * @throws ParseException if no filepath is provide
+     */
+    public static Path parsePath(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+
+        if (option.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+        }
+
+        return Path.of(option.get());
     }
 }

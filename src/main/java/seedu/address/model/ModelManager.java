@@ -12,9 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Username;
 import seedu.address.model.task.Task;
 
 /**
@@ -102,9 +102,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasUsername(Username username) {
-        requireNonNull(username);
-        return addressBook.hasUsername(username);
+    public boolean hasUsername(GitUsername gitUsername) {
+        requireNonNull(gitUsername);
+        return addressBook.hasUsername(gitUsername);
     }
 
     @Override
@@ -136,6 +136,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        taskList.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -175,6 +176,12 @@ public class ModelManager implements Model {
     }
 
     //=========== TaskList ================================================================================
+
+    @Override
+    public void setTaskList(ReadOnlyTaskList taskList) {
+        this.taskList.resetData(taskList);
+    }
+
     @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;
@@ -196,6 +203,11 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        taskList.addTask(task);
     }
 
     /**
@@ -223,5 +235,21 @@ public class ModelManager implements Model {
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskList.hasTask(task);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void markTask(Task task) {
+        taskList.markTask(task);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void unmarkTask(Task task) {
+        taskList.unmarkTask(task);
     }
 }

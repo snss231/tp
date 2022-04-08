@@ -1,9 +1,31 @@
----
-layout: page
-title: Developer Guide
----
-* Table of Contents
-{:toc}
+## Table of Contents
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [Ui component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementation)
+    * [Delete person feature](#delete-person-feature)
+    * [Delete task feature](#delete-task-feature)
+    * [Edit task feature](#edit-task-feature)
+    * [View task feature](#view-task-feature)
+    * [[Proposed] Data Archiving](#proposed-data-archiving)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional requirements](#non-functional-requirements)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a person](#deleting-a-person)
+    * [Saving data](#saving-data)
+* [Glossary](#glossary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,11 +41,22 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Description**
+NUS Classes is a desktop app for NUS Computing professors to manage their tasks and contacts. It includes task management features such as creating tasks, tagging tasks, assigning contacts to tasks, and marking tasks as complete or incomplete. It also includes contact management features such as finding contacts, assigning contacts to specific tasks and tagging contacts.
+
+NUS Classes also provides a simple alert feature for tasks by displaying tasks in different color based on the urgency of the task. Tasks that are overdue are marked as red, whereas, tasks that are nearing deadline are marked as yellow.
+
+NUS Classes is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Using NUS Classes can get your contact management tasks done faster than traditional GUI apps, saving time on otherwise tedious administrative tasks.
+
+This Developer Guide is documented with the approach of developer-as-maintainer, explaining how the architecture and implementation of NUS Classes is done
+to allow for easy maintenance and modification if necessary. In this Developer Guide, you will find explanations as well as diagrams for the main components of NUS Classes at the high-level design as well as in-depth explanations
+on certain key features.
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -161,13 +194,13 @@ To implement this, upon every `DeleteCommand` execution, we call the `TaskList::
 
 Design considerations:
 
-Aspect: how relevant tasks are updated when a person is removed from the address book
+**Aspect:** how relevant tasks are updated when a person is removed from the address book
 
-* Alternative 1 (current choice): Iterate through all tasks to remove the relevant person.
+* **Alternative 1 (current choice):** Iterate through all tasks to remove the relevant person.
   * Pros: Easy to implement.
   * Cons: _May_ have performance issues given a large list of tasks
 
-* Alternative 2: Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
+* **Alternative 2:** Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
   * Pros: _May_ see some performance benefit (not necessary to iterate through all the tasks upon each `DeleteCommand`)
   * Cons: More fragile code due to circular dependency (`Person` depends on `Task`). Not often that a Professor will delete a contact (student or tutor) in the course of a module.
 
@@ -176,7 +209,7 @@ Delete task feature implements the following operations:
 * `DeleteTaskCommandParser#parse()` — Parse the index number from user command to `DeleteTaskCommand` to get the task to be deleted.
 * `DeleteTaskCommand#execute()` — Execute `ModelManager#deleteTask()` by parsing in the task to be deleted.
 * `ModelManager#deleteTask()` — Execute `TaskList#deleteCurrTask()` by parsing in the task to be deleted.
-* `TaskList#deleteCurrTaskk()` — Deletes the task from the TaskList stored here.
+* `TaskList#deleteCurrTask()` — Deletes the task from the TaskList stored here.
 
 Step 1: User will enter the command `deletet 1` to delete the first task.
 Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
@@ -188,8 +221,8 @@ The Sequence Diagram below illustrates the interactions of how the delete task f
 </div>
 
 Step 2: Outcome after executing `DeleteTaskCommand`
-* Outcome 1: Successfully delete task.
-* Outcome 2: Throw CommandException due to index out of range.
+
+Execution flow of Activity Diagram:
 
 ![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
 
@@ -215,13 +248,13 @@ Edit task feature implements the following operations:
 * `ModelManager#setTask()` — Update the task information.
 * `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
 
-Step 1: User parse in command. For example, `updatet 1 tn/Teach CS2103T dt/12-03-2022 1330 t/Homework`
+Step 1: User parse in command. For example, `editt 1 tn/Teach CS2103T dt/12-03-2022 1330 z/https://zoomlink.com t/Homework`
 Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
 ![EditTaskSequenceDiagramstate0](images/EditTaskDiagram/EditTaskSequenceDiagramState0.png)
 
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
 Then `EditTaskCommandParser` will create `EditTaskDescriptor editTaskDescriptor`. `EditTaskCommandParser` will check if the
-task name, datatime or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field. 
+task name, datetime, link or tag prefix exist. It is optional to not have all the prefixes as user may not want to change certain field.
 For each prefix in the command, it will set the value to `editTaskDescriptor`.
 ![EditTaskSequenceDiagramstate1](images/EditTaskDiagram/EditTaskSequenceDiagramState1.png)
 
@@ -258,7 +291,7 @@ Step 1. The user will enter the command `view 1` to view the people associated w
 
 Step 2. The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list 
+Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
 by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
 Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
@@ -269,7 +302,7 @@ The following sequence diagram shows how the view task operation works:
 
 #### Design considerations:
 
-**Aspect: How should the results be displayed in the *Contact* column when no one is associated with the task:**
+**Aspect:** How should the results be displayed in the *Contact* column when no one is associated with the task:
 
 * **Alternative 1 (current choice):** Continue displaying the current list of people.
   * Pros: Reduce commands required by user to populate and use the column for input.
@@ -346,16 +379,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `NUS Classes` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  NUS Classes shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  NUS Classes deletes the person
 
     Use case ends.
 
@@ -367,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NUS Classes shows an error message.
 
       Use case resumes at step 2.
 
@@ -376,7 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to create a task
-2. AddressBook creates the task
+2. NUS Classes creates the task
 
     Use case ends.
 

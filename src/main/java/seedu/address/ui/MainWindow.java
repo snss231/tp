@@ -128,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter();
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -175,6 +175,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleEmails(String emails) {
+        resultDisplay.setEmails(emails);
+        resultDisplay.showCopy();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -190,6 +195,12 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandResult.isGenerateEmails()) {
+                handleEmails(commandResult.getEmails());
+            } else {
+                resultDisplay.hideCopy();
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -202,6 +213,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.hideCopy();
             throw e;
         }
     }

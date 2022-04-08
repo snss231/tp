@@ -18,15 +18,15 @@ import seedu.address.model.task.Task;
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all relevant contacts under a task "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display all contacts assigned to the task identified "
             + "by the index number used in the displayed task list. \n"
-            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String NO_CONTACT_ASSIGN = "There are no contact assigned to this task.";
-    public static final String DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE = "There were %1$d contacts assigned to this task";
-    public static final String DISPLAY_TASK_CONTACT_SUCCESS_SINGLE = "There was %1$d contact assigned to this task";
-
+    public static final String NO_CONTACT_ASSIGN = "Failed: There are no contacts assigned to task %d.";
+    public static final String DISPLAY_TASK_CONTACT_SUCCESS = "Found %1$d contact(s) assigned to this task";
 
     private final Index targetIndex;
 
@@ -60,7 +60,7 @@ public class ViewCommand extends Command {
         int listSize = listOfPeople.size();
 
         if (listSize < 1) {
-            return new CommandResult(NO_CONTACT_ASSIGN);
+            return new CommandResult(String.format(NO_CONTACT_ASSIGN, targetIndex.getOneBased()));
         }
 
         PersonContainInTask predicate = new PersonContainInTask(listOfPeople);
@@ -69,11 +69,14 @@ public class ViewCommand extends Command {
 
         listSize = model.getFilteredPersonList().size();
 
-        if (listSize == 1) {
-            return new CommandResult(String.format(DISPLAY_TASK_CONTACT_SUCCESS_SINGLE, listSize));
-        }
-
         return new CommandResult(
-                String.format(DISPLAY_TASK_CONTACT_SUCCESS_MULTIPLE, listSize));
+                String.format(DISPLAY_TASK_CONTACT_SUCCESS, listSize));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
     }
 }

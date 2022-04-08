@@ -19,7 +19,9 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove the person identified by the index number"
             + "used in the displayed person list "
             + "to the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: TASK_INDEX + " + PREFIX_PERSON + "PERSON_INDEX\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "TASK_INDEX + " + PREFIX_PERSON + "PERSON_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PERSON + "2";
 
     public static final String MESSAGE_PREFIX = "Removed %1$s, Number: %2$s from the task `%3$s`\n";
@@ -103,8 +105,8 @@ public class UnassignCommand extends Command {
         if (!updatedList.remove(personToRemove)) {
             throw new CommandException(MESSAGE_PERSON_NOT_IN_TASK);
         }
-        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(),
-                updatedList, taskToUpdate.getTags(), taskToUpdate.getLink());
+        Task editedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDateTime(), taskToUpdate.getEndDateTime(),
+                updatedList, taskToUpdate.getTags(), taskToUpdate.getLink(), taskToUpdate.isTaskMark());
         return editedTask;
     }
 

@@ -14,11 +14,11 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-'
- -> LogicManager : parseCommand("updatet ...")
+
+ -> LogicManager : parseCommand("editt ...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("updatet ...")
+LogicManager -> AddressBookParser : parseCommand("editt ...")
 activate AddressBookParser
 
 create EditTaskCommandParser
@@ -34,7 +34,7 @@ activate EditTaskCommandParser
 EditTaskCommandParser -> ParserUtil : parseIndex(...)
 activate ParserUtil
 
-ParserUtil -> EditTaskCommandParser : index
+ParserUtil --> EditTaskCommandParser : index
 deactivate ParserUtil
 
 create EditTaskDescriptor
@@ -61,9 +61,20 @@ end
 opt Tags present
 EditTaskCommandParser -> ParserUtil : parseTags(...)
 activate ParserUtil
-ParserUtil -> EditTaskCommandParser : Tags
+ParserUtil --> EditTaskCommandParser : Tags
 deactivate ParserUtil
 EditTaskCommandParser -> EditTaskDescriptor : setTags(...)
+activate EditTaskDescriptor
+EditTaskDescriptor --> EditTaskCommandParser
+deactivate EditTaskDescriptor
+end
+
+opt Link present
+EditTaskCommandParser -> ParserUtil : parseLink(...)
+activate ParserUtil
+ParserUtil --> EditTaskCommandParser : Link
+deactivate ParserUtil
+EditTaskCommandParser -> EditTaskDescriptor : setLink(...)
 activate EditTaskDescriptor
 EditTaskDescriptor --> EditTaskCommandParser
 deactivate EditTaskDescriptor

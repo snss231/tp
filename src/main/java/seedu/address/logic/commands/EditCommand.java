@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EMAIL;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_GIT_USERNAME;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -16,13 +20,14 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.TagUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Username;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,23 +35,28 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "\nExisting values will be overwritten by the input values. Index must be positive integers.\n"
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_GIT_USERNAME + "GITHUB_USERNAME] "
+            + "[" + PREFIX_TAG + "TAG]...\n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_GIT_USERNAME + "john123";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
+            + MESSAGE_USAGE;
+    public static final String MESSAGE_PERSON_NOT_EDITED = "At least one field of this contact must be edited! \n%1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -75,8 +85,31 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        String checkTagLength = TagUtil.checkTagLength(editedPerson.getTags());
+
+        //null value represents no tags are too long.
+        if (checkTagLength != null) {
+            throw new CommandException(checkTagLength);
+        }
+
+        if (model.hasPhone(editedPerson.getPhone())
+                && !editedPerson.getPhone().equals(personToEdit.getPhone())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        if (model.hasEmail(editedPerson.getEmail())
+            && !editedPerson.getEmail().equals(personToEdit.getEmail())) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        if (model.hasUsername(editedPerson.getUsername())
+                && !editedPerson.getUsername().equals(personToEdit.getUsername())) {
+            throw new CommandException(MESSAGE_DUPLICATE_GIT_USERNAME);
+        }
+
+
+        if (model.hasPerson(editedPerson)) {
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_EDITED, MESSAGE_USAGE));
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -95,9 +128,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Username updatedUsername = editPersonDescriptor.getUsername().orElse(personToEdit.getUsername());
+        GitUsername updatedGitUsername = editPersonDescriptor.getUsername().orElse(personToEdit.getUsername());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedUsername, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedGitUsername, updatedTags);
     }
 
     @Override
@@ -126,7 +159,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Username username;
+        private GitUsername gitUsername;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -139,7 +172,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setUsername(toCopy.username);
+            setUsername(toCopy.gitUsername);
             setTags(toCopy.tags);
         }
 
@@ -147,7 +180,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, username, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gitUsername, tags);
         }
 
         public void setName(Name name) {
@@ -175,12 +208,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setUsername(Username username) {
-            this.username = username;
+        public void setUsername(GitUsername gitUsername) {
+            this.gitUsername = gitUsername;
         }
 
-        public Optional<Username> getUsername() {
-            return Optional.ofNullable(username);
+        public Optional<GitUsername> getUsername() {
+            return Optional.ofNullable(gitUsername);
         }
 
         /**

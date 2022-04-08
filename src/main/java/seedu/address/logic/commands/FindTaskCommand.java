@@ -7,29 +7,35 @@ import seedu.address.model.Model;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 
+
 /**
  * Finds and lists all tasks in task storage whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterCommand extends Command {
+public class FindTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "findt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names/tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " apple orange pear";
+            + "Usage: "
+            + COMMAND_WORD + " "
+            + "KEYWORD [MORE_KEYWORDS]...[TAG]...\n"
+            + "Example: " + COMMAND_WORD + " lecture consultation\n"
+            + "Note: Include \"dt/\" tag to search based on date";
+
 
     private final TaskNameContainsKeywordsPredicate predicate;
 
-    public FilterCommand(TaskNameContainsKeywordsPredicate predicate) {
+    public FindTaskCommand(TaskNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(predicate);
+
+        model.updateFilteredTaskList(this.predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
@@ -37,7 +43,7 @@ public class FilterCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterCommand // instanceof handles nulls
-                && predicate.equals(((FilterCommand) other).predicate)); // state check
+                || (other instanceof FindTaskCommand // instanceof handles nulls
+                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 }

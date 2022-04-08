@@ -37,12 +37,12 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Returns true if the list contains a Person with an identical Github Username as the given argument.
+     * Returns true if the list contains a Person with an identical GitUsername as the given argument.
      *
-     * @param toCheck username to be checked.
+     * @param toCheck Github username to be checked.
      * @return true/false whether username already exists.
      */
-    public boolean containsUsername(Username toCheck) {
+    public boolean containsUsername(GitUsername toCheck) {
         requireNonNull(toCheck);
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getUsername().equals(toCheck)) {

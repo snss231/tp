@@ -1,10 +1,14 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NEED_AT_LEAST_ONE_VALID_PARAMETER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKNAME;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -24,6 +28,8 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new EditTaskCommand object
  */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
+    private final String dateTimePattern = "dd-MM-yyyy HHmm";
+    private final SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(dateTimePattern);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditTaskCommand
@@ -32,37 +38,54 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      */
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String dateTimePattern = "dd-MM-yyyy HHmm";
-        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(dateTimePattern);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TASKNAME, PREFIX_DATETIME, PREFIX_TAG, PREFIX_LINK);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_TASKNAME) && !arePrefixesPresent(argMultimap, PREFIX_DATETIME)
+                && !arePrefixesPresent(argMultimap, PREFIX_TAG) && !arePrefixesPresent(argMultimap, PREFIX_LINK)) {
+            String errorMessage = MESSAGE_NEED_AT_LEAST_ONE_VALID_PARAMETER;
+            throw new ParseException(String.format(errorMessage, EditTaskCommand.MESSAGE_USAGE));
+        }
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_TASKNAME).isPresent()) {
-            editTaskDescriptor.setName(argMultimap.getValue(PREFIX_TASKNAME).get());
+            String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASKNAME));
+            editTaskDescriptor.setName(taskName);
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             try {
+                dateTimeFormatter.setLenient(false);
                 String dateTimeString = argMultimap.getValue(PREFIX_DATETIME).get();
-                editTaskDescriptor.setDate(convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString)));
+                if (dateTimeString.contains(",")) {
+                    String[] splits = dateTimeString.split(",");
+                    editTaskDescriptor.setDate(convertToLocalDateTime(dateTimeFormatter.parse(splits[0])));
+                    editTaskDescriptor.setEndDate(convertToLocalDateTime(dateTimeFormatter.parse(splits[1])));
+                } else {
+                    editTaskDescriptor.setDate(convertToLocalDateTime(dateTimeFormatter.parse(dateTimeString)));
+                    editTaskDescriptor.setEndDate(null);
+                }
             } catch (java.text.ParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_DATETIME, EditTaskCommand.MESSAGE_USAGE));
             }
+        }
+
+        if (argMultimap.getValue(PREFIX_LINK).isPresent()) {
+            editTaskDescriptor.setLink(ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK)));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(EditTaskCommand.MESSAGE_NOT_EDITED, EditTaskCommand.MESSAGE_USAGE));
         }
 
         return new EditTaskCommand(index, editTaskDescriptor);

@@ -19,15 +19,17 @@ public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "SchoolWork";
     public static final LocalDateTime DEFAULT_DATETIME =
-            LocalDateTime.of(2022, 12, 15, 21, 0);
+            LocalDateTime.of(2050, 12, 15, 21, 0);
     public static final String DEFAULT_TAG = "School";
     public static final String DEFAULT_ZOOMLINK = "";
+    public static final boolean DEFAULT_ISTASKMARKDONE = false;
 
     private String name;
     private LocalDateTime dateTime;
     private Set<Tag> tags;
     private Link link;
     private List<Person> people;
+    private boolean isTaskMarkDone;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -38,6 +40,7 @@ public class TaskBuilder {
         tags = new HashSet<>();
         link = new Link(DEFAULT_ZOOMLINK);
         people = new ArrayList<Person>();
+        isTaskMarkDone = false;
     }
 
     /**
@@ -49,6 +52,7 @@ public class TaskBuilder {
         tags = new HashSet<>(taskToCopy.getTags());
         link = taskToCopy.getLink();
         people = taskToCopy.getPeople();
+        isTaskMarkDone = taskToCopy.isTaskMark();
     }
 
     /**
@@ -91,9 +95,13 @@ public class TaskBuilder {
         return this;
     }
 
-
+    /**
+     * Builds a Task object without endDateTime.
+     *
+     * @return Task object with the attributes in TaskBuilder
+     */
     public Task build() {
-        return new Task(name, dateTime, people, tags, link);
+        return new Task(name, dateTime, people, tags, link, isTaskMarkDone);
     }
 
 }

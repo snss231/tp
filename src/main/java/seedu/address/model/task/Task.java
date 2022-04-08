@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,42 +16,66 @@ import seedu.address.model.tag.Tag;
  * Task consists of a String object representing a name and a LocalDateTime object representing the date and time.
  */
 public class Task {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, h.mm a");
+    private static final DateTimeFormatter FORMAT_TIME = DateTimeFormatter.ofPattern("h.mm a");
+    private static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
+    private static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
+    private static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
+    private static final int MAX_LENGTH = 100;
+    private static final int MIN_LENGTH = 3;
+    public static final String NAME_LENGTH_ERROR = "The name of the tasks must be at least "
+            + MIN_LENGTH + " characters long and at most " + MAX_LENGTH + " characters long";
     private String name;
     private LocalDateTime dateTime;
+    private LocalDateTime endDateTime;
     private List<Person> people;
     private Set<Tag> tags;
     private Link link;
-
+    private boolean isMarkDone;
     /**
      * Constructor for Task.
-     *
-     * @param name Name of task
-     * @param dateTime LocalDateTime object representing Date and Time for Task
-     * @param tags Tags for the tasks
-     * @param link Link to be added to the task
-     */
-    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link) {
-        this.name = name;
-        this.dateTime = dateTime;
-        this.people = new ArrayList<>();
-        this.tags = tags;
-        this.link = link;
-    }
-
-    /**
-     * Constructor for Task with a list of people already provided.
      *
      * @param name Name of task
      * @param people People to be added to the list
      * @param dateTime LocalDateTime object representing Date and Time for Task
      * @param tags Tags for the tasks
      * @param link Link to be added to the task
+     * @param isMarkDone true if task is done, else false
      */
-    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link) {
-        this(name, dateTime, tags, link);
+    public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, List<Person> people, Set<Tag> tags,
+                Link link, boolean isMarkDone) {
+        this.name = name;
+        this.dateTime = dateTime;
+        this.endDateTime = endDateTime;
         this.people = new ArrayList<>(people);
+        this.tags = tags;
+        this.link = link;
+        this.isMarkDone = isMarkDone;
     }
+
+    /**
+     * Constructor for Task with people but no endDateTime.
+     */
+    public Task(String name, LocalDateTime dateTime, List<Person> people, Set<Tag> tags, Link link,
+                boolean isMarkDone) {
+        this(name, dateTime, null, people, tags, link, isMarkDone);
+    }
+
+    /**
+     * Constructor for Task with endDateTime but no people.
+     */
+    public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link,
+                boolean isMarkDone) {
+        this(name, dateTime, endDateTime, new ArrayList<>(), tags, link, isMarkDone);
+    }
+
+    /**
+     * Constructor for Task without people or endDateTime.
+     */
+    public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link, boolean isMarkDone) {
+        this(name, dateTime, null, new ArrayList<>(), tags, link, isMarkDone);
+    }
+
+
 
     /**
      * Changes name of Task.
@@ -61,7 +87,7 @@ public class Task {
     }
 
     /**
-     * Add a person to the list of people associated with the task.
+     * Adds a person to the list of people associated with the task.
      *
      * @param person Person to add
      */
@@ -69,8 +95,26 @@ public class Task {
         people.add(person);
     }
 
+    /**
+     * Removes a person from the list of people associated with the task.
+     *
+     * @param person Person to remove
+     */
     public void removePerson(Person person) {
         people.remove(person);
+    }
+
+    /**
+     * Updates a person in the list of people associated with the task.
+     *
+     * @param person The person to update
+     * @param editedPerson The edited person
+     */
+    public void updatePerson(Person person, Person editedPerson) {
+        int index = people.indexOf(person);
+        if (index != -1) {
+            people.set(index, editedPerson);
+        }
     }
 
     /**
@@ -82,14 +126,82 @@ public class Task {
         this.dateTime = newDateTime;
     }
 
-    @Override
-    public String toString() {
-        return this.name + " " + this.dateTime.format(formatter);
+    /**
+     * Changes EndDateTime of Task
+     *
+     * @param endDateTime LocalDateTime of new endDateTime
+     */
+    public void changeEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
-    public String getDateTimeString() {
-        return this.dateTime.format(formatter);
+    @Override
+    public String toString() {
+        return this.name + " " + dateTime.format(FORMAT_YEAR);
     }
+
+    /**
+     * Checks if this task has an end date time or not.
+     * @return true if this task has an end date time, false otherwise.
+     */
+    public boolean hasEndDateTime() {
+        return this.endDateTime != null;
+    }
+
+    /**
+     * Returns a user-friendly representation of the dateTime and endDateTime.
+     */
+    public String getDateTimeString() {
+        if (endDateTime == null) {
+            return getDeadline();
+        }
+        return getDateTimeRange();
+    }
+
+    private String getDeadline() {
+        return String.format("Due: %s", getUserFriendlyDateTime(dateTime));
+    }
+
+    private String getUserFriendlyDateTime(LocalDateTime dateTime) {
+        LocalDateTime today = LocalDate.now().atStartOfDay();
+        LocalDateTime date = dateTime.toLocalDate().atStartOfDay();
+        long daysFrom = Duration.between(today, date).toDays();
+        String result;
+        if (daysFrom == 0) { // today
+            result = String.format("Today, %s", dateTime.format(FORMAT_TIME));
+        } else if (daysFrom == 1) { // tomorrow
+            result = String.format("Tomorrow, %s", dateTime.format(FORMAT_TIME));
+        } else if (daysFrom >= 2 && daysFrom <= 7) { // this week
+            result = dateTime.format(FORMAT_DAY_OF_WEEK);
+        } else if (date.getYear() == today.getYear()) { // this year
+            result = dateTime.format(FORMAT_MONTH);
+        } else { // next year onwards
+            result = dateTime.format(FORMAT_YEAR);
+        }
+        return result;
+    }
+
+    private String getDateTimeRange() {
+        assert endDateTime != null;
+        LocalDateTime date = dateTime.toLocalDate().atStartOfDay();
+        LocalDateTime endDate = endDateTime.toLocalDate().atStartOfDay();
+
+        String result;
+        if (Duration.between(date, endDate).toDays() == 0) {
+            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), endDateTime.format(FORMAT_TIME));
+        } else {
+            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), getUserFriendlyDateTime(endDateTime));
+        }
+        return String.format("From: %s", result);
+    }
+
+    /**
+     * Returns a user-friendly representation of the endDateTime.
+     */
+    public String getEndDateTimeString() {
+        return this.endDateTime.format(FORMAT_YEAR);
+    }
+
 
     /**
      * Returns DateTime of Task.
@@ -99,6 +211,16 @@ public class Task {
     public LocalDateTime getDateTime() {
         return this.dateTime;
     }
+
+    /**
+     * Returns endDateTime of Task.
+     *
+     * @return endDateTime object of Task.
+     */
+    public LocalDateTime getEndDateTime() {
+        return this.endDateTime;
+    }
+
 
     /**
      * Returns name of Task.
@@ -116,6 +238,15 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return this.tags;
+    }
+
+    /**
+     * Sets new tags for Task object
+     *
+     * @param tags new Set of tags to replace previous ones
+     */
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     /**
@@ -148,6 +279,17 @@ public class Task {
     }
 
     /**
+     * Returns a copy-paste friendly string containing all the emails related to this task.
+     * The emails will be joined with a comma separator (e.g. "e1234578@u.nus.edu.sg, e12121212@u.nus.edu.sg").
+     *
+     * @return The generated email string
+     */
+    public String getEmails() {
+        String[] emails = this.people.stream().map(p -> p.getEmail().toString()).toArray(String[]::new);
+        return String.join(", ", emails);
+    }
+
+    /**
      * Checks if this task contains the person.
      * @param p the person to check for
      * @return true if this task contains the person, false otherwise.
@@ -163,6 +305,43 @@ public class Task {
      */
     public Link getLink() {
         return link;
+    }
+
+    /**
+     * Sets the isMarkDone as true to show that the task is done.
+     */
+    public void markTask() {
+        this.isMarkDone = true;
+    }
+
+    /**
+     * Sets the isMarkDone as false to show that the task is not done.
+     */
+    public void unmarkTask() {
+        this.isMarkDone = false;
+    }
+
+    /**
+     * Returns the status if the task is mark done.
+     */
+    public boolean isTaskMark() {
+        return isMarkDone;
+    }
+
+    /**
+     * Returns true if endDateTime is earlier than dateTime
+     *
+     * @return True if endDateTime is earlier, false if endDateTime is later
+     */
+    public boolean hasInvalidDateRange() {
+        return endDateTime != null && dateTime.compareTo(endDateTime) >= 0;
+    }
+
+    /**
+     * Returns if a given string is a valid length.
+     */
+    public static boolean isValidLength(String test) {
+        return (test.length() >= MIN_LENGTH && test.length() <= MAX_LENGTH);
     }
 
     @Override

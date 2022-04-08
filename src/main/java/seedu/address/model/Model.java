@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Username;
 import seedu.address.model.task.Task;
 
 /**
@@ -20,6 +20,12 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that evaluate to false if task is unmark */
+    Predicate<Task> PREDICATE_SHOW_ALL_UNMARK_TASKS = task -> !task.isTaskMark();
+
+    /** {@code Predicate} that evaluate to true if task is mark */
+    Predicate<Task> PREDICATE_SHOW_ALL_MARK_TASKS = task -> task.isTaskMark();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -65,12 +71,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Returns true if a person with the same username as {@code username} exists in the address book.
+     * Returns true if a person with the same gitUsername as {@code gitUsername} exists in the address book.
      *
-     * @param username
-     * @return
+     * @param gitUsername
+     * @return Whether username exists
      */
-    boolean hasUsername(Username username);
+    boolean hasUsername(GitUsername gitUsername);
 
     /**
      * Checks if Model has Email already existing.
@@ -129,6 +135,13 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
+     * Adds the task to the taskList.
+     *
+     * @param task the task to be added
+     */
+    void addTask(Task task);
+
+    /**
      * Deletes the given task.
      * The task must exist in the task list.
      */
@@ -141,4 +154,19 @@ public interface Model {
      */
     boolean hasTask(Task task);
 
+    /**
+     * Marks the given task as completed.
+     *
+     * @param task the task to be marked.
+     */
+    void markTask(Task task);
+
+    /**
+     * Unmarks the given task as not complete.
+     *
+     * @param task the task to be unmarked.
+     */
+    void unmarkTask(Task task);
+
+    void setTaskList(ReadOnlyTaskList tasks);
 }
