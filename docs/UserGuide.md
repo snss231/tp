@@ -240,10 +240,11 @@ The task that you are creating cannot have duplicate tags, tags are unique for t
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Notes about `TASKNAME`:**<br>
+:bulb: **Notes about `TASK`:**<br>
 * Two Tasks with the same `TASKNAME` is valid. This is to allow for multiple tasks with different dates to be valid, such as `CS2103T Lecture`
 at `04/04/2022` and another `CS2103T Lecture` at `11/04/2022`.
 
+* You can create overdue Tasks (with `DATETIME` before today) if you wish to remind yourself of overdue tasks! :smiley:
 </div>
 
 <div markdown="block" class="alert alert-info">
