@@ -66,12 +66,12 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same name as {@code Person} exists in NUS Classes
      */
-    boolean hasPerson(Person person);
+    boolean hasName(Person person);
 
     /**
-     * Returns true if a person with the same gitUsername as {@code gitUsername} exists in the address book.
+     * Returns true if a person with the same gitUsername as {@code gitUsername} exists in NUS Classes
      *
      * @param gitUsername
      * @return Whether username exists

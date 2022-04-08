@@ -108,7 +108,7 @@ public class EditCommand extends Command {
         }
 
 
-        if (model.hasPerson(editedPerson)) {
+        if (model.hasName(editedPerson) && !editedPerson.getName().equals(personToEdit.getName())) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_EDITED, MESSAGE_USAGE));
         }
 

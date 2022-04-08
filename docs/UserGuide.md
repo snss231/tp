@@ -132,7 +132,9 @@ Adds a contact with basic details like name, phone number, email and Github User
 * `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate t/Classmate`
 
 
-<div markdown="block" class="alert alert-info">:bulb: **Tips:**
+<div markdown="block" class="alert alert-info">:bulb: **Notes:**
+
+* Contacts with the same names are allowed. Some modules may be big, so there may be students with the same name!
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
@@ -195,7 +197,7 @@ Find contacts whose names and/or tags contain any of the given keywords.
 
 **Examples**:
 * `findc John` returns `john` and `John Doe`.
-* `findc brian sean` returns `Brian Chow`, `Sean Ng`.<br>
+* `findc brian lecturer` returns `Brian Chow`, `Joseph` who has a tag of `Lecturer`.<br>
     <br>
     ![result for 'find brian sean'](images/findcCommandShowcase.png)
 
@@ -268,7 +270,7 @@ Edits an existing task in the task list.
 
 **Format**: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]…​`
 
-* Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -277,13 +279,13 @@ The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
 **Examples**:
-* `editt 1 tn/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`.
-* `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm-1pm. <br>
+* `editt 1 tn/Meeting with TAs` Edits the name of the 1st displayed task to be `Meeting with TAs`.
+* `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Edits the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm-1pm. <br>
     <br>
     ![`editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300`](images/edittCommandShowcase1.png)
 
 
-* `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm`. <br>
+* `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Edits the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm`. <br>
     <br>
     ![`editt 1 dt/12-12-2022 1200, 12-12-2022 1400`](images/edittCommandShowcase2.png)
     

@@ -97,7 +97,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getPhone().equals(getPhone())
+        return  otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getUsername().equals(getUsername())
                 && otherPerson.getTags().equals(getTags());
