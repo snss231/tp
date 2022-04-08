@@ -127,13 +127,13 @@ Adds a contact with basic details like name, phone number and email.
 **Examples**:
 
 * `addc n/john p/12345678 e/john@nus.edu.sg u/john123 t/Schoolmate`
-* `addc n/mary p/87654321 e/mary@nus.edu.sg u/maryCS t/Teammate t/Classmate`
+* `addc n/mary p/87654321 e/mary@hotmail.com u/maryCS t/Teammate t/Classmate`
 
 <div markdown="block" class="alert alert-info">:bulb: **Tips:**
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
-* Make sure your email is in the correct format, i.e. abd@u.nus.edu &#9989, abd@kk &#10060
+* Make sure your email is in the correct format, i.e. abd@gmail.com :tick:, abd@yahoo :cross:
 </div>
 
 ### Listing all contacts : `listc`
