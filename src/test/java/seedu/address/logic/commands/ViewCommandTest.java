@@ -8,8 +8,10 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -46,7 +48,6 @@ public class ViewCommandTest {
         Model expectedModel = new ModelManager(
                 assignedModel.getAddressBook(), new UserPrefs(), new TaskList(assignedModel.getTaskList()));
 
-        String expectedMessage = String.format(ViewCommand.DISPLAY_TASK_CONTACT_SUCCESS, 2);
         List<Person> assignedList = expectedModel.getFilteredTaskList().get(0).getPeople();
         PersonContainInTask pred = new PersonContainInTask(assignedList);
 
@@ -58,7 +59,14 @@ public class ViewCommandTest {
 
     }
 
-    private PersonContainInTask preparePredicate(List<Person> personList) {
-        return new PersonContainInTask(personList);
+    @Test
+    void execute_userInputIndex_greaterThanList() {
+        ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(100));
+
+        CommandException thrown = Assertions.assertThrows(CommandException.class, ()-> {
+            viewCommand.execute(model);
+        });
+        assertEquals(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, thrown.getMessage());
     }
+
 }

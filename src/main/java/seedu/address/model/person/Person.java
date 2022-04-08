@@ -70,7 +70,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons are the same object.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -79,7 +79,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.name.equals(name);
+                && otherPerson.equals(this);
     }
 
     /**
@@ -97,8 +97,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
+        return otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getUsername().equals(getUsername())
                 && otherPerson.getTags().equals(getTags());

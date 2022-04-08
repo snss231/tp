@@ -135,6 +135,13 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
+     * Adds the task to the taskList.
+     *
+     * @param task the task to be added
+     */
+    void addTask(Task task);
+
+    /**
      * Deletes the given task.
      * The task must exist in the task list.
      */

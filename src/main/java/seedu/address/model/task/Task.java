@@ -20,6 +20,10 @@ public class Task {
     private static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
     private static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
     private static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
+    private static final int MAX_LENGTH = 100;
+    private static final int MIN_LENGTH = 3;
+    public static final String NAME_LENGTH_ERROR = "The name of the tasks must be at least "
+            + MIN_LENGTH + " characters long and at most " + MAX_LENGTH + " characters long";
     private String name;
     private LocalDateTime dateTime;
     private LocalDateTime endDateTime;
@@ -27,7 +31,6 @@ public class Task {
     private Set<Tag> tags;
     private Link link;
     private boolean isMarkDone;
-
     /**
      * Constructor for Task.
      *
@@ -84,7 +87,7 @@ public class Task {
     }
 
     /**
-     * Add a person to the list of people associated with the task.
+     * Adds a person to the list of people associated with the task.
      *
      * @param person Person to add
      */
@@ -92,8 +95,26 @@ public class Task {
         people.add(person);
     }
 
+    /**
+     * Removes a person from the list of people associated with the task.
+     *
+     * @param person Person to remove
+     */
     public void removePerson(Person person) {
         people.remove(person);
+    }
+
+    /**
+     * Updates a person in the list of people associated with the task.
+     *
+     * @param person The person to update
+     * @param editedPerson The edited person
+     */
+    public void updatePerson(Person person, Person editedPerson) {
+        int index = people.indexOf(person);
+        if (index != -1) {
+            people.set(index, editedPerson);
+        }
     }
 
     /**
@@ -103,6 +124,15 @@ public class Task {
      */
     public void changeDateTime(LocalDateTime newDateTime) {
         this.dateTime = newDateTime;
+    }
+
+    /**
+     * Changes EndDateTime of Task
+     *
+     * @param endDateTime LocalDateTime of new endDateTime
+     */
+    public void changeEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     @Override
@@ -211,6 +241,15 @@ public class Task {
     }
 
     /**
+     * Sets new tags for Task object
+     *
+     * @param tags new Set of tags to replace previous ones
+     */
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    /**
      * Returns list of People assigned to Task.
      *
      * @return List of People.
@@ -289,8 +328,20 @@ public class Task {
         return isMarkDone;
     }
 
+    /**
+     * Returns true if endDateTime is earlier than dateTime
+     *
+     * @return True if endDateTime is earlier, false if endDateTime is later
+     */
     public boolean hasInvalidDateRange() {
         return endDateTime != null && dateTime.compareTo(endDateTime) >= 0;
+    }
+
+    /**
+     * Returns if a given string is a valid length.
+     */
+    public static boolean isValidLength(String test) {
+        return (test.length() >= MIN_LENGTH && test.length() <= MAX_LENGTH);
     }
 
     @Override

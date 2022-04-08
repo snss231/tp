@@ -12,21 +12,21 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task BRUSH_TEETH = new TaskBuilder().withTaskName("Brush my teeth")
-                    .withDateTime(LocalDateTime.of(2022, 12, 15, 21, 0))
+                    .withDateTime(LocalDateTime.of(2050, 12, 15, 21, 0))
                     .withTags("Chores").withLink("").build();
 
     public static final Task LAUNDRY = new TaskBuilder().withTaskName("Do the laundry")
-            .withDateTime(LocalDateTime.of(2022, 6, 2, 15, 0))
+            .withDateTime(LocalDateTime.of(2050, 6, 2, 15, 0))
             .withTags("Chores").withLink("").build();
 
     public static final Task CONSULTATION = new TaskBuilder().withTaskName("Consultation with students")
-            .withDateTime(LocalDateTime.of(2022, 8, 3, 14, 0))
+            .withDateTime(LocalDateTime.of(2050, 8, 3, 14, 0))
             .withTags("Consult")
             .withLink("www.google.com")
             .build();
 
     public static final Task INVIGILATOR_MEETING = new TaskBuilder().withTaskName("Meeting with exam invigilators")
-            .withDateTime(LocalDateTime.of(2022, 2, 5, 14, 30))
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
             .withTags("Meeting")
             .withLink("www.google.com")
             .build();

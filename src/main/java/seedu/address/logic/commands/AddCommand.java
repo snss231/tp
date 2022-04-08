@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EMAIL;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_GIT_USERNAME;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -36,12 +39,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in NUS Classes!";
-    public static final String MESSAGE_DUPLICATE_GIT_USERNAME = "This Github username already exists in NUS Classes!\n"
-            + "Check again?";
-    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck again?";
-    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Classes!\n"
-            + "Check again?";
+
 
     private final Person toAdd;
 
@@ -57,21 +55,19 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        if (model.hasUsername(toAdd.getUsername())) {
-            throw new CommandException(MESSAGE_DUPLICATE_GIT_USERNAME);
+        if (model.hasPhone(toAdd.getPhone())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
         }
 
         if (model.hasEmail(toAdd.getEmail())) {
             throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
-        if (model.hasPhone(toAdd.getPhone())) {
-            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        if (model.hasUsername(toAdd.getUsername())) {
+            throw new CommandException(MESSAGE_DUPLICATE_GIT_USERNAME);
         }
+
+
 
         String checkTagLength = TagUtil.checkTagLength(toAdd.getTags());
 
