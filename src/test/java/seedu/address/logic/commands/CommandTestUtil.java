@@ -71,6 +71,9 @@ public class CommandTestUtil {
     //------------------------ For task--------------------------------------------------------
     public static final String VALID_NAME_TASKA = "Homework";
     public static final String VALID_NAME_TASKB = "Brush my teeth";
+    public static final String VALID_LINK_TASKA = "https:google.com";
+    public static final String VALID_LINK_TASKB = "https:apple.com";
+    public static final String INVALID_LINK = "a";
     public static final LocalDateTime VALID_DATETIME_TASKA =
             LocalDateTime.of(2050, 12, 15, 21, 0);
     public static final String VALID_DATETIME_TASKA_PLUS_ONE_DAY = "16-12-2050 2100";
