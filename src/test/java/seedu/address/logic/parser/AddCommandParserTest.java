@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC_LONG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_LONG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_SHORT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -31,7 +33,9 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.PersonBuilder;
 
 
@@ -68,7 +72,20 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // Phone number lesser than 3 digits
+        assertParseFailure(parser, NAME_DESC_AMY + INVALID_PHONE_SHORT + EMAIL_DESC_AMY + USERNAME_DESC_AMY
+            + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // Phone number lesser than 15 digits
+        assertParseFailure(parser, NAME_DESC_AMY + INVALID_PHONE_LONG + EMAIL_DESC_AMY + USERNAME_DESC_AMY
+                + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // Email longer than 54 characters
+        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_EMAIL_DESC_LONG + USERNAME_DESC_AMY
+                + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_incorrectFields_failure() {
+        // Phone number too short
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + USERNAME_DESC_AMY,
                 new AddCommand(expectedPerson));
