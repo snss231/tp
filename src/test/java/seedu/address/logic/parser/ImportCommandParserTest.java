@@ -68,7 +68,9 @@ class ImportCommandParserTest {
     void parse_missingFile_failure() {
         ImportCommandParser parser = new ImportCommandParser();
 
-        String filepath = "foo/bar.csv";
+        Path path = Path.of("foo", "bar.csv");
+
+        String filepath = path.toString();
 
         assertParseFailure(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
                 String.format(MESSAGE_FILE_DOES_NOT_EXIST, filepath));
@@ -78,7 +80,9 @@ class ImportCommandParserTest {
     void parse_invalidFields_success() {
         ImportCommandParser parser = new ImportCommandParser();
 
-        String filepath = "src/test/data/ImportTestData/invalidFields.csv";
+        Path path = Path.of("src", "test", "data", "ImportTestData", "invalidFields.csv");
+
+        String filepath = path.toString();
 
         List<String> invalidFields = List.of(
             String.format(ERROR_INVALID_NAME, "2"),
@@ -96,7 +100,9 @@ class ImportCommandParserTest {
     void parse_extraneousHeaders_success() {
         ImportCommandParser parser = new ImportCommandParser();
 
-        String filepath = "src/test/data/ImportTestData/extraneousHeaders.csv";
+        Path path = Path.of("src", "test", "data", "ImportTestData", "extraneousHeaders.csv");
+
+        String filepath = path.toString();
 
         assertParseSuccess(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
                 new ImportCommand(List.of(), filepath, List.of()));
