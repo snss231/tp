@@ -6,7 +6,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTERVAL;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_TASKA;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DAY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_LEAPYEAR;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_MONTH;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKA;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA_PLUS_ONE_DAY;
@@ -79,8 +82,19 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void invalidDateTimeFailure() {
-        assertParseFailure(parser, NAME_DESC_TASKB + " " + INVALID_DATETIME_DESC,
-                String.format(MESSAGE_INVALID_DATETIME, AddTaskCommand.MESSAGE_USAGE));
+        String dateTimeErrorMessage = String.format(MESSAGE_INVALID_DATETIME, AddTaskCommand.MESSAGE_USAGE);
+
+        // Invalid datetime format
+        assertParseFailure(parser, NAME_DESC_TASKB + " " + INVALID_DATETIME_FORMAT, dateTimeErrorMessage);
+
+        // Invalid day
+        assertParseFailure(parser, NAME_DESC_TASKB + " " + INVALID_DATETIME_DAY, dateTimeErrorMessage);
+
+        // Invalid month
+        assertParseFailure(parser, NAME_DESC_TASKB + " " + INVALID_DATETIME_MONTH, dateTimeErrorMessage);
+
+        // Invalid leap year
+        assertParseFailure(parser, NAME_DESC_TASKB + " " + INVALID_DATETIME_LEAPYEAR, dateTimeErrorMessage);
     }
 
     @Test
