@@ -20,6 +20,7 @@ import seedu.address.model.task.Task;
 public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    public static final String WRONG_BOOLEAN_FORMAT = "Task's %s field is not true or false!";
 
     private final String name;
     private final String dateTime;
@@ -90,12 +91,17 @@ public class JsonAdaptedTask {
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateTime"));
         }
-
         LocalDateTime modelDateTime = LocalDateTime.parse(dateTime);
+
         LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
 
         Set<Tag> modelTag = new HashSet<>(taskTags);
         Link modelLink = Objects.equals(link, null) ? new Link() : new Link(link);
+
+        if (isTaskMarkDone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isTaskMarkDone"));
+        }
+
         boolean modelIsTaskMarkDone = Boolean.parseBoolean(isTaskMarkDone);
 
         return new Task(name, modelDateTime, modelEndDateTime, modelPeople, modelTag, modelLink, modelIsTaskMarkDone);
