@@ -107,7 +107,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_GIT_USERNAME);
         }
 
-
         if (model.hasPerson(editedPerson)) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_EDITED, MESSAGE_USAGE));
         }

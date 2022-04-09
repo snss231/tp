@@ -86,7 +86,7 @@ public class AddTaskCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_TASKNAME + " " + INVALID_TASK_NAME_SHORT + DATETIME_DESC_TASKA + " "
                 + PREFIX_TAG + VALID_TAG_CHORES, Task.NAME_LENGTH_ERROR);
 
-        //Task name longer than 3 characters
+        //Task name longer than 50 characters
         assertParseFailure(parser, " " + PREFIX_TASKNAME + " " + INVALID_TASK_NAME_LONG + DATETIME_DESC_TASKA + " "
                 + PREFIX_TAG + VALID_TAG_CHORES, Task.NAME_LENGTH_ERROR);
 
