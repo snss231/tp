@@ -18,8 +18,8 @@ public class FilterByDateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose dates fall within "
             + "the specified dates inputs (order insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: d/DATETIME1, DATETIME2\n"
-            + "Example: " + COMMAND_WORD + " d/12-01-2023 0900, 13-02-2023 0900";
+            + "Parameters: dt/DATETIME1, DATETIME2\n"
+            + "Example: " + COMMAND_WORD + " dt/12-01-2022 0900, 13-02-2022 0900";
 
     public static final String ERROR_MESSAGE_INVALID_FORMAT =
             "Invalid date format. It should be \"dd-MM-yyyy HHmm\" or \"dd-MM-yyyy\"\n"
@@ -27,9 +27,10 @@ public class FilterByDateCommand extends Command {
             + "yyyy: Year (from 999999999 to -999999999); HH: Hour (from 00 to 23);"
             + "mm: Minute (from 00 to 59)";
 
-    public static final String ERROR_MESSAGE_INVALID_TAG =
-            "Invalid tag format. It should be either \"d/dd-MM-yyyy HHmm, dd-MM-yyyy HHmm\""
-                    + " or \"d/dd-MM-yyyy, dd-MM-yyyy\"";
+    public static final String ERROR_MESSAGE_INVALID_PARAMETER =
+            "Invalid parameter format. It should be either \"dt/dd-MM-yyyy HHmm, dd-MM-yyyy HHmm\""
+
+                    + " or \"dt/dd-MM-yyyy, dd-MM-yyyy\"";
 
 
     private final TaskBetweenDatesPredicate predicate;
