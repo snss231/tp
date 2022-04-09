@@ -25,8 +25,14 @@ public class LinkTest {
         assertFalse(Link.isValidLink("a.com"));
         assertFalse(Link.isValidLink("google"));
 
+        // invalid links
+        assertFalse(Link.isValidLink("www.google.com"));
+        assertFalse(Link.isValidLink("www.google.com.sg"));
+
         // valid link
+        assertTrue(Link.isValidLink("http://info.cern.ch/"));
         assertTrue(Link.isValidLink("https:google.com"));
+        assertTrue(Link.isValidLink("https:google.com.sg"));
         assertTrue(Link.isValidLink("https://www.coingecko.com"));
         assertTrue(Link.isValidLink("https://www.thisisthelongesteuropeandomainnameallovertheworldandnowitismine.eu"));
         assertTrue(
