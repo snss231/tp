@@ -26,7 +26,7 @@ public class Link {
     }
 
     /**
-     * Check if link is valid
+     * Checks if link is valid.
      * @param link Link of users
      * @throws IllegalArgumentException If link is not a valid URL
      */
