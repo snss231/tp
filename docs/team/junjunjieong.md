@@ -11,8 +11,6 @@ creating tasks, tagging tasks, assigning contacts to tasks, and marking tasks as
 
 Given below are my contributions to the project.
 
- ** Will update more in future**
-
 * **New Feature**: Delete Task feature
   * What it does: Delete the task from the task list based on index
   * Justification: Important for user to remove the task that is not needed
@@ -20,22 +18,23 @@ Given below are my contributions to the project.
 
 * **New Feature**: Edit Task feature
   * What it does: Edit the selected task based on the field(s) user want to edit
-  * Justification: Important for user to edit the task to change the wrong information
-  * Highlights: Have to understand how `EditPersonDescriptor` work and modify it to suit for `Task`.
-  Was able to construct `EditTaskDescriptor` and now able to modify the class accordingly if there is any changes to the `Task` class
+  * Justification: Important for user to edit the task to change or update the information
+  * Highlights: 
+    * This enhancement requires in-depth analysis on the class `EditPersonDescriptor` and modify it to suit for `Task`. 
+    * Able to construct `EditTaskDescriptor` and provide flexibility to modify it if there is any changes to the fields in class`Task`
   * Credits: *{code ideas from AB3 edit contacts feature}*
 
 * **New Feature**: Mark and Unmark Task feature
   * What it does: 
-    * Mark command allow the user to set the task as done
-    * Unmark command allow the user to set the task as not done
-  * Justification: User may want to know which task has completed.
-  * Highlights: Have to understand the structure of `UI` and edit the current `taskcard` UI to hold image that represent the checkbox.
-  Tick represent task is done, empty checkbox represent task not done
+    * Mark feature allows the user to set the task as done
+    * Unmark feature allows the user to set the task as not done
+  * Justification: User may want to know which task has completed
+  * Highlights: This enhancement requires to understand the structure of `UI` and have to modify the `taskcard` UI and FMXL to hold image that represent the checkbox.
 
 * **New Feature**: List Task feature
   * What it does: List the task based on the prefix(all/, c/, nc/) input by user.
   * Justification: User may prefer to see all the available task, or see list of completed/uncompleted task.
+  * Credits: *{code ideas from AB3 list feature with modification}*
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=junjunjieOng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18)
 
@@ -47,6 +46,8 @@ Given below are my contributions to the project.
     * Added documentation for the feature `deletet` [\#6](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/6)
     * Added documentation for the features `editt` [\#86](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/86)
     * Added documentation for the features `mark` and `unmark` [\#150](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/150)
+    * Added documentation for the features `listt` [\#154](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/154)
+    * Annotated half of the document images for clearer explanation [\#276](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/276)
   * Developer Guide:
     * Updated `user profile` and `value proposition` [\#7](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/7/files)
     * Updated `User Stories` and `Non-functional requirement` [\#7](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/7/files)
@@ -54,12 +55,13 @@ Given below are my contributions to the project.
     * Created activity diagram and Sequence diagram for `editt` and `deletet` feature [\#107](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/107)
 
 * **Community**:
-  * Total PRs reviewed (with non-trivial review comments): **10**
-    * [\#106](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/106), [\#107](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/107), 
-    [\#114](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/114), [\#132](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/132),
+  * Total PRs reviewed (with non-trivial review comments): **12**
+    * [\#106](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/106), [\#114](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/114), 
     [\#145](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/145), [\#149](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/149),
-    [\#154](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/154), [\#158](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/158),
-    [\#175](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/175), [\#183](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/183)
+    [\#158](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/158), [\#175](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/175), 
+    [\#183](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/183), [\#251](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/251),
+    [\#255](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/255), [\#260](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/260),
+    [\#263](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/263), [\#276](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/276)
   * Reported bugs and suggestions for other team in [PE-D](https://github.com/junjunjieOng/ped/issues)
 
 
