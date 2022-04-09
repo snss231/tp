@@ -17,14 +17,17 @@ public class TaskNameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TaskNameContainsKeywordsPredicate firstPredicate = new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        TaskNameContainsKeywordsPredicate secondPredicate = new TaskNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        TaskNameContainsKeywordsPredicate firstPredicate =
+                new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskNameContainsKeywordsPredicate secondPredicate =
+                new TaskNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TaskNameContainsKeywordsPredicate firstPredicateCopy = new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskNameContainsKeywordsPredicate firstPredicateCopy =
+                new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

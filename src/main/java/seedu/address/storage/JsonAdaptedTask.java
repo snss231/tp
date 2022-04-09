@@ -33,10 +33,12 @@ public class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime,
+    public JsonAdaptedTask(@JsonProperty("name") String name,
+                           @JsonProperty("dateTime") String dateTime,
                            @JsonProperty("endDateTime") String endDateTime,
                            @JsonProperty("people") List<JsonAdaptedPerson> people,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("link") String link,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("link") String link,
                            @JsonProperty("isTaskMarkDone") String isTaskMarkDone) {
         this.name = name;
         this.dateTime = dateTime;
@@ -95,7 +97,15 @@ public class JsonAdaptedTask {
         LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
 
         Set<Tag> modelTag = new HashSet<>(taskTags);
+
         Link modelLink = Objects.equals(link, null) ? new Link() : new Link(link);
+
+        if (!modelLink.isEmpty()) {
+            if (!Link.isValidLink(modelLink.toString())) {
+                throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
+            }
+        }
+
         boolean modelIsTaskMarkDone = Boolean.parseBoolean(isTaskMarkDone);
 
         return new Task(name, modelDateTime, modelEndDateTime, modelPeople, modelTag, modelLink, modelIsTaskMarkDone);

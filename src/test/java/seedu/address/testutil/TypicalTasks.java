@@ -31,6 +31,12 @@ public class TypicalTasks {
             .withLink("https:apple.com")
             .build();
 
+    public static final Task STUDENT_MEETING = new TaskBuilder().withTaskName("Meeting with exam invigilators")
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
+            .withTags("Meeting")
+            .withLink("https:apple.com")
+            .build();
+
     /**
      * Returns array of 4 test tasks.
      *

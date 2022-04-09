@@ -26,6 +26,7 @@ public class TaskBuilder {
 
     private String name;
     private LocalDateTime dateTime;
+    private LocalDateTime endDateTime;
     private Set<Tag> tags;
     private Link link;
     private List<Person> people;
