@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TaskBuilder;
 
 public class TaskTest {
@@ -26,7 +28,7 @@ public class TaskTest {
 
         Task task = new TaskBuilder().withDateTime(tomorrow).withEndDateTime(today).build();
 
-        assertEquals(true, task.hasInvalidDateRange());
+        assertTrue(task.hasInvalidDateRange());
     }
 
     @Test

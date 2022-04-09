@@ -9,7 +9,9 @@ import static seedu.address.model.task.Task.getUserFriendlyDateTime;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TaskBuilder;
 
 public class TaskGetDateTimeStringTest {
@@ -32,7 +34,7 @@ public class TaskGetDateTimeStringTest {
     }
 
     @Test
-    public void getUserFriendlyDateTime_2daysFromNow_sameWeek() {
+    public void getUserFriendlyDateTime_twoDaysFromNow_sameWeek() {
         LocalDateTime day = LocalDateTime.now().plusDays(2);
 
         String expected = day.format(FORMAT_DAY_OF_WEEK);
@@ -41,7 +43,7 @@ public class TaskGetDateTimeStringTest {
     }
 
     @Test
-    public void getUserFriendlyDateTime_7daysFromNow_sameWeek() {
+    public void getUserFriendlyDateTime_sevenDaysFromNow_sameWeek() {
         LocalDateTime day = LocalDateTime.now().plusDays(7);
 
         String expected = day.format(FORMAT_DAY_OF_WEEK);
@@ -114,7 +116,7 @@ public class TaskGetDateTimeStringTest {
     }
 
     @Test
-    public void getDateTimeString_deadline_2daysFromNow() {
+    public void getDateTimeString_deadline_twoDaysFromNow() {
         LocalDateTime day = LocalDateTime.now().plusDays(2);
 
         Task task = new TaskBuilder().withDateTime(day).withEndDateTime(null).build();
@@ -127,7 +129,7 @@ public class TaskGetDateTimeStringTest {
     }
 
     @Test
-    public void getDateTimeString_deadline_7daysFromNow() {
+    public void getDateTimeString_deadline_sevenDaysFromNow() {
         LocalDateTime day = LocalDateTime.now().plusDays(7);
 
         Task task = new TaskBuilder().withDateTime(day).withEndDateTime(null).build();
