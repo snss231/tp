@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.ImportCommandParser.ERROR_INVALID_TAG;
 import static seedu.address.logic.parser.ImportCommandParser.MESSAGE_CSV_MISSING_HEADERS;
 import static seedu.address.logic.parser.ImportCommandParser.MESSAGE_FILE_DOES_NOT_EXIST;
 
+import java.nio.file.Path;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,12 @@ class ImportCommandParserTest {
     void parse_validEmptyFile_success() {
         ImportCommandParser parser = new ImportCommandParser();
 
-        assertParseSuccess(parser, "import fp/src/test/data/ImportTestData/empty.csv",
-                new ImportCommand(List.of(), "src/test/data/ImportTestData/empty.csv", List.of()));
+        Path path = Path.of("src", "test", "data", "ImportTestData", "empty.csv");
+
+        String filepath = path.toString();
+
+        assertParseSuccess(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
+                new ImportCommand(List.of(), filepath, List.of()));
     }
 
     @Test
@@ -39,15 +44,21 @@ class ImportCommandParserTest {
         Person b = new PersonBuilder().withName("Brad Tay").withEmail("e03158448@u.nus.edu").withUsername("braddytay")
                 .withPhone("97553402").withTags("TA", "Lab 12F").build();
 
-        assertParseSuccess(parser, "import fp/src/test/data/ImportTestData/importTest.csv",
-                new ImportCommand(List.of(a, b), "src/test/data/ImportTestData/importTest.csv", List.of()));
+        Path path = Path.of("src", "test", "data", "ImportTestData", "importTest.csv");
+
+        String filepath = path.toString();
+
+        assertParseSuccess(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
+                new ImportCommand(List.of(a, b), filepath, List.of()));
     }
 
     @Test
     void parse_missingHeaders_failure() {
         ImportCommandParser parser = new ImportCommandParser();
 
-        String filepath = "src/test/data/ImportTestData/missingHeaders.csv";
+        Path path = Path.of("src", "test", "data", "ImportTestData", "missingHeaders.csv");
+
+        String filepath = path.toString();
 
         assertParseFailure(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
                 String.format(MESSAGE_CSV_MISSING_HEADERS, filepath));
