@@ -27,6 +27,8 @@ public class ImportCommandParser implements Parser<ImportCommand> {
 
     public static final String MESSAGE_CSV_MISSING_FIELD = "Error: found empty field in the file \"%s\"";
 
+    public static final String MESSAGE_FOLDER_SPECIFIED = "Error: \"%s\" is a directory";
+
     public static final String MESSAGE_FILE_DOES_NOT_EXIST = "Error: could not find the file \"%s\".";
 
     public static final String ERROR_INVALID_NAME = "Error: the name \"%s\" is invalid: " + Name.MESSAGE_CONSTRAINTS;
@@ -61,6 +63,10 @@ public class ImportCommandParser implements Parser<ImportCommand> {
 
         if (!file.exists()) {
             throw new ParseException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, file.getPath()));
+        }
+
+        if (file.isDirectory()) {
+            throw new ParseException(String.format(MESSAGE_FOLDER_SPECIFIED, file.getPath()));
         }
 
         List<Person> toAdd = new ArrayList<>();

@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.ImportCommandParser.ERROR_INVALID_PHONE
 import static seedu.address.logic.parser.ImportCommandParser.ERROR_INVALID_TAG;
 import static seedu.address.logic.parser.ImportCommandParser.MESSAGE_CSV_MISSING_HEADERS;
 import static seedu.address.logic.parser.ImportCommandParser.MESSAGE_FILE_DOES_NOT_EXIST;
+import static seedu.address.logic.parser.ImportCommandParser.MESSAGE_FOLDER_SPECIFIED;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -106,5 +107,17 @@ class ImportCommandParserTest {
 
         assertParseSuccess(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
                 new ImportCommand(List.of(), filepath, List.of()));
+    }
+
+    @Test
+    void parse_folderSpecified_failure() {
+        ImportCommandParser parser = new ImportCommandParser();
+
+        Path path = Path.of("src");
+
+        String filepath = path.toString();
+
+        assertParseFailure(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
+                String.format(MESSAGE_FOLDER_SPECIFIED, filepath));
     }
 }
