@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC_LONG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_LONG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_SHORT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -31,7 +33,9 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.PersonBuilder;
 
 
@@ -68,7 +72,20 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // Phone number lesser than 3 digits
+        assertParseFailure(parser, NAME_DESC_AMY + INVALID_PHONE_SHORT + EMAIL_DESC_AMY + USERNAME_DESC_AMY
+            + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // Phone number lesser than 15 digits
+        assertParseFailure(parser, NAME_DESC_AMY + INVALID_PHONE_LONG + EMAIL_DESC_AMY + USERNAME_DESC_AMY
+                + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // Email longer than 54 characters
+        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_EMAIL_DESC_LONG + USERNAME_DESC_AMY
+                + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_incorrectFields_failure() {
+        // Phone number too short
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + USERNAME_DESC_AMY,
                 new AddCommand(expectedPerson));
@@ -108,37 +125,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_USERNAME_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, missingAllMessage));
     }
-    /*
-    @Test
-    public void parse_missingParameter_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
-
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
-
-
-        // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
-
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-    }
-
-     */
 
     private StringBuffer missingParametersErrorMessage(boolean hasName, boolean hasPhone,
                                                        boolean hasEmail, boolean hasGit) {

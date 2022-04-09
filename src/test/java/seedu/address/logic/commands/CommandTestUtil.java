@@ -55,10 +55,15 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String INVALID_PHONE_SHORT = " " + PREFIX_PHONE + "99";
+    public static final String INVALID_PHONE_LONG = " " + PREFIX_PHONE + "99999999999999999";
 
+    public static final String INVALID_EMAIL_LONG = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA@gmail.com";
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_EMAIL_DESC_LONG = " " + PREFIX_EMAIL + INVALID_EMAIL_LONG; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -82,6 +87,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_TASKA = "Schoolwork";
     public static final String VALID_TAG_TASKB = "Toilet";
     public static final String VALID_TAG_CHORES = "Chores";
+    public static final String INVALID_TASK_NAME_SHORT = "A";
+    public static final String INVALID_TASK_NAME_LONG = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     public static final EditTaskCommand.EditTaskDescriptor TASK_A;
     public static final EditTaskCommand.EditTaskDescriptor TASK_B;
 

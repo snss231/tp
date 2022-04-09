@@ -1,10 +1,6 @@
----
-layout: page
-title: Setting up and getting started
----
-
-* Table of Contents
-{:toc}
+## Table of Contents
+* [Setting up the project in your computer](#setting-up-the-project-in-your-computer)
+* [Before writing code](#before-writing-code)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -12,7 +8,6 @@ title: Setting up and getting started
 ## Setting up the project in your computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
@@ -23,7 +18,7 @@ If you plan to use Intellij IDEA (highly recommended):
 1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**:
-   1. Run the `seedu.address.Main` and try a few commands.
+   1. Run `seedu.address.Main` and try a few commands.
    1. [Run the tests](Testing.md) to ensure they all pass.
 
 --------------------------------------------------------------------------------------------------------------------
