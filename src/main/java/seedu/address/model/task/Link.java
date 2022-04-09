@@ -7,7 +7,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Link {
-    public static final String MESSAGE_CONSTRAINTS = "The link provided should follows the proper URL format.";
+    public static final String MESSAGE_CONSTRAINTS = "The link provided should follows the proper URL format "
+            + "(must have reference to 'https://' or 'http://'. E.g. www.google.com will not be considered a valid URL"
+            + " whereas https://www.google.com will be considered a valid URL.";
     private String link;
 
     /**
