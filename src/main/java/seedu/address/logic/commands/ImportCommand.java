@@ -118,8 +118,8 @@ public class ImportCommand extends Command {
             return false;
         }
         ImportCommand other = (ImportCommand) o;
-        return toAdd.equals(other.toAdd) &&
-            filename.equals(other.filename) &&
-            invalidFields.equals(other.invalidFields);
+        return toAdd.equals(other.toAdd)
+            && filename.equals(other.filename)
+            && invalidFields.equals(other.invalidFields);
     }
 }

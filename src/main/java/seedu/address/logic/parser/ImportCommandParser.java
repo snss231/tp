@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.sun.javafx.binding.StringFormatter;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;

@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -14,9 +12,10 @@ import static seedu.address.logic.parser.ImportCommandParser.MESSAGE_CSV_MISSING
 import static seedu.address.logic.parser.ImportCommandParser.MESSAGE_FILE_DOES_NOT_EXIST;
 
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.ImportCommand;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -75,10 +74,20 @@ class ImportCommandParserTest {
             String.format(ERROR_INVALID_PHONE, "a"),
             String.format(ERROR_INVALID_EMAIL, "k"),
             String.format(ERROR_INVALID_GITHUB, "_"),
-            String.format(ERROR_INVALID_TAG, "_k")
+            String.format(ERROR_INVALID_TAG, "日本人")
         );
 
         assertParseSuccess(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
                 new ImportCommand(List.of(), filepath, invalidFields));
+    }
+
+    @Test
+    void parse_extraneousHeaders_success() {
+        ImportCommandParser parser = new ImportCommandParser();
+
+        String filepath = "src/test/data/ImportTestData/extraneousHeaders.csv";
+
+        assertParseSuccess(parser, ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH + filepath,
+                new ImportCommand(List.of(), filepath, List.of()));
     }
 }

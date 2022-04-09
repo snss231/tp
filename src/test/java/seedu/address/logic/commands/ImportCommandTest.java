@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.ImportCommand.MESSAGE_DUPLICATES_NOT_ADDED;
 import static seedu.address.logic.commands.ImportCommand.MESSAGE_FOUND_TAGS_TOO_LONG;
 import static seedu.address.logic.commands.ImportCommand.MESSAGE_INVALID_FIELDS;
@@ -9,7 +11,9 @@ import static seedu.address.logic.commands.ImportCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.ImportCommand.personListToString;
 
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
@@ -32,8 +36,8 @@ class ImportCommandTest {
 
         assertTrue(model.hasPerson(p));
 
-        assertEquals(String.format(MESSAGE_SUCCESS, 1, filename) +
-                personListToString(toAdd), commandResult.toString());
+        assertEquals(String.format(MESSAGE_SUCCESS, 1, filename)
+                + personListToString(toAdd), commandResult.toString());
     }
 
     @Test
