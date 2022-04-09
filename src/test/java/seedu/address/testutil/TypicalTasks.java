@@ -31,6 +31,18 @@ public class TypicalTasks {
             .withLink("https:apple.com")
             .build();
 
+    public static final Task EXAM_INVIGILATION = new TaskBuilder().withTaskName("ZOOM INVIGILATING")
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
+            .withTags("Meeting")
+            .withLink("https:zoom.com")
+            .build();
+
+    public static final Task CONSULATION_CS2103 = new TaskBuilder().withTaskName("CS2103 CONSULTATION")
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
+            .withTags("Meeting")
+            .withLink("https:zoom.com")
+            .build();
+
     /**
      * Returns array of 4 test tasks.
      *
