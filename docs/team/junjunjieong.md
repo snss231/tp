@@ -61,7 +61,8 @@ Given below are my contributions to the project.
     [\#158](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/158), [\#175](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/175), 
     [\#183](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/183), [\#251](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/251),
     [\#255](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/255), [\#260](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/260),
-    [\#263](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/263), [\#276](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/276)
+    [\#263](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/263), [\#276](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/276),
+    [\#278](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/278)
   * Reported bugs and suggestions for other team in [PE-D](https://github.com/junjunjieOng/ped/issues)
 
 
