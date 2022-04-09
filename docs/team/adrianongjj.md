@@ -16,16 +16,24 @@ Given below are my contributions to the project.
   * Highlights: 
     * Uses same command as `findt` so the user can have 1 less command to remember
     * Input order for date time search is not required, i.e. `findt dt/19-03-2022 1000, 19-03-2022 1200` is the same as `findt dt/19-03-2022 1200, 19-03-2022 1000`
+  * **Credits:** *Reused some functionalities from the existing AB3 to suit Task*
 
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=AdrianOngJJ&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18)
 
 
 * **Project management**:
-  * Created team repo
+  * Assigned tasks to myself
 
-* **Enhancements to existing features**:
-  * Will be updated
+* **Enhancements to existing feature**:
+  * What it does: Find all tasks based on their tags
+  * Justification: Users can filter tasks based on tags
+  * **Credits:** *Help from [brain16600](https://github.com/brian16600)*
+
+* **Enhancements to existing feature**:
+  * What it does: Find all contacts based on their tags
+  * Justification: Users can filter contacts based on tags
+  * **Credits:** *Help from [brain16600](https://github.com/brian16600)*
 
 * **Documentation**:
   * User Guide:
@@ -34,7 +42,7 @@ Given below are my contributions to the project.
     * Updated Glossary [\#22](../DeveloperGuide.md)
 
 * **Community**:
-  * to be added soon
+  * Clarify my coding intention for one of my PR [#135](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/135)
 
 * **Tools**:
-  * to be added soon
+  * IntelliJ: IDE
