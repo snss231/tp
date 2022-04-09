@@ -96,6 +96,7 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_TASKB = " " + PREFIX_DATETIME + "05-02-2050 1300";
     public static final String TAG_DESC_TASKA = " " + PREFIX_TAG + VALID_TAG_TASKA;
     public static final String TAG_DESC_TASKB = " " + PREFIX_TAG + VALID_TAG_TASKB;
+    public static final String WORDS_IN_DATETIME = " " + PREFIX_DATETIME + "";
 
     public static final String INVALID_DATETIME_DESC = PREFIX_DATETIME + "22/11/2050 1220"; // Wrong format
 

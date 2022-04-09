@@ -34,4 +34,14 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck again?";
     public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Classes!\n"
             + "Check again?";
+    public static final String ERROR_MESSAGE_INVALID_FORMAT =
+            "Invalid date format. It should be \"dd-MM-yyyy HHmm\" or \"dd-MM-yyyy\"\n"
+                    + "dd: Day (from 01 to 31); MM: Month (from 01 to 12); "
+                    + "yyyy: Year (from 1 to 99999999); HH: Hour (from 00 to 23); "
+                    + "mm: Minute (from 00 to 59)";
+
+    public static final String ERROR_MESSAGE_INVALID_PARAMETER =
+            "Invalid parameter format. It should be either \"dt/dd-MM-yyyy HHmm, dd-MM-yyyy HHmm\""
+
+                    + " or \"dt/dd-MM-yyyy, dd-MM-yyyy\"";
 }
