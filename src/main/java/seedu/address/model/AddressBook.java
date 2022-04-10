@@ -103,6 +103,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Checks if AddressBook has Git Username already existing.
+     *
+     * @param gitUsername Git username to be checked.
+     * @return Whether git username exists.
+     */
+    public boolean hasGitUsername(GitUsername gitUsername) {
+        requireNonNull(gitUsername);
+        return persons.containsUsername(gitUsername);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

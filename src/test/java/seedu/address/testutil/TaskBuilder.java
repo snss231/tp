@@ -26,6 +26,7 @@ public class TaskBuilder {
 
     private String name;
     private LocalDateTime dateTime;
+    private LocalDateTime endDateTime;
     private Set<Tag> tags;
     private Link link;
     private List<Person> people;
@@ -86,6 +87,15 @@ public class TaskBuilder {
         this.link = new Link(link);
         return this;
     }
+
+    /**
+     * Sets the {@code link} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withNoLink() {
+        this.link = new Link();
+        return this;
+    }
+
 
     /**
      * Sets the {@code people} of the {@code Task} that we are building.
