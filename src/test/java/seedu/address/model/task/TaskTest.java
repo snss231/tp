@@ -1,6 +1,8 @@
 package seedu.address.model.task;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKB;
@@ -10,16 +12,16 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalTasks.BRUSH_TEETH;
 import static seedu.address.testutil.TypicalTasks.CONSULTATION;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TaskBuilder;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class TaskTest {
 
@@ -98,7 +100,7 @@ public class TaskTest {
         currentTask.changeDateTime(incorrectChangeTaskDate);
         assertFalse(currentTask.getDateTime().equals(expectTask.getDateTime()));
     }
-    
+
     @Test
     public void equals() {
         Task consultationCopy = new TaskBuilder(CONSULTATION).build();
