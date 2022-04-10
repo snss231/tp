@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -16,10 +17,10 @@ import seedu.address.model.tag.Tag;
  * Task consists of a String object representing a name and a LocalDateTime object representing the date and time.
  */
 public class Task {
-    private static final DateTimeFormatter FORMAT_TIME = DateTimeFormatter.ofPattern("h.mm a");
-    private static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
-    private static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
-    private static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
+    static final DateTimeFormatter FORMAT_TIME = DateTimeFormatter.ofPattern("h.mm a");
+    static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
+    static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
+    static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
     private static final int MAX_LENGTH = 100;
     private static final int MIN_LENGTH = 3;
     public static final String NAME_LENGTH_ERROR = "The name of the tasks must be at least "
@@ -162,7 +163,27 @@ public class Task {
         return String.format("Due: %s", getUserFriendlyDateTime(dateTime));
     }
 
-    private String getUserFriendlyDateTime(LocalDateTime dateTime) {
+    private String getDateTimeRange() {
+        assert endDateTime != null;
+        LocalDateTime date = dateTime.toLocalDate().atStartOfDay();
+        LocalDateTime endDate = endDateTime.toLocalDate().atStartOfDay();
+
+        String result;
+        if (Duration.between(date, endDate).toDays() == 0) {
+            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), endDateTime.format(FORMAT_TIME));
+        } else {
+            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), getUserFriendlyDateTime(endDateTime));
+        }
+        return String.format("From: %s", result);
+    }
+
+    /**
+     * Utility method for generating date representation relative to current calendar day
+     *
+     * @param dateTime The dateTime to be processed
+     * @return User-friendly dateTime string
+     */
+    static String getUserFriendlyDateTime(LocalDateTime dateTime) {
         LocalDateTime today = LocalDate.now().atStartOfDay();
         LocalDateTime date = dateTime.toLocalDate().atStartOfDay();
         long daysFrom = Duration.between(today, date).toDays();
@@ -181,19 +202,6 @@ public class Task {
         return result;
     }
 
-    private String getDateTimeRange() {
-        assert endDateTime != null;
-        LocalDateTime date = dateTime.toLocalDate().atStartOfDay();
-        LocalDateTime endDate = endDateTime.toLocalDate().atStartOfDay();
-
-        String result;
-        if (Duration.between(date, endDate).toDays() == 0) {
-            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), endDateTime.format(FORMAT_TIME));
-        } else {
-            result = String.format("%s - %s", getUserFriendlyDateTime(dateTime), getUserFriendlyDateTime(endDateTime));
-        }
-        return String.format("From: %s", result);
-    }
 
     /**
      * Returns a user-friendly representation of the endDateTime.
@@ -237,7 +245,7 @@ public class Task {
      * @return Tag of Task.
      */
     public Set<Tag> getTags() {
-        return this.tags;
+        return Collections.unmodifiableSet(tags);
     }
 
     /**

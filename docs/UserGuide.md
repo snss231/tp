@@ -132,11 +132,13 @@ Adds a contact with basic details like name, phone number, email and Github User
 * `addc n/mary p/87654321 e/mary@gmail.com u/maryCS t/Teammate t/Classmate`
 
 
-<div markdown="block" class="alert alert-info">:bulb: **Tips:**
+<div markdown="block" class="alert alert-info">:bulb: **Notes:**
+
+* Contacts with the same names are allowed. Some modules may be big, so there may be students with the same name!
 
 * You can add multiple tags to a contact for easier management, as some students/TAs might be taking your other modules too. Just put t/ before every tag!
 
-* Make sure the contact's email is in the correct format, i.e. abd@gmail.com :tick:, abd@yahoo :cross:
+* Make sure the contact's email is in the correct format, i.e. abd@gmail.com :white_check_mark:, abd@yahoo :x:
 
 * Make sure the contact's phone number is at least 3 digits long! Phone numbers with > 8 digits are allowed since international phone numbers have different numbers of digits.
 
@@ -195,7 +197,7 @@ Find contacts whose names and/or tags contain any of the given keywords.
 
 **Examples**:
 * `findc John` returns `john` and `John Doe`.
-* `findc brian sean` returns `Brian Chow`, `Sean Ng`.<br>
+* `findc brian lecturer` returns `Brian Chow`, `Joseph` who has a tag of `Lecturer`.<br>
     <br>
     ![result for 'find brian sean'](images/findcCommandShowcase.png)
 
@@ -238,10 +240,11 @@ The task that you are creating cannot have duplicate tags, tags are unique for t
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Notes about `TASKNAME`:**<br>
+:bulb: **Notes about `TASK`:**<br>
 * Two Tasks with the same `TASKNAME` is valid. This is to allow for multiple tasks with different dates to be valid, such as `CS2103T Lecture`
 at `04/04/2022` and another `CS2103T Lecture` at `11/04/2022`.
 
+* You can create overdue Tasks (with `DATETIME` before today) if you wish to remind yourself of overdue tasks! :smiley:
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -268,7 +271,7 @@ Edits an existing task in the task list.
 
 **Format**: `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]…​`
 
-* Updates the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -277,13 +280,13 @@ The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
 **Examples**:
-* `editt 1 tn/Meeting with TAs` Updates the name of the 1st displayed task to be `Meeting with TAs`.
-* `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Updates the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be 1st Dec 2022, 12pm-1pm. <br>
+* `editt 1 tn/Meeting with TAs` Edits the name of the 1st displayed task to be `Meeting with TAs`.
+* `editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300` Edits the name of the 2nd displayed task to be `Meeting with Profs Tan` and the date to be `01 Dec 2022, 12pm-1pm`. <br>
     <br>
     ![`editt 2 tn/Meeting with Prof Tan dt/01-12-2022 1200, 01-12-2022 1300`](images/edittCommandShowcase1.png)
 
 
-* `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Updates the datetime of the 1st displayed task to be on `12th Dec 2022, 12-2pm`. <br>
+* `editt 1 dt/12-12-2022 1200, 12-12-2022 1400` Edits the datetime of the 1st displayed task to be on `12 Dec 2022, 12-2pm`. <br>
     <br>
     ![`editt 1 dt/12-12-2022 1200, 12-12-2022 1400`](images/edittCommandShowcase2.png)
     
@@ -396,10 +399,9 @@ Unassigns a contact in the contact list from a task.
 </div>
 
 **Examples**:
-* `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.
-<br>
-<br>
-    ![`unassign 1 p/2](images/unassignCommandShowcase.png)
+* `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.<br>
+    <br>
+    ![unassign1](images/unassignCommandShowcase.png)
 
 
 ### Marking a task as done: `mark`
@@ -478,7 +480,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 
 **Examples**:
-* `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
+* `listt all/` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
 * `findt lecture` followed by `deletet 2` lists out all tasks with the keyword `lecture`, then deletes the task at index 2. <br>
     <br> Finding the tasks by keyword `lecture`:
     ![`findt lecture` followed by `deletet 2`](images/deletettCommandShowcase1.png)
@@ -502,7 +504,9 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 
 **Examples**:
-* `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br><br>
+* `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br>
+  <br>
+  ![`gen 1`](images/genCommandShowcase.png)
 
 
 # Other Features
@@ -552,21 +556,25 @@ Imports a list of contacts from a .csv file.
 * Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
 
 **Examples**:
-* `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
-* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder
+* `import fp/data/data.csv` (macOS/Linux) / `import fp/data\data.csv` (Windows)  will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
+* `import fp/contacts.csv` (all supported platforms) will import all valid entries from the `contacts.csv file` in the NUS Classes root folder.
+  <br><br>
+  ![`importCommand1` followed by `deletet 2`](images/importCommandShowcase1.png)
+  <br><br>
+  ![`importCommand2`](images/importCommandShowcase2.png)
 
 
 ### User-friendly date display
 
 Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be displayed based on the current day to be more user-friendly. Here's a reference if you get confused:
 
-| Displayed date                  | Explanation                                                                                                                                                                                                                              |
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Today`                         | The current calendar day.                                                                                                                                                                                                                |
-| `Tomorrow`                      | The next calendar day.                                                                                                                                                                                                                   |
-| Day of week (e.g. `Mon`, `Sat`) | The next occurrence of that day of week. Examples:<ul><li>If today is `7 Apr, Thu`, `Tue` will refer to the _next_ Tuesday `12 Apr, Tue`</li><li>If today is `4 Apr, Mon`, `Mon` will refer to the _next_ Monday `11 Apr, Mon`</li></ul> |
-| Day and month (without year)    | The day of the current calendar year (e.g. if the current calendar year is 2022, `11 Apr` refers to `11 Apr 2022`                                                                                                                        |
-| Day, month and year             | -                                                                                                                                                                                                                                        |
+| Displayed date                  | Explanation                                                                                                                                                                                                               |
+|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Today`                         | The current calendar day.                                                                                                                                                                                                 |
+| `Tomorrow`                      | The next calendar day.                                                                                                                                                                                                    |
+| Day of week (e.g. `Mon`, `Sat`) | The next occurrence of that day of week. Examples:<br>- If today is `7 Apr, Thu`, `Tue` will refer to the _next_ Tuesday `12 Apr, Tue`<br>- If today is `4 Apr, Mon`, `Mon` will refer to the _next_ Monday `11 Apr, Mon` |
+| Day and month (without year)    | The day of the current calendar year (e.g. if the current calendar year is 2022, `11 Apr` refers to `11 Apr 2022`                                                                                                         |
+| Day, month and year             | -                                                                                                                                                                                                                         |
 
 
 
@@ -599,10 +607,10 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 | [**Add Contact**](#adding-a-contact-addc)                                                                                          | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​`                            |
 | [**List Contacts**](#listing-all-contacts--listc)                                                                                  | `listc`                                                                                  |
 | [**Edit Contact**](#editing-a-contact--editc)                                                                                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`             |
- | [**Find Contacts**](#finding-contacts-findc)                                                                                       | `findc KEYWORD [MORE_KEYWORDS]…​`                                               |
+ | [**Find Contacts**](#finding-contacts-findc)                                                                                       | `findc KEYWORD [MORE_KEYWORDS]…​`                                                        |
 | [**Delete**](#deleting-a-contact--deletec)                                                                                         | `deletec INDEX`                                                                          |
 | [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
-| [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt`                                                                                  |
+| [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt all\` or `listt nc/` or `listt c/`                                                |
 | [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`                 |
 | [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                        |
 | [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1, DATETIME2`                                                          |

@@ -1,0 +1,15 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "gitUsername": "Alice123",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Bob Moore",
+    "phone": "99995555",
+    "email": "alice@example.com",
+    "gitUsername": "Bob123",
+    "tagged": [ "nofriends" ]
+  } ]
+}
