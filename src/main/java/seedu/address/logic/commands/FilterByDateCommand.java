@@ -23,8 +23,8 @@ public class FilterByDateCommand extends Command {
 
     public static final String ERROR_MESSAGE_INVALID_FORMAT =
             "Invalid date format. It should be \"dd-MM-yyyy HHmm\" or \"dd-MM-yyyy\"\n"
-            + "dd: Day (from 01 to 31); MM: Month (from 01 to 12);"
-            + "yyyy: Year (from 999999999 to -999999999); HH: Hour (from 00 to 23);"
+            + "dd: Day (from 01 to 31); MM: Month (from 01 to 12); "
+            + "yyyy: Year (from 1 to 99999999); HH: Hour (from 00 to 23); "
             + "mm: Minute (from 00 to 59)";
 
     public static final String ERROR_MESSAGE_INVALID_PARAMETER =

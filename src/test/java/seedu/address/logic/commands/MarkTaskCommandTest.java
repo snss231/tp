@@ -30,7 +30,7 @@ public class MarkTaskCommandTest {
         String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getTaskList());
-        expectedModel.deleteTask(taskToMark);
+        expectedModel.markTask(taskToMark);
 
         assertCommandSuccess(markTaskCommand, model, expectedMessage, expectedModel);
     }
