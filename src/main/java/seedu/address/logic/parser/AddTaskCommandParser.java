@@ -86,12 +86,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             if (periodMapping.containsKey(periodStr)) {
                 periodInt = periodMapping.get(periodStr);
             } else {
-                try {
-                    periodInt = Integer.parseInt(periodStr);
-                } catch (NumberFormatException e) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_INTERVAL,
-                             AddTaskCommand.MESSAGE_USAGE));
-                }
+                periodInt = parsePeriod(periodStr);
             }
 
             try {
@@ -141,5 +136,14 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         StringBuffer sb = new StringBuffer(errorString);
         sb.delete(sb.length() - 2, sb.length() - 1); //Deleting last comma
         return sb;
+    }
+
+    private int parsePeriod(String periodStr) throws ParseException {
+        try {
+            return Integer.parseInt(periodStr);
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_INTERVAL,
+                    AddTaskCommand.MESSAGE_USAGE));
+        }
     }
 }
