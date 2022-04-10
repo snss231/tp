@@ -102,7 +102,7 @@ public class ImportCommand extends Command {
     /**
      * Converts a list of people to a string separated by a \n character.
      *
-     * @param people The people to be converted
+     * @param people The people to be converted.
      * @return The result string
      */
     public static String personListToString(List<Person> people) {
