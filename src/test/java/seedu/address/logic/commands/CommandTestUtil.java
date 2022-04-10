@@ -97,7 +97,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_TASKA = " " + PREFIX_TAG + VALID_TAG_TASKA;
     public static final String TAG_DESC_TASKB = " " + PREFIX_TAG + VALID_TAG_TASKB;
 
-    public static final String INVALID_DATETIME_DESC = PREFIX_DATETIME + "22/11/2050 1220"; // Wrong format
+    public static final String INVALID_DATETIME_FORMAT = PREFIX_DATETIME + "22/11/2050 1220"; // Wrong format
+    public static final String INVALID_DATETIME_DAY = PREFIX_DATETIME + "32/02/2050 1220"; // Wrong Day
+    public static final String INVALID_DATETIME_MONTH = PREFIX_DATETIME + "02/22/2050 1220"; // Wrong Month
+    public static final String INVALID_DATETIME_LEAPYEAR = PREFIX_DATETIME + "29/02/2021 1220"; // Wrong Leap year
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
