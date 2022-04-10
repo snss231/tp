@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -26,7 +27,23 @@ public class ImportCommandParser implements Parser<ImportCommand> {
 
     public static final String MESSAGE_CSV_MISSING_FIELD = "Error: found empty field in the file \"%s\"";
 
+    public static final String MESSAGE_FOLDER_SPECIFIED = "Error: \"%s\" is a directory";
+
     public static final String MESSAGE_FILE_DOES_NOT_EXIST = "Error: could not find the file \"%s\".";
+
+    public static final String ERROR_INVALID_NAME = "Error: the name \"%s\" is invalid: " + Name.MESSAGE_CONSTRAINTS;
+
+    public static final String ERROR_INVALID_PHONE = "Error: the phone \"%s\" is invalid: " + Phone.MESSAGE_CONSTRAINTS;
+
+    public static final String ERROR_INVALID_EMAIL = "Error: the email \"%s\" is invalid: "
+            + Email.MESSAGE_CONSTRAINTS;
+
+    public static final String ERROR_INVALID_GITHUB = "Error: the github username\"%s\" is invalid: "
+            + GitUsername.MESSAGE_CONSTRAINTS;
+
+    public static final String ERROR_INVALID_TAG = "Error: the tag\"%s\" is invalid: "
+            + Tag.MESSAGE_CONSTRAINTS;
+
 
 
     /**
@@ -45,7 +62,11 @@ public class ImportCommandParser implements Parser<ImportCommand> {
         File file = ParserUtil.parsePath(argMultimap.getValue(PREFIX_FILEPATH)).toFile();
 
         if (!file.exists()) {
-            throw new ParseException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, file.getName()));
+            throw new ParseException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, file.getPath()));
+        }
+
+        if (file.isDirectory()) {
+            throw new ParseException(String.format(MESSAGE_FOLDER_SPECIFIED, file.getPath()));
         }
 
         List<Person> toAdd = new ArrayList<>();
@@ -62,47 +83,53 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             int tagsIndex = columns.indexOf("Tags");
 
             if (List.of(nameIndex, phoneIndex, emailIndex, githubIndex, tagsIndex).contains(-1)) {
-                throw new ParseException(String.format(MESSAGE_CSV_MISSING_FIELD, file.getPath()));
+                throw new ParseException(String.format(MESSAGE_CSV_MISSING_HEADERS, file.getPath()));
             }
 
-            while (sc.hasNextLine()) {
+            loop: while (sc.hasNextLine()) {
                 String[] values = sc.nextLine().split(",");
                 Name name;
                 Phone phone;
                 Email email;
                 GitUsername gitUsername;
-                Set<Tag> tagList = ParserUtil.parseTags(Arrays.asList(values[tagsIndex].split("/")));
+                Set<Tag> tags = new HashSet<>();
+
                 try {
                     name = ParserUtil.parseName(values[nameIndex]);
                 } catch (ParseException e) {
-                    invalidFields.add(String.format(
-                            "Error: the name \"%s\" is invalid: %s", values[nameIndex], Name.MESSAGE_CONSTRAINTS));
+                    invalidFields.add(String.format(ERROR_INVALID_NAME, values[nameIndex]));
                     continue;
                 }
                 try {
                     phone = ParserUtil.parsePhone(values[phoneIndex]);
                 } catch (ParseException e) {
-                    invalidFields.add(String.format(
-                            "Error: the phone \"%s\" is invalid: %s", values[phoneIndex], Phone.MESSAGE_CONSTRAINTS));
+                    invalidFields.add(String.format(ERROR_INVALID_PHONE, values[phoneIndex]));
                     continue;
                 }
                 try {
                     email = ParserUtil.parseEmail(values[emailIndex]);
                 } catch (ParseException e) {
-                    invalidFields.add(String.format(
-                            "Error: the email \"%s\" is invalid: %s", values[emailIndex], Email.MESSAGE_CONSTRAINTS));
+                    invalidFields.add(String.format(ERROR_INVALID_EMAIL, values[emailIndex]));
                     continue;
                 }
 
                 try {
                     gitUsername = ParserUtil.parseGitUsername(values[githubIndex]);
                 } catch (ParseException e) {
-                    invalidFields.add(
-                            String.format("Error: the github username \"%s\" is invalid: %s",
-                            values[githubIndex], GitUsername.MESSAGE_CONSTRAINTS));
+                    invalidFields.add(String.format(ERROR_INVALID_GITHUB, values[githubIndex]));
                     continue;
                 }
-                toAdd.add(new Person(name, phone, email, gitUsername, tagList));
+
+                for (String tag : values[tagsIndex].split("/")) {
+                    try {
+                        tags.add(ParserUtil.parseTag(tag));
+                    } catch (ParseException e) {
+                        invalidFields.add(String.format(ERROR_INVALID_TAG, tag));
+                        continue loop;
+                    }
+                }
+
+                toAdd.add(new Person(name, phone, email, gitUsername, tags));
             }
 
         } catch (FileNotFoundException e) {

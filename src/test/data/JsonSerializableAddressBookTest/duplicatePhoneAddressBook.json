@@ -6,10 +6,10 @@
     "gitUsername": "Alice123",
     "tagged": [ "friends" ]
   }, {
-    "name": "Alice Pauline",
+    "name": "Bob Moore",
     "phone": "94351253",
-    "email": "alice@example.com",
-    "gitUsername": "Alice123",
-    "tagged": [ "friends" ]
+    "email": "bob@example.com",
+    "gitUsername": "Bob123",
+    "tagged": [ "nofriends" ]
   } ]
 }
