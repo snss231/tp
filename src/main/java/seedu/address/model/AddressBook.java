@@ -62,7 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same name as {@code person} exists in the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -100,6 +100,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPhone(Phone phone) {
         requireNonNull(phone);
         return persons.containsPhone(phone);
+    }
+
+    /**
+     * Checks if AddressBook has Git Username already existing.
+     *
+     * @param gitUsername Git username to be checked.
+     * @return Whether git username exists.
+     */
+    public boolean hasGitUsername(GitUsername gitUsername) {
+        requireNonNull(gitUsername);
+        return persons.containsUsername(gitUsername);
     }
 
     /**

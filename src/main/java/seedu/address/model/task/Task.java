@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -244,7 +245,7 @@ public class Task {
      * @return Tag of Task.
      */
     public Set<Tag> getTags() {
-        return this.tags;
+        return Collections.unmodifiableSet(tags);
     }
 
     /**

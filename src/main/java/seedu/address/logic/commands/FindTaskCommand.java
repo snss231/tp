@@ -21,7 +21,8 @@ public class FindTaskCommand extends Command {
             + "Usage: "
             + COMMAND_WORD + " "
             + "KEYWORD [MORE_KEYWORDS]...[TAG]...\n"
-            + "Example: " + COMMAND_WORD + " lecture consultation";
+            + "Example: " + COMMAND_WORD + " lecture consultation\n"
+            + "Note: Include \"dt/\" tag to search based on date";
 
 
     private final TaskNameContainsKeywordsPredicate predicate;

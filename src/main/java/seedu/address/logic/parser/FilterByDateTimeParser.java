@@ -93,6 +93,7 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
      */
     private LocalDateTime dayMonthYear(String datetime) throws ParseException {
         try {
+            dateOnlyFormatter.setLenient(false);
             return convertToLocalDateTime(dateOnlyFormatter.parse(datetime));
         } catch (java.text.ParseException e) {
             throw new ParseException(ERROR_MESSAGE_INVALID_FORMAT);
@@ -107,6 +108,7 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
      */
     private LocalDateTime dayMonthYearTime(String datetime) throws ParseException {
         try {
+            dateTimeFormatter.setLenient(false);
             return convertToLocalDateTime(dateTimeFormatter.parse(datetime));
         } catch (java.text.ParseException e) {
             throw new ParseException(ERROR_MESSAGE_INVALID_FORMAT);

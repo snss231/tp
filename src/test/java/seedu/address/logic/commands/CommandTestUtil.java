@@ -76,6 +76,9 @@ public class CommandTestUtil {
     //------------------------ For task--------------------------------------------------------
     public static final String VALID_NAME_TASKA = "Homework";
     public static final String VALID_NAME_TASKB = "Brush my teeth";
+    public static final String VALID_LINK_TASKA = "https:google.com";
+    public static final String VALID_LINK_TASKB = "https:apple.com";
+    public static final String INVALID_LINK = "a";
     public static final LocalDateTime VALID_DATETIME_TASKA =
             LocalDateTime.of(2050, 12, 15, 21, 0);
     public static final String VALID_DATETIME_TASKA_PLUS_ONE_DAY = "16-12-2050 2100";
@@ -97,7 +100,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_TASKA = " " + PREFIX_TAG + VALID_TAG_TASKA;
     public static final String TAG_DESC_TASKB = " " + PREFIX_TAG + VALID_TAG_TASKB;
 
-    public static final String INVALID_DATETIME_DESC = PREFIX_DATETIME + "22/11/2050 1220"; // Wrong format
+    public static final String INVALID_DATETIME_FORMAT = PREFIX_DATETIME + "22/11/2050 1220"; // Wrong format
+    public static final String INVALID_DATETIME_DAY = PREFIX_DATETIME + "32/02/2050 1220"; // Wrong Day
+    public static final String INVALID_DATETIME_MONTH = PREFIX_DATETIME + "02/22/2050 1220"; // Wrong Month
+    public static final String INVALID_DATETIME_LEAPYEAR = PREFIX_DATETIME + "29/02/2021 1220"; // Wrong Leap year
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

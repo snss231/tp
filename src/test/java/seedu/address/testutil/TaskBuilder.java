@@ -101,6 +101,15 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code link} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withNoLink() {
+        this.link = new Link();
+        return this;
+    }
+
+
+    /**
      * Sets the {@code people} of the {@code Task} that we are building.
      */
     public TaskBuilder withPeople(List<Person> people) {
