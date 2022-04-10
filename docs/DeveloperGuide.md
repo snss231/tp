@@ -1,3 +1,7 @@
+---
+layout: page
+title: Developer Guide
+---
 ## Table of Contents
 * [Acknowledgements](#acknowledgements)
 * [Setting up, getting started](#setting-up-getting-started)
@@ -13,7 +17,6 @@
     * [Delete task feature](#delete-task-feature)
     * [Edit task feature](#edit-task-feature)
     * [View task feature](#view-task-feature)
-    * [[Proposed] Data Archiving](#proposed-data-archiving)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -313,10 +316,6 @@ The following sequence diagram shows how the view task operation works:
   * Cons: Requires more commands by the user in order to use the column again.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
