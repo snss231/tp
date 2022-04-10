@@ -1,19 +1,32 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FilterByDateCommand;
-import seedu.address.logic.commands.FindTaskCommand;
-import seedu.address.model.task.TaskBetweenDatesPredicate;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static seedu.address.commons.core.Messages.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.commons.core.Messages.ERROR_MESSAGE_INVALID_FORMAT;
+import static seedu.address.commons.core.Messages.ERROR_MESSAGE_INVALID_PARAMETER;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_TASKA;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DAY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_LEAPYEAR;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_MONTH;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_VALUE_NOTIME;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_WORDS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_NOTIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_NOTIME_LATER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_NOTIME_LATER_STRING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_NOTIME_STRING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.FilterByDateCommand;
+import seedu.address.logic.commands.FindTaskCommand;
+import seedu.address.model.task.TaskBetweenDatesPredicate;
 
 public class FilterByDateTimeParserTest {
 
@@ -66,7 +79,7 @@ public class FilterByDateTimeParserTest {
     @Test
     public void parse_validValueBothHaveDateTime_success() {
         String userInput = DATETIME_DESC_TASKA + toConcat;
-        FilterByDateCommand expectedCommand =  new FilterByDateCommand(new TaskBetweenDatesPredicate(
+        FilterByDateCommand expectedCommand = new FilterByDateCommand(new TaskBetweenDatesPredicate(
                 Arrays.asList(VALID_DATETIME_TASKA, VALID_DATETIME_TASKA)));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -76,7 +89,7 @@ public class FilterByDateTimeParserTest {
 
         // dt/[earlier_date_noTime],[later_date_gotTime]
         String userInput = PREFIX_DATETIME + VALID_DATETIME_NOTIME_STRING + toConcat;
-        FilterByDateCommand expectedCommand =  new FilterByDateCommand(new TaskBetweenDatesPredicate(
+        FilterByDateCommand expectedCommand = new FilterByDateCommand(new TaskBetweenDatesPredicate(
                 Arrays.asList(VALID_DATETIME_NOTIME, VALID_DATETIME_TASKA)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -92,13 +105,13 @@ public class FilterByDateTimeParserTest {
 
         // dt/[earlier_date_gotTime],[later_date_noTime]
         String userInput = PREFIX_DATETIME + VALID_DATETIME_TASKA_STRING + "," + VALID_DATETIME_NOTIME_LATER_STRING;
-        FilterByDateCommand expectedCommand =  new FilterByDateCommand(new TaskBetweenDatesPredicate(
+        FilterByDateCommand expectedCommand = new FilterByDateCommand(new TaskBetweenDatesPredicate(
                 Arrays.asList(VALID_DATETIME_TASKA, VALID_DATETIME_NOTIME_LATER)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // dt/[later_date_gotTime],[earlier_date_noTime]
         userInput = PREFIX_DATETIME + VALID_DATETIME_TASKA_STRING + "," + VALID_DATETIME_NOTIME_STRING;
-        expectedCommand =  new FilterByDateCommand(new TaskBetweenDatesPredicate(
+        expectedCommand = new FilterByDateCommand(new TaskBetweenDatesPredicate(
                 Arrays.asList(VALID_DATETIME_NOTIME, VALID_DATETIME_TASKA)));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -108,13 +121,13 @@ public class FilterByDateTimeParserTest {
 
         // dt/[earlier_date_noTime],later_date_noTime]
         String userInput = PREFIX_DATETIME + VALID_DATETIME_NOTIME_STRING + "," + VALID_DATETIME_NOTIME_LATER_STRING;
-        FilterByDateCommand expectedCommand =  new FilterByDateCommand(new TaskBetweenDatesPredicate(
+        FilterByDateCommand expectedCommand = new FilterByDateCommand(new TaskBetweenDatesPredicate(
                 Arrays.asList(VALID_DATETIME_NOTIME, VALID_DATETIME_NOTIME_LATER)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // dt/[later_date_noTime],[earlier_date_noTime]
-        userInput = PREFIX_DATETIME + VALID_DATETIME_NOTIME_LATER_STRING + ","  + VALID_DATETIME_NOTIME_STRING;
-        expectedCommand =  new FilterByDateCommand(new TaskBetweenDatesPredicate(
+        userInput = PREFIX_DATETIME + VALID_DATETIME_NOTIME_LATER_STRING + "," + VALID_DATETIME_NOTIME_STRING;
+        expectedCommand = new FilterByDateCommand(new TaskBetweenDatesPredicate(
                 Arrays.asList(VALID_DATETIME_NOTIME, VALID_DATETIME_NOTIME_LATER)));
         assertParseSuccess(parser, userInput, expectedCommand);
     }

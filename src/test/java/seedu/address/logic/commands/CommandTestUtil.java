@@ -112,10 +112,10 @@ public class CommandTestUtil {
 
     public static final String VALID_DATETIME_NOTIME_STRING = "13-12-2050";
     public static final LocalDateTime VALID_DATETIME_NOTIME =
-            LocalDateTime.of(2050,12,13,0,0);
+            LocalDateTime.of(2050, 12, 13, 0, 0);
     public static final String VALID_DATETIME_NOTIME_LATER_STRING = "30-12-2050";
     public static final LocalDateTime VALID_DATETIME_NOTIME_LATER =
-            LocalDateTime.of(2050,12,30,23,59);
+            LocalDateTime.of(2050, 12, 30, 23, 59);
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

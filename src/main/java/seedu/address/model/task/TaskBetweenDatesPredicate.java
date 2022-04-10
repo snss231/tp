@@ -37,7 +37,8 @@ public class TaskBetweenDatesPredicate implements Predicate<Task> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskBetweenDatesPredicate // instanceof handles nulls
-                && areDatesEqual(this.beforeAfterDates, ((TaskBetweenDatesPredicate) other).beforeAfterDates)); // state check
+                && areDatesEqual(this.beforeAfterDates, ((TaskBetweenDatesPredicate) other)
+                    .beforeAfterDates)); // state check
     }
 
     /**

@@ -8,13 +8,13 @@ import java.util.List;
 public class TypicalLocalDateTime {
 
     public static final LocalDateTime DATE_1 =
-            LocalDateTime.of(2050,3,10,00,00);
+            LocalDateTime.of(2050, 3, 10, 00, 00);
     public static final LocalDateTime DATE_2 =
-            LocalDateTime.of(2050,7,6,00,00);
+            LocalDateTime.of(2050, 7, 6, 00, 00);
     public static final LocalDateTime DATE_3 =
-            LocalDateTime.of(2050,9,4,00,00);
+            LocalDateTime.of(2050, 9, 4, 00, 00);
     public static final LocalDateTime DATE_4 =
-            LocalDateTime.of(2050,2,15,00,00);
+            LocalDateTime.of(2050, 2, 15, 00, 00);
 
 
     /**
