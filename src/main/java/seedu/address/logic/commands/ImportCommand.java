@@ -28,9 +28,9 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_FOUND_TAGS_TOO_LONG =
             "\nNote: The following %d contact(s) containing tags longer "
                     + "than the maximum length of 50 characters were not added:\n";
-    private static final String MESSAGE_NO_CONTACTS_ADDED =
+    public static final String MESSAGE_NO_CONTACTS_ADDED =
             "Import completed. No contacts were added to NUS Classes from %s.\n";
-    private static final String MESSAGE_INVALID_FIELDS =
+    public static final String MESSAGE_INVALID_FIELDS =
             "\nNote: %d contact(s) containing invalid fields were not added due to these issues:\n";
 
     private final String filename;
@@ -99,7 +99,27 @@ public class ImportCommand extends Command {
         return new CommandResult(infoAdded + infoDuplicates + infoInvalidTags + infoInvalidFields);
     }
 
-    private String personListToString(List<Person> people) {
+    /**
+     * Converts a list of people to a string separated by a \n character.
+     *
+     * @param people The people to be converted.
+     * @return The result string.
+     */
+    public static String personListToString(List<Person> people) {
         return String.join("\n", () -> people.stream().<CharSequence>map(Person::toString).iterator()) + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ImportCommand)) {
+            return false;
+        }
+        ImportCommand other = (ImportCommand) o;
+        return toAdd.equals(other.toAdd)
+            && filename.equals(other.filename)
+            && invalidFields.equals(other.invalidFields);
     }
 }

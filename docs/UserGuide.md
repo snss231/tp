@@ -553,8 +553,8 @@ Imports a list of contacts from a .csv file.
 * Invalid csv entries (e.g. due to invalid or duplicate fields) will be skipped, but valid entries will still be added.
 
 **Examples**:
-* `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
-* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder<br>
+* `import fp/data/data.csv` (macOS/Linux) / `import fp/data\data.csv` (Windows)  will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
+* `import fp/contacts.csv` (all supported platforms) `will import all valid entries from the `contacts.csv file` in the NUS Classes root folder<br>
   <br>
   ![`importCommand1` followed by `deletet 2`](images/importCommandShowcase1.png)
   <br><br>

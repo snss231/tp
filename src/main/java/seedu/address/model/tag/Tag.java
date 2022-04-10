@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric and should not be empty";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tag names should contain ASCII characters and should not be empty";
 
     //Format for valid tag name
     public static final String VALIDATION_REGEX = "\\p{ASCII}+";
