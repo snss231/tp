@@ -2,9 +2,6 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.time.LocalDateTime;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKB;
@@ -12,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TASKB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.BRUSH_TEETH;
 import static seedu.address.testutil.TypicalTasks.CONSULTATION;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
