@@ -565,13 +565,13 @@ Imports a list of contacts from a .csv file.
 
 Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be displayed based on the current day to be more user-friendly. Here's a reference if you get confused:
 
-| Displayed date                  | Explanation                                                                                                                                                                                                             |
-|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Today`                         | The current calendar day.                                                                                                                                                                                               |
-| `Tomorrow`                      | The next calendar day.                                                                                                                                                                                                  |
-| Day of week (e.g. `Mon`, `Sat`) | The next occurrence of that day of week. Examples:<br>*If today is `7 Apr, Thu`, `Tue` will refer to the _next_ Tuesday `12 Apr, Tue`<br>*If today is `4 Apr, Mon`, `Mon` will refer to the _next_ Monday `11 Apr, Mon` |
-| Day and month (without year)    | The day of the current calendar year (e.g. if the current calendar year is 2022, `11 Apr` refers to `11 Apr 2022`                                                                                                       |
-| Day, month and year             | -                                                                                                                                                                                                                       |
+| Displayed date                  | Explanation                                                                                                                                                                                                                |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Today`                         | The current calendar day.                                                                                                                                                                                                  |
+| `Tomorrow`                      | The next calendar day.                                                                                                                                                                                                     |
+| Day of week (e.g. `Mon`, `Sat`) | The next occurrence of that day of week. Examples:<br>- If today is `7 Apr, Thu`, `Tue` will refer to the _next_ Tuesday `12 Apr, Tue`<br> - If today is `4 Apr, Mon`, `Mon` will refer to the _next_ Monday `11 Apr, Mon` |
+| Day and month (without year)    | The day of the current calendar year (e.g. if the current calendar year is 2022, `11 Apr` refers to `11 Apr 2022`                                                                                                          |
+| Day, month and year             | -                                                                                                                                                                                                                          |
 
 
 
