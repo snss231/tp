@@ -20,7 +20,6 @@ import seedu.address.model.task.Task;
 public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-    public static final String WRONG_BOOLEAN_FORMAT = "Task's %s field is not true or false!";
 
     private final String name;
     private final String dateTime;
