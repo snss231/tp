@@ -3,9 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
@@ -181,9 +178,7 @@ public class ParserUtil {
         if (option.isEmpty()) {
             return new Link();
         } else {
-            try {
-                new URL(option.get()).toURI();
-            } catch (URISyntaxException | MalformedURLException e) {
+            if (!Link.isValidLink(option.get())) {
                 throw new ParseException(Link.MESSAGE_CONSTRAINTS);
             }
             return new Link(option.get());
