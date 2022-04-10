@@ -14,7 +14,7 @@ import seedu.address.model.task.TaskBetweenDatesPredicate;
  */
 public class FilterByDateCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "findt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose dates fall within "
             + "the specified dates inputs (order insensitive) and displays them as a list with index numbers.\n"

@@ -12,7 +12,7 @@ public class TypicalLocalDateTime {
     public static final LocalDateTime DATE_2 =
             LocalDateTime.of(2050,7,6,00,00);
     public static final LocalDateTime DATE_3 =
-            LocalDateTime.of(2050,12,30,00,00);
+            LocalDateTime.of(2050,9,4,00,00);
     public static final LocalDateTime DATE_4 =
             LocalDateTime.of(2050,2,15,00,00);
 
@@ -22,6 +22,6 @@ public class TypicalLocalDateTime {
      * @return Returns array of 2 test Local Date Time
      */
     public static List<LocalDateTime> getTypicalDateTimes() {
-        return new ArrayList<>(Arrays.asList(DATE_1, DATE_2));
+        return new ArrayList<>(Arrays.asList(DATE_2, DATE_3));
     }
 }

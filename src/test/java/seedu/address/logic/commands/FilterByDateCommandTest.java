@@ -22,8 +22,7 @@ import static seedu.address.testutil.TypicalLocalDateTime.DATE_2;
 import static seedu.address.testutil.TypicalLocalDateTime.DATE_3;
 import static seedu.address.testutil.TypicalLocalDateTime.DATE_4;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.LAUNDRY;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
+import static seedu.address.testutil.TypicalTasks.*;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for FilterByDateCommand.
@@ -72,7 +71,7 @@ public class FilterByDateCommandTest {
         FilterByDateCommand command = new FilterByDateCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(LAUNDRY), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(CONSULTATION), model.getFilteredTaskList());
     }
 
     /**

@@ -43,7 +43,20 @@ public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((TaskNameContainsKeywordsPredicate) other).keywords)); // state check
+                && areKeywordsEqual(this.keywords, ((TaskNameContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    private boolean areKeywordsEqual(List<String> list1, List<String> list2) {
+        if (list1.size() == list2.size()) {
+            boolean toReturn = false;
+            for (int i = 0; i < list1.size(); i++) {
+                toReturn = list1.get(i).equals(list2.get(i));
+            }
+            return toReturn;
+        } else {
+            return false;
+        }
+
     }
 
 }
