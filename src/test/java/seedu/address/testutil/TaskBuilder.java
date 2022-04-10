@@ -19,9 +19,9 @@ public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "SchoolWork";
     public static final LocalDateTime DEFAULT_DATETIME =
-            LocalDateTime.of(2050, 12, 15, 21, 0);
+            LocalDateTime.of(2050, 12, 18, 21, 0);
     public static final String DEFAULT_TAG = "School";
-    public static final String DEFAULT_ZOOMLINK = "";
+    public static final String DEFAULT_ZOOMLINK = "https://google.com";
     public static final boolean DEFAULT_ISTASKMARKDONE = false;
 
     private String name;
