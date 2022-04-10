@@ -81,6 +81,7 @@ public class CommandTestUtil {
     public static final String INVALID_LINK = "a";
     public static final LocalDateTime VALID_DATETIME_TASKA =
             LocalDateTime.of(2050, 12, 15, 21, 0);
+    public static final String VALID_DATETIME_TASKA_STRING = "16-12-2050 2100";
     public static final String VALID_DATETIME_TASKA_PLUS_ONE_DAY = "16-12-2050 2100";
     public static final LocalDateTime VALID_DATETIME_TASKB =
             LocalDateTime.of(2050, 02, 05, 13, 0);
@@ -101,10 +102,12 @@ public class CommandTestUtil {
     public static final String TAG_DESC_TASKB = " " + PREFIX_TAG + VALID_TAG_TASKB;
     public static final String WORDS_IN_DATETIME = " " + PREFIX_DATETIME + "";
 
+    public static final String INVALID_DATETIME_WORDS = PREFIX_DATETIME + "10-06-abcd 1500"; // Words instead of numbers
     public static final String INVALID_DATETIME_FORMAT = PREFIX_DATETIME + "22/11/2050 1220"; // Wrong format
-    public static final String INVALID_DATETIME_DAY = PREFIX_DATETIME + "32/02/2050 1220"; // Wrong Day
-    public static final String INVALID_DATETIME_MONTH = PREFIX_DATETIME + "02/22/2050 1220"; // Wrong Month
-    public static final String INVALID_DATETIME_LEAPYEAR = PREFIX_DATETIME + "29/02/2021 1220"; // Wrong Leap year
+    public static final String INVALID_DATETIME_DAY = PREFIX_DATETIME + "32-02-2050 1220"; // Wrong Day
+    public static final String INVALID_DATETIME_MONTH = PREFIX_DATETIME + "02-22-2050 1220"; // Wrong Month
+    public static final String INVALID_DATETIME_LEAPYEAR = PREFIX_DATETIME + "29-02-2021 1220"; // Wrong Leap year
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
