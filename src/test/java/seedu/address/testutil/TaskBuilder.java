@@ -118,7 +118,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Builds a Task object without endDateTime.
+     * Builds a Task.
      *
      * @return Task object with the attributes in TaskBuilder
      */
