@@ -19,7 +19,6 @@ public class TypicalAssignedTasks {
     public static final Task BRUSH_TEETH = new TaskBuilder().withTaskName("Brush my teeth")
             .withDateTime(LocalDateTime.of(2050, 12, 15, 21, 0))
             .withPeople(GROUP_ONE)
-            .withPeople(GROUP_ONE)
             .withTags("Chores").withLink("").build();
 
     public static final Task LAUNDRY = new TaskBuilder().withTaskName("Do the laundry")
