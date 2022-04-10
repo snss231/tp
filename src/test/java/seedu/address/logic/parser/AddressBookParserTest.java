@@ -183,7 +183,9 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " all/") instanceof ListTaskCommand);
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " c/") instanceof ListTaskCommand);
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " nc/") instanceof ListTaskCommand);
-  
+    }
+
+    @Test
     public void parseCommand_generateEmail() throws Exception {
         GenerateEmailsCommand command = (GenerateEmailsCommand) parser.parseCommand(
                 GenerateEmailsCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
