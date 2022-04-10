@@ -10,6 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DAY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_LEAPYEAR;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_MONTH;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NAME_LONG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NAME_SHORT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKA;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA_PLUS_ONE_DAY;
@@ -78,6 +80,19 @@ public class AddTaskCommandParserTest {
         //Missing both
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 missingBothErrorMessage() + "\n" + AddTaskCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parseInvalidFieldsPresentFailure() throws Exception {
+
+        //Task name shorter than 3 characters
+        assertParseFailure(parser, " " + PREFIX_TASKNAME + " " + INVALID_TASK_NAME_SHORT + DATETIME_DESC_TASKA + " "
+                + PREFIX_TAG + VALID_TAG_CHORES, Task.NAME_LENGTH_ERROR);
+
+        //Task name longer than 50 characters
+        assertParseFailure(parser, " " + PREFIX_TASKNAME + " " + INVALID_TASK_NAME_LONG + DATETIME_DESC_TASKA + " "
+                + PREFIX_TAG + VALID_TAG_CHORES, Task.NAME_LENGTH_ERROR);
+
     }
 
     @Test
