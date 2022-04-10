@@ -93,18 +93,20 @@ public class JsonAdaptedTask {
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateTime"));
         }
-
         LocalDateTime modelDateTime = LocalDateTime.parse(dateTime);
+
         LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
 
         Set<Tag> modelTag = new HashSet<>(taskTags);
 
         Link modelLink = Objects.equals(link, null) ? new Link() : new Link(link);
-
         if (!modelLink.isEmpty()) {
             if (!Link.isValidLink(modelLink.toString())) {
                 throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
             }
+        }
+        if (isTaskMarkDone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isTaskMarkDone"));
         }
 
         boolean modelIsTaskMarkDone = Boolean.parseBoolean(isTaskMarkDone);
