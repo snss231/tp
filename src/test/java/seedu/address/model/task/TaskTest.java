@@ -142,12 +142,12 @@ public class TaskTest {
     @Test
     public void hasEndDateTime() {
         Task noEndDateTask = new TaskBuilder().build();
-        assertFalse(noEndDateTask.hasEndDateTime());
+        assertTrue(noEndDateTask.hasEndDateTime());
 
-        Task withEndDateTask = new TaskBuilder().withEndDateTime(LocalDateTime.of(2055, 12, 15, 21, 0)).build();
-        assertTrue(withEndDateTask.hasEndDateTime());
+        Task withEndDateTask = new TaskBuilder().withEndDateTime(null).build();
+        assertFalse(withEndDateTask.hasEndDateTime());
     }
-    
+
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Task task = new TaskBuilder().build();
