@@ -311,11 +311,10 @@ The following sequence diagram shows how the view task operation works:
   * Pros: Reduce commands required by user to populate and use the column for input.
   * Cons: May be confusing to user.
 
-* **Alternative 2: Display an empty list** .
+* **Alternative 2: Display an empty list**.
   * Pros: Clearly inform the users that the task has no people associate with it.
   * Cons: Requires more commands by the user in order to use the column again.
-
-_{more aspects and alternatives to be added}_
+  
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -459,12 +458,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     NUS Classes shows an error message and ends
 
-*{More to be added}*
 
 
 
-**
-  *{More to be added}*
+
 
 ### Non-Functional Requirements
 
