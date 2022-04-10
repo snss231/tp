@@ -34,7 +34,11 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* PlantUML - open-source diagramming tool used for our architecture, class, sequence and activity diagrams. https://plantuml.com/
+* [PlantUML](https://plantuml.com/) - open-source diagramming tool used for our architecture, class, sequence and activity diagrams.
+* [JUnit](https://junit.org/junit5/) - Java testing framework used for most of our testing 
+* [Gradle](https://gradle.org/) - Build automation tool 
+* [Shadowjar](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow) - "A Gradle plugin for collapsing all dependencies and project code into a single Jar file."
+* [Jackson](https://github.com/FasterXML/jackson) - "JSON for Java" library
 
 --------------------------------------------------------------------------------------------------------------------
 
