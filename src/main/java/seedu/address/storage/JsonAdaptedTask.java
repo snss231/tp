@@ -33,10 +33,12 @@ public class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime,
+    public JsonAdaptedTask(@JsonProperty("name") String name,
+                           @JsonProperty("dateTime") String dateTime,
                            @JsonProperty("endDateTime") String endDateTime,
                            @JsonProperty("people") List<JsonAdaptedPerson> people,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("link") String link,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("link") String link,
                            @JsonProperty("isTaskMarkDone") String isTaskMarkDone) {
         this.name = name;
         this.dateTime = dateTime;
@@ -87,15 +89,26 @@ public class JsonAdaptedTask {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Name"));
         }
+
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateTime"));
         }
-
         LocalDateTime modelDateTime = LocalDateTime.parse(dateTime);
+
         LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
 
         Set<Tag> modelTag = new HashSet<>(taskTags);
+
         Link modelLink = Objects.equals(link, null) ? new Link() : new Link(link);
+        if (!modelLink.isEmpty()) {
+            if (!Link.isValidLink(modelLink.toString())) {
+                throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
+            }
+        }
+        if (isTaskMarkDone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isTaskMarkDone"));
+        }
+
         boolean modelIsTaskMarkDone = Boolean.parseBoolean(isTaskMarkDone);
 
         return new Task(name, modelDateTime, modelEndDateTime, modelPeople, modelTag, modelLink, modelIsTaskMarkDone);

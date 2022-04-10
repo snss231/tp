@@ -57,20 +57,21 @@ public class JsonTaskListStorage implements TaskListStorage {
     /**
      * Reads Tasks from JSON.
      *
-     * @param tasksFilePath location of the data. Cannot be null.
+     * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file format is not as expected.
      */
-    public Optional<ReadOnlyTaskList> readTaskList(Path tasksFilePath) throws DataConversionException {
+    public Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTaskList> jsonTasks = JsonUtil.readJsonFile(
+        Optional<JsonSerializableTaskList> jsonTaskList = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTaskList.class);
-        if (!jsonTasks.isPresent()) {
+
+        if (!jsonTaskList.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonTasks.get().toModelType());
+            return Optional.of(jsonTaskList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
