@@ -20,7 +20,8 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "SchoolWork";
     public static final LocalDateTime DEFAULT_DATETIME =
             LocalDateTime.of(2050, 12, 15, 21, 0);
-    public static final LocalDateTime DEFAULT_END_DATETIME = null;
+    public static final LocalDateTime DEFAULT_ENDDATETIME =
+            LocalDateTime.of(2050, 12, 15, 22, 0);
     public static final String DEFAULT_TAG = "School";
     public static final String DEFAULT_ZOOMLINK = "";
     public static final boolean DEFAULT_ISTASKMARKDONE = false;
@@ -39,7 +40,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         name = DEFAULT_NAME;
         dateTime = DEFAULT_DATETIME;
-        endDateTime = DEFAULT_END_DATETIME;
+        endDateTime = DEFAULT_ENDDATETIME;
         tags = new HashSet<>();
         link = new Link(DEFAULT_ZOOMLINK);
         people = new ArrayList<Person>();
@@ -86,8 +87,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code EndDateTime} of the {@code Task} that we are building.
      */
-    public TaskBuilder withEndDateTime(LocalDateTime dateTime) {
-        this.endDateTime = dateTime;
+    public TaskBuilder withEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
         return this;
     }
 
