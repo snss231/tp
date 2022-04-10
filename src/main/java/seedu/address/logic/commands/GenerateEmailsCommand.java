@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,10 +23,10 @@ public class GenerateEmailsCommand extends Command {
             + "INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_NO_CONTACTS_ASSIGNED =
+    static final String MESSAGE_NO_CONTACTS_ASSIGNED =
             "Failed: There are no contacts assigned to the task %1$s";
 
-    private static final String MESSAGE_GENERATED_EMAILS = "Here are the emails related to the task %1$s:\n"
+    static final String MESSAGE_GENERATED_EMAILS = "Here are the emails related to the task %1$s:\n"
             + "%2$s";
 
 
@@ -53,5 +54,17 @@ public class GenerateEmailsCommand extends Command {
         String emails = task.getEmails();
 
         return new CommandResult(String.format(MESSAGE_GENERATED_EMAILS, task, emails), emails);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof GenerateEmailsCommand)) {
+            return false;
+        }
+        GenerateEmailsCommand other = (GenerateEmailsCommand) o;
+        return Objects.equals(this.targetIndex, other.targetIndex);
     }
 }

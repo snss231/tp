@@ -4,11 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +30,9 @@ import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTaskCommand;
+import seedu.address.logic.commands.GenerateEmailsCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
@@ -179,6 +183,20 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " all/") instanceof ListTaskCommand);
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " c/") instanceof ListTaskCommand);
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " nc/") instanceof ListTaskCommand);
+  
+    public void parseCommand_generateEmail() throws Exception {
+        GenerateEmailsCommand command = (GenerateEmailsCommand) parser.parseCommand(
+                GenerateEmailsCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new GenerateEmailsCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_import() throws Exception {
+        String filepath = Path.of("src", "test", "data", "ImportTestData", "empty.csv").toString();
+        ImportCommand command = (ImportCommand) parser.parseCommand(
+                ImportCommand.COMMAND_WORD + " " + PREFIX_FILEPATH
+                        + filepath);
+        assertEquals(new ImportCommand(List.of(), filepath, List.of()), command);
     }
 
     @Test
