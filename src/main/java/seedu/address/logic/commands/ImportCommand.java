@@ -103,7 +103,7 @@ public class ImportCommand extends Command {
      * Converts a list of people to a string separated by a \n character.
      *
      * @param people The people to be converted.
-     * @return The result string
+     * @return The result string.
      */
     public static String personListToString(List<Person> people) {
         return String.join("\n", () -> people.stream().<CharSequence>map(Person::toString).iterator()) + "\n";
