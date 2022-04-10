@@ -23,7 +23,7 @@ public class TaskBuilder {
     public static final LocalDateTime DEFAULT_ENDDATETIME =
             LocalDateTime.of(2050, 12, 15, 22, 0);
     public static final String DEFAULT_TAG = "School";
-    public static final String DEFAULT_ZOOMLINK = "";
+    public static final String DEFAULT_ZOOMLINK = "https://google.com";
     public static final boolean DEFAULT_ISTASKMARKDONE = false;
 
     private String name;
@@ -118,7 +118,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Builds a Task object without endDateTime.
+     * Builds a Task.
      *
      * @return Task object with the attributes in TaskBuilder
      */
