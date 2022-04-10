@@ -396,10 +396,9 @@ Unassigns a contact in the contact list from a task.
 </div>
 
 **Examples**:
-* `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.
-<br>
-<br>
-    ![`unassign 1 p/2](images/unassignCommandShowcase.png)
+* `unassign 1 p/2` Unassigns the 2nd contact in the contact list from the 1st task in the task list.<br>
+    <br>
+    ![unassign1](images/unassignCommandShowcase.png)
 
 
 ### Marking a task as done: `mark`
@@ -478,7 +477,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 
 **Examples**:
-* `listt` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
+* `listt all/` followed by `deletet 1` lists out all the tasks in NUS Classes, then deletes the task at index 1.
 * `findt lecture` followed by `deletet 2` lists out all tasks with the keyword `lecture`, then deletes the task at index 2. <br>
     <br> Finding the tasks by keyword `lecture`:
     ![`findt lecture` followed by `deletet 2`](images/deletettCommandShowcase1.png)
@@ -502,7 +501,9 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 
 **Examples**:
-* `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br><br>
+* `gen 1` displays all the emails of the contacts assigned to the task at index 1. <br>
+  <br>
+  ![`gen 1`](images/genCommandShowcase.png)
 
 
 # Other Features
@@ -553,7 +554,11 @@ Imports a list of contacts from a .csv file.
 
 **Examples**:
 * `import fp/data/data.csv` will import all valid entries from the `data.csv` folder in the `/data` directory of the NUS Classes folder.
-* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder
+* `import fp/contacts.csv` will import all valid entries from the `contacts.csv file` in the NUS Classes root folder<br>
+  <br>
+  ![`importCommand1` followed by `deletet 2`](images/importCommandShowcase1.png)
+  <br><br>
+  ![`importCommand2`](images/importCommandShowcase2.png)
 
 
 ### User-friendly date display
@@ -599,10 +604,10 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 | [**Add Contact**](#adding-a-contact-addc)                                                                                          | `addc n/NAME p/PHONE_NUMBER e/EMAIL u/GIT_USERNAME [t/TAG]…​`                            |
 | [**List Contacts**](#listing-all-contacts--listc)                                                                                  | `listc`                                                                                  |
 | [**Edit Contact**](#editing-a-contact--editc)                                                                                      | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/GITHUBUSERID] [t/TAG]…​`             |
- | [**Find Contacts**](#finding-contacts-findc)                                                                                       | `findc KEYWORD [MORE_KEYWORDS]…​`                                               |
+ | [**Find Contacts**](#finding-contacts-findc)                                                                                       | `findc KEYWORD [MORE_KEYWORDS]…​`                                                        |
 | [**Delete**](#deleting-a-contact--deletec)                                                                                         | `deletec INDEX`                                                                          |
 | [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
-| [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt`                                                                                  |
+| [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt all\` or `listt nc/` or `listt c/`                                                |
 | [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`                 |
 | [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                        |
 | [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1, DATETIME2`                                                          |
