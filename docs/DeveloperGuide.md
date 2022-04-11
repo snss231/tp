@@ -314,7 +314,25 @@ The following sequence diagram shows how the view task operation works:
 * **Alternative 2: Display an empty list**.
   * Pros: Clearly inform the users that the task has no people associate with it.
   * Cons: Requires more commands by the user in order to use the column again.
-  
+
+### Find Task feature
+The find task mechanism is facilitated by `FindTaskCommand`, `FilterCommandParser`, `ModelManager` and `Task`. Additionally, it implements the following operation:
+* `FilterCommandParser#parse()` — Parses the arguments provided by the users into a command to be executed.
+* `FindTaskCommand#execute()`  — Executes the operations required to display the task that matches the search keywords.
+* `ModelManager#getFilteredTaskList()`  — Gets the task list currently displayed as output to the user.
+* `ModelManager#updateFilteredTaskList()`  — Updates the task list displayed as output to the user by providing the argument with a list of task.
+
+Given below is an example usage scenario and how the view task mechanism behaves at each step.
+
+Step 1. The user will enter the command `findt brush` to find all tasks that have the keyword `brush`. The command will be handled by
+`AddressBoomParser#parseCommand()` which will create a `FilterCommandParser` object.
+
+Step 2. The `FilterCommandParser` will call `FilterCommandParser#parse()` which will parse the command, returning a `FindTaskCommand` to be executed.
+
+Step 3. The `FindTaskCommand` will call `FindTaskCommand#execute()` which will execute the command. It will update the existing task list to only show
+the task with the search keywords by calling `ModelManager#updateFilteredTaskList()`.
+
+Step 4. Finally, the `FindTaskCommand` will return the command result of how many tasks were found, by calling `ModelManager#getFilteredTaskList().size()`
 
 
 --------------------------------------------------------------------------------------------------------------------
