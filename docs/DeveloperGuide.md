@@ -212,7 +212,7 @@ Step 4: Return either a success message with the added `Task` or a `CommandExcep
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Delete person feature
@@ -303,8 +303,6 @@ Possible outcome from the result.
 
 The Sequence Diagram below illustrates the overall interactions of how the edit task feature work.
 ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### View Task feature
 The view task mechanism is facilitated by `ViewCommand`, `ViewCommandParser`, `ModelManager` and `Task`. Additionally, it implements the following operation:
@@ -320,9 +318,10 @@ Given below is an example usage scenario and how the view task mechanism behaves
 Step 1: The user will enter the command `view 1` to view the people associated with the first task. The command will be handled by
 `AddressBookParser#parseCommand()` which will create a `ViewCommandParser` object.
 
-Step 2: The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
+Step 2. The `AddressBookParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-Step 3: `ViewCommand#execute()` is then called which will execute the command. It will retrieve the task list
+Step 3. The `LogicManager` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
+
 by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
 Step 4: Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
@@ -330,6 +329,9 @@ Step 4: Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the
 
 The following sequence diagram shows how the view task operation works:
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
 
@@ -339,7 +341,7 @@ The following sequence diagram shows how the view task operation works:
   * Pros: Reduce commands required by user to populate and use the column for input.
   * Cons: May be confusing to user.
 
-* **Alternative 2: Display an empty list**.
+* **Alternative 2:** Display an empty list.
   * Pros: Clearly inform the users that the task has no people associate with it.
   * Cons: Requires more commands by the user in order to use the column again.
   
@@ -379,35 +381,36 @@ The following sequence diagram shows how the view task operation works:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​   | I want to …​                                           | So that I can…​                                                           |
-|----------|-----------|--------------------------------------------------------|---------------------------------------------------------------------------|
-| `* * *`  | new user  | see usage instructions                                 | refer to instructions when I forget how to use the App                    |
-| `* * *`  | user      | add a new person                                       | manage my contacts more efficiently                                       |
-| `* * *`  | user      | add a new task                                         | manage my schedule more efficiently                                       |
-| `* * *`  | user      | delete a person                                        | remove entries that I no longer need                                      |
-| `* * *`  | user      | delete a task                                          | remove the task I no longer need                                          |
-| `* * *`  | user      | find a person by name                                  | locate details of persons without having to go through the entire list    |
-| `* * *`  | user      | assign people to tasks                                 | easily keep track of the people involved in a task                        |
-| `* * *`  | user      | unassign people from tasks                             | easily maintain the list of people involved in a task                     |
-| `* * *`  | user      | find a person by name                                  | locate details of persons without having to go through the entire list    |
-| `* * *`  | user      | tag my contacts                                        | organize the contacts to look neater                                      |
-| `* * *`  | user      | filter my tasks by name                                | locate tasks without having to go through the entire list                 |
-| `* * *`  | user      | view contact detail                                    | know the information of the contact                                       |
-| `* * *`  | user      | tag tasks                                              | organise my tasks                                                         |
-| `* * *`  | user      | assign and remove the task to/from my contacts         | allocate my tasks to the specific contact as needed                       |
-| `* * *`  | user      | view the contact assigned to a task                    | know who I am suppose to contact                                          |
-| `* *`    | user      | import contact data from a csv file                    | easily initialize my contacts without having to type hundreds of commands |
-| `* *`    | user      | generate emails of all the contacts assigned to a task | easily transfer the emails to my preferred email client to contact them   | 
-| `* *`    | user      | get a contact's Github username                        | lookup their Github profiles                                              |
-| `* *`    | Professor | group the students based on module                     | know which student is under which module                                  |
-| `*`      | Professor | add graded component of the module                     | track students' performance of the module                                 |
+| Priority | As a …​             | I want to …​                                           | So that I can…​                                                           |
+|----------|---------------------|--------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user            | see usage instructions                                 | refer to instructions when I forget how to use the App                    |
+| `* * *`  | user                | add a new person                                       | manage my contacts more efficiently                                       |
+| `* * *`  | user                | add a new task                                         | manage my schedule more efficiently                                       |
+| `* * *`  | user                | delete a person                                        | remove entries that I no longer need                                      |
+| `* * *`  | user                | delete a task                                          | remove the task I no longer need                                          |
+| `* * *`  | user                | find a person by name                                  | locate details of persons without having to go through the entire list    |
+| `* * *`  | user                | assign people to tasks                                 | easily keep track of the people involved in a task                        |
+| `* * *`  | user                | unassign people from tasks                             | easily maintain the list of people involved in a task                     |
+| `* * *`  | user                | find a person by name                                  | locate details of persons without having to go through the entire list    |
+| `* * *`  | user                | tag my contacts                                        | organize the contacts to look neater                                      |
+| `* * *`  | user                | filter my tasks by name or date                        | locate tasks without having to go through the entire list                 |
+| `* * *`  | user                | view contact details                                   | lookup important contact information                                      |
+| `* * *`  | user                | tag tasks                                              | organise my tasks                                                         |
+| `* * *`  | user                | assign and remove the task to/from my contacts         | allocate my tasks to the specific contact as needed                       |
+| `* * *`  | user                | view the contacts assigned to a task                   | lookup the information of the people assigned to a task                   |
+| `* *`    | lecturer            | store the meeting links of my tasks                    | easily access the meetings when I need to                                 |
+| `* *`    | user                | import contact data from a csv file                    | easily initialize my contacts without having to type hundreds of commands |
+| `* *`    | user                | generate emails of all the contacts assigned to a task | easily transfer the emails to my preferred email client to contact them   | 
+| `* *`    | computing professor | get a contact's Github username                        | lookup their Github profiles                                              |
+| `* *`    | professor           | group the students based on module                     | know which student is under which module                                  |
+| `*`      | professor           | add graded component of the module                     | track students' performance of the module                                 |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is `NUS Classes` and the **Actor** is the `user`, unless specified otherwise)
 
-###Use case: UC01 - Delete a person
+### Use case: UC01 - Delete a person
 
 **MSS**
 
@@ -429,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case resumes from step 3.
     
 
-###Use case: UC02 - Import contacts
+### Use case: UC02 - Import contacts
 
 **MSS**
 1. User requests to import contacts, providing the filepath of the source data file.
@@ -449,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case continues from step 1.
 
 
-###Use case: UC03 - See all scheduled tasks
+### Use case: UC03 - See all scheduled tasks
 
 **MSS**
 1. User requests to see all tasks
@@ -457,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
   
-###Use case: UC04 - Schedule a task with a group
+### Use case: UC04 - Schedule a task with a group
 
 **MSS**
 
@@ -470,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. 0 optional arguments are provided
+* 1a. Compulsory arguments are omitted (e.g. name or date-time)
     * 1a1. NUS Classes shows an error message.
       Use case ends.
 
@@ -479,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Use case ends.
   
     
-###Use case: UC05 - Update a task
+### Use case: UC05 - Update a task
 
 **MSS**
 
@@ -494,11 +497,14 @@ Use case ends
 * 2a. The index is out of bounds/invalid
   * 2a1. NUS Classes shows an error message. 
   * Use case ends.
-* 2b. The fields provided are invalid
+* 2b. The fields provided are invalid 
   * 2b1. NUS Classes shows an error message.
   * Use case ends.
+* 2c. No optional arguments are provided
+  * 2c1. NUS Classes shows an error message.
+  * Use case ends.
 
-###Use case: UC06 - Generate emails of all contacts assigned to a task
+### Use case: UC06 - Generate emails of all contacts assigned to a task
 
 **MSS**
 
@@ -520,7 +526,22 @@ Use case ends.
   * 3a1. User pastes the emails into their preferred email application
   * Use case ends.
 
-    
+### Use case: UC07 - Searching for tasks by name and/or tags
+
+**MSS**
+
+1. User specifies the keyword to search for.
+2. NUS Classes displays the tasks whose names and/or tags match the keyword.
+Use case ends.
+
+### Use case: UC08 - Searching for tasks by date range
+
+**MSS**
+
+1. User specifies the date range to search for.
+2. NUS Classes displays the tasks whose date(s) fit within the range.
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -588,12 +609,15 @@ testers are expected to do more *exploratory* testing.
       * make sure to specify the filepath relative to the jar directory, specified according your OS's file system.
 
 ## **Glossary**
-<dl>
-  <dt>API</dt>
-  <dd>Application Programming Interface. Enables different systems to interact with each other programmatically.</dd>
-  <dt>Mainstream OS</dt>
-  <dt>.csv</dt>
-  <dd>A plain text file containing a list of data, separated by commas</dd>
-  <dtNUS Classes</dt>
-  <dd>The name of the application.</dd>
-</dl>
+
+| Term          | Meaning                                                                                                                                                                                    |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| API           | Application Programming Interface. Enables different systems to interact with each other programmatically                                                                                  |
+| .csv          | A plain text file containing a list of data, separated by commas                                                                                                                           |
+| NUS           | National University of Singapore                                                                                                                                                           | 
+| NUS Classes   | The name of the application                                                                                                                                                                |
+| Mainstream OS | Windows, Linux, MacOS                                                                                                                                                                      |
+| UI            | User Interface, the means by which the user interacts with the system                                                                                                                      |
+| CLI           | Command-line interface, which processes text-based commands from the user                                                                                                                  |
+| GUI           | Graphical user interface, a visual way of interacting with a computer using items such as windows, icons and menus                                                                         |
+| Jar           | A JAR (Java ARchive) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
