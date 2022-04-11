@@ -505,7 +505,7 @@ Use case ends.
 **MSS**
 
 1. User specifies the keyword to search for.
-2. NUS Classes returns the tasks whose names and/or tags match the keyword.
+2. NUS Classes displays the tasks whose names and/or tags match the keyword.
 Use case ends.
 
 ### Use case: UC08 - Searching for tasks by date range
@@ -513,7 +513,7 @@ Use case ends.
 **MSS**
 
 1. User specifies the date range to search for.
-2. NUS Classes returns the tasks whose date(s) fit within the range.
+2. NUS Classes displays the tasks whose date(s) fit within the range.
    Use case ends.
 
 
@@ -583,13 +583,14 @@ testers are expected to do more *exploratory* testing.
       * make sure to specify the filepath relative to the jar directory, specified according your OS's file system.
 
 ## **Glossary**
-<dl>
-  <dt>API</dt>
-  <dd>Application Programming Interface. Enables different systems to interact with each other programmatically.</dd>
-  <dt>Mainstream OS</dt>
-  <dd>Windows, Linux, MacOS</dd>
-  <dt>.csv</dt>
-  <dd>A plain text file containing a list of data, separated by commas</dd>
-  <dt>NUS Classes</dt>
-  <dd>The name of the application.</dd>
-</dl>
+
+| Term          | Meaning                                                                                                                                                                                    |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| API           | Application Programming Interface. Enables different systems to interact with each other programmatically                                                                                  |
+| .csv          | A plain text file containing a list of data, separated by commas                                                                                                                           |
+| NUS Classes   | The name of the application                                                                                                                                                                |
+| Mainstream OS | Windows, Linux, MacOS                                                                                                                                                                      |
+| UI            | User Interface, the means by which the user interacts with the system                                                                                                                      |
+| CLI           | Command-line interface, which processes text-based commands from the user                                                                                                                  |
+| GUI           | Graphical user interface, a visual way of interacting with a computer using items such as windows, icons and menus                                                                         |
+| Jar           | A JAR (Java ARchive) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
