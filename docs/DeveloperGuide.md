@@ -446,7 +446,6 @@ Use case ends.
   * Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. NUS Classes shows an error message. 
     * Use case resumes from step 3.
     
@@ -489,20 +488,23 @@ Use case ends.
 
 1. User requests to create a task
 2. NUS Classes creates the task
-3. User requests to assign contacts to the task
-4. NUS Classes assigns the contacts to the task
+3. User requests to assign a contact to the task
+4. NUS Classes assigns the contact to the task
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Compulsory arguments are omitted (e.g. name or date-time)
+* 1a. NUS Classes detects that compulsory arguments are omitted (e.g. name or date-time)
     * 1a1. NUS Classes shows an error message.
     * Use case ends.
 
-* 2a. Invalid group type/index is provided
-  * 2a1. NUS Classes shows an error message.
-  * Use case ends.
+* 3a. NUS Classes detects that invalid task or contact index is provided
+  * 3a1. NUS Classes shows an error message.
+  * Use case continues from step 3.
+
+* 4a. User wishes to assign more contacts to the task
+  * Use case continues from step 3.
   
     
 ### Use case: UC05 - Update a task
@@ -517,13 +519,13 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The index is out of bounds/invalid
+* 2a. NUS Classes detects that the index provided is out of bounds/invalid
   * 2a1. NUS Classes shows an error message. 
   * Use case ends.
-* 2b. The fields provided are invalid 
+* 2b. NUS Classes detects that the fields provided are invalid 
   * 2b1. NUS Classes shows an error message.
   * Use case ends.
-* 2c. No optional arguments are provided
+* 2c. NUS Classes detects that no optional arguments are provided
   * 2c1. NUS Classes shows an error message.
   * Use case ends.
 
