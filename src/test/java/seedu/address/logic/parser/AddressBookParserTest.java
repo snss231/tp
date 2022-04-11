@@ -4,6 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKA_STRING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TASKB_STRING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -28,6 +33,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterByDateCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.GenerateEmailsCommand;
@@ -43,6 +49,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskBetweenDatesPredicate;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -210,5 +217,28 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_findTaskWithDate() throws Exception {
+        String userInput = FilterByDateCommand.COMMAND_WORD
+                + " "
+                + PREFIX_DATETIME
+                + VALID_DATETIME_TASKA_STRING
+                + ","
+                + VALID_DATETIME_TASKB_STRING;
+        FilterByDateCommand command = (FilterByDateCommand) parser.parseCommand(userInput);
+        assertEquals(new FilterByDateCommand(new TaskBetweenDatesPredicate(
+                Arrays.asList(VALID_DATETIME_TASKB, VALID_DATETIME_TASKA))),
+                command);
+    }
+
+    @Test
+    public void parseCommand_findTask() throws Exception {
+        String userInput = FindTaskCommand.COMMAND_WORD + " Brush students";
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(userInput);
+        assertEquals(new FindTaskCommand(new TaskNameContainsKeywordsPredicate(
+                Arrays.asList("Brush", "students"))),
+                command);
     }
 }

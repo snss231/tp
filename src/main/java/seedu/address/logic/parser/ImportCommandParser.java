@@ -21,11 +21,12 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new ImportCommand object
+ */
 public class ImportCommandParser implements Parser<ImportCommand> {
 
     public static final String MESSAGE_CSV_MISSING_HEADERS = "Missing headers in the file \"%s\"";
-
-    public static final String MESSAGE_CSV_MISSING_FIELD = "Error: found empty field in the file \"%s\"";
 
     public static final String MESSAGE_FOLDER_SPECIFIED = "Error: \"%s\" is a directory";
 
@@ -69,7 +70,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             throw new ParseException(String.format(MESSAGE_FOLDER_SPECIFIED, file.getPath()));
         }
 
-        List<Person> toAdd = new ArrayList<>();
+        List<Person> personToAddList = new ArrayList<>();
 
         List<String> invalidFields = new ArrayList<>();
 
@@ -129,13 +130,13 @@ public class ImportCommandParser implements Parser<ImportCommand> {
                     }
                 }
 
-                toAdd.add(new Person(name, phone, email, gitUsername, tags));
+                personToAddList.add(new Person(name, phone, email, gitUsername, tags));
             }
 
         } catch (FileNotFoundException e) {
             throw new ParseException(String.format(MESSAGE_CSV_MISSING_HEADERS, file.getPath()));
         }
 
-        return new ImportCommand(toAdd, argMultimap.getValue(PREFIX_FILEPATH).get(), invalidFields);
+        return new ImportCommand(personToAddList, argMultimap.getValue(PREFIX_FILEPATH).get(), invalidFields);
     }
 }

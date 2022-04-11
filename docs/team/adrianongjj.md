@@ -23,7 +23,8 @@ Given below are my contributions to the project.
 
 
 * **Project management**:
-  * Assigned tasks to myself
+  * Set up team's repo
+  * Assigning tasks to myself
 
 * **Enhancements to existing feature**:
   * What it does: Find all tasks based on their tags
@@ -37,8 +38,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
+    * Updated `findt` based on tags [\#190](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/190)
+    * Changed `filter` to `findt` for standardisation [\#186](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/186)
     * Added `filter` command [\#64](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/64)
   * Developer Guide:
+    * Added `findt` logic [\#303](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/303)
     * Updated Glossary [\#22](../DeveloperGuide.md)
 
 * **Community**:

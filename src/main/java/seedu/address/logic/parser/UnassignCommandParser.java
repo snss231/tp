@@ -9,6 +9,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new unassignCommand object
+ */
 public class UnassignCommandParser implements Parser<UnassignCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UnassignCommand
@@ -25,8 +28,9 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON)) {
             String missingParameterMessage = displayInvalidParameters(argMultimap);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, missingParameterMessage
-                    + "\n" + UnassignCommand.MESSAGE_USAGE));
+            String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, missingParameterMessage
+                    + "\n" + UnassignCommand.MESSAGE_USAGE);
+            throw new ParseException(errorMessage);
         }
 
         taskIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
