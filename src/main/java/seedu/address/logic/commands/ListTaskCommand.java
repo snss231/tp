@@ -11,7 +11,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_UNMARK_TASKS;
 import seedu.address.model.Model;
 
 /**
- * Lists all tasks in the address book to the user.
+ * Lists all tasks in the task list to the user.
  */
 public class ListTaskCommand extends Command {
 
@@ -32,7 +32,7 @@ public class ListTaskCommand extends Command {
     private String prefix;
 
     /**
-     * Constructor for ListTaskCommand
+     * Constructs ListTaskCommand that takes in prefix.
      *
      * @param prefix prefix based on user input.
      */

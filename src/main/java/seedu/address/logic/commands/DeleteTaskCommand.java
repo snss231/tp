@@ -28,6 +28,10 @@ public class DeleteTaskCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a DeleteTaskCommand to delete the specified {@code targetIndex}
+     *
+     */
     public DeleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

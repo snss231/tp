@@ -168,5 +168,9 @@ public interface Model {
      */
     void unmarkTask(Task task);
 
-    void setTaskList(ReadOnlyTaskList tasks);
+    /**
+     * Replaces Task list data with the data in {@code tasklist}.
+     *
+     */
+    void setTaskList(ReadOnlyTaskList taskList);
 }

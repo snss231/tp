@@ -17,10 +17,10 @@ import seedu.address.model.tag.Tag;
  * Task consists of a String object representing a name and a LocalDateTime object representing the date and time.
  */
 public class Task {
-    static final DateTimeFormatter FORMAT_TIME = DateTimeFormatter.ofPattern("h.mm a");
-    static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
-    static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
-    static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
+    public static final DateTimeFormatter FORMAT_TIME = DateTimeFormatter.ofPattern("h.mm a");
+    public static final DateTimeFormatter FORMAT_DAY_OF_WEEK = DateTimeFormatter.ofPattern("EEE, h.mm a");
+    public static final DateTimeFormatter FORMAT_MONTH = DateTimeFormatter.ofPattern("dd MMM, h.mm a");
+    public static final DateTimeFormatter FORMAT_YEAR = DateTimeFormatter.ofPattern("dd MMM yyyy, h.mm a");
     private static final int MAX_LENGTH = 100;
     private static final int MIN_LENGTH = 3;
     public static final String NAME_LENGTH_ERROR = "The name of the tasks must be at least "
@@ -32,15 +32,16 @@ public class Task {
     private Set<Tag> tags;
     private Link link;
     private boolean isMarkDone;
+
     /**
-     * Constructor for Task.
+     * Constructs Task that takes in the following parameters.
      *
-     * @param name Name of task
-     * @param people People to be added to the list
-     * @param dateTime LocalDateTime object representing Date and Time for Task
-     * @param tags Tags for the tasks
-     * @param link Link to be added to the task
-     * @param isMarkDone true if task is done, else false
+     * @param name Name of task.
+     * @param people People to be added to the list.
+     * @param dateTime LocalDateTime object representing Date and Time for Task.
+     * @param tags Tags for the tasks.
+     * @param link Link to be added to the task.
+     * @param isMarkDone true if task is done, else false.
      */
     public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, List<Person> people, Set<Tag> tags,
                 Link link, boolean isMarkDone) {
@@ -62,7 +63,7 @@ public class Task {
     }
 
     /**
-     * Constructor for Task with endDateTime but no people.
+     * Constructs Task with endDateTime but no people.
      */
     public Task(String name, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link,
                 boolean isMarkDone) {
@@ -70,7 +71,7 @@ public class Task {
     }
 
     /**
-     * Constructor for Task without people or endDateTime.
+     * Constructs Task without people or endDateTime.
      */
     public Task(String name, LocalDateTime dateTime, Set<Tag> tags, Link link, boolean isMarkDone) {
         this(name, dateTime, null, new ArrayList<>(), tags, link, isMarkDone);
@@ -90,7 +91,7 @@ public class Task {
     /**
      * Adds a person to the list of people associated with the task.
      *
-     * @param person Person to add
+     * @param person Person to add.
      */
     public void addPerson(Person person) {
         people.add(person);
@@ -99,7 +100,7 @@ public class Task {
     /**
      * Removes a person from the list of people associated with the task.
      *
-     * @param person Person to remove
+     * @param person Person to remove.
      */
     public void removePerson(Person person) {
         people.remove(person);
@@ -108,8 +109,8 @@ public class Task {
     /**
      * Updates a person in the list of people associated with the task.
      *
-     * @param person The person to update
-     * @param editedPerson The edited person
+     * @param person The person to update.
+     * @param editedPerson The edited person.
      */
     public void updatePerson(Person person, Person editedPerson) {
         int index = people.indexOf(person);
@@ -119,18 +120,18 @@ public class Task {
     }
 
     /**
-     * Changes DateTime of Task
+     * Changes DateTime of Task.
      *
-     * @param newDateTime LocalDateTime of new DateTime
+     * @param newDateTime LocalDateTime of new DateTime.
      */
     public void changeDateTime(LocalDateTime newDateTime) {
         this.dateTime = newDateTime;
     }
 
     /**
-     * Changes EndDateTime of Task
+     * Changes EndDateTime of Task.
      *
-     * @param endDateTime LocalDateTime of new endDateTime
+     * @param endDateTime LocalDateTime of new endDateTime.
      */
     public void changeEndDateTime(LocalDateTime endDateTime) {
         this.endDateTime = endDateTime;
@@ -178,10 +179,10 @@ public class Task {
     }
 
     /**
-     * Utility method for generating date representation relative to current calendar day
+     * Methods for generating date representation relative to current calendar day.
      *
-     * @param dateTime The dateTime to be processed
-     * @return User-friendly dateTime string
+     * @param dateTime The dateTime to be processed.
+     * @return User-friendly dateTime string.
      */
     static String getUserFriendlyDateTime(LocalDateTime dateTime) {
         LocalDateTime today = LocalDate.now().atStartOfDay();
@@ -348,8 +349,8 @@ public class Task {
     /**
      * Returns if a given string is a valid length.
      */
-    public static boolean isValidLength(String test) {
-        return (test.length() >= MIN_LENGTH && test.length() <= MAX_LENGTH);
+    public static boolean isValidLength(String testString) {
+        return (testString.length() >= MIN_LENGTH && testString.length() <= MAX_LENGTH);
     }
 
     @Override

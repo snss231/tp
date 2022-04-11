@@ -30,7 +30,7 @@ public class UnmarkTaskCommand extends Command {
 
 
     /**
-     * Constructor for UnmarkTaskCommand.
+     * Constructs UnmarkTaskCommand that takes in a task index.
      *
      * @param targetIndex the index of the task.
      */
@@ -42,13 +42,13 @@ public class UnmarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> latestShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= latestShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        Task taskToMark = latestShownList.get(targetIndex.getZeroBased());
         model.unmarkTask(taskToMark);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToMark));
     }

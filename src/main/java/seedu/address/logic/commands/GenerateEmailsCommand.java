@@ -23,15 +23,18 @@ public class GenerateEmailsCommand extends Command {
             + "INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    static final String MESSAGE_NO_CONTACTS_ASSIGNED =
+    public static final String MESSAGE_NO_CONTACTS_ASSIGNED =
             "Failed: There are no contacts assigned to the task %1$s";
 
-    static final String MESSAGE_GENERATED_EMAILS = "Here are the emails related to the task %1$s:\n"
+    public static final String MESSAGE_GENERATED_EMAILS = "Here are the emails related to the task %1$s:\n"
             + "%2$s";
-
 
     private final Index targetIndex;
 
+    /**
+     * Constructs GenerateEmailsCommand that takes in a {@code targetIndex}.
+     *
+     */
     public GenerateEmailsCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
