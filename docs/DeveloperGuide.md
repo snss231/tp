@@ -258,7 +258,7 @@ Execution flow of Activity Diagram:
 ![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
 
 #### Design considerations:
-**Aspect: How delete task executes:**
+**Aspect:** How delete task executes:
 
 * **Alternative 1 (current choice):** Delete task based on the index shown.
     * Pros: Easy to implement.
@@ -364,16 +364,16 @@ The following sequence diagram shows how the view task operation works:
 ### Product scope
 
 **Target user profile**:
+* NUS computing professors that:
+  * need to manage a large number of contacts
+  * need to categorise these contacts (e.g. by role - Teaching Assistant, Student - or by class groups)
+  * need to keep track of relevant contact details (e.g. Github username, email)
+  * need to keep track of the people involved in each task
+  * prefer desktop apps over other types
+  * prefers typing to mouse interactions
+  * is reasonably comfortable using CLI apps
 
-* NUS professors
-* has a need to manage a significant number of contacts
-* has a need to organise these contacts (e.g. by role - Teaching Assistant, Student - or by class groups)
-* has a need to keep track of who's involved in each task
-* prefer desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: Professors can easily organise their module-related tasks and contacts in one place, boosting their efficiency and productivity.
+**Value proposition**: NUS Professors can easily organise their module-related tasks and relevant contact details in one place, boosting their efficiency and productivity.
 
 
 ### User stories
@@ -419,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific person in the list
 4. NUS Classes deletes the person
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -437,6 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to import contacts, providing the filepath of the source data file.
 2. NUS Classes adds the contacts to the contact list.
+Use case ends.
 
 **Extensions**
 
@@ -458,6 +459,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to see all tasks
 2. NUS Classes shows a list of scheduled tasks
 
+Use case ends.
+
 
   
 ### Use case: UC04 - Schedule a task with a group
@@ -469,13 +472,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to assign contacts to the task
 4. NUS Classes assigns the contacts to the task
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 1a. Compulsory arguments are omitted (e.g. name or date-time)
     * 1a1. NUS Classes shows an error message.
-      Use case ends.
+    * Use case ends.
 
 * 2a. Invalid group type/index is provided
   * 2a1. NUS Classes shows an error message.
@@ -532,6 +535,7 @@ Use case ends.
 
 1. User specifies the keyword to search for.
 2. NUS Classes displays the tasks whose names and/or tags match the keyword.
+
 Use case ends.
 
 ### Use case: UC08 - Searching for tasks by date range
@@ -540,7 +544,8 @@ Use case ends.
 
 1. User specifies the date range to search for.
 2. NUS Classes displays the tasks whose date(s) fit within the range.
-   Use case ends.
+
+Use case ends.
 
 
 ### Non-Functional Requirements
