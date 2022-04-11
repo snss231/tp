@@ -687,7 +687,7 @@ Given below are instructions to test the app manually.
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | API           | Application Programming Interface. Enables different systems to interact with each other programmatically                                                                                  |
 | .csv          | A plain text file containing a list of data, separated by commas                                                                                                                           |
-| MSS           | Main Success Scenario,  The action steps of a typical scenario where the goal is delivered                                                                                                 |
+| MSS           | Main Success Scenario,  the action steps of a typical scenario where the goal is delivered                                                                                                 |
 | NUS           | National University of Singapore                                                                                                                                                           | 
 | NUS Classes   | The name of the application                                                                                                                                                                |
 | Mainstream OS | Windows, Linux, MacOS                                                                                                                                                                      |
