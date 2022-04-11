@@ -16,6 +16,8 @@ Blue text boxes are additional tips and notes to enhance your experience with NU
 
 Hope you'll be satisfied using NUSClasses :smile:
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 * [Quick Start](#quick-start)
@@ -50,6 +52,8 @@ Hope you'll be satisfied using NUSClasses :smile:
 * [FAQ](#faq)
 * [Prefix Summary](#prefix-summary)
 * [Command Summary](#command-summary)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -121,6 +125,8 @@ Shows a message with the link to the User Guide for reference.
 ![help message](images/helpmessage2.png)
 
 **Format**: `help`
+
+<div style="page-break-after: always;"></div>
 
 ## Contact Features
 
@@ -226,6 +232,7 @@ The index **must be a positive integer** 1, 2, 3, …​
     ![result for `deletec 1` part 1](images/deletecCommandShowcase1.png) <br><br>
     ![result for `deletec 1` part 2](images/deletecCommandShowcase2.png)
 
+<div style="page-break-after: always;"></div>
 
 ## Task Features
 
@@ -527,6 +534,8 @@ The index **must be a positive integer** 1, 2, 3, …​
   ![`gen 1`](images/genCommandShowcase.png)
 
 
+<div style="page-break-after: always;"></div>
+
 # Other Features
 
 ### Clearing all data : `clear`
@@ -582,6 +591,7 @@ Imports a list of contacts from a .csv file.
   ![`importCommand2`](images/importCommandShowcase2.png)
 
 
+
 ### User-friendly date display
 
 Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be displayed based on the current day to be more user-friendly. Here's a reference if you get confused:
@@ -595,6 +605,7 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 | Day, month and year             | -                                                                                                                                                                                                                         |
 
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -615,6 +626,7 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 **Q**: What do I do to update the app?<br>
 **A**: Uninstall the current version of the app. Then, download the latest version of `NUSClasses.jar` from our [GitHub releases](https://github.com/AY2122S2-CS2103T-T12-4/tp/releases)
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -637,6 +649,8 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 | `c/`      | Shows all completed tasks in the list.                                        | Only used in `listt`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `listt`                                                                                       |
 | `nc/`     | Shows all uncompleted tasks in the list.                                      | Only used in `listt`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `listt`                                                                                       |
 
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
