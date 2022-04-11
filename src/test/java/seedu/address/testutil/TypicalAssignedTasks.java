@@ -17,25 +17,24 @@ public class TypicalAssignedTasks {
     public static final List<Person> GROUP_THREE = Arrays.asList(TypicalPersons.GEORGE);
 
     public static final Task BRUSH_TEETH = new TaskBuilder().withTaskName("Brush my teeth")
-            .withDateTime(LocalDateTime.of(2022, 12, 15, 21, 0))
-            .withPeople(GROUP_ONE)
+            .withDateTime(LocalDateTime.of(2050, 12, 15, 21, 0))
             .withPeople(GROUP_ONE)
             .withTags("Chores").withLink("").build();
 
     public static final Task LAUNDRY = new TaskBuilder().withTaskName("Do the laundry")
-            .withDateTime(LocalDateTime.of(2022, 6, 2, 15, 0))
+            .withDateTime(LocalDateTime.of(2050, 6, 2, 15, 0))
             .withPeople(GROUP_TWO)
             .withTags("Chores").withLink("").build();
 
     public static final Task CONSULTATION = new TaskBuilder().withTaskName("Consultation with students")
-            .withDateTime(LocalDateTime.of(2022, 8, 3, 14, 0))
+            .withDateTime(LocalDateTime.of(2050, 8, 3, 14, 0))
             .withTags("Consult")
             .withPeople(GROUP_THREE)
             .withLink("www.google.com")
             .build();
 
     public static final Task INVIGILATOR_MEETING = new TaskBuilder().withTaskName("Meeting with exam invigilators")
-            .withDateTime(LocalDateTime.of(2022, 2, 5, 14, 30))
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
             .withTags("Meeting")
             .withLink("www.google.com")
             .build();

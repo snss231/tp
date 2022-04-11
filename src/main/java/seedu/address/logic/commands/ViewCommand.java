@@ -72,4 +72,11 @@ public class ViewCommand extends Command {
         return new CommandResult(
                 String.format(DISPLAY_TASK_CONTACT_SUCCESS, listSize));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
+    }
 }

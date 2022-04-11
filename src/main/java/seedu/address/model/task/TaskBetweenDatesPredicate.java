@@ -16,10 +16,20 @@ public class TaskBetweenDatesPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        return (task.getDateTime().isAfter(beforeAfterDates.get(0))
-            && task.getDateTime().isBefore(beforeAfterDates.get(1))
-            || task.getDateTime().isEqual(beforeAfterDates.get(0))
-            || task.getDateTime().isEqual(beforeAfterDates.get(1)));
+        if (task.getEndDateTime() == null) {
+            return (task.getDateTime().isAfter(beforeAfterDates.get(0))
+                    && task.getDateTime().isBefore(beforeAfterDates.get(1))
+                    || task.getDateTime().isEqual(beforeAfterDates.get(0))
+                    || task.getDateTime().isEqual(beforeAfterDates.get(1)));
+        } else {
+            return (task.getDateTime().isAfter(beforeAfterDates.get(0))
+                    && task.getDateTime().isBefore(beforeAfterDates.get(1))
+                    || (task.getEndDateTime().isAfter(beforeAfterDates.get(0))
+                    && task.getEndDateTime().isBefore(beforeAfterDates.get(1)))
+                    || task.getDateTime().isEqual(beforeAfterDates.get(0))
+                    || task.getEndDateTime().isEqual(beforeAfterDates.get(1)));
+        }
+
 
     }
 

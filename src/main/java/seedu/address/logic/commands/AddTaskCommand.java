@@ -37,8 +37,8 @@ public class AddTaskCommand extends Command {
             + " [" + PREFIX_RECURRING + "PERIOD RECURRENCE]\n"
             + "Example: " + "addt" + " "
             + PREFIX_TASKNAME + "Lecture "
-            + PREFIX_DATETIME + "25-12-2022 1800,"
-            + "25-12-2022 2000 "
+            + PREFIX_DATETIME + "25-12-2023 1800,"
+            + "25-12-2023 2000 "
             + PREFIX_TAG + "CS2103T "
             + PREFIX_LINK + "https://... "
             + PREFIX_RECURRING + "5 5\n"
@@ -72,7 +72,7 @@ public class AddTaskCommand extends Command {
     public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags, Link link,
                           int recurrence, int period) {
 
-        requireAllNonNull(taskName, dateTime, tags, link);
+        requireAllNonNull(taskName, dateTime, tags);
         this.taskName = taskName;
         this.dateTime = dateTime;
         this.endDateTime = endDateTime;
@@ -89,6 +89,22 @@ public class AddTaskCommand extends Command {
     public AddTaskCommand(String taskName, LocalDateTime dateTime, LocalDateTime endDateTime, Set<Tag> tags,
                           Link link) {
         this(taskName, dateTime, endDateTime, tags, link, 0, 0);
+    }
+
+    /**
+     * Constructor that takes in a Task and creates an AddTaskCommand.
+     *
+     * @param task Task from which information is added to AddTaskCommand.
+     */
+    public AddTaskCommand(Task task) {
+        this.taskName = task.getName();
+        this.dateTime = task.getDateTime();
+        this.endDateTime = task.getEndDateTime();
+        this.tags = task.getTags();
+        this.link = task.getLink();
+        this.recurrence = 0;
+        this.period = 0;
+        this.isTaskMarkDone = false;
     }
 
     @Override
@@ -117,5 +133,18 @@ public class AddTaskCommand extends Command {
             model.addTask(taskToBeAdded);
         }
         return new CommandResult(ADD_TASK_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return (other instanceof AddTaskCommand
+                && this.taskName.equals(((AddTaskCommand) other).taskName)
+                && this.dateTime.equals(((AddTaskCommand) other).dateTime)
+                && this.tags.equals(((AddTaskCommand) other).tags));
+    }
+
+    @Override
+    public String toString() {
+        return this.taskName + " " + this.dateTime + " " + this.tags + " " + this.link;
     }
 }

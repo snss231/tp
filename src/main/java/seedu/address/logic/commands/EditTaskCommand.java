@@ -38,12 +38,12 @@ public class EditTaskCommand extends Command {
             + COMMAND_WORD + " "
             + "INDEX "
             + "[" + PREFIX_TASKNAME + "TASK NAME] "
-            + "[" + PREFIX_DATETIME + "TIME(dd-mm-yyyy hhmm)] "
+            + "[" + PREFIX_DATETIME + "DATETIME(dd-mm-yyyy hhmm)] "
             + "[" + PREFIX_LINK + "LINK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASKNAME + "CS2103T Lecture "
-            + PREFIX_DATETIME + "12-03-2022 1330 "
+            + PREFIX_DATETIME + "12-03-2023 1330 "
             + PREFIX_LINK + "https://...  "
             + PREFIX_TAG + "Lecture";
 

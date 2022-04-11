@@ -15,13 +15,13 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -73,20 +73,6 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
 
     /**
      * Parses a {@code String email} into an {@code Email}.
@@ -100,7 +86,29 @@ public class ParserUtil {
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
+
+        if (!Email.isValidLength(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses task name
+     *
+     * @param option String input for Git username
+     * @return The Task name.
+     */
+    public static String parseTaskName(Optional<String> option) throws ParseException {
+        requireNonNull(option);
+
+        String trimmedUsername = option.get().trim();
+        if (!Task.isValidLength(trimmedUsername)) {
+            throw new ParseException(Task.NAME_LENGTH_ERROR);
+        }
+
+        return trimmedUsername;
     }
 
     /**
@@ -150,11 +158,14 @@ public class ParserUtil {
     /**
      * Parses {@Code Optional<String> option} into a {@code Link}.
      */
-    public static Link parseLink(Optional<String> option) {
+    public static Link parseLink(Optional<String> option) throws ParseException {
         requireNonNull(option);
         if (option.isEmpty()) {
-            return new Link("");
+            return new Link();
         } else {
+            if (!Link.isValidLink(option.get())) {
+                throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+            }
             return new Link(option.get());
         }
     }

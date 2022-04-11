@@ -12,23 +12,35 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task BRUSH_TEETH = new TaskBuilder().withTaskName("Brush my teeth")
-                    .withDateTime(LocalDateTime.of(2022, 12, 15, 21, 0))
-                    .withTags("Chores").withLink("").build();
+                    .withDateTime(LocalDateTime.of(2050, 12, 15, 21, 0))
+                    .withTags("Chores").withNoLink().build();
 
     public static final Task LAUNDRY = new TaskBuilder().withTaskName("Do the laundry")
-            .withDateTime(LocalDateTime.of(2022, 6, 2, 15, 0))
-            .withTags("Chores").withLink("").build();
+            .withDateTime(LocalDateTime.of(2050, 12, 15, 21, 0))
+            .withTags("Chores").withNoLink().build();
 
     public static final Task CONSULTATION = new TaskBuilder().withTaskName("Consultation with students")
-            .withDateTime(LocalDateTime.of(2022, 8, 3, 14, 0))
+            .withDateTime(LocalDateTime.of(2050, 8, 3, 14, 0))
             .withTags("Consult")
-            .withLink("www.google.com")
+            .withLink("https:google.com")
             .build();
 
     public static final Task INVIGILATOR_MEETING = new TaskBuilder().withTaskName("Meeting with exam invigilators")
-            .withDateTime(LocalDateTime.of(2022, 2, 5, 14, 30))
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
             .withTags("Meeting")
-            .withLink("www.google.com")
+            .withLink("https:apple.com")
+            .build();
+
+    public static final Task EXAM_INVIGILATION = new TaskBuilder().withTaskName("ZOOM INVIGILATING")
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
+            .withTags("Meeting")
+            .withLink("https:zoom.com")
+            .build();
+
+    public static final Task CONSULATION_CS2103 = new TaskBuilder().withTaskName("CS2103 CONSULTATION")
+            .withDateTime(LocalDateTime.of(2050, 2, 5, 14, 30))
+            .withTags("Meeting")
+            .withLink("https:zoom.com")
             .build();
 
     /**

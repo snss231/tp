@@ -1,14 +1,17 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * GitUsername represents the Github userID of a Person.
  */
 public class GitUsername {
 
+    //Credits to Stack Overflow. Accreditation done in PPP
     public static final String GIT_USERNAME_REGEX = "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+){0,2}$";
 
     public static final String MESSAGE_CONSTRAINTS = "Github usernames should only contain alphanumeric"
-            + "characters or hyphens.\n";
+            + " characters or single hyphens, and cannot begin or end with a hyphen.";
 
     private String userid;
 
@@ -18,6 +21,7 @@ public class GitUsername {
      * @param userid String username
      */
     public GitUsername(String userid) {
+        requireNonNull(userid);
         this.userid = userid;
     }
 

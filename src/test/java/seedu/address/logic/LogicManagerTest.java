@@ -3,15 +3,14 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-/*
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-*/
+import static seedu.address.logic.commands.CommandTestUtil.USERNAME_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.AMY;
 
+import java.awt.Point;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -19,7 +18,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-//import seedu.address.logic.commands.AddCommand;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,12 +28,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.Person;
+import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-//import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -73,7 +73,7 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    /*
+
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
@@ -88,7 +88,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + USERNAME_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
@@ -96,7 +96,53 @@ public class LogicManagerTest {
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
-    */
+    @Test
+    public void equals() {
+        Logic currentLogic;
+
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonTaskListStorage taskListStorage =
+                new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        currentLogic = new LogicManager(model, storage);
+
+        assertEquals(logic.getFilteredPersonList(), currentLogic.getFilteredPersonList());
+        assertEquals(logic.getAddressBook(), currentLogic.getAddressBook());
+        assertEquals(logic.getTaskList(), currentLogic.getTaskList());
+        assertEquals(logic.getFilteredTaskList(), currentLogic.getFilteredTaskList());
+        assertEquals(logic.getGuiSettings(), currentLogic.getGuiSettings());
+        assertEquals(logic.getAddressBookFilePath(), currentLogic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void setGuiSetting_success() {
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonTaskListStorage taskListStorage =
+                new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
+
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        Logic currentLogic = new LogicManager(model, storage);
+
+        double widthToTest = 1000;
+        double windowHeightToTest = 740;
+        int xPosToTest = 0;
+        int yPosToTest = 0;
+
+        GuiSettings setGui = new GuiSettings(widthToTest, windowHeightToTest, xPosToTest, yPosToTest);
+        currentLogic.setGuiSettings(setGui);
+
+        GuiSettings currentGui = logic.getGuiSettings();
+        Point currentCoord = currentGui.getWindowCoordinates();
+
+        assertEquals(currentGui.getWindowWidth(), widthToTest);
+        assertEquals(currentGui.getWindowHeight(), windowHeightToTest);
+        assertEquals(currentCoord.getX(), xPosToTest);
+        assertEquals(currentCoord.getY(), yPosToTest);
+    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
