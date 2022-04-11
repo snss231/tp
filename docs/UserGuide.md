@@ -86,6 +86,8 @@ Hope you'll be satisfied using NUSClasses :smile:
 
 1. Refer to the [Features](#features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
@@ -118,6 +120,8 @@ Hope you'll be satisfied using NUSClasses :smile:
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing help : `help`
 
 Shows a message with the link to the User Guide for reference.
@@ -125,8 +129,6 @@ Shows a message with the link to the User Guide for reference.
 ![help message](images/helpmessage2.png)
 
 **Format**: `help`
-
-<div style="page-break-after: always;"></div>
 
 ## Contact Features
 
