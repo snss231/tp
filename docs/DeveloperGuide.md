@@ -568,6 +568,7 @@ testers are expected to do more *exploratory* testing.
   <dt>API</dt>
   <dd>Application Programming Interface. Enables different systems to interact with each other programmatically.</dd>
   <dt>Mainstream OS</dt>
+  <dd>Windows, Linux, MacOS</dd>
   <dt>.csv</dt>
   <dd>A plain text file containing a list of data, separated by commas</dd>
   <dt>NUS Classes</dt>
