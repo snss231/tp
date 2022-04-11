@@ -76,7 +76,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -109,13 +109,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -126,7 +126,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -154,7 +154,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -172,7 +172,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -190,6 +190,30 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Task feature
+
+In NUS Classes, `Task`s represent NUS Computing professor's tasks that they have scheduled. Tasks include relevant information
+such as `TASKNAME`, `DATETIME`, `LINK` for links to meetings/lectures/tutorials and `TAG`s for professors to keep their tasks organised.
+When a `Task` is added to NUS Classes, the following features are implemented:
+- `AddTaskCommandParser#parse()` - Parses the compulsory fields of `TASKNAME` and `DATETIME` as well as optional fields such as `ENDDATETIME`, `TAG`, `LINK` and `INTERVAL` with `REUCRRENCE`.
+The parser obtains the relevant information to be added and creates a `Task` with the information parsed.
+- `AddTaskCommand` which contains the relevant information for the newly added `Task`.
+- `AddTaskCommand#execute()` - Execute `ModelManager#addTask()` by parsing in the task to be added and passing it to `TaskList`.
+- `TaskList#addTask()` - Adds the `Task` to `TaskList`.
+
+Step 1: User enters the command, e.g. `addt tn/Lesson dt/12-03-2022 1200`. Once this command is parsed, it is handled by `AddressBookParser#parseCommand()`, which creates a `AddTaskCommandParser` object.
+
+Step 2: `AddTaskCommandParser#parse()` is then called which parses the command. The parameters entered by the user, such as `TASKNAME`, `DATETIME` and optional parameters are parsed, and a new `AddTaskCommand` object is created which contains the parameters entered by the user.
+
+Step 3: `AddTaskCommand` will then call `AddTaskCommand#execute()` which will execute the command. It will first create a `Task` based on the information contained and then it will add the newly created `Task` to `TaskList` via `TaskList#addTask()`.
+
+Step 4: Return either a success message with the added `Task` or a `CommandException` due to missing parameters or invalid parameters.
+
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete person feature
 
@@ -219,10 +243,10 @@ Delete task feature implements the following operations:
 * `TaskList#deleteCurrTask()` — Deletes the task from the TaskList stored here.
 
 Step 1: User will enter the command `deletet 1` to delete the first task.
-Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
+Once user parses in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
 to create `DeleteTaskCommand` and execute to delete the task from the task list.
 
-The Sequence Diagram below illustrates the interactions of how the delete task feature work.
+The Sequence Diagram below illustrates the interactions of how the delete task feature works.
 ![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -238,11 +262,11 @@ Execution flow of Activity Diagram:
 
 * **Alternative 1 (current choice):** Delete task based on the index shown.
     * Pros: Easy to implement.
-    * Cons: Have to scroll through task list to look for task index number.
+    * Cons: Users have to scroll through task list to look for task index number.
 
 * **Alternative 2:** Delete task based on the task name.
-    * Pros: User just have to enter the task name.
-    * Cons: We must do check ensure that user enter the correct spelling and spacing of the task name
+    * Pros: Users just have to enter the task name.
+    * Cons: Checks are needed to ensure that users entered the correct spelling and spacing of the task name
 
 ### Edit Task feature
 Edit task feature implements the following operations:
@@ -255,8 +279,8 @@ Edit task feature implements the following operations:
 * `ModelManager#setTask()` — Update the task information.
 * `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
 
-Step 1: User parse in command. For example, `editt 1 tn/Teach CS2103T dt/12-03-2022 1330 z/https://zoomlink.com t/Homework`
-Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
+Step 1: User parses in command. For example, `editt 1 tn/Teach CS2103T dt/12-03-2022 1330 z/https://zoomlink.com t/Homework`
+Once user parses in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
 ![EditTaskSequenceDiagramstate0](images/EditTaskDiagram/EditTaskSequenceDiagramState0.png)
 
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
@@ -273,9 +297,9 @@ the task and task list.
 Step 4: Lastly return the result.
 Possible outcome from the result.
 * Outcome 1: Successfully updated task.
-* Outcome 2: Throw CommandException due to index out of range or task is repeated.
+* Outcome 2: Throw CommandException due to index out of range, invalid parameters or no valid changes to `Task`.
 
-* ![EditTaskOutcomeActivityeDiagram](images/Activity Diagram/EditTaskOutcome.png)
+![EditTaskOutcomeActivityeDiagram](images/Activity Diagram/EditTaskOutcome.png)
 
 The Sequence Diagram below illustrates the overall interactions of how the edit task feature work.
 ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
@@ -293,15 +317,15 @@ The view task mechanism is facilitated by `ViewCommand`, `ViewCommandParser`, `M
 
 Given below is an example usage scenario and how the view task mechanism behaves at each step.
 
-Step 1. The user will enter the command `view 1` to view the people associated with the first task. The command will be handled by
+Step 1: The user will enter the command `view 1` to view the people associated with the first task. The command will be handled by
 `AddressBookParser#parseCommand()` which will create a `ViewCommandParser` object.
 
-Step 2. The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
+Step 2: The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
+Step 3: `ViewCommand#execute()` is then called which will execute the command. It will retrieve the task list
 by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
-Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
+Step 4: Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
 `ModelManager#updateFilteredPersonList()` which will proceed to update the UI.
 
 The following sequence diagram shows how the view task operation works:
@@ -309,7 +333,7 @@ The following sequence diagram shows how the view task operation works:
 
 #### Design considerations:
 
-**Aspect:** How should the results be displayed in the *Contact* column when no one is associated with the task:
+**Aspect:** How should the results be displayed in the *Contact* column when no contacts are associated with the task:
 
 * **Alternative 1 (current choice):** Continue displaying the current list of people.
   * Pros: Reduce commands required by user to populate and use the column for input.
@@ -347,7 +371,7 @@ The following sequence diagram shows how the view task operation works:
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Professors can organise their module-related tasks and contacts in one place, boosting their efficiency and productivity.
+**Value proposition**: Professors can easily organise their module-related tasks and contacts in one place, boosting their efficiency and productivity.
 
 
 ### User stories
