@@ -279,8 +279,6 @@ Possible outcome from the result.
 
 The Sequence Diagram below illustrates the overall interactions of how the edit task feature work.
 ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### View Task feature
 The view task mechanism is facilitated by `ViewCommand`, `ViewCommandParser`, `ModelManager` and `Task`. Additionally, it implements the following operation:
@@ -306,6 +304,9 @@ Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the
 
 The following sequence diagram shows how the view task operation works:
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
 
