@@ -17,6 +17,9 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Link;
 import seedu.address.model.task.Task;
 
+/**
+ * Jackson-friendly version of {@link Task}.
+ */
 public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
@@ -95,7 +98,8 @@ public class JsonAdaptedTask {
         }
         LocalDateTime modelDateTime = LocalDateTime.parse(dateTime);
 
-        LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null") ? null : LocalDateTime.parse(endDateTime);
+        LocalDateTime modelEndDateTime = Objects.equals(endDateTime, "null")
+                ? null : LocalDateTime.parse(endDateTime);
 
         Set<Tag> modelTag = new HashSet<>(taskTags);
 

@@ -13,7 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-
+/**
+ * Assigns a contact in the contact list to a task.
+ */
 public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
@@ -40,6 +42,8 @@ public class AssignCommand extends Command {
     private final Index personIndex;
 
     /**
+     * Constructs AssignCommand that takes in a task index and person index.
+     *
      * @param taskIndex of the task in the filtered task list to be added to
      * @param personIndex of the person in the filtered person list to add
      */
@@ -54,18 +58,18 @@ public class AssignCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> shownPersonList = model.getFilteredPersonList();
-        List<Task> shownTaskList = model.getFilteredTaskList();
+        List<Person> filteredPersonList = model.getFilteredPersonList();
+        List<Task> filteredTaskList = model.getFilteredTaskList();
 
-        if (personIndex.getZeroBased() >= shownPersonList.size()) {
+        if (personIndex.getZeroBased() >= filteredPersonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (taskIndex.getZeroBased() >= shownTaskList.size()) {
+        if (taskIndex.getZeroBased() >= filteredTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-        Task taskToEdit = shownTaskList.get(taskIndex.getZeroBased());
-        Person personToAdd = shownPersonList.get(personIndex.getZeroBased());
+        Task taskToEdit = filteredTaskList.get(taskIndex.getZeroBased());
+        Person personToAdd = filteredPersonList.get(personIndex.getZeroBased());
 
         if (taskToEdit.getPeople().contains(personToAdd)) {
             throw new CommandException(

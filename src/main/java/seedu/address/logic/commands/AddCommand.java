@@ -44,7 +44,7 @@ public class AddCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Constructs an AddCommand to add the specified {@code Person}
      */
     public AddCommand(Person person) {
         requireNonNull(person);
@@ -66,8 +66,6 @@ public class AddCommand extends Command {
         if (model.hasUsername(toAdd.getUsername())) {
             throw new CommandException(MESSAGE_DUPLICATE_GIT_USERNAME);
         }
-
-
 
         String checkTagLength = TagUtil.checkTagLength(toAdd.getTags());
 
