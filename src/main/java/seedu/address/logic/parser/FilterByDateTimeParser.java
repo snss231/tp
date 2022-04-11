@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.ERROR_MESSAGE_INVALID_FORMAT;
+import static seedu.address.commons.core.Messages.ERROR_MESSAGE_INVALID_PARAMETER;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.FilterByDateCommand.ERROR_MESSAGE_INVALID_FORMAT;
-import static seedu.address.logic.commands.FilterByDateCommand.ERROR_MESSAGE_INVALID_PARAMETER;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -57,7 +57,6 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
             throw new ParseException(ERROR_MESSAGE_INVALID_PARAMETER);
         }
 
-
         // check if time is provided
         if (checkTime(splitDates[1]) && checkTime(splitDates[2])) {
             return localDateTimeChecker(dayMonthYearTime(splitDates[1]), dayMonthYearTime(splitDates[2]));
@@ -70,7 +69,7 @@ public class FilterByDateTimeParser implements Parser<FilterByDateCommand> {
             return localDateTimeTargetedAdder(dayMonthYear(splitDates[1]),
                     dayMonthYearTime(splitDates[2]), false);
         } else {
-            throw new ParseException(ERROR_MESSAGE_INVALID_PARAMETER);
+            throw new ParseException(ERROR_MESSAGE_INVALID_FORMAT);
         }
     }
 
