@@ -17,6 +17,7 @@ title: Developer Guide
     * [Delete task feature](#delete-task-feature)
     * [Edit task feature](#edit-task-feature)
     * [View task feature](#view-task-feature)
+    * [Find task feature](#find-task-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -327,9 +328,9 @@ Given below is an example usage scenario and how the view task mechanism behaves
 Step 1. The user will enter the command `findt brush` to find all tasks that have the keyword `brush`. The command will be handled by
 `AddressBoomParser#parseCommand()` which will create a `FilterCommandParser` object.
 
-Step 2. The `FilterCommandParser` will call `FilterCommandParser#parse()` which will parse the command, returning a `FindTaskCommand` to be executed.
+Step 2. The `AddressBookParser` will call `FilterCommandParser#parse()` which will parse the command, returning a `FindTaskCommand` to be executed.
 
-Step 3. The `FindTaskCommand` will call `FindTaskCommand#execute()` which will execute the command. It will update the existing task list to only show
+Step 3. The `LogicManager` will call `FindTaskCommand#execute()` which will execute the command. It will update the existing task list to only show
 the task with the search keywords by calling `ModelManager#updateFilteredTaskList()`.
 
 Step 4. Finally, the `FindTaskCommand` will return the command result of how many tasks were found, by calling `ModelManager#getFilteredTaskList().size()`
