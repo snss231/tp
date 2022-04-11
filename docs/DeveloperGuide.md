@@ -315,7 +315,7 @@ The following sequence diagram shows how the view task operation works:
   * Pros: Reduce commands required by user to populate and use the column for input.
   * Cons: May be confusing to user.
 
-* **Alternative 2: Display an empty list** .
+* **Alternative 2: Display an empty list**.
   * Pros: Clearly inform the users that the task has no people associate with it.
   * Cons: Requires more commands by the user in order to use the column again.
   
@@ -341,76 +341,106 @@ The following sequence diagram shows how the view task operation works:
 
 * NUS professors
 * has a need to manage a significant number of contacts
-* has a need to keep track the tasks with the respective contacts
+* has a need to organise these contacts (e.g. by role - Teaching Assistant, Student - or by class groups)
+* has a need to keep track of who's involved in each task
 * prefer desktop apps over other types
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Easier to organised and handle large numbers of contacts and task. Able to disseminate information in a more organise manner
+**Value proposition**: Professors can organise their module-related tasks and contacts in one place, boosting their efficiency and productivity.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                                   | So that I can…​                                                        |
-|----------|---------------------------------------------|------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                    | see usage instructions                         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                        | add a new person                               |                                                                        |
-| `* * *`  | user                                        | add a new task                                 | manage my schedule more efficiently                                    |
-| `* * *`  | user                                        | delete a person                                | remove entries that I no longer need                                   |
-| `* * *`  | user                                        | delete a task                                  | remove the task I no longer need                                       |
-| `* * *`  | user                                        | find a person by name                          | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                        | assign people to tasks                         | easily keep track of the people involved in a task                     |
-| `* * *`  | user                                        | unassign people from tasks                     | easily maintain the list of people involved in a task                  |
-| `* * *`  | user                                        | find a person by name                          | locate details of persons without having to go through the entire list |
-| `* * *`  | user with different persons in address book | tag my contacts                                | organize the contacts to look neater                                   |
-| `* * *`  | user                                        | filter my tasks by name                        | locate details of tasks without having to go through the entire list   |
-| `* * *`  | user                                        | view contact detail                            | know the information of the contact                                    |
-| `* * *`  | user                                        | tag the task                                   | know which task is urgent                                              |
-| `* * *`  | user                                        | assign and remove the task to/from my contacts | allocate my tasks to the specific contact as needed                    |
-| `* * *`  | user                                        | view the contact assigned to a task            | know who I am suppose to contact                                       |
-| `* *`    | user                                        | get Github profile link from my contact        | view their project profile                                             |
-| `* *`    | user                                        | customized my profile                          |                                                                        |
-| `* *`    | Professor                                   | group the students based on module             | know which student is under which module                               |
-| `*`      | user                                        | hide contacts                                  | to keep my contact relevant without the need to delete                 |
-| `*`      | Professor                                   | add graded component of the module             | track students' performance of the module                              |
-| `*`      | user with many persons in the address book  | sort persons by name                           | locate a person easily                                                 |
+
+| Priority | As a …​   | I want to …​                                           | So that I can…​                                                           |
+|----------|-----------|--------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user  | see usage instructions                                 | refer to instructions when I forget how to use the App                    |
+| `* * *`  | user      | add a new person                                       | manage my contacts more efficiently                                       |
+| `* * *`  | user      | add a new task                                         | manage my schedule more efficiently                                       |
+| `* * *`  | user      | delete a person                                        | remove entries that I no longer need                                      |
+| `* * *`  | user      | delete a task                                          | remove the task I no longer need                                          |
+| `* * *`  | user      | find a person by name                                  | locate details of persons without having to go through the entire list    |
+| `* * *`  | user      | assign people to tasks                                 | easily keep track of the people involved in a task                        |
+| `* * *`  | user      | unassign people from tasks                             | easily maintain the list of people involved in a task                     |
+| `* * *`  | user      | find a person by name                                  | locate details of persons without having to go through the entire list    |
+| `* * *`  | user      | tag my contacts                                        | organize the contacts to look neater                                      |
+| `* * *`  | user      | filter my tasks by name                                | locate tasks without having to go through the entire list                 |
+| `* * *`  | user      | view contact detail                                    | know the information of the contact                                       |
+| `* * *`  | user      | tag tasks                                              | organise my tasks                                                         |
+| `* * *`  | user      | assign and remove the task to/from my contacts         | allocate my tasks to the specific contact as needed                       |
+| `* * *`  | user      | view the contact assigned to a task                    | know who I am suppose to contact                                          |
+| `* *`    | user      | import contact data from a csv file                    | easily initialize my contacts without having to type hundreds of commands |
+| `* *`    | user      | generate emails of all the contacts assigned to a task | easily transfer the emails to my preferred email client to contact them   | 
+| `* *`    | user      | get a contact's Github username                        | lookup their Github profiles                                              |
+| `* *`    | Professor | group the students based on module                     | know which student is under which module                                  |
+| `*`      | Professor | add graded component of the module                     | track students' performance of the module                                 |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is `NUS Classes` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+###Use case: UC01 - Delete a person
 
 **MSS**
 
-1.  User requests to list persons
-2.  NUS Classes shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  NUS Classes deletes the person
+1. User requests to list persons
+2. NUS Classes shows a list of persons
+3. User requests to delete a specific person in the list
+4. NUS Classes deletes the person
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-
-  Use case ends.
+  * Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. NUS Classes shows an error message.
+    * 3a1. NUS Classes shows an error message. 
+    * Use case resumes from step 3.
+    
 
-      Use case resumes at step 2.
+###Use case: UC02 - Import contacts
 
-**Use case: Schedule a task with a group**
+**MSS**
+1. User requests to import contacts, providing the filepath of the source data file.
+2. NUS Classes adds the contacts to the contact list.
+
+**Extensions**
+
+* 1a. NUS Classes can't find the file
+    * 1a1. NUS Classes shows an error message.
+    * Use case ends.
+* 1b. NUS Classes detects that the file is of invalid format or is a directory
+    * 1b1. NUS Classes shows an error message.
+    * Use case ends.
+* 1c. NUS Classes detects that some entries have invalid fields
+    * 1c1. NUS Classes informs the user of the invalid fields and the reason they are invalid
+    * 1c2. User fixes these fields
+    * Use case continues from step 1.
+
+
+###Use case: UC03 - See all scheduled tasks
+
+**MSS**
+1. User requests to see all tasks
+2. NUS Classes shows a list of scheduled tasks
+
+
+  
+###Use case: UC04 - Schedule a task with a group
 
 **MSS**
 
 1. User requests to create a task
 2. NUS Classes creates the task
+3. User requests to assign contacts to the task
+4. NUS Classes assigns the contacts to the task
 
     Use case ends.
 
@@ -418,55 +448,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. 0 optional arguments are provided
     * 1a1. NUS Classes shows an error message.
-
       Use case ends.
 
 * 2a. Invalid group type/index is provided
   * 2a1. NUS Classes shows an error message.
   * Use case ends.
+  
+    
+###Use case: UC05 - Update a task
 
-**Use case: See all scheduled tasks**
+**MSS**
 
-1. User requests to see all tasks
-2. NUS Classes shows a list of scheduled tasks
+1. User requests to see all tasks (UC03)
+2. User requests to update a task, providing the details of the fields to be edited and the index of the task
+3. NUS Classes updates the task
+
+Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The index is out of bounds/invalid
+  * 2a1. NUS Classes shows an error message. 
+  * Use case ends.
+* 2b. The fields provided are invalid
+  * 2b1. NUS Classes shows an error message.
   * Use case ends.
 
-###Use case: Update task for group
+###Use case: UC06 - Generate emails of all contacts assigned to a task
 
 **MSS**
 
-1. User requests to update task
-2. NUS Classes shows information for the new updated task including time in dd-mm-yyyy hhmm format.
+1. User requests to see all tasks (UC03)
+2. User requests to generate the emails of all contacts a task, and provides the index of the task
+3. NUS Classes displays the emails and provides a button to copy the emails.
+
+Use case ends.
 
 **Extensions**
 
-* 1a. The index is out of bounds/invalid
+* 1a. NUS Classes doesn't have any tasks created
+  * 1a1. NUS Classes shows an error message.
+  * Use case ends.
+* 2a. NUS Classes detects that the index provided is invalid
+  * 2a1. NUS Classes shows an error message.
+  * Use case ends.
+* 3a. User clicks the button to copy the emails.
+  * 3a1. User pastes the emails into their preferred email application
+  * Use case ends.
 
-    NUS Classes shows an error message and ends.
-
-###Use case: Delete contact
-
-**MSS**
-
-1. User deletes contact
-2. NUS Classes shows message that contact has been deleted
-
-**Extensions**
-
-* 1a. The index is out of bounds/invalid
-
-    NUS Classes shows an error message and ends
-
-
+    
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 persons and/or without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. App should not exit or shut down without user explicit command.
 5. App should display relevant information within 2 seconds after user enter command.
@@ -533,7 +568,6 @@ testers are expected to do more *exploratory* testing.
   <dt>API</dt>
   <dd>Application Programming Interface. Enables different systems to interact with each other programmatically.</dd>
   <dt>Mainstream OS</dt>
-  <dd>Windows, Linux, Unix, OS-X</dd>
   <dt>.csv</dt>
   <dd>A plain text file containing a list of data, separated by commas</dd>
   <dtNUS Classes</dt>
