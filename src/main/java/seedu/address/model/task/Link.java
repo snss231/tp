@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
- * Represents a link associate with the task.
+ * Represents a link associated with the task.
  */
 public class Link {
     public static final String MESSAGE_CONSTRAINTS = "The link provided should follows the proper URL format "

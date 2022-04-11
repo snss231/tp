@@ -72,7 +72,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
 
         List<Person> personToAddList = new ArrayList<>();
 
-        List<String> invalidFieldsList = new ArrayList<>();
+        List<String> invalidFields = new ArrayList<>();
 
         try {
             Scanner sc = new Scanner(file);
@@ -98,26 +98,26 @@ public class ImportCommandParser implements Parser<ImportCommand> {
                 try {
                     name = ParserUtil.parseName(values[nameIndex]);
                 } catch (ParseException e) {
-                    invalidFieldsList.add(String.format(ERROR_INVALID_NAME, values[nameIndex]));
+                    invalidFields.add(String.format(ERROR_INVALID_NAME, values[nameIndex]));
                     continue;
                 }
                 try {
                     phone = ParserUtil.parsePhone(values[phoneIndex]);
                 } catch (ParseException e) {
-                    invalidFieldsList.add(String.format(ERROR_INVALID_PHONE, values[phoneIndex]));
+                    invalidFields.add(String.format(ERROR_INVALID_PHONE, values[phoneIndex]));
                     continue;
                 }
                 try {
                     email = ParserUtil.parseEmail(values[emailIndex]);
                 } catch (ParseException e) {
-                    invalidFieldsList.add(String.format(ERROR_INVALID_EMAIL, values[emailIndex]));
+                    invalidFields.add(String.format(ERROR_INVALID_EMAIL, values[emailIndex]));
                     continue;
                 }
 
                 try {
                     gitUsername = ParserUtil.parseGitUsername(values[githubIndex]);
                 } catch (ParseException e) {
-                    invalidFieldsList.add(String.format(ERROR_INVALID_GITHUB, values[githubIndex]));
+                    invalidFields.add(String.format(ERROR_INVALID_GITHUB, values[githubIndex]));
                     continue;
                 }
 
@@ -125,7 +125,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
                     try {
                         tags.add(ParserUtil.parseTag(tag));
                     } catch (ParseException e) {
-                        invalidFieldsList.add(String.format(ERROR_INVALID_TAG, tag));
+                        invalidFields.add(String.format(ERROR_INVALID_TAG, tag));
                         continue loop;
                     }
                 }
@@ -137,6 +137,6 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             throw new ParseException(String.format(MESSAGE_CSV_MISSING_HEADERS, file.getPath()));
         }
 
-        return new ImportCommand(personToAddList, argMultimap.getValue(PREFIX_FILEPATH).get(), invalidFieldsList);
+        return new ImportCommand(personToAddList, argMultimap.getValue(PREFIX_FILEPATH).get(), invalidFields);
     }
 }
