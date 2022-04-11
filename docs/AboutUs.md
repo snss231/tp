@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us through our Github usernames.
 
 ## Project team
 
@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/brian16600)]] [[portfolio](team/brian16600.md)]
 
 * Role: Developer
-* Responsibilites: Code Quality
+* Responsibilites: Code Quality + Documentation
 
 ### Sean Ng
 
@@ -52,4 +52,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/AdrianOngJJ)]] [[portfolio](team/adrianongjj.md)]
 
 * Role: Developer
-* Responsibilities: Glossary
+* Responsibilities: Glossary + Documentation
