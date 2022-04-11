@@ -47,6 +47,7 @@ Hope you'll be satisfied using NUSClasses :smile:
         * [Saving the data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
+* [Prefix Summary](#prefix-summary)
 * [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------

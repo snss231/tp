@@ -27,6 +27,7 @@ title: Developer Guide
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
+* [Prefix Summary](#prefix-summary)
 * [Glossary](#glossary)
 
 
