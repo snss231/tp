@@ -14,24 +14,12 @@ import seedu.address.model.task.TaskBetweenDatesPredicate;
  */
 public class FilterByDateCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "findt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose dates fall within "
             + "the specified dates inputs (order insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: dt/DATETIME1, DATETIME2\n"
             + "Example: " + COMMAND_WORD + " dt/12-01-2022 0900, 13-02-2022 0900";
-
-    public static final String ERROR_MESSAGE_INVALID_FORMAT =
-            "Invalid date format. It should be \"dd-MM-yyyy HHmm\" or \"dd-MM-yyyy\"\n"
-            + "dd: Day (from 01 to 31); MM: Month (from 01 to 12); "
-            + "yyyy: Year (from 1 to 99999999); HH: Hour (from 00 to 23); "
-            + "mm: Minute (from 00 to 59)";
-
-    public static final String ERROR_MESSAGE_INVALID_PARAMETER =
-            "Invalid parameter format. It should be either \"dt/dd-MM-yyyy HHmm, dd-MM-yyyy HHmm\""
-
-                    + " or \"dt/dd-MM-yyyy, dd-MM-yyyy\"";
-
 
     private final TaskBetweenDatesPredicate predicate;
 
