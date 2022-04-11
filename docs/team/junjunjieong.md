@@ -41,6 +41,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed releases `v1.2` - `v1.4rc` (3 releases) on GitHub
 
+<div style="page-break-after: always;"></div>
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `deletet` [\#6](https://github.com/AY2122S2-CS2103T-T12-4/tp/pull/6)
