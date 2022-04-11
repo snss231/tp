@@ -326,7 +326,7 @@ The find task mechanism is facilitated by `FindTaskCommand`, `FilterCommandParse
 Given below is an example usage scenario and how the view task mechanism behaves at each step.
 
 Step 1. The user will enter the command `findt brush` to find all tasks that have the keyword `brush`. The command will be handled by
-`AddressBoomParser#parseCommand()` which will create a `FilterCommandParser` object.
+`AddressBookParser#parseCommand()` which will create a `FilterCommandParser` object.
 
 Step 2. The `AddressBookParser` will call `FilterCommandParser#parse()` which will parse the command, returning a `FindTaskCommand` to be executed.
 
