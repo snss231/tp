@@ -63,6 +63,8 @@ on certain key features.
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -104,6 +106,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -120,6 +124,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -150,6 +156,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -165,7 +173,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -181,6 +189,9 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+<div style="page-break-after: always;"></div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -212,6 +223,8 @@ Step 4: Return either a success message with the added `Task` or a `CommandExcep
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Delete person feature
 
 In NUS Classes, `Task`s are entities that maintain a list of `People` that are associated with the task.
@@ -231,6 +244,8 @@ Design considerations:
 * **Alternative 2:** Add a reference from each Person to the Tasks they are associated with. When a person is deleted, reference all the tasks through the `Person` object to update the tasks.
   * Pros: _May_ see some performance benefit (not necessary to iterate through all the tasks upon each `DeleteCommand`)
   * Cons: More fragile code due to circular dependency (`Person` depends on `Task`). Not often that a Professor will delete a contact (student or tutor) in the course of a module.
+
+<div style="page-break-after: always;"></div>
 
 ### Delete Task feature
 Delete task feature implements the following operations:
@@ -264,6 +279,8 @@ Execution flow of Activity Diagram:
 * **Alternative 2:** Delete task based on the task name.
     * Pros: Users just have to enter the task name.
     * Cons: Checks are needed to ensure that users entered the correct spelling and spacing of the task name
+
+<div style="page-break-after: always;"></div>
 
 ### Edit Task feature
 Edit task feature implements the following operations:
@@ -303,6 +320,8 @@ The Sequence Diagram below illustrates the overall interactions of how the edit 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### View Task feature
 The view task mechanism is facilitated by `ViewCommand`, `ViewCommandParser`, `ModelManager` and `Task`. Additionally, it implements the following operation:
 
@@ -339,8 +358,8 @@ The following sequence diagram shows how the view task operation works:
 * **Alternative 2: Display an empty list**.
   * Pros: Clearly inform the users that the task has no people associate with it.
   * Cons: Requires more commands by the user in order to use the column again.
-  
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -398,6 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Professor | group the students based on module                     | know which student is under which module                                  |
 | `*`      | Professor | add graded component of the module                     | track students' performance of the module                                 |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -516,8 +536,8 @@ Use case ends.
   * 3a1. User pastes the emails into their preferred email application
   * Use case ends.
 
-    
 
+<div style="page-break-after: always;"></div>
 
 
 ### Non-Functional Requirements
@@ -576,6 +596,8 @@ Given below are instructions to test the app manually.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+<div style="page-break-after: always;"></div>
 
 ## Prefix summary
 
