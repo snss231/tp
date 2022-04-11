@@ -42,7 +42,7 @@ public class TaskBetweenDatesPredicate implements Predicate<Task> {
     }
 
     /**
-     * Check if 2 list of dates are the same date
+     * Checks if 2 list of dates are the same date.
      *
      * @param list1 First list of dates
      * @param list2 Second list of dates
