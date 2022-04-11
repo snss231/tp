@@ -494,7 +494,7 @@ Use case ends.
 2. User requests to update a task, providing the details of the fields to be edited and the index of the task
 3. NUS Classes updates the task
 
-Use case ends
+Use case ends.
 
 **Extensions**
 
