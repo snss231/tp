@@ -72,12 +72,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case FindTaskCommand.COMMAND_WORD:
-
-            String[] checkOverlapArgs = arguments.trim().split(" ");
-            if (!checkOverlapArgs[0].contains(PREFIX_DATETIME.toString())
-                    && arguments.contains(PREFIX_DATETIME.toString())) {
-                throw new ParseException(MESSAGE_INVALID_FINDT_FORMAT + FindTaskCommand.MESSAGE_USAGE);
-            } else if (checkOverlapArgs[0].contains(PREFIX_DATETIME.toString())) {
+            if (arguments.contains(PREFIX_DATETIME.toString())) {
                 return new FilterByDateTimeParser().parse(arguments);
             } else {
                 return new FilterCommandParser().parse(arguments);
