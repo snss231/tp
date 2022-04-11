@@ -62,7 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same name as {@code person} exists in the address book.
+     * Returns true if a person with the same attributes as {@code person} exists in the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -81,7 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Checks if AddressBook has Email already existing.
+     * Checks if AddressBook has an existing contact with this email.
      *
      * @param email Email to be checked.
      * @return Whether email exists.
@@ -92,7 +92,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Checks if AddressBook has Phone number already existing.
+     * Checks if AddressBook has an existing contact with this phone number.
      *
      * @param phone Phone number to be checked.
      * @return Whether phone number exists.
@@ -103,7 +103,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Checks if AddressBook has Git Username already existing.
+     * Checks if AddressBook has an existing contact with this GitUsername.
      *
      * @param gitUsername Git username to be checked.
      * @return Whether git username exists.

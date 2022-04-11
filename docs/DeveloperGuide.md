@@ -35,7 +35,11 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [PlantUML](https://plantuml.com/) - open-source diagramming tool used for our architecture, class, sequence and activity diagrams.
+* [JUnit](https://junit.org/junit5/) - Java testing framework used for most of our testing 
+* [Gradle](https://gradle.org/) - Build automation tool 
+* [Shadowjar](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow) - "A Gradle plugin for collapsing all dependencies and project code into a single Jar file."
+* [Jackson](https://github.com/FasterXML/jackson) - "JSON for Java" library
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +77,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -106,13 +110,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -123,7 +127,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -151,7 +155,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -169,7 +173,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -187,6 +191,30 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Task feature
+
+In NUS Classes, `Task`s represent NUS Computing professor's tasks that they have scheduled. Tasks include relevant information
+such as `TASKNAME`, `DATETIME`, `LINK` for links to meetings/lectures/tutorials and `TAG`s for professors to keep their tasks organised.
+When a `Task` is added to NUS Classes, the following features are implemented:
+- `AddTaskCommandParser#parse()` - Parses the compulsory fields of `TASKNAME` and `DATETIME` as well as optional fields such as `ENDDATETIME`, `TAG`, `LINK` and `INTERVAL` with `REUCRRENCE`.
+The parser obtains the relevant information to be added and creates a `Task` with the information parsed.
+- `AddTaskCommand` which contains the relevant information for the newly added `Task`.
+- `AddTaskCommand#execute()` - Execute `ModelManager#addTask()` by parsing in the task to be added and passing it to `TaskList`.
+- `TaskList#addTask()` - Adds the `Task` to `TaskList`.
+
+Step 1: User enters the command, e.g. `addt tn/Lesson dt/12-03-2022 1200`. Once this command is parsed, it is handled by `AddressBookParser#parseCommand()`, which creates a `AddTaskCommandParser` object.
+
+Step 2: `AddTaskCommandParser#parse()` is then called which parses the command. The parameters entered by the user, such as `TASKNAME`, `DATETIME` and optional parameters are parsed, and a new `AddTaskCommand` object is created which contains the parameters entered by the user.
+
+Step 3: `AddTaskCommand` will then call `AddTaskCommand#execute()` which will execute the command. It will first create a `Task` based on the information contained and then it will add the newly created `Task` to `TaskList` via `TaskList#addTask()`.
+
+Step 4: Return either a success message with the added `Task` or a `CommandException` due to missing parameters or invalid parameters.
+
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete person feature
 
@@ -216,10 +244,10 @@ Delete task feature implements the following operations:
 * `TaskList#deleteCurrTask()` — Deletes the task from the TaskList stored here.
 
 Step 1: User will enter the command `deletet 1` to delete the first task.
-Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
+Once user parses in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `DeleteTaskCommandParser#parse()`
 to create `DeleteTaskCommand` and execute to delete the task from the task list.
 
-The Sequence Diagram below illustrates the interactions of how the delete task feature work.
+The Sequence Diagram below illustrates the interactions of how the delete task feature works.
 ![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -231,15 +259,15 @@ Execution flow of Activity Diagram:
 ![DeleteTaskOutcomeActivityeDiagram](images/Activity Diagram/DeleteTaskOutcome.png)
 
 #### Design considerations:
-**Aspect: How delete task executes:**
+**Aspect:** How delete task executes:
 
 * **Alternative 1 (current choice):** Delete task based on the index shown.
     * Pros: Easy to implement.
-    * Cons: Have to scroll through task list to look for task index number.
+    * Cons: Users have to scroll through task list to look for task index number.
 
 * **Alternative 2:** Delete task based on the task name.
-    * Pros: User just have to enter the task name.
-    * Cons: We must do check ensure that user enter the correct spelling and spacing of the task name
+    * Pros: Users just have to enter the task name.
+    * Cons: Checks are needed to ensure that users entered the correct spelling and spacing of the task name
 
 ### Edit Task feature
 Edit task feature implements the following operations:
@@ -252,8 +280,8 @@ Edit task feature implements the following operations:
 * `ModelManager#setTask()` — Update the task information.
 * `ModelManager#updateFilteredTaskList()` — Updates the filter of the filtered task list to filter by the given predicate.
 
-Step 1: User parse in command. For example, `editt 1 tn/Teach CS2103T dt/12-03-2022 1330 z/https://zoomlink.com t/Homework`
-Once user parse in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
+Step 1: User parses in command. For example, `editt 1 tn/Teach CS2103T dt/12-03-2022 1330 z/https://zoomlink.com t/Homework`
+Once user parses in the command, it will be handled by `AddressBookParser#parseCommand()`, then calling of `EditTaskCommandParser#parse()`
 ![EditTaskSequenceDiagramstate0](images/EditTaskDiagram/EditTaskSequenceDiagramState0.png)
 
 Step 2: `EditTaskCommandParser` will call `ParseUtil#parseIndex()` to get the task index.
@@ -270,14 +298,12 @@ the task and task list.
 Step 4: Lastly return the result.
 Possible outcome from the result.
 * Outcome 1: Successfully updated task.
-* Outcome 2: Throw CommandException due to index out of range or task is repeated.
+* Outcome 2: Throw CommandException due to index out of range, invalid parameters or no valid changes to `Task`.
 
-* ![EditTaskOutcomeActivityeDiagram](images/Activity Diagram/EditTaskOutcome.png)
+![EditTaskOutcomeActivityeDiagram](images/Activity Diagram/EditTaskOutcome.png)
 
 The Sequence Diagram below illustrates the overall interactions of how the edit task feature work.
 ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### View Task feature
 The view task mechanism is facilitated by `ViewCommand`, `ViewCommandParser`, `ModelManager` and `Task`. Additionally, it implements the following operation:
@@ -290,29 +316,33 @@ The view task mechanism is facilitated by `ViewCommand`, `ViewCommandParser`, `M
 
 Given below is an example usage scenario and how the view task mechanism behaves at each step.
 
-Step 1. The user will enter the command `view 1` to view the people associated with the first task. The command will be handled by
+Step 1: The user will enter the command `view 1` to view the people associated with the first task. The command will be handled by
 `AddressBookParser#parseCommand()` which will create a `ViewCommandParser` object.
 
-Step 2. The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
+Step 2. The `AddressBookParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
+Step 3. The `LogicManager` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
+
 by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
-Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
+Step 4: Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
 `ModelManager#updateFilteredPersonList()` which will proceed to update the UI.
 
 The following sequence diagram shows how the view task operation works:
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 #### Design considerations:
 
-**Aspect:** How should the results be displayed in the *Contact* column when no one is associated with the task:
+**Aspect:** How should the results be displayed in the *Contact* column when no contacts are associated with the task:
 
 * **Alternative 1 (current choice):** Continue displaying the current list of people.
   * Pros: Reduce commands required by user to populate and use the column for input.
   * Cons: May be confusing to user.
 
-* **Alternative 2: Display an empty list**.
+* **Alternative 2:** Display an empty list.
   * Pros: Clearly inform the users that the task has no people associate with it.
   * Cons: Requires more commands by the user in order to use the column again.
 
@@ -326,7 +356,7 @@ The find task mechanism is facilitated by `FindTaskCommand`, `FilterCommandParse
 Given below is an example usage scenario and how the view task mechanism behaves at each step.
 
 Step 1. The user will enter the command `findt brush` to find all tasks that have the keyword `brush`. The command will be handled by
-`AddressBoomParser#parseCommand()` which will create a `FilterCommandParser` object.
+`AddressBookParser#parseCommand()` which will create a `FilterCommandParser` object.
 
 Step 2. The `AddressBookParser` will call `FilterCommandParser#parse()` which will parse the command, returning a `FindTaskCommand` to be executed.
 
@@ -353,51 +383,53 @@ Step 4. Finally, the `FindTaskCommand` will return the command result of how man
 ### Product scope
 
 **Target user profile**:
+* NUS computing professors that:
+  * need to manage a large number of contacts
+  * need to categorise these contacts (e.g. by role - Teaching Assistant, Student - or by class groups)
+  * need to keep track of relevant contact details (e.g. Github username, email)
+  * need to keep track of the people involved in each task
+  * prefer desktop apps over other types
+  * prefers typing to mouse interactions
+  * is reasonably comfortable using CLI apps
 
-* NUS professors
-* has a need to manage a significant number of contacts
-* has a need to organise these contacts (e.g. by role - Teaching Assistant, Student - or by class groups)
-* has a need to keep track of who's involved in each task
-* prefer desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: Professors can organise their module-related tasks and contacts in one place, boosting their efficiency and productivity.
+**Value proposition**: NUS computing professors can easily organise their module-related tasks and relevant contact details in one place, boosting their efficiency and productivity.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                           | So that I can…​                                                           |
-|----------|-----------|--------------------------------------------------------|---------------------------------------------------------------------------|
-| `* * *`  | new user  | see usage instructions                                 | refer to instructions when I forget how to use the App                    |
-| `* * *`  | user      | add a new person                                       | manage my contacts more efficiently                                       |
-| `* * *`  | user      | add a new task                                         | manage my schedule more efficiently                                       |
-| `* * *`  | user      | delete a person                                        | remove entries that I no longer need                                      |
-| `* * *`  | user      | delete a task                                          | remove the task I no longer need                                          |
-| `* * *`  | user      | find a person by name                                  | locate details of persons without having to go through the entire list    |
-| `* * *`  | user      | assign people to tasks                                 | easily keep track of the people involved in a task                        |
-| `* * *`  | user      | unassign people from tasks                             | easily maintain the list of people involved in a task                     |
-| `* * *`  | user      | find a person by name                                  | locate details of persons without having to go through the entire list    |
-| `* * *`  | user      | tag my contacts                                        | organize the contacts to look neater                                      |
-| `* * *`  | user      | filter my tasks by name                                | locate tasks without having to go through the entire list                 |
-| `* * *`  | user      | view contact detail                                    | know the information of the contact                                       |
-| `* * *`  | user      | tag tasks                                              | organise my tasks                                                         |
-| `* * *`  | user      | assign and remove the task to/from my contacts         | allocate my tasks to the specific contact as needed                       |
-| `* * *`  | user      | view the contact assigned to a task                    | know who I am suppose to contact                                          |
-| `* *`    | user      | import contact data from a csv file                    | easily initialize my contacts without having to type hundreds of commands |
-| `* *`    | user      | generate emails of all the contacts assigned to a task | easily transfer the emails to my preferred email client to contact them   | 
-| `* *`    | user      | get a contact's Github username                        | lookup their Github profiles                                              |
-| `* *`    | Professor | group the students based on module                     | know which student is under which module                                  |
-| `*`      | Professor | add graded component of the module                     | track students' performance of the module                                 |
+
+| Priority | As a …​             | I want to …​                                           | So that I can…​                                                           |
+|----------|---------------------|--------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user            | see usage instructions                                 | refer to instructions when I forget how to use the App                    |
+| `* * *`  | user                | add a new person                                       | manage my contacts more efficiently                                       |
+| `* * *`  | user                | add a new task                                         | manage my schedule more efficiently                                       |
+| `* * *`  | user                | delete a person                                        | remove entries that I no longer need                                      |
+| `* * *`  | user                | delete a task                                          | remove the task I no longer need                                          |
+| `* * *`  | user                | find a person by name                                  | locate details of persons without having to go through the entire list    |
+| `* * *`  | user                | assign people to tasks                                 | easily keep track of the people involved in a task                        |
+| `* * *`  | user                | unassign people from tasks                             | easily maintain the list of people involved in a task                     |
+| `* * *`  | user                | find a person by name                                  | locate details of persons without having to go through the entire list    |
+| `* * *`  | user                | tag my contacts                                        | organize the contacts to look neater                                      |
+| `* * *`  | user                | filter my tasks by name or date                        | locate tasks without having to go through the entire list                 |
+| `* * *`  | user                | view contact details                                   | lookup important contact information                                      |
+| `* * *`  | user                | tag tasks                                              | organise my tasks                                                         |
+| `* * *`  | user                | assign and remove the task to/from my contacts         | allocate my tasks to the specific contact as needed                       |
+| `* * *`  | user                | view the contacts assigned to a task                   | lookup the information of the people assigned to a task                   |
+| `* *`    | lecturer            | store the meeting links of my tasks                    | easily access the meetings when I need to                                 |
+| `* *`    | user                | import contact data from a csv file                    | easily initialize my contacts without having to type hundreds of commands |
+| `* *`    | user                | generate emails of all the contacts assigned to a task | easily transfer the emails to my preferred email client to contact them   | 
+| `* *`    | computing professor | get a contact's Github username                        | lookup their Github profiles                                              |
+| `* *`    | professor           | group the students based on module                     | know which student is under which module                                  |
+| `*`      | professor           | add graded component of the module                     | track students' performance of the module                                 |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is `NUS Classes` and the **Actor** is the `user`, unless specified otherwise)
 
-###Use case: UC01 - Delete a person
+### Use case: UC01 - Delete a person
 
 **MSS**
 
@@ -406,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific person in the list
 4. NUS Classes deletes the person
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -419,11 +451,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case resumes from step 3.
     
 
-###Use case: UC02 - Import contacts
+### Use case: UC02 - Import contacts
 
 **MSS**
 1. User requests to import contacts, providing the filepath of the source data file.
 2. NUS Classes adds the contacts to the contact list.
+
+Use case ends.
 
 **Extensions**
 
@@ -439,15 +473,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case continues from step 1.
 
 
-###Use case: UC03 - See all scheduled tasks
+### Use case: UC03 - See all scheduled tasks
 
 **MSS**
 1. User requests to see all tasks
 2. NUS Classes shows a list of scheduled tasks
 
+Use case ends.
+
 
   
-###Use case: UC04 - Schedule a task with a group
+### Use case: UC04 - Schedule a task with a group
 
 **MSS**
 
@@ -456,20 +492,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to assign contacts to the task
 4. NUS Classes assigns the contacts to the task
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 1a. 0 optional arguments are provided
+* 1a. Compulsory arguments are omitted (e.g. name or date-time)
     * 1a1. NUS Classes shows an error message.
-      Use case ends.
+    * Use case ends.
 
 * 2a. Invalid group type/index is provided
   * 2a1. NUS Classes shows an error message.
   * Use case ends.
   
     
-###Use case: UC05 - Update a task
+### Use case: UC05 - Update a task
 
 **MSS**
 
@@ -477,18 +513,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User requests to update a task, providing the details of the fields to be edited and the index of the task
 3. NUS Classes updates the task
 
-Use case ends
+Use case ends.
 
 **Extensions**
 
 * 2a. The index is out of bounds/invalid
   * 2a1. NUS Classes shows an error message. 
   * Use case ends.
-* 2b. The fields provided are invalid
+* 2b. The fields provided are invalid 
   * 2b1. NUS Classes shows an error message.
   * Use case ends.
+* 2c. No optional arguments are provided
+  * 2c1. NUS Classes shows an error message.
+  * Use case ends.
 
-###Use case: UC06 - Generate emails of all contacts assigned to a task
+### Use case: UC06 - Generate emails of all contacts assigned to a task
 
 **MSS**
 
@@ -510,8 +549,23 @@ Use case ends.
   * 3a1. User pastes the emails into their preferred email application
   * Use case ends.
 
-    
+### Use case: UC07 - Searching for tasks by name and/or tags
 
+**MSS**
+
+1. User specifies the keyword to search for.
+2. NUS Classes displays the tasks whose names and/or tags match the keyword.
+
+Use case ends.
+
+### Use case: UC08 - Searching for tasks by date range
+
+**MSS**
+
+1. User specifies the date range to search for.
+2. NUS Classes displays the tasks whose date(s) fit within the range.
+
+Use case ends.
 
 
 ### Non-Functional Requirements
@@ -540,16 +594,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and tasks.
+   
+2. Shutdown
+   1. Click the 'close' button or execute the `exit` command Expected: The app shuts down
+   
 
 ### Deleting a person
 
@@ -558,30 +607,43 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+1. Data (contacts and tasks) should be automatically saved when the app is shut down.
+   1. Test case: `addc n/Test Person p/123456 e/e1234@u.nus.edu u/test123`, then `exit` and restart the app. <br>Expected: The created contact is saved and is shown.
+   2. Test case: `addt tn/Test task dt/12-12-2020 1234`, then `exit` and restart the app. <br>Expected: The created task is saved and is shown.
+   
+### Importing contacts from a .csv file
+1. The import feature should work with a valid .csv file.
+   1. Test case:
+      1. Create a .csv file with the filename `test.csv` using a text editor and place it into the NUS Classes folder.
+      2. The .csv file should contain the headers `Name,Phone,Github,Email,Tags`
+      3. On the next line, add the sample contact `Alex Bean,91234567,alexbean@gmail.com,Lab 12F/Student`
+      4. Execute the command `import fp/test.csv`
+      5. The NUS Classes should inform you that the contact has been successfully imported, and the contact is displayed in the contact list.
+   2. For advanced testing, you may rename the file and place it in a subdirectory.
+      * make sure to specify the filepath relative to the jar directory, specified according your OS's file system.
 
 ## **Glossary**
-<dl>
-  <dt>API</dt>
-  <dd>Application Programming Interface. Enables different systems to interact with each other programmatically.</dd>
-  <dt>Mainstream OS</dt>
-  <dd>Windows, Linux, MacOS</dd>
-  <dt>Private contact detail</dt>
-  <dd>A contact detail that is not meant to be shared with others.</dd>
-</dl>
+
+| Term          | Meaning                                                                                                                                                                                    |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| API           | Application Programming Interface. Enables different systems to interact with each other programmatically                                                                                  |
+| .csv          | A plain text file containing a list of data, separated by commas                                                                                                                           |
+| MSS           | Main Success Scenario                                                                                                                                                                      | The action steps of a typical scenario where the goal is delivered |
+| NUS           | National University of Singapore                                                                                                                                                           | 
+| NUS Classes   | The name of the application                                                                                                                                                                |
+| Mainstream OS | Windows, Linux, MacOS                                                                                                                                                                      |
+| UI            | User Interface, the means by which the user interacts with the system                                                                                                                      |
+| CLI           | Command-line interface, which processes text-based commands from the user                                                                                                                  |
+| GUI           | Graphical user interface, a visual way of interacting with a computer using items such as windows, icons and menus                                                                         |
+| Jar           | A JAR (Java ARchive) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
