@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 
 import java.util.regex.Matcher;
@@ -73,7 +72,12 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case FindTaskCommand.COMMAND_WORD:
-            if (arguments.contains(PREFIX_DATETIME.toString())) {
+
+            String[] checkOverlapArgs = arguments.trim().split(" ");
+            if (!checkOverlapArgs[0].contains(PREFIX_DATETIME.toString())
+                    && arguments.contains(PREFIX_DATETIME.toString())) {
+                throw new ParseException(MESSAGE_INVALID_FINDT_FORMAT + FindTaskCommand.MESSAGE_USAGE);
+            } else if (checkOverlapArgs[0].contains(PREFIX_DATETIME.toString())) {
                 return new FilterByDateTimeParser().parse(arguments);
             } else {
                 return new FilterCommandParser().parse(arguments);

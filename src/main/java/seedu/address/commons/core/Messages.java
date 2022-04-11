@@ -34,4 +34,5 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in NUS Classes!\nCheck again?";
     public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in NUS Classes!\n"
             + "Check again?";
+    public static final String MESSAGE_INVALID_FINDT_FORMAT = "You cannot find both name and time.\n";
 }
