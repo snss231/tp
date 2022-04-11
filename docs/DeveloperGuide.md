@@ -3,31 +3,7 @@ layout: page
 title: Developer Guide
 ---
 ## Table of Contents
-* [Acknowledgements](#acknowledgements)
-* [Setting up, getting started](#setting-up-getting-started)
-* [Design](#design)
-    * [Architecture](#architecture)
-    * [Ui component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-* [Implementation](#implementation)
-    * [Delete person feature](#delete-person-feature)
-    * [Delete task feature](#delete-task-feature)
-    * [Edit task feature](#edit-task-feature)
-    * [View task feature](#view-task-feature)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-Functional requirements](#non-functional-requirements)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a person](#deleting-a-person)
-    * [Saving data](#saving-data)
-* [Glossary](#glossary)
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
