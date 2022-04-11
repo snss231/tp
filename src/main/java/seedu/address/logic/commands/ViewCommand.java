@@ -27,11 +27,10 @@ public class ViewCommand extends Command {
 
     public static final String NO_CONTACT_ASSIGN = "Failed: There are no contacts assigned to task %d.";
     public static final String DISPLAY_TASK_CONTACT_SUCCESS = "Found %1$d contact(s) assigned to this task";
-
     private final Index targetIndex;
 
     /**
-     * The constructor for ViewTaskCommand class
+     * Constructs ViewTaskCommand that takes in targetIndex.
      *
      * @param targetIndex The index of the task to be targeted.
      */
@@ -47,13 +46,13 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Task> lastShownTaskList = model.getFilteredTaskList();
+        List<Task> latestShownTaskList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownTaskList.size()) {
+        if (targetIndex.getZeroBased() >= latestShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDisplay = lastShownTaskList.get(targetIndex.getZeroBased());
+        Task taskToDisplay = latestShownTaskList.get(targetIndex.getZeroBased());
 
         List<Person> listOfPeople = taskToDisplay.getPeople();
 

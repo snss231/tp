@@ -29,9 +29,12 @@ public class GenerateEmailsCommand extends Command {
     static final String MESSAGE_GENERATED_EMAILS = "Here are the emails related to the task %1$s:\n"
             + "%2$s";
 
-
     private final Index targetIndex;
 
+    /**
+     * Constructs GenerateEmailsCommand that takes in a {@code targetIndex}.
+     *
+     */
     public GenerateEmailsCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

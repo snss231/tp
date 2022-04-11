@@ -13,6 +13,9 @@ import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 
+/**
+ * An Immutable TaskList that is serializable to JSON format.
+ */
 @JsonRootName(value = "tasks")
 public class JsonSerializableTaskList {
 

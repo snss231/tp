@@ -55,6 +55,7 @@ public class EditTaskCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
+     * Constructs EditTaskCommand that takes in a task index and editTaskDescriptor.
      * @param index of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
@@ -103,7 +104,8 @@ public class EditTaskCommand extends Command {
      * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
-        assert taskToEdit != null;
+        requireNonNull(taskToEdit);
+        requireNonNull(editTaskDescriptor);
 
         String editName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime editDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDateTime());
@@ -151,6 +153,7 @@ public class EditTaskCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
+            requireNonNull(toCopy);
             setName(toCopy.name);
             setDate(toCopy.dateTime);
             setEndDate(toCopy.endDateTime);

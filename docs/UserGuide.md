@@ -34,7 +34,8 @@ Hope you'll be satisfied using NUSClasses :smile:
         * [Listing tasks](#listing-tasks--listt)
         * [Editing a task](#editing-a-task-editt)
         * [Finding tasks](#finding-tasks-findt)
-        * [Finding tasks by date](#finding-tasks-by-date-findt)
+          * [Finding tasks by name or tag](#1-finding-tasks-by-name-or-tag-findt)
+          * [Finding tasks by date](#2-finding-tasks-by-date-findt)
         * [Assigning a contact to a task](#assigning-a-contact-to-a-task-assign)
         * [Viewing contacts assigned to a task](#viewing-contacts-assigned-to-a-task-view)
         * [Unassigning a contact from a task](#unassigning-a-contact-from-a-task-unassign)
@@ -195,7 +196,7 @@ You can remove all the contact’s tags by typing `t/` without specifying any ta
 
 Find contacts whose names and/or tags contain any of the given keywords.
 
-**Format**: `findc KEYWORD [MORE_KEYWORDS]...`
+**Format**: `findc KEYWORD [MORE_KEYWORDS]…​`
 
 * `KEYWORD` can be used to search for matching words in both tags and names of contacts.
 * The search is case-insensitive. e.g `john` will match `John`
@@ -308,12 +309,24 @@ The index **must be a positive integer** 1, 2, 3, …​
 * The `ENDDATETIME` field is optional.
 </div>
 
-
 ### Finding tasks: `findt`
+
+You can find tasks either by 1) name and/or tags **OR** 2) date time range
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+
+If your `findt` command contains both name `KEYWORD` and date time prefix `dt/`,
+ the command will ignore the `KEYWORD` and `findt dt/` will take higher precedence.
+<br>
+e.g. `findt meeting dt/12-12-2022 1200, 13-12-2022 1200` will be equivalent to 
+`findt dt/12-12-2022 1200, 13-12-2022 1200`
+</div>
+
+#### 1. Finding tasks by name or tag: `findt`
 
 Find tasks whose task names or tags contain any of the given keywords.
 
-**Format**: `findt KEYWORD [MORE_KEYWORDS]...[TAG]...`
+**Format**: `findt KEYWORD [MORE_KEYWORDS]…​`
 * `KEYWORD` can be used to search for matching words in both tags and names of tasks.
 * The search is case-insensitive. e.g `lecture` will match `Lecture`
 * The order of the keywords does not matter. e.g. `Lecture CS2103T` will match `CS2103T Lecture`
@@ -330,11 +343,12 @@ Find tasks whose task names or tags contain any of the given keywords.
 
 <div markdown="span" class="alert alert-info">
 :bulb: **Tip:**
+
 If you have many tasks, using `findt` will help you to keep organized! 
 
 </div>
 
-### Finding tasks by date: `findt`
+#### 2. Finding tasks by date: `findt`
 Find tasks whose task falls in between the given dates (inclusive).
 
 **Format**: `findt dt/DATETIME1, DATETIME2`
@@ -352,6 +366,7 @@ Find tasks whose task falls in between the given dates (inclusive).
 
 <div markdown="span" class="alert alert-info">
 :bulb: **Tip:**
+
 `DATETIME1` and `DATETIME2` do not require `HHmm` if you wish to find tasks that fall on/in between the dates.
 
 </div>
@@ -649,8 +664,8 @@ Instead of always displaying dates in full (e.g. DD MM YYYY), our dates will be 
 | [**Add Task**](#adding-a-task-addt)                                                                                                | `addt tn/TASKNAME dt/DATETIME[, ENDDATETIME] [t/TAG]…​ [z/LINK] [r/INTERVAL RECURRENCE]` |
 | [**List Tasks**](#listing-tasks--listt)                                                                                            | `listt all\` or `listt nc/` or `listt c/`                                                |
 | [**Edit Task**](#editing-a-task-editt)                                                                                             | `editt INDEX [tn/TASKNAME] [dt/DATETIME, ENDDATETIME*] [z/LINK] [t/TAG]`                 |
-| [**Find Task**](#finding-tasks-findt)                                                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                        |
-| [**Find Task by Date**](#finding-tasks-by-date-findt)                                                                              | `findt dt/DATETIME1, DATETIME2`                                                          |
+| [**Find Task by name or tag**](#1-finding-tasks-by-name-or-tag-findt)                                                              | `findt KEYWORD [MORE_KEYWORDS]…​`                                                        |
+| [**Find Task by Date**](#2-finding-tasks-by-date-findt)                                                                            | `findt dt/DATETIME1, DATETIME2`                                                          |
 | [**Assign contact <br> To Task**](#assigning-a-contact-to-a-task-assign)                                                           | `assign INDEX p/CONTACTINDEX`                                                            |
 | [**View contacts<br>Assigned to Task**](#viewing-contacts-assigned-to-a-task-view)                                                 | `view INDEX`                                                                             |
 | [**Unassign contact <br>From Task**](#unassigning-a-contact-from-a-task-unassign)                                                  | `unassign INDEX p/CONTACTINDEX`                                                          |

@@ -31,11 +31,11 @@ public class Tag {
     /**
      * Returns true if a String is a valid tag name. Tag must be alphanumeric.
      *
-     * @param test String to be tested.
+     * @param testString String to be tested.
      * @return boolean true/false on whether tag name is valid.
      */
-    public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidTagName(String testString) {
+        return testString.matches(VALIDATION_REGEX);
     }
 
     @Override
