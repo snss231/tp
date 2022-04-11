@@ -588,6 +588,7 @@ testers are expected to do more *exploratory* testing.
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | API           | Application Programming Interface. Enables different systems to interact with each other programmatically                                                                                  |
 | .csv          | A plain text file containing a list of data, separated by commas                                                                                                                           |
+| NUS           | National University of Singapore                                                                                                                                                           | 
 | NUS Classes   | The name of the application                                                                                                                                                                |
 | Mainstream OS | Windows, Linux, MacOS                                                                                                                                                                      |
 | UI            | User Interface, the means by which the user interacts with the system                                                                                                                      |
