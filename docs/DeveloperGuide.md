@@ -437,6 +437,7 @@ Use case ends.
 **MSS**
 1. User requests to import contacts, providing the filepath of the source data file.
 2. NUS Classes adds the contacts to the contact list.
+
 Use case ends.
 
 **Extensions**
