@@ -29,7 +29,7 @@ public class MarkTaskCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Constructor for MarkTaskCommand.
+     * Constructs MarkTaskCommand that takes in a task index.
      *
      * @param targetIndex the index of the task.
      */
@@ -41,13 +41,13 @@ public class MarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> latestShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= latestShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        Task taskToMark = latestShownList.get(targetIndex.getZeroBased());
         model.markTask(taskToMark);
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
     }

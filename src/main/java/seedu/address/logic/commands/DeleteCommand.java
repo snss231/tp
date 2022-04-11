@@ -29,6 +29,10 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a DeleteCommand to delete the specified {@code targetIndex}
+     *
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

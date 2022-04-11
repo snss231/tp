@@ -50,33 +50,51 @@ public class ModelManager implements Model {
 
     //=========== UserPrefs ==================================================================================
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GuiSettings getGuiSettings() {
         return userPrefs.getGuiSettings();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
@@ -85,52 +103,79 @@ public class ModelManager implements Model {
 
     //=========== AddressBook ================================================================================
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasUsername(GitUsername gitUsername) {
         requireNonNull(gitUsername);
         return addressBook.hasUsername(gitUsername);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasEmail(Email email) {
         requireNonNull(email);
         return addressBook.hasEmail(email);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasPhone(Phone phone) {
         requireNonNull(phone);
         return addressBook.hasPhone(phone);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
         taskList.removePerson(target);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -150,6 +195,9 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -177,11 +225,17 @@ public class ModelManager implements Model {
 
     //=========== TaskList ================================================================================
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTaskList(ReadOnlyTaskList taskList) {
         this.taskList.resetData(taskList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;

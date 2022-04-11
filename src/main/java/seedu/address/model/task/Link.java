@@ -6,6 +6,9 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+/**
+ * Represents a link associate with the task.
+ */
 public class Link {
     public static final String MESSAGE_CONSTRAINTS = "The link provided should follows the proper URL format "
             + "(must have reference to 'https://' or 'http://'. E.g. www.google.com will not be considered a valid URL"

@@ -9,7 +9,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskList;
 
 
-
+/**
+ * Represents a storage for {@link seedu.address.model.TaskList}.
+ */
 public interface TaskListStorage {
 
     Path getTaskListFilePath();
