@@ -46,7 +46,7 @@ public class TaskBetweenDatesPredicate implements Predicate<Task> {
      *
      * @param list1 First list of dates.
      * @param list2 Second list of dates
-     * @return True if both list have the same dates
+     * @return True if both list have the same dates.
      */
     private boolean areDatesEqual(List<LocalDateTime> list1, List<LocalDateTime> list2) {
         boolean toReturn = false;
