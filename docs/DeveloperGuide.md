@@ -34,7 +34,11 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [PlantUML](https://plantuml.com/) - open-source diagramming tool used for our architecture, class, sequence and activity diagrams.
+* [JUnit](https://junit.org/junit5/) - Java testing framework used for most of our testing 
+* [Gradle](https://gradle.org/) - Build automation tool 
+* [Shadowjar](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow) - "A Gradle plugin for collapsing all dependencies and project code into a single Jar file."
+* [Jackson](https://github.com/FasterXML/jackson) - "JSON for Java" library
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -350,6 +354,7 @@ The following sequence diagram shows how the view task operation works:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​   | I want to …​                                           | So that I can…​                                                           |
 |----------|-----------|--------------------------------------------------------|---------------------------------------------------------------------------|
 | `* * *`  | new user  | see usage instructions                                 | refer to instructions when I forget how to use the App                    |
@@ -493,8 +498,6 @@ Use case ends.
 
     
 
-
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -521,16 +524,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and tasks.
+   
+2. Shutdown
+   1. Click the 'close' button or execute the `exit` command Expected: The app shuts down
+   
 
 ### Deleting a person
 
@@ -539,30 +537,39 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+1. Data (contacts and tasks) should be automatically saved when the app is shut down.
+   1. Test case: `addc n/Test Person p/123456 e/e1234@u.nus.edu u/test123`, then `exit` and restart the app. <br>Expected: The created contact is saved and is shown.
+   2. Test case: `addt tn/Test task dt/12-12-2020 1234`, then `exit` and restart the app. <br>Expected: The created task is saved and is shown.
+   
+### Importing contacts from a .csv file
+1. The import feature should work with a valid .csv file.
+   1. Test case:
+      1. Create a .csv file with the filename `test.csv` using a text editor and place it into the NUS Classes folder.
+      2. The .csv file should contain the headers `Name,Phone,Github,Email,Tags`
+      3. On the next line, add the sample contact `Alex Bean,91234567,alexbean@gmail.com,Lab 12F/Student`
+      4. Execute the command `import fp/test.csv`
+      5. The NUS Classes should inform you that the contact has been successfully imported, and the contact is displayed in the contact list.
+   2. For advanced testing, you may rename the file and place it in a subdirectory.
+      * make sure to specify the filepath relative to the jar directory, specified according your OS's file system.
 
 ## **Glossary**
 <dl>
   <dt>API</dt>
   <dd>Application Programming Interface. Enables different systems to interact with each other programmatically.</dd>
   <dt>Mainstream OS</dt>
-  <dd>Windows, Linux, MacOS</dd>
-  <dt>Private contact detail</dt>
-  <dd>A contact detail that is not meant to be shared with others.</dd>
+  <dt>.csv</dt>
+  <dd>A plain text file containing a list of data, separated by commas</dd>
+  <dtNUS Classes</dt>
+  <dd>The name of the application.</dd>
 </dl>
