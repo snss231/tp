@@ -296,9 +296,9 @@ Given below is an example usage scenario and how the view task mechanism behaves
 Step 1. The user will enter the command `view 1` to view the people associated with the first task. The command will be handled by
 `AddressBookParser#parseCommand()` which will create a `ViewCommandParser` object.
 
-Step 2. The `ViewCommandParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
+Step 2. The `AddressBookParser` will call `ViewCommandParser#parse()` which will parse the command, returning a `ViewCommand` to be executed.
 
-Step 3. The `ViewCommand` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
+Step 3. The `LogicManager` will call `ViewCommand#execute()` which will execute the command. It will retrieve the task list
 by calling `ModelManager#getFilteredTaskList()` and retrieve the first `Task` from this list.
 
 Step 4. Afterwards, the `ViewCommand` will call `Task#getPeople()` to obtain the list of people associated with the `Task` and pass this list as an argument to
@@ -383,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `NUS Classes` and the **Actor** is the `user`, unless specified otherwise)
 
-###Use case: UC01 - Delete a person
+### Use case: UC01 - Delete a person
 
 **MSS**
 
@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case resumes from step 3.
     
 
-###Use case: UC02 - Import contacts
+### Use case: UC02 - Import contacts
 
 **MSS**
 1. User requests to import contacts, providing the filepath of the source data file.
@@ -425,7 +425,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case continues from step 1.
 
 
-###Use case: UC03 - See all scheduled tasks
+### Use case: UC03 - See all scheduled tasks
 
 **MSS**
 1. User requests to see all tasks
@@ -433,7 +433,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
   
-###Use case: UC04 - Schedule a task with a group
+### Use case: UC04 - Schedule a task with a group
 
 **MSS**
 
@@ -455,7 +455,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Use case ends.
   
     
-###Use case: UC05 - Update a task
+### Use case: UC05 - Update a task
 
 **MSS**
 
@@ -474,7 +474,7 @@ Use case ends
   * 2b1. NUS Classes shows an error message.
   * Use case ends.
 
-###Use case: UC06 - Generate emails of all contacts assigned to a task
+### Use case: UC06 - Generate emails of all contacts assigned to a task
 
 **MSS**
 
@@ -570,6 +570,6 @@ testers are expected to do more *exploratory* testing.
   <dt>Mainstream OS</dt>
   <dt>.csv</dt>
   <dd>A plain text file containing a list of data, separated by commas</dd>
-  <dtNUS Classes</dt>
+  <dt>NUS Classes</dt>
   <dd>The name of the application.</dd>
 </dl>
