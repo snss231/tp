@@ -373,7 +373,7 @@ The following sequence diagram shows how the view task operation works:
   * prefers typing to mouse interactions
   * is reasonably comfortable using CLI apps
 
-**Value proposition**: NUS Professors can easily organise their module-related tasks and relevant contact details in one place, boosting their efficiency and productivity.
+**Value proposition**: NUS computing professors can easily organise their module-related tasks and relevant contact details in one place, boosting their efficiency and productivity.
 
 
 ### User stories
